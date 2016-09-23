@@ -12,7 +12,7 @@ safety critical systems in air traffic management.
 
 The API document for PolyCARP is still work in progress. In the meantime,
 please refer to the release notes and the examples files
-`IcarousExample.java` and `IcarousExample.cpp`.
+`PolycarpExample.java` and `PolycarpExample.cpp`.
 
 For technical information about the definitions and algorithms in this
 repository, visit [http://shemesh.larc.nasa.gov/fm/PolyCARP](http://shemesh.larc.nasa.gov/fm/PolyCARP).

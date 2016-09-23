@@ -1,4 +1,4 @@
-PolyCARP (Algorithms and Software for Computations with Polygons)
+PolyCARP 
 ========
 
 PolyCARP (Algorithms and Software for Computations with Polygons)

@@ -14,6 +14,7 @@ lib: $(SRCS)
 	cd src; $(JAR) cvf ../lib/PolyCARP.jar gov/nasa/larcfm/Util/*.class gov/nasa/larcfm/ACCoRD/*.class
 
 example:
+	test -f lib/PolyCARP.jar || make lib
 	@echo 
 	@echo "** Building PolycarpExample application"
 	$(JAVAC) -cp lib/PolyCARP.jar PolycarpExample.java

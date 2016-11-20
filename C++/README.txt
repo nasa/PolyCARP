@@ -1,7 +1,6 @@
 PolyCARP (Algorithms and Software for Computations with Polygons) 
 ------------------------------------------------------
-Version:  C++
-Release: FormalATM-v2.5.5, September 23, 2016
+Release: C++ - November 18, 2016
 Authors: Anthony Narkawicz, George Hagen
 Contact: Cesar A. Munoz (Cesar.A.Munoz@nasa.gov)
 

@@ -19,7 +19,7 @@ repository, visit [http://shemesh.larc.nasa.gov/fm/PolyCARP](http://shemesh.larc
 
 ### Current Release
 
-FormalATM-v2.5.5 (September 23, 2016) 
+PolyCARP@FormalATMv2.6.1 (Nov-18-2016) 
 
 ### License
 

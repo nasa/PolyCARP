@@ -10,7 +10,7 @@ safety critical systems in air traffic management.
 
 This repository also the formal specification
 of PolyCARP algorithms in the Prototype Verification System ([PVS](http://pvs.csl.sri.com)).
-
+
 ### Documentation
 
 The API document for PolyCARP is still work in progress. In the meantime,

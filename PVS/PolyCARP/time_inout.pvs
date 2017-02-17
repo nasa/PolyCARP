@@ -1,0 +1,183 @@
+time_inout: THEORY
+
+BEGIN
+
+  IMPORTING ACCoRD@cd_vertical,
+            ACCoRD@omega_2D,
+	    reals@sigma_nat,
+	    ACCoRD@repulsive,
+	    edge_proximity,
+	    polygon_contain,
+	    ACCoRD@cd2d,
+	    structures@listn[real],
+	    structures@more_list_props[real],
+	    recurse[below[8],nat]
+
+N: VAR posnat
+BUFF: VAR posreal
+
+
+Fac: VAR posreal % close to either 0 or 1
+
+t,tc,tt: VAR real
+
+Moving_Polygon_2D(N): TYPE = [# polystart: polygon_2D(N),
+		      	     	polyvel:   polygon_2D(N) #]
+
+s2,v2: VAR Vect2
+
+s,v,segstart,segend,startvel,endvel,
+segstart1,segend1,segstart2,segend2,w,a,b,so,vo: VAR Vect2
+
+T: VAR posreal
+B,nnr: VAR nnreal
+
+eps,eps1,eps2: VAR Sign
+
+AnyGS: posreal 
+
+quad_id_0: LEMMA FORALL (a,b,c:real):
+  (FORALL (t): a*sq(t)+b*t+c=0) IFF
+  (a=0 AND b=0 AND c=0)
+
+quad_ivt: LEMMA FORALL (a,b,c,t,tc:real): t<=tc AND
+  sign(a*sq(t)+b*t+c)/=sign(a*sq(tc)+b*tc+c) IMPLIES
+  EXISTS (tt:real): t<=tt AND tt<=tc AND
+  a*sq(tt)+b*tt+c=0
+
+dot_quad_conn: LEMMA FORALL (a,b,w,v:Vect2): 0<=t AND
+  t<=tt AND tt<=tc AND (FORALL (tz:real): (a+tz*b)*(perpR(w)+tz*perpR(v))=0) AND
+  (FORALL (tz:real): t<=tz AND tz<=tc IMPLIES sqv(w+tz*v)>0) AND
+  (a+t*b)*(w+t*v)>=0 AND 
+  (a+tc*b)*(w+tc*v)>=0
+  IMPLIES
+  (a+tt*b)*(w+tt*v)>=0
+
+moving_polygon_2D_at(N:posnat,mp:Moving_Polygon_2D(N))(tr:real)(ii:below(N)): Vect2 =
+  mp`polystart(ii)+tr*mp`polyvel(ii)
+
+on_segment_2D_sym: LEMMA
+  on_segment_2D?(segstart,segend,s) IFF
+  on_segment_2D?(segend,segstart,s)
+
+on_segment_2D_alg(segstart,segend,s:Vect2): bool =
+  (norm(s-segstart)=0 OR
+  (norm(segend-segstart)>0 AND
+   det(s-segstart,segend-segstart) = 0 AND
+   (s-segstart)*(segend-segstart) >= 0 AND
+   (s-segend)*(segstart-segend) >=0))
+
+on_segment_2D_alg_def: LEMMA on_segment_2D_alg(segstart,segend,s) =
+		    	  on_segment_2D?(segstart,segend,s)
+
+on_segment_2D_alg_alt(segstart,segend,s:Vect2): bool =
+  (det(s-segstart,segend-segstart) = 0 AND
+   (s-segstart)*(segend-segstart) >= 0 AND
+   (s-segend)*(segstart-segend) >=0)
+
+on_segment_2D_alg_alt_def: LEMMA segstart/=segend IMPLIES
+  on_segment_2D_alg(segstart,segend,s)=
+  on_segment_2D_alg_alt(segstart,segend,s)
+
+singular?(s,v,segstart,segend,startvel,endvel): bool =
+  (v-startvel)*perpR(endvel-startvel)=0 AND
+  (v-startvel)*perpR(segend-segstart)+(s-segstart)*perpR(endvel-startvel)=0 AND
+  (s-segstart)*perpR(segend-segstart)=0
+
+singular_def: LEMMA t<tt AND tt<tc AND
+  (FORALL (tz:real):t<=tz AND tz<=tc IMPLIES
+     segstart+tz*startvel/=segend+tz*endvel) AND
+  on_segment_2D?(segstart+t*startvel,segend+t*endvel,s+t*v) AND
+  on_segment_2D?(segstart+tt*startvel,segend+tt*endvel,s+tt*v) AND
+  on_segment_2D?(segstart+tc*startvel,segend+tc*endvel,s+tc*v)
+  IMPLIES
+  singular?(s,v,segstart,segend,startvel,endvel)
+
+singular_def2: LEMMA (FORALL (tt: real):
+        (s - segstart + tt * (v - startvel)) *
+         (perpR(segend - segstart) + tt * perpR(endvel - startvel))= 0)
+  IMPLIES singular?(s,v,segstart,segend,startvel,endvel)
+
+%%% An algorithm to determine the times where
+%%% (w+t*v)*(a+t*b)=0, where w,v,a,b are vectors.
+
+
+UsePerp:VAR bool
+
+dot_zero_linear_2D_alg(B:nnreal,T:posreal,w,v,a,b:Vect2,eps): real=
+   LET aa = v*b, bb = w*b + a*v, cc = w*a IN
+      IF aa /= 0 AND discr(aa,bb,cc)>=0 THEN root(aa,bb,cc,eps)
+      ELSIF bb /= 0 THEN -cc/bb
+      ELSIF eps=-1 THEN B
+      ELSE  T ENDIF
+
+dot_zero_linear_2D_alg_def: LEMMA
+  FORALL (B:nnreal,T:posreal,t:real,w,v,a,b:Vect2):
+    LET t1 = dot_zero_linear_2D_alg(B,T,w,v,a,b,-1),
+    	t2 = dot_zero_linear_2D_alg(B,T,w,v,a,b,1)
+    IN B<=t AND t<=T AND (w+t*v)*(a+t*b)=0 IMPLIES (t=t1 OR t=t2 OR
+    (v*b=0 AND ((t1<=t AND t<=t2) OR (t2<=t AND t<=t1)) AND FORALL (tt:real): (w+tt*v)*(a+tt*b)=0))
+
+edge_time(B,T,s,v,segstart,segend,startvel,endvel,eps): real =
+  LET midpt = (1/2)*segend+(1/2)*segstart,
+      news  = s-midpt,
+      midv  = (1/2)*endvel+(1/2)*startvel
+  IN  dot_zero_linear_2D_alg(B,T,s-midpt,v-midv,(1/2)*segend-(1/2)*segstart,
+	(1/2)*endvel-(1/2)*startvel,eps)
+
+lookahead_proj(B,T,t): real =
+  IF t>T THEN T
+  ELSIF t<B THEN B
+  ELSE t ENDIF
+
+swap_times(B,T,s,v,segstart,segend,startvel,endvel):listn(6) =
+  LET t0=dot_zero_linear_2D_alg(B,T,s-segstart,v-startvel,
+	   perpR(segend-segstart),perpR(endvel-startvel),-1),
+      t1=dot_zero_linear_2D_alg(B,T,s-segstart,v-startvel,
+	   perpR(segend-segstart),perpR(endvel-startvel),1),
+      t2=dot_zero_linear_2D_alg(B,T,s-segstart,v-startvel,segend-segstart,endvel-startvel,1),
+      t3=dot_zero_linear_2D_alg(B,T,s-segstart,v-startvel,segend-segstart,endvel-startvel,-1),
+      t4=dot_zero_linear_2D_alg(B,T,s-segend,v-endvel,segstart-segend,startvel-endvel,-1),
+      t5=dot_zero_linear_2D_alg(B,T,s-segend,v-endvel,segstart-segend,startvel-endvel,1)
+  IN (: lookahead_proj(B,T,t0),lookahead_proj(B,T,t1),lookahead_proj(B,T,t2),
+      lookahead_proj(B,T,t3),lookahead_proj(B,T,t4),lookahead_proj(B,T,t5) :)
+
+swap_times_ivt: LEMMA B<=T AND (FORALL (tt:Lookahead[B,T]): segstart+tt*startvel/=segend+tt*endvel)
+  IMPLIES
+  LET st = swap_times(B,T,s,v,segstart,segend,startvel,endvel)
+  IN
+    B<=t AND t<=tc AND tc<=T AND 
+      on_segment_2D?(segstart+t*startvel,segend+t*endvel,s+t*v) /= 
+      on_segment_2D?(segstart+tc*startvel,segend+tc*endvel,s+tc*v)
+    IMPLIES EXISTS (i:below[6]): t<=nth(st,i) AND nth(st,i)<=tc
+
+
+on_segment_2D_connected: LEMMA 0<=t AND t<=tt AND tt<=tc AND
+  on_segment_2D?(segstart+t*startvel,segend+t*endvel,s+t*v) AND
+  on_segment_2D?(segstart+tc*startvel,segend+tc*endvel,s+tc*v) AND
+  singular?(s,v,segstart,segend,startvel,endvel) AND
+  (FORALL (tz:real): t<=tz AND tz<=tc IMPLIES segstart+tz*startvel/=segend+tz*endvel)
+  IMPLIES
+  on_segment_2D?(segstart+tt*startvel,segend+tt*endvel,s+tt*v)
+
+
+edge_time_def: LEMMA B<=T AND (FORALL (tt:Lookahead[B,T]): segstart+tt*startvel/=segend+tt*endvel) IMPLIES
+  LET st = swap_times(B,T,s,v,segstart,segend,startvel,endvel),
+      stapp:listn(8) = append(st,(: B,T :)),
+      t0=nth(stapp,0),t1=nth(stapp,1),t2=nth(stapp,2),t3=nth(stapp,3),
+      t4=nth(stapp,4),t5=nth(stapp,5),t6=nth(stapp,6),t7=nth(stapp,7)
+  IN
+    B<=t AND t<=T AND on_segment_2D?(segstart+t*startvel,segend+t*endvel,s+t*v) AND length(stapp)=8
+    IMPLIES
+    t=t0 OR t=t1 OR t=t2 OR t=t3 OR t=t4 OR t=t5 OR t=B OR t=T OR
+      EXISTS (i,j:below[8]): LET ti=nth(stapp,i),tj=nth(stapp,j) IN
+        (FORALL (k:below[8]): NOT (ti<nth(stapp,k) AND nth(stapp,k)<tj)) AND
+        ti<=t AND t<=tj AND FORALL (tt:real): ti<tt AND tt<tj 
+	  IMPLIES on_segment_2D?(segstart+tt*startvel,segend+tt*endvel,s+tt*v)
+
+
+
+
+
+
+END time_inout

@@ -1,0 +1,212 @@
+poly_checker  % [ parameters ]
+		: THEORY
+
+  BEGIN
+
+  IMPORTING 
+    polygon_contain,
+    resolution,
+    PVSioChecker@pvsio_checker
+
+
+numpolys: VAR posnat
+pointsPerPolygon: VAR posnat
+
+
+  % GPolysize: Global[posnat, 1]
+  % GPoly: Global[polygon_2D(val(GPolysize)), LAMBDA(i:below(val(GPolysize))): (# x:=0, y:=0 #)]
+  % GBuff: Global[posreal, 1]
+  % GResolBuff: Global[posreal, 1]
+  % Eps: Global[posreal, 0.000000001]
+  % PertTimes: Global[nat, 0]
+  % Gin: Global[nat, 0]
+  % Gout: Global[nat, 0]
+
+  GNumPolys: Global[posnat,1]
+  GPointsPerPoly: Global[nat,0]
+  GPolysPerFile: Global[nat,0]
+  GShowOrig: Global[bool,True]
+  GShowNice: Global[bool,True]
+  GShowLikely: Global[bool,True]
+  GShowInOut: Global[bool,True]
+  GShowRes: Global[bool,True]
+  GShowNear: Global[bool,True]
+  GShowConvex: Global[bool,True]
+
+  tiny_dist:posreal = 0.01
+
+  eps_pert: posreal = 0.001
+
+  Vect_str(s:Vect2) : string =
+     format("(# x := ~a, y := ~a #)",
+          (to_str(s`x),to_str(s`y)))
+
+  nearby(v1,v2:Vect2): bool = norm(v1-v2)<=tiny_dist
+
+  perturb(i:nat): Vect2 = IF i=0 THEN (# x:=0,y:=0 #)
+			      	ELSIF i=1 THEN (# x:=eps_pert,y:=0 #)
+			      	ELSIF i=2 THEN (# x:=0,y:=eps_pert #)
+			      	ELSIF i=3 THEN (# x:=-eps_pert,y:=0 #)
+			      	ELSIF i=4 THEN (# x:=0,y:=-eps_pert #)
+				ELSIF i=5 THEN (# x:=eps_pert,y:=eps_pert #)
+				ELSIF i=6 THEN (# x:=-eps_pert,y:=eps_pert #)
+				ELSIF i=7 THEN (# x:=-eps_pert,y:=-eps_pert #)
+				ELSIF i=8 THEN (# x:=eps_pert,y:=eps_pert #)
+				ELSE (# x:=0,y:=0 #)
+				ENDIF
+
+%perturb_V2(s:Vect2, eps:posreal): Vect2 = 
+%     LET 
+%        x = s`x+ eps*(RANDOM - 1/2)
+
+
+
+  header?(fin:IStream, fout:OStream):void = 
+   LET numpolys = str2pvs[posnat](readln_checker(fin)),
+       pointsperpoly = str2pvs[nat](readln_checker(fin)),
+       polysperfile = str2pvs[nat](readln_checker(fin)),
+       showorig = str2pvs[bool](readln_checker(fin)),
+       shownice = str2pvs[bool](readln_checker(fin)),
+       showlikely = str2pvs[bool](readln_checker(fin)),
+       showinout = str2pvs[bool](readln_checker(fin)),
+       showres = str2pvs[bool](readln_checker(fin)),
+       shownear = str2pvs[bool](readln_checker(fin)),
+       showconvex = str2pvs[bool](readln_checker(fin)),
+       set1 = set[posnat](GNumPolys,numpolys),
+       set2 = set[nat](GPointsPerPoly,pointsperpoly),
+       set3 = set[nat](GPolysPerFile,polysperfile),
+       set4 = set[bool](GShowOrig,showorig),
+       set5 = set[bool](GShowNice,shownice and showorig),
+       set6 = set[bool](GShowLikely,showlikely),
+       set7 = set[bool](GShowInOut,showinout),
+       set8 = set[bool](GShowRes,showres),
+       set9 = set[bool](GShowNear,shownear),
+       set10 = set[bool](GShowNear,showconvex)
+   IN
+     set1 & set2 & set3 & set4 & set5 & set6 & set7 & set8 & set9 & set10
+
+  % polygon_header?(fin:IStream, fout:OStream):void = 
+  %  LET size = str2pvs[posnat](readln_checker(fin)), 
+  %      poly = str2pvs[polygon_2D(size)](readln_checker(fin)), 
+  %      buff = str2pvs[posreal](readln_checker(fin)), 
+  %    set1 = set[posnat](GPolysize, size), 
+  %    set2 = set[polygon_2D(size)](GPoly, poly), 
+  %    set3 = set[posreal](GBuff, buff)
+  %     IN
+  %    set1 & set2 & set3
+
+ check_d_in(n:posnat, p:polygon_2D(n), pnum:nat, buff:posreal,din_io: bool, pt: Vect2, ptnum:nat,convex_valid:bool,convex_inside:bool, fout:OStream): bool = 
+    LET pans = definitely_inside(n,p,pt,buff),
+    	nae3buff = near_any_edge_upto(n,p,pt,3*buff,n-1),
+    	inans = IF convex_valid and ((pans and (not convex_inside)) or ((not pans) and convex_inside and (not nae3buff)))
+	      	   THEN fprintf(fout, "Failed Def In (CONVEX DECOMP) polygon ~a for ~a. pt num ~a~%", (to_str(pnum),Vect_str(pt),to_str(ptnum))) AND FALSE
+	        ELSIF  pans  = din_io THEN TRUE 
+    	        ELSIF definitely_inside(n,p,pt,buff-tiny_dist) AND NOT
+	          definitely_inside(n,p,pt,buff+tiny_dist) THEN TRUE
+                ELSE fprintf(fout, "Failed Def In polygon ~a for ~a. pt num ~a~%", (to_str(pnum),Vect_str(pt),to_str(ptnum))) AND FALSE
+	        ENDIF IN
+	      inans
+
+ check_d_out(n:posnat, p:polygon_2D(n), pnum:nat, buff:posreal,dout_io: bool, pt: Vect2, ptnum:nat,convex_valid:bool,convex_outside:bool,fout:OStream): bool = 
+    LET pans = definitely_outside(n,p,pt,buff),
+    	nae3buff = near_any_edge_upto(n,p,pt,3*buff,n-1),
+    	outans = IF convex_valid and ((pans and (not convex_outside)) or ((not pans) and convex_outside and (not nae3buff)))
+	      	   THEN fprintf(fout, "Failed Def OUT (CONVEX DECOMP) polygon ~a for ~a. pt num ~a~%", (to_str(pnum),Vect_str(pt),to_str(ptnum))) AND FALSE
+	         ELSIF  pans  = dout_io THEN TRUE 
+    	         ELSIF definitely_outside(n,p,pt,buff-tiny_dist) AND NOT
+	           definitely_outside(n,p,pt,buff+tiny_dist) THEN TRUE
+                 ELSE fprintf(fout, "Failed Def Out polygon ~a for ~a. pt num ~a~%", (to_str(pnum),Vect_str(pt),to_str(ptnum),pans,dout_io)) AND FALSE
+	         ENDIF IN
+	      outans
+
+ check_near(n:posnat, p:polygon_2D(n), pnum:nat,nearbuff:posreal,dnear_io: bool, pt: Vect2, ptnum:nat,fout:OStream): bool = 
+    LET near = IF  near_any_edge_upto(n,p,pt,nearbuff,n-1)  = dnear_io THEN TRUE
+    	       ELSIF near_any_edge_upto(n,p,pt,nearbuff+tiny_dist,n-1) AND NOT
+	       near_any_edge_upto(n,p,pt,nearbuff-tiny_dist,n-1) THEN TRUE
+               ELSE fprintf(fout, "Failed Near polygon ~a for ~a. ptn num ~a~%", (to_str(pnum),Vect_str(pt),to_str(ptnum))) AND FALSE
+	       ENDIF IN
+	       near
+
+  check_nice(n:posnat, op,p:polygon_2D(n), pnum:nat, buff:posreal,nice_io,likely_nice:bool, fout:OStream): bool = 
+    IF (NOT val(GShowNice)) THEN TRUE
+    ELSE LET nice_ans = nice_polygon_2D(n,p,buff) IN
+       IF val(GShowNice) AND nice_ans/=nice_io
+         THEN fprintf(fout,"Failed nice Polygon ~a with buff ~a~%", (to_str(pnum),to_str(buff))) AND FALSE
+       ELSIF val(GShowLikely) AND nice_ans /=likely_nice AND nice_polygon_2D(n,op,0.001*buff) AND (NOT nice_polygon_2D(n,p,5*buff))
+         THEN TRUE
+       ELSIF val(GShowLikely) AND likely_nice /= nice_ans
+         THEN fprintf(fout, "Failed likely nice Polygon ~a~%", (to_str(pnum))) AND FALSE
+       ELSE TRUE
+       ENDIF
+    ENDIF
+
+  check_resin(n:posnat, p:polygon_2D(n), pnum:nat,buff,resolbuff:posreal,rvect_io: Vect2, 
+  					 pt: Vect2, ptnum:nat, fout:OStream): bool = 
+    LET irp = inside_recovery_point(n,buff,resolbuff,p,pt),
+      out = IF (EXISTS (ii:below(9)):nearby(inside_recovery_point(n,buff,resolbuff,p,pt+perturb(ii)),rvect_io)) THEN TRUE
+	      ELSE fprintf(fout, "Failed Resolve IN for ~a. Polygon ~a. pt num ~a. PVS says ~a and lang says ~a ~%", (Vect_str(pt), to_str(pnum),to_str(ptnum),Vect_str(irp),Vect_str(rvect_io))) AND FALSE 
+	      ENDIF    IN out
+
+  check_resout(n:posnat, p:polygon_2D(n), pnum:nat,buff,resolbuff:posreal,rvect_io: Vect2, 
+  			 		  pt: Vect2, ptnum:nat, fout:OStream): bool = 
+    LET orp = outside_recovery_point(n,buff,resolbuff,p,pt),
+      out = IF (EXISTS (ii:below(9)):nearby(outside_recovery_point(n,buff,resolbuff,p,pt+perturb(ii)),rvect_io)) THEN TRUE
+	      ELSE fprintf(fout, "Failed Resolve OUT for ~a. Polygon ~a. pt num ~a. PVS says ~a and lang says ~a ~%", (Vect_str(pt), to_str(pnum),to_str(ptnum),Vect_str(orp),Vect_str(rvect_io))) AND FALSE 
+	      ENDIF    IN out
+
+  check_point(n:posnat, p:polygon_2D(n), pnum:nat,buff:posreal, resolbuff:posreal, nearbuff:posreal,din_io,dout_io,near_io:bool,rvect_inio,rvect_outio: Vect2, 
+  			 		  pt: Vect2, ptnum:nat,convex_valid:bool,convex_inside:bool,fout:OStream): bool =
+    LET inans = (IF val(GShowInOut) THEN check_d_in(n,p,pnum,buff,din_io,pt,ptnum,convex_valid,convex_inside,fout) ELSE TRUE ENDIF),
+    	outans = (IF val(GShowInOut) THEN check_d_out(n,p,pnum,buff,dout_io,pt,ptnum,convex_valid,NOT convex_inside,fout) ELSE TRUE ENDIF),
+	near_ans = (IF val(GShowNear) THEN check_near(n,p,pnum,nearbuff,near_io,pt,ptnum,fout) ELSE TRUE ENDIF),
+	resinans = (IF val(GShowRes) THEN check_resin(n,p,pnum,buff,resolbuff,rvect_inio,pt,ptnum,fout) ELSE TRUE ENDIF),
+	resoutans = (IF val(GShowRes) THEN check_resout(n,p,pnum,buff,resolbuff,rvect_outio,pt,ptnum,fout) ELSE TRUE ENDIF)
+    IN inans and outans and near_ans and resinans and resoutans
+
+  read_points(itnum:nat,n:posnat,p:polygon_2D(n),plikely:bool,pperturbed:bool,pnum:nat,buff:posreal, resolbuff:posreal, nearbuff:posreal)(fin:IStream, fout:OStream): RECURSIVE bool =
+    IF itnum>=val(GPointsPerPoly) THEN TRUE
+    ELSIF (NOT (val(GShowInOut) OR val(GShowRes) OR val(GShowNear))) THEN TRUE
+    ELSE LET ptnum = str2pvs[nat](readln_checker(fin)),
+    	     pt = str2pvs[Vect2](readln_checker(fin)),
+	     din_io = (IF val(GShowInOut) THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+	     dout_io = (IF val(GShowInOut) THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+	     din_conv_io = (IF val(GShowConvex) THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+	     near_io = (IF val(GShowNear) THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+	     rvect_inio = (IF val(GShowRes) THEN str2pvs[Vect2](readln_checker(fin)) ELSE (# x:=0,y:=0 #) ENDIF),
+	     rvect_outio = (IF val(GShowRes) THEN str2pvs[Vect2](readln_checker(fin)) ELSE (# x:=0,y:=0 #) ENDIF),
+	     convex_valid = (val(GShowConvex) AND plikely AND (NOT pperturbed)),
+	     this_ans = check_point(n,p,pnum,buff,resolbuff,nearbuff,din_io,dout_io,near_io,rvect_inio,rvect_outio,pt,ptnum,convex_valid,din_conv_io,fout),
+	     next_rec = read_points(itnum+1,n,p,plikely,pperturbed,pnum,buff,resolbuff,nearbuff)(fin,fout)
+	 IN this_ans AND next_rec
+    ENDIF MEASURE max(val(GPointsPerPoly)-itnum+3,1)
+
+
+  checker?(fin:IStream, fout:OStream):bool =
+    LET	
+      pnum = str2pvs[nat](readln_checker(fin)),
+      buff = str2pvs[posreal](readln_checker(fin)),
+      resolbuff = str2pvs[posreal](readln_checker(fin)),
+      nearbuff = str2pvs[posreal](readln_checker(fin)),
+      opsize = (IF GShowOrig THEN str2pvs[posnat](readln_checker(fin)) ELSE 1 ENDIF),
+      op = (IF GShowOrig THEN str2pvs[polygon_2D(opsize)](readln_checker(fin)) ELSE (LAMBDA (i:below(1)): (# x:=0,y:=0 #)) ENDIF),
+      n = (IF GShowOrig THEN str2pvs[posnat](readln_checker(fin)) ELSE 1 ENDIF),
+      p = (IF GShowOrig THEN str2pvs[polygon_2D(n)](readln_checker(fin)) ELSE (LAMBDA (i:below(1)): (# x:=0,y:=0 #)) ENDIF),
+      nice_io = (IF GShowNice THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+      likely_nice_orig_io = (IF GShowLikely THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+      likely_nice = (IF GShowLikely THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+      new_shrunk = (IF GShowLikely THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+      new_perturbed = (IF GShowLikely THEN str2pvs[bool](readln_checker(fin)) ELSE TRUE ENDIF),
+      cnice =  check_nice(n,op,p,pnum,buff,nice_io,likely_nice,fout),
+      readpts = read_points(0,n,p,likely_nice,new_perturbed,pnum,buff,resolbuff,nearbuff)(fin,fout),
+       answerbool = cnice and readpts,
+       topr = (IF answerbool THEN TRUE else printf(" FOUND A PROBLEM   ","") ENDIF)
+    IN answerbool
+
+
+ main(file: string, max:nat): void = checker_with_header(file, checker?, header?, max)
+       
+       
+
+  
+
+END poly_checker

@@ -1,0 +1,136 @@
+multipoly: THEORY
+
+
+
+
+BEGIN
+
+  IMPORTING detection,reals@real_facts
+
+N: VAR posnat
+BUFF: VAR posreal
+T: VAR posreal
+
+
+Fac: VAR posreal % close to either 0 or 1
+
+% Do two polygons overlap (within BUFF)?
+
+polygons_overlap(N:posnat,p1:polygon_2D(N),M:posnat,p2:polygon_2D(M),BUFF): bool =
+  IF EXISTS (i:below(N)): NOT definitely_outside(M,p2,p1(i),BUFF)
+    THEN True
+  ELSIF EXISTS (j:below(M)): NOT definitely_outside(N,p1,p2(j),BUFF)
+    THEN True
+  ELSIF EXISTS (i:below(N),j:below(M)):
+  	  LET nexti = IF i<N-1 THEN i+1 ELSE 0 ENDIF,
+	      nextj = IF j<M-1 THEN j+1 ELSE 0 ENDIF
+	  IN segments_2D_close(p1(i),p1(nexti),
+			       p2(j),p2(nextj),BUFF)
+    THEN True
+  ELSE False
+  ENDIF
+
+polygons_overlap_def: LEMMA
+  FORALL (N:posnat,p1:polygon_2D(N),M:posnat,p2:polygon_2D(M),BUFF):
+  polygons_overlap(N,p1,M,p2,BUFF) IFF
+  ((EXISTS (i:below(N)): NOT definitely_outside(M,p2,p1(i),BUFF)) OR
+  (EXISTS (i:below(M)): NOT definitely_outside(N,p1,p2(i),BUFF)) OR
+  (EXISTS (i:below(N),j:below(M)):
+  	  LET nexti = IF i<N-1 THEN i+1 ELSE 0 ENDIF,
+	      nextj = IF j<M-1 THEN j+1 ELSE 0 ENDIF IN
+          EXISTS (w,v:Vect2): on_segment_2D?(p1(i),p1(nexti),v) AND
+  	    on_segment_2D?(p2(j),p2(nextj),w) AND sqv(w-v)<sq(BUFF)))
+
+Moving_Polygon_Collision_Detector(T:posreal,N:posnat,
+	mp1:Moving_Polygon_2D(N),M:posnat,
+	mp2:Moving_Polygon_2D(M),BUFF,Fac): bool =
+  IF polygons_overlap(N,mp1`polystart,M,mp2`polystart,BUFF) THEN True
+  ELSIF EXISTS (i:below(N)): Collision_Detector(T,M,mp2,mp1`polystart(i),mp1`polyvel(i),BUFF,Fac)
+    THEN True
+  ELSIF EXISTS (j:below(M)): Collision_Detector(T,N,mp1,mp2`polystart(j),mp2`polyvel(j),BUFF,Fac)
+    THEN True
+  ELSE False ENDIF
+
+parallel_segments_overlap: LEMMA FORALL (a:Vect2,nzk:nzreal,p1,p2:posreal):
+  on_segment_2D?(a,(-p1)*a,nzk*a) OR
+  on_segment_2D?(a,(-p1)*a,(-p2)*(nzk*a)) OR
+  on_segment_2D?(nzk*a,(-p2)*(nzk*a),a) OR
+  on_segment_2D?(nzk*a,(-p2)*(nzk*a),(-p1)*a)
+
+open_segment_2Ds_cross_rew2: LEMMA FORALL (a,b,c,d:Vect2):
+  (NOT (on_segment_2D?(a,b,c) OR
+   on_segment_2D?(a,b,d) OR
+   on_segment_2D?(c,d,a) OR
+   on_segment_2D?(c,d,b))) IMPLIES
+  (open_segment_2Ds_cross(a,b,c,d) IFF
+  (EXISTS (eps1,eps2:Sign):
+   eps1*det(c-a,b-a)>0 AND eps1*det(d-a,a-b)>0 AND
+   eps2*det(a-c,d-c)>0 AND eps2*det(b-c,c-d)>0 AND
+   (((c-a)*(b-a)>0 OR (d-a)*(b-a)>0) AND ((c-b)*(a-b)>0 OR (d-b)*(a-b)>0)) AND
+   (((a-c)*(d-c)>0 OR (b-c)*(d-c)>0) AND ((a-d)*(c-d)>0 OR (b-d)*(c-d)>0))))
+
+isopen?(T)(S:set[real]): bool =
+  FORALL (t:nnreal): t<=T AND S(t) IMPLIES EXISTS (epsil:posreal): FORALL (q:nnreal):
+    q<=T AND abs(q-t)<=epsil IMPLIES S(q)
+
+open_segment_2Ds_cross_at(a,b,c,d,av,bv,cv,dv:Vect2)(t:real): bool =
+  open_segment_2Ds_cross(a+t*av,b+t*bv,c+t*cv,d+t*dv)
+
+segments_2Ds_notcross_at(a,b,c,d,av,bv,cv,dv:Vect2)(t:real): bool =
+  (NOT segment_2Ds_cross(a+t*av,b+t*bv,c+t*cv,d+t*dv))
+
+on_open_segment_2Ds_cross_open: LEMMA FORALL (a,b,c,d,av,bv,cv,dv:Vect2,T:posreal):
+  (NOT EXISTS (t:nnreal): t<=T AND
+  (on_segment_2D?(a+t*av,b+t*bv,c+t*cv) OR
+   on_segment_2D?(a+t*av,b+t*bv,d+t*dv) OR 
+   on_segment_2D?(c+t*cv,d+t*dv,a+t*av) OR
+   on_segment_2D?(c+t*cv,d+t*dv,b+t*bv)))
+  IMPLIES isopen?(T)(open_segment_2Ds_cross_at(a,b,c,d,av,bv,cv,dv))
+
+segments_2Ds_notcross_open: LEMMA FORALL (a,b,c,d,av,bv,cv,dv:Vect2,T:posreal):
+  (NOT EXISTS (t:nnreal): t<=T AND
+  (on_segment_2D?(a+t*av,b+t*bv,c+t*cv) OR
+   on_segment_2D?(a+t*av,b+t*bv,d+t*dv) OR
+   on_segment_2D?(c+t*cv,d+t*dv,a+t*av) OR
+   on_segment_2D?(c+t*cv,d+t*dv,b+t*bv)))
+  IMPLIES isopen?(T)(segments_2Ds_notcross_at(a,b,c,d,av,bv,cv,dv))
+
+
+on_segment_2Ds_cross: LEMMA FORALL (a,b,c,d,av,bv,cv,dv:Vect2,T:posreal):
+  (NOT segment_2Ds_cross(a,b,c,d)) AND
+  segment_2Ds_cross(a+T*av,b+T*bv,c+T*cv,d+T*dv)
+  IMPLIES
+  EXISTS (t:nnreal): t<=T AND
+  (on_segment_2D?(a+t*av,b+t*bv,c+t*cv) OR
+   on_segment_2D?(a+t*av,b+t*bv,d+t*dv) OR
+   on_segment_2D?(c+t*cv,d+t*dv,a+t*av) OR
+   on_segment_2D?(c+t*cv,d+t*dv,b+t*bv))
+
+Moving_Polygon_Collision_Detector_def: LEMMA
+  FORALL (t:nnreal,s:Vect2,T:posreal,N:posnat,mp1:Moving_Polygon_2D(N),M:posnat,
+			mp2:Moving_Polygon_2D(M),BUFF,Fac):
+  (t<=T AND  (polygons_overlap(N,mp1`polystart,M,mp2`polystart,BUFF) OR
+  (on_any_edge?(N,moving_polygon_2D_at(N,mp1)(t),s) AND 
+  on_any_edge?(M,moving_polygon_2D_at(M,mp2)(t),s)))) IMPLIES
+  Moving_Polygon_Collision_Detector(T,N,mp1,M,mp2,BUFF,Fac)
+
+% For polygons with static shapes:
+
+Static_Shape_Polygon_Collision_Detector(B:nnreal,T:posreal,N:posnat,
+  p1:polygon_2D(N),v1:Vect2,M:posnat,p2:polygon_2D(M),v2:Vect2,BUFF): bool =
+  IF polygons_overlap(N,polygon_2D_at(N,p1,v1)(B),M,polygon_2D_at(M,p2,v2)(B),BUFF) THEN True
+  ELSIF EXISTS (i:below(N)): Static_Collision_Detector(B,T,M,p2,v2,p1(i),v1,BUFF)
+    THEN True
+  ELSIF EXISTS (j:below(M)): Static_Collision_Detector(B,T,N,p1,v1,p2(j),v2,BUFF)
+    THEN True
+  ELSE False ENDIF
+
+Static_Shape_Polygon_Collision_Detector_def: LEMMA
+  FORALL (t:nnreal,s:Vect2,T:posreal,N:posnat,
+  p1:polygon_2D(N),v1:Vect2,M:posnat,p2:polygon_2D(M),v2:Vect2,BUFF):
+  (t<=T AND  (polygons_overlap(N,p1,M,p2,BUFF) OR
+  (on_any_edge?(N,polygon_2D_at(N,p1,v1)(t),s) AND 
+  on_any_edge?(M,polygon_2D_at(M,p2,v2)(t),s)))) IMPLIES
+  Static_Shape_Polygon_Collision_Detector(0,T,N,p1,v1,M,p2,v2,BUFF)
+
+END multipoly

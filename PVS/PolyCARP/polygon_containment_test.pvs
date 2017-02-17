@@ -1,0 +1,188 @@
+polygon_containment_test: THEORY
+
+
+BEGIN
+
+  IMPORTING polygon_contain
+
+  v1,v2,v3,v4,v5,v6: VAR Vect2
+
+  make_polygon_test(v1,v2,v3,v4,v5,v6)(j:below(6)): Vect2 =
+    IF j=0 THEN v1
+    ELSIF j=1 THEN v2
+    ELSIF j=2 THEN v3
+    ELSIF j=3 THEN v4
+    ELSIF j=4 THEN v5
+    ELSIF j=5 THEN v6 ELSE (0,0) ENDIF
+
+  poly2dtest(j:below(6)): Vect2 =
+    make_polygon_test((1,-1),(1,1),(0,1),(1,2),(-1,1),(-1,-1))(j)
+
+  ptest2: [below(6)->Vect2] =
+    make_polygon_test((1,-1),(1,1),(0,1),(1,2),(0,-2),(-1,-1))
+
+  poly2dtest_rev:polygon_2D(6) =
+    make_polygon_test((-1,-1),(-1,1),(1,2),(0,1),(1,1),(1,-1))
+
+  %ptest2_notnice: LEMMA NOT nice_polygon_2D(6,ptest2,0.01)
+
+  %poly2d_test_rev_notnice: LEMMA NOT nice_polygon_2D(6,poly2dtest_rev,0.1)
+
+  definitely_inside_test1: LEMMA 
+    definitely_inside(6,poly2dtest,(0.2,0),0.1) AND
+    definitely_inside(6,poly2dtest,(-0.2,0),0.1) AND
+    definitely_inside(6,poly2dtest,(0.9,0),0.1) AND
+    (NOT definitely_inside(6,poly2dtest,(0.95,0),0.1)) AND
+    definitely_inside(6,poly2dtest,(-0.9,0),0.1) AND
+    (NOT definitely_inside(6,poly2dtest,(-0.95,0),0.1))
+
+  definitely_outside_test1: LEMMA 
+    (NOT definitely_outside(6,poly2dtest,(0.2,0),0.1)) AND
+    definitely_outside(6,poly2dtest,(-1.2,0),0.1) AND
+    definitely_outside(6,poly2dtest,(0.85,1.15),0.1) AND
+    (NOT definitely_outside(6,poly2dtest,(0.8,0),0.1)) AND
+    definitely_outside(6,poly2dtest,(0.5,-1.2),0.1) AND
+    (NOT definitely_outside(6,poly2dtest,(-0.95,0),0.1))
+
+  % nice_polygon_test: LEMMA
+  %   nice_polygon_2D(6,poly2dtest,0.01)
+
+  MyPoly(i:below(9)): Vect2 =
+    IF i=0 THEN (0,0)
+    ELSIF i=1 THEN (1,-1)
+    ELSIF i=2 THEN (1,0)
+    ELSIF i=3 THEN (2,1)
+    ELSIF i=4 THEN (1,1)
+    ELSIF i=5 THEN (0,2)
+    ELSIF i=6 THEN (0,1)
+    ELSIF i=7 THEN (-1,2)
+    ELSIF i=8 THEN (-1,-1)
+    ELSE (0,0) ENDIF
+
+  inmypoly(s:Vect2):bool =
+    (0<=s`x AND s`x<=1 AND s`y>=-s`x AND s`y<=2-s`x) OR
+    (1<=s`x AND s`x<=2 AND s`y>=s`x-1 AND s`y<=1) OR
+    (-1<=s`x AND s`x<=0 AND s`y>=s`x AND s`y<=-s`x+1)
+
+  XNum:posnat = 100
+  YNum:posnat = 100
+  epsil:posreal = 1/10
+
+  MyBuff:posreal = 0.01
+
+  xtest(i:nat):real = -2+epsil+i*(4/XNum)
+  ytest(i:nat):real = -2+epsil+i*(4/YNum)
+
+  MyPolyTest_inside(i:upto(XNum),j:upto(YNum)): [# inside:bool,correct:bool #] =
+    LET thisvect = (# x:=xtest(i),y:=ytest(j) #),
+        inside = definitely_inside(9,MyPoly,thisvect,MyBuff),
+	correct = (inside IMPLIES inmypoly(thisvect))
+    IN (# inside:=inside,correct:=correct #)
+
+  MyPolyTest_outside(i:upto(XNum),j:upto(YNum)): [# outside:bool,correct:bool #] =
+    LET thisvect = (# x:=xtest(i),y:=ytest(j) #),
+        outside = definitely_outside(9,MyPoly,thisvect,MyBuff),
+	correct = (outside IMPLIES NOT inmypoly(thisvect))
+    IN (# outside:=outside,correct:=correct #)
+
+  MyPolyTest_nearedge(i:upto(XNum),j:upto(YNum)): [# nearedge:bool,correct:bool #] =
+    LET thisvect = (# x:=xtest(i),y:=ytest(j) #),
+        nearedge = near_any_edge_upto(9,MyPoly,thisvect,MyBuff,8),
+	correct = TRUE
+    IN (# nearedge:=nearedge,correct:=correct #)
+
+  MyPoly_inside: LEMMA
+    FORALL (i:upto(XNum)):
+    FORALL (j:upto(YNum)): MyPolyTest_inside(i,j)`correct AND MyPolyTest_outside(i,j)`correct
+
+  PolyAns: TYPE = [# inside:nat,outside:nat,nearedge:nat,neither:nat,error:nat #]
+  pa1,pa2: VAR PolyAns
+
+  mk_polyans(inside:nat,outside:nat,nearedge:nat,neither:nat,error:nat): PolyAns =
+    (# inside:=inside,outside:=outside,nearedge:=nearedge,neither:=neither,error:=error #)
+
+  sum(pa1,pa2): PolyAns = (# inside:=pa1`inside+pa2`inside,
+  			     outside:=pa1`outside+pa2`outside,
+  			     nearedge:=pa1`nearedge+pa2`nearedge,
+			     neither:=pa1`neither+pa2`neither,
+			     error:=pa1`error+pa2`error #)
+			     
+
+  MyPolyAnswer(i:upto(XNum),j:upto(YNum)): PolyAns =
+    LET inans = MyPolyTest_inside(i,j),
+    	outans = MyPolyTest_outside(i,j),
+	edgeans= MyPolyTest_nearedge(i,j),
+	error = (NOT inans`correct) OR (NOT outans`correct)
+    IN  IF inans`inside THEN mk_polyans(1,0,0,0,error)
+    	ELSIF outans`outside THEN mk_polyans(0,1,0,0,error)
+	ELSIF edgeans`nearedge THEN mk_polyans(0,0,1,0,error)
+	ELSE mk_polyans(0,0,0,1,error) ENDIF
+
+  MyPolyTester(i,j:upto(XNum)): RECURSIVE PolyAns =
+    LET rest = IF (i=0 AND j=0) OR i>XNum OR j>YNum THEN
+    	         (# inside:=0,outside:=0,nearedge:=0,neither:=0,error:=0 #)
+               ELSIF j>0 THEN MyPolyTester(i,j-1)
+	       ELSE MyPolyTester(i-1,YNum) ENDIF
+    IN sum(MyPolyAnswer(i,j),rest)
+    MEASURE (YNum+1)*i+j
+
+  MyPolyTester_def: LEMMA
+    MyPolyTester(XNum, YNum) =
+       (# inside := 2750,
+          outside := 7326,
+          nearedge := 125,
+          neither := 0,
+	  error := 0 #)
+
+
+  
+  Completeness_inside(i:upto(XNum),j:upto(YNum)): [# inside:bool,correct:bool #] =
+    LET thisvect = (# x:=xtest(i),y:=ytest(j) #),
+        inside = definitely_inside(9,MyPoly,thisvect,MyBuff),
+	nearedge = near_any_edge_upto(9,MyPoly,thisvect,MyBuff,8),
+	correct = (inmypoly(thisvect) IMPLIES (inside OR nearedge))
+    IN (# inside:=inmypoly(thisvect),correct:=correct #)
+
+  Completeness_outside(i:upto(XNum),j:upto(YNum)): [# outside:bool,correct:bool #] =
+    LET thisvect = (# x:=xtest(i),y:=ytest(j) #),
+        outside = definitely_outside(9,MyPoly,thisvect,MyBuff),
+	nearedge = near_any_edge_upto(9,MyPoly,thisvect,MyBuff,8),
+	correct = ((NOT inmypoly(thisvect)) IMPLIES (outside OR nearedge))
+    IN (# outside:=(NOT inmypoly(thisvect)),correct:=correct #)
+
+  Completeness_nearedge(i:upto(XNum),j:upto(YNum)): [# nearedge:bool,correct:bool #] =
+    LET thisvect = (# x:=xtest(i),y:=ytest(j) #),
+        nearedge = near_any_edge_upto(9,MyPoly,thisvect,MyBuff,8),
+	correct = TRUE
+    IN (# nearedge:=nearedge,correct:=correct #)
+
+
+  CompleteAnswer(i:upto(XNum),j:upto(YNum)): PolyAns =
+    LET inans = Completeness_inside(i,j),
+    	outans = Completeness_outside(i,j),
+	edgeans= Completeness_nearedge(i,j),
+	error = (NOT inans`correct) OR (NOT outans`correct)
+    IN  IF inans`inside THEN mk_polyans(1,0,0,0,error)
+    	ELSIF outans`outside THEN mk_polyans(0,1,0,0,error)
+	ELSIF edgeans`nearedge THEN mk_polyans(0,0,1,0,error)
+	ELSE mk_polyans(0,0,0,1,error) ENDIF
+
+  CompleteTester(i,j:upto(XNum)): RECURSIVE PolyAns =
+    LET rest = IF (i=0 AND j=0) OR i>XNum OR j>YNum THEN
+    	         (# inside:=0,outside:=0,nearedge:=0,neither:=0,error:=0 #)
+               ELSIF j>0 THEN CompleteTester(i,j-1)
+	       ELSE CompleteTester(i-1,YNum) ENDIF
+    IN sum(CompleteAnswer(i,j),rest)
+    MEASURE (YNum+1)*i+j
+
+  CompleteTester_def: LEMMA 
+    CompleteTester(XNum, YNum) =
+       (# error := 0,
+          inside := 2875,
+          nearedge := 0,
+          neither := 0,
+          outside := 7326 #)
+
+
+
+END polygon_containment_test

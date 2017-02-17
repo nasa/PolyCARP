@@ -1,0 +1,164 @@
+(recurse
+ (recurse_TCC1 0
+  (recurse_TCC1-1 nil 3658577550 ("" (termination-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (T formal-type-decl nil recurse nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (>= const-decl "bool" reals nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (> const-decl "bool" reals nil) (< const-decl "bool" reals nil)
+    (Meas1 type-eq-decl nil recurse nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (recurse_def 0
+  (recurse_def-1 nil 3658664478
+   ("" (skeep 1 :but "t")
+    ((""
+      (case "FORALL (k:nat,t:T): meas(t)<=k IMPLIES inv(t, recurse(pred, G, Rec1, f, meas)(t))")
+      (("1" (skeep)
+        (("1" (inst - "meas(t)" "t") (("1" (assert) nil nil)) nil))
+        nil)
+       ("2" (hide 2)
+        (("2" (induct "k")
+          (("1" (skeep*)
+            (("1" (typepred "meas")
+              (("1" (inst - "t")
+                (("1" (assert)
+                  (("1" (inst - "t")
+                    (("1" (assert)
+                      (("1" (expand "recurse" +)
+                        (("1" (propax) nil nil)) nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil)
+           ("2" (skolem 1 "k")
+            (("2" (flatten)
+              (("2" (assert)
+                (("2" (skeep)
+                  (("2" (inst - "f(t)")
+                    (("2" (typepred "meas")
+                      (("2" (inst - "t")
+                        (("2" (assert)
+                          (("2" (flatten)
+                            (("2" (assert)
+                              (("2"
+                                (case "meas(t)=0")
+                                (("1"
+                                  (assert)
+                                  (("1"
+                                    (expand "recurse" +)
+                                    (("1"
+                                      (inst - "t")
+                                      (("1" (assert) nil nil))
+                                      nil))
+                                    nil))
+                                  nil)
+                                 ("2"
+                                  (assert)
+                                  (("2"
+                                    (hide -1)
+                                    (("2"
+                                      (inst
+                                       -5
+                                       "t"
+                                       "recurse(pred, G, Rec1, f, meas)(f(t))")
+                                      (("2"
+                                        (assert)
+                                        (("2"
+                                          (case "NOT pred(t)")
+                                          (("1"
+                                            (assert)
+                                            (("1"
+                                              (expand "recurse" +)
+                                              (("1" (propax) nil nil))
+                                              nil))
+                                            nil)
+                                           ("2"
+                                            (inst - "t")
+                                            (("2"
+                                              (assert)
+                                              (("2"
+                                                (expand "recurse" +)
+                                                (("2"
+                                                  (propax)
+                                                  nil
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((recurse def-decl "S" recurse nil)
+    (S formal-type-decl nil recurse nil)
+    (Meas1 type-eq-decl nil recurse nil)
+    (< const-decl "bool" reals nil) (> const-decl "bool" reals nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (<= const-decl "bool" reals nil)
+    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
+    (T formal-type-decl nil recurse nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (>= const-decl "bool" reals nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (pred type-eq-decl nil defined_types nil)
+    (nat_induction formula-decl nil naturalnumbers nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   shostak)))
+

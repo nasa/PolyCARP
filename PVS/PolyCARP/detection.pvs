@@ -1,0 +1,227 @@
+detection: THEORY
+
+
+
+
+BEGIN
+
+  IMPORTING ACCoRD@cd_vertical,
+            ACCoRD@omega_2D,
+	    reals@sigma_nat,
+	    ACCoRD@repulsive,
+	    edge_proximity,
+	    polygon_contain,
+	    ACCoRD@cd2d
+
+N: VAR posnat
+BUFF: VAR posreal
+
+
+Fac: VAR posreal % close to either 0 or 1
+
+
+
+Moving_Polygon_2D(N): TYPE = [# polystart: polygon_2D(N),
+		      	     	polyvel:   polygon_2D(N) #]
+
+s2,v2: VAR Vect2
+
+s,v,segstart,segend,startvel,endvel,
+segstart1,segend1,segstart2,segend2,w,a,b,so,vo: VAR Vect2
+
+T: VAR posreal
+nnr: VAR nnreal
+
+eps,eps1,eps2: VAR Sign
+
+AnyGS: posreal
+
+polygon_2D_at(N:posnat,p:polygon_2D(N),v:Vect2)(tr:real)(ii:below(N)): Vect2 = 
+  p(ii)+tr*v
+
+moving_polygon_2D_at(N:posnat,mp:Moving_Polygon_2D(N))(tr:real)(ii:below(N)): Vect2 =
+  mp`polystart(ii)+tr*mp`polyvel(ii)
+
+on_segment_2D_sym: LEMMA
+  on_segment_2D?(segstart,segend,s) IFF
+  on_segment_2D?(segend,segstart,s)
+
+on_segment_2D_alg(segstart,segend,s:Vect2): bool =
+  (norm(s-segstart)=0 OR
+  (norm(segend-segstart)>0 AND
+   det(s-segstart,segend-segstart) = 0 AND
+   (s-segstart)*(segend-segstart) >= 0 AND
+   (s-segend)*(segstart-segend) >=0))
+      			  
+on_segment_2D_alg_def: LEMMA on_segment_2D_alg(segstart,segend,s) =
+		    	  on_segment_2D?(segstart,segend,s)
+
+
+%%% An algorithm to determine the precise subinterval of [0,T] where
+%%% (w+t*v)*(a+t*b)>=0, where w,v,a,b are vectors.
+
+
+dot_nneg_linear_2D_alg(T:posreal,w,v,a,b:Vect2,eps): [real,real]=
+   LET aa = v*b, bb = w*b + a*v, cc = w*a,
+      (intl,intu) = (IF aa /= 0 THEN
+      		        (IF discr(aa,bb,cc)>=0 THEN 
+			    (IF aa<0 THEN (root(aa,bb,cc,1),root(aa,bb,cc,-1))
+      	       	    	     ELSIF eps = -1 THEN (0,root(aa,bb,cc,-1))
+		    	     ELSE (root(aa,bb,cc,1),T) ENDIF)
+			 ELSIF aa > 0 THEN (0,T)
+			 ELSE (T,0) ENDIF)
+		     ELSIF bb = 0 AND cc >= 0 THEN (0,T)
+		     ELSIF bb = 0 THEN (T,0)
+		     ELSIF bb > 0 THEN (-cc/bb,T)
+		     ELSE  (0,-cc/bb) ENDIF)
+      IN
+        IF (intu<intl OR intu<0 OR intl>T) THEN (T,0)
+	ELSE (max(intl,0),min(intu,T)) ENDIF
+
+
+
+wwz,aaaz,bbz: VAR Vect2
+
+dot_nneg_linear_2D_alt_typ: JUDGEMENT
+  dot_nneg_linear_2D_alg(T,wwz,v,aaaz,bbz,eps) HAS_TYPE
+  [Lookahead[0,T],Lookahead[0,T]]
+
+dot_nneg_linear_2D_alg_def: LEMMA
+  FORALL (t:real,T:posreal,w,v,a,b:Vect2):
+    LET (lbn1,ubn1) = dot_nneg_linear_2D_alg(T,w,v,a,b,-1),
+    	(lb1,ub1) = dot_nneg_linear_2D_alg(T,w,v,a,b,1)
+    IN (0<=t AND t<=T AND (w+t*v)*(a+t*b)>=0)
+       IFF
+       ((lbn1 <= t AND t <= ubn1) OR
+        (lb1  <= t AND t <= ub1))
+
+dot_nneg_linear_2D_alg_eq_0: LEMMA
+  FORALL (t:real,T:posreal,w,v,a,b:Vect2):
+    LET (lbn1,ubn1) = dot_nneg_linear_2D_alg(T,w,v,a,b,-1),
+    	(lb1,ub1) = dot_nneg_linear_2D_alg(T,w,v,a,b,1)
+    IN (0<=t AND t<=T AND (w+t*v)*(a+t*b)=0)
+       IMPLIES
+       (t=lbn1 OR t=ubn1 OR
+        t=lb1 OR t=ub1 OR (v*b=0 AND FORALL (tt:real): (w+tt*v)*(a+tt*b)=0))
+
+
+%%% %%%%
+
+dot_nneg_spec(T,w,v,a,b,eps,eps2,Fac): [Lookahead[0,T],Lookahead[0,T]] =
+  LET ww = Fac*a+eps2*w, vv = Fac*b+eps2*v IN
+    dot_nneg_linear_2D_alg(T,ww,vv,a,b,eps)
+
+dot_nneg_spec_def: LEMMA
+  FORALL (t:real,T:posreal,w,v,a,b:Vect2):
+    LET (lbn,ubn) = dot_nneg_spec(T,w,v,a,b,-1,-1,Fac),
+    	(lb,ub) = dot_nneg_spec(T,w,v,a,b,-1,1,Fac),
+	(lbnx,ubnx) = dot_nneg_spec(T,w,v,a,b,1,-1,Fac),
+    	(lbx,ubx) = dot_nneg_spec(T,w,v,a,b,1,1,Fac)
+    IN (0<=t AND t<=T AND abs((w+t*v)*(a+t*b))<=Fac*sqv(a+t*b))
+       IFF
+       ((lb<=t AND t<=ub) OR (lbx<=t AND t<=ubx)) AND
+       ((lbn<=t AND t<=ubn) OR (lbnx<=t AND t<=ubnx))
+
+
+edge_detect_simple(T:posreal,w,v,a,b:Vect2,Fac): bool = % Fac close to 0
+    LET (Vlbn,Vubn) = dot_nneg_spec(T,w,v,a,b,-1,-1,1+Fac),
+    	(Vlb,Vub) = dot_nneg_spec(T,w,v,a,b,-1,1,1+Fac),
+	(Vlbnx,Vubnx) = dot_nneg_spec(T,w,v,a,b,1,-1,1+Fac),
+    	(Vlbx,Vubx) = dot_nneg_spec(T,w,v,a,b,1,1,1+Fac),
+	(Plbn,Pubn) = dot_nneg_spec(T,w,v,perpR(a),perpR(b),-1,-1,Fac),
+    	(Plb,Pub) = dot_nneg_spec(T,w,v,perpR(a),perpR(b),-1,1,Fac),
+	(Plbnx,Pubnx) = dot_nneg_spec(T,w,v,perpR(a),perpR(b),1,-1,Fac),
+    	(Plbx,Pubx) = dot_nneg_spec(T,w,v,perpR(a),perpR(b),1,1,Fac),
+	Vlb1 = max(Vlb,Vlbn),
+	Vub1 = min(Vub,Vubn),
+	Vlb2 = max(Vlb,Vlbnx),
+	Vub2 = min(Vub,Vubnx),
+	Vlb3 = max(Vlbx,Vlbn),
+	Vub3 = min(Vubx,Vubn),
+	Vlb4 = max(Vlbx,Vlbnx),
+	Vub4 = min(Vubx,Vubnx),
+	Plb1 = max(Plb,Plbn),
+	Pub1 = min(Pub,Pubn),
+	Plb2 = max(Plb,Plbnx),
+	Pub2 = min(Pub,Pubnx),
+	Plb3 = max(Plbx,Plbn),
+	Pub3 = min(Pubx,Pubn),
+	Plb4 = max(Plbx,Plbnx),
+	Pub4 = min(Pubx,Pubnx)
+    IN max(Vlb1,Plb1)<=min(Vub1,Pub1) OR
+       max(Vlb1,Plb2)<=min(Vub1,Pub2) OR
+       max(Vlb1,Plb3)<=min(Vub1,Pub3) OR
+       max(Vlb1,Plb4)<=min(Vub1,Pub4) OR
+       max(Vlb2,Plb1)<=min(Vub2,Pub1) OR
+       max(Vlb2,Plb2)<=min(Vub2,Pub2) OR
+       max(Vlb2,Plb3)<=min(Vub2,Pub3) OR
+       max(Vlb2,Plb4)<=min(Vub2,Pub4) OR
+       max(Vlb3,Plb1)<=min(Vub3,Pub1) OR
+       max(Vlb3,Plb2)<=min(Vub3,Pub2) OR
+       max(Vlb3,Plb3)<=min(Vub3,Pub3) OR
+       max(Vlb3,Plb4)<=min(Vub3,Pub4) OR
+       max(Vlb4,Plb1)<=min(Vub4,Pub1) OR
+       max(Vlb4,Plb2)<=min(Vub4,Pub2) OR
+       max(Vlb4,Plb3)<=min(Vub4,Pub3) OR
+       max(Vlb4,Plb4)<=min(Vub4,Pub4)
+
+edge_detect_simp2(T:posreal,w,v,a,b:Vect2,Fac): bool = % Fac close to 0
+    LET F1 = (LAMBDA (eps1,eps2:Sign): dot_nneg_spec(T,w,v,a,b,eps1,eps2,1+Fac)),
+    	F2 = (LAMBDA (eps1,eps2:Sign): dot_nneg_spec(T,w,v,perpR(a),perpR(b),eps1,eps2,Fac))
+    IN EXISTS (ep1,ep2,ep3,sig1,sig2,sig3:Sign):
+	 max(max(F1(ep1,ep2)`1,F1(ep3,-ep2)`1),max(F2(sig1,sig2)`1,F2(sig3,-sig2)`1)) <=
+	 min(min(F1(ep1,ep2)`2,F1(ep3,-ep2)`2),min(F2(sig1,sig2)`2,F2(sig3,-sig2)`2))
+
+edge_detect_simp2_def: LEMMA FORALL (T:posreal,w,v,a,b:Vect2,Fac):
+  edge_detect_simple(T,w,v,a,b,Fac)=edge_detect_simp2(T,w,v,a,b,Fac)
+
+edge_detect_simple_def: LEMMA FORALL (T:posreal,w,v,a,b:Vect2,Fac):
+  edge_detect_simple(T,w,v,a,b,Fac) IFF
+  (EXISTS (t:Lookahead[0,T]):
+    abs((w+t*v)*(a+t*b))<=(1+Fac)*sqv(a+t*b) AND
+    abs((w+t*v)*(perpR(a)+t*perpR(b)))<=Fac*sqv(perpR(a)+t*perpR(b)))
+
+hits_moving_seg_2D(T,s,v,segstart,segend,startvel,endvel): bool = 
+  EXISTS (t:real,r:real): 0<=t AND t<=T AND 0<=r AND r<=1 AND
+    s+t*v = (1-r)*(segstart+t*startvel) + r*(segend+t*endvel)
+    
+edge_detect(T,s,v,segstart,segend,startvel,endvel,Fac): bool =
+  LET midpt = (1/2)*segend+(1/2)*segstart,
+      news  = s-midpt,
+      midv  = (1/2)*endvel+(1/2)*startvel
+  IN  edge_detect_simple(T,s-midpt,v-midv,(1/2)*segend-(1/2)*segstart,
+	(1/2)*endvel-(1/2)*startvel,Fac)
+
+edge_detect_def: LEMMA 
+  hits_moving_seg_2D(T,s,v,segstart,segend,startvel,endvel)
+  IMPLIES
+  edge_detect(T,s,v,segstart,segend,startvel,endvel,Fac)
+
+
+Collision_Detector(T:posreal,N:posnat,mp:Moving_Polygon_2D(N),s:Vect2,v:Vect2,BUFF,Fac): bool =
+  IF NOT definitely_outside(N,mp`polystart,s,BUFF) THEN TRUE
+  ELSIF EXISTS (i:below(N)): LET nexti = IF i<N-1 THEN i+1 ELSE 0 ENDIF IN
+               edge_detect(T,s,v,mp`polystart(i),mp`polystart(nexti),mp`polyvel(i),mp`polyvel(nexti),Fac)
+    THEN TRUE
+  ELSE False ENDIF
+
+
+% polygon is stationary
+
+Static_Collision_Detector(B:nnreal,T:posreal,N:posnat,
+  p:polygon_2D(N),pv:Vect2,s:Vect2,v:Vect2,BUFF): bool =
+  IF (NOT definitely_outside(N,polygon_2D_at(N,p,pv)(B),s+B*v,BUFF)) OR 
+     (NOT definitely_outside(N,polygon_2D_at(N,p,pv)(T),s+T*v,BUFF))
+   THEN TRUE
+  ELSIF
+     EXISTS (i:below(N)): LET nexti = IF i<N-1 THEN i+1 ELSE 0 ENDIF IN
+       segments_2D_close(p(i),p(nexti),s+B*(v-pv),s+T*(v-pv),BUFF)
+   THEN TRUE
+  ELSE FALSE
+  ENDIF
+
+% 1+1=2
+
+
+
+END detection

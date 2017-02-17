@@ -1,0 +1,120 @@
+convex_polygon_containment: THEORY
+
+
+BEGIN
+
+  IMPORTING ACCoRD@cd3d
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% IN THIS FIRST SECTION, ALL VECTORS ARE 2D   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+polygon_2D(N:posnat): TYPE = [below(N) -> Vect2]
+
+
+
+on_left_of_edge(N:posnat,p:polygon_2D(N),i:nat,j:nat): bool 
+  =
+  LET
+    next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF) 
+  IN
+    IF i>=N OR j>=N THEN FALSE
+    ELSE det(p(next)-p(i),p(j)-p(i))>=0 ENDIF
+
+all_on_left_rec(N:posnat,p:polygon_2D(N),i:nat,j:nat): 
+  RECURSIVE {bb:bool | bb IFF 
+       LET next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF) IN
+  	    (FORALL (k:nat): k<=j AND k<N AND i<N AND i/=k AND
+		         k/=next IMPLIES on_left_of_edge(N,p,i,k))} =
+  LET
+    next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF) 
+  IN
+    IF i>=N THEN TRUE
+    ELSIF j>=N THEN all_on_left_rec(N,p,i,N-1)
+    ELSIF j=0 AND (j=i OR j=next) THEN TRUE
+    ELSIF j=0 THEN on_left_of_edge(N,p,i,0)
+    ELSIF j=i OR j=next THEN all_on_left_rec(N,p,i,j-1)
+    ELSE
+      LET 
+        thisans=on_left_of_edge(N,p,i,j)
+      IN (IF j=0 THEN thisans
+          ELSE thisans AND all_on_left_rec(N,p,i,j-1)
+	  ENDIF)
+    ENDIF MEASURE i+j
+
+counterclockwise_convex_rec(N:posnat,p:polygon_2D(N),i:nat):
+	RECURSIVE {bb:bool | bb IFF
+	  (FORALL (k:nat): k<=i AND k<N IMPLIES 
+	    (FORALL (j:nat): j<N AND j/=k AND j/=(IF k<N-1 THEN k+1 ELSE 0 ENDIF) 
+	  	           IMPLIES on_left_of_edge(N,p,k,j)))}
+  = LET
+      thisans = all_on_left_rec(N,p,i,N-1)
+    IN
+      IF i=0 THEN thisans
+      ELSE thisans AND counterclockwise_convex_rec(N,p,i-1)
+      ENDIF MEASURE i
+
+
+counterclockwise_convex(N:posnat,p:polygon_2D(N)): bool =
+  counterclockwise_convex_rec(N,p,N-1)
+
+counterclockwise_convex_def: LEMMA FORALL (N:posnat,p:polygon_2D(N)):
+  counterclockwise_convex(N,p) IFF
+    FORALL (i:below(N)): FORALL (j:below(N)):
+      LET next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF)
+      IN (j/=i AND j/=next IMPLIES on_left_of_edge(N,p,i,j))
+
+
+left_of_segment_2D(N:posnat,p:polygon_2D(N),j:below(N),s:Vect2): bool =
+  LET next=(IF j<N-1 THEN j+1 ELSE 0 ENDIF)
+  IN det(p(next)-p(j),s-p(j))>=0
+
+inside_convex_2D_rec(N:posnat,p:polygon_2D(N),s:Vect2,i:nat): 
+  RECURSIVE {bb:bool | bb IFF (FORALL (j:nat): j<=i AND j<=N-1 
+                          IMPLIES left_of_segment_2D(N,p,j,s))} =
+  IF i>=N THEN inside_convex_2D_rec(N,p,s,N-1)
+  ELSIF i=0 THEN left_of_segment_2D(N,p,0,s)
+  ELSE left_of_segment_2D(N,p,i,s) AND inside_convex_2D_rec(N,p,s,i-1)
+  ENDIF MEASURE i
+
+inside_convex_2D(N:posnat,p:polygon_2D(N),s:Vect2): 
+  {bb:bool | bb IFF (FORALL (j:nat): j<=N-1 IMPLIES 
+                       left_of_segment_2D(N,p,j,s))} = 
+  inside_convex_2D_rec(N,p,s,N-1)
+
+all_on_left_is_convex: LEMMA 
+  FORALL (N:posnat,p:polygon_2D(N),s,v:Vect2,nnr,nnt:nnreal):
+    inside_convex_2D(N,p,s) AND inside_convex_2D(N,p,s+nnt*v) AND nnr<=nnt
+    IMPLIES
+    inside_convex_2D(N,p,s+nnr*v)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   THE 3D SECTION STARTS HERE                %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+polygon_3D(N:posnat): TYPE = [#
+		   poly2D   : polygon_2D(N),
+		   minalt   : real,
+		   maxalt   : real #]
+
+within_polygon_altitude(minalt,maxalt,sz:real): bool =
+  minalt <= sz AND sz <= maxalt
+
+convex_3D(N:posnat,p:polygon_3D(N)): bool =
+  counterclockwise_convex(N,p`poly2D) AND p`minalt<p`maxalt
+
+
+inside_convex_3D(N:posnat,p:polygon_3D(N),s:Vect3): bool =
+  within_polygon_altitude(p`minalt,p`maxalt,s`z) AND
+  inside_convex_2D(N,p`poly2D,vect2(s))
+
+counterclockwise_convex_3D_is_convex: LEMMA 
+  FORALL (N:posnat,p:polygon_3D(N),s,v:Vect3,nnr,nnt:nnreal):
+    inside_convex_3D(N,p,s) AND inside_convex_3D(N,p,s+nnt*v) AND nnr<=nnt
+    IMPLIES
+    inside_convex_3D(N,p,s+nnr*v)
+
+END convex_polygon_containment

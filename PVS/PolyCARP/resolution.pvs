@@ -1,0 +1,174 @@
+resolution: THEORY
+
+
+BEGIN
+
+  IMPORTING polygon_contain,
+    PVSioChecker@pvsio_checker
+
+N: VAR posnat
+
+
+
+s2,v2: VAR Vect2
+
+s,segstart,segend,startvel,endvel,
+segstart1,segend1,segstart2,segend2: VAR Vect2
+
+T: VAR posreal
+nnr: VAR nnreal
+
+u,v,w: VAR Vect2
+
+BUFF: VAR posreal % Floating point errors for perturbation
+      	  	  % 0.1 meters in practice
+
+ResolBUFF: VAR posreal % How far outside to resolve to
+
+eps: VAR Sign
+
+  Vect_str(s:Vect2) : string =
+     format("(# x := ~a, y := ~a #)",
+          (to_str(s`x),to_str(s`y)))
+
+proj_vect(u,v,w:Vect2,BUFF:posreal): Nz_vect2 =
+  IF norm(v-u)<=BUFF OR norm(w-v)<=BUFF THEN (# x:=1,y:=1 #)
+  ELSIF (v-u)*(w-v)>=0 THEN ^(perpR(v-u))+^(perpR(w-v))
+  ELSIF det(w-v,v-u)<=0 THEN ^(v-u)+^(v-w)
+  ELSE ^(u-v)+^(w-v) ENDIF
+
+proj_vect_norm: LEMMA
+  norm(proj_vect(u,v,w,BUFF))>1
+
+proj_vect_nonzero: JUDGEMENT
+  proj_vect(u,v,w,BUFF) HAS_TYPE Nz_vect2
+
+modifiable_to_size(N:posnat,BUFF,ResolBUFF:posreal,
+	p:polygon_2D(N)): bool =
+  nice_polygon_2D(N,p,BUFF) AND
+  acceptable_polygon_2D(N,p,2*ResolBUFF+BUFF)
+
+modifiable_to_size_monotonic: LEMMA FORALL (N:posnat,p:polygon_2D(N),B1,B2:posreal): B1<=B2 AND
+  modifiable_to_size(N,BUFF,B2,p) IMPLIES
+  modifiable_to_size(N,BUFF,B1,p)
+
+expand_polygon_2D(N:posnat,BUFF,ResolBUFF:posreal,
+	p:polygon_2D(N)|modifiable_to_size(N,BUFF,ResolBUFF,p)): polygon_2D(N) =
+  LAMBDA (i:below(N)):
+    LET prev: Vect2 = IF i>0 THEN p(i-1) ELSE p(N-1) ENDIF,
+    	next: Vect2 = IF i<N-1 THEN p(i+1) ELSE p(0) ENDIF,
+	pv: Vect2 = proj_vect(prev,p(i),next,BUFF),
+	R: Vect2 = ^(perpR(p(i)-prev)),
+	q: Vect2 = p(i)+ResolBUFF*R,
+	tt = (IF abs(pv*R)<=(BUFF/100) THEN 0 ELSE ((q-p(i))*R)/(pv*R) ENDIF)
+    IN p(i)+tt*pv
+
+contract_polygon_2D(N:posnat,BUFF,ResolBUFF:posreal,
+	p:polygon_2D(N)|modifiable_to_size(N,BUFF,ResolBUFF,p)): polygon_2D(N) =
+  LAMBDA (i:below(N)):
+    LET prev: Vect2 = IF i>0 THEN p(i-1) ELSE p(N-1) ENDIF,
+    	next: Vect2 = IF i<N-1 THEN p(i+1) ELSE p(0) ENDIF,
+	pv: Vect2 = proj_vect(prev,p(i),next,BUFF),
+	R: Vect2 = ^(perpR(p(i)-prev)),
+	q: Vect2 = p(i)-ResolBUFF*R,
+	tt = (IF abs(pv*R)<=(BUFF/100) THEN 0 ELSE ((q-p(i))*R)/(pv*R) ENDIF)
+    IN p(i)+tt*pv
+
+
+% The function proj_vect can be used for resolution.
+
+closest_edge(N:posnat,p:polygon_2D(N),BUFF:posreal,s:Vect2)(i:below(N)): RECURSIVE below(N) =
+ IF i=0 THEN i
+ ELSE
+   LET ce = closest_edge(N,p,BUFF,s)(i-1),
+       next = IF i<N-1 THEN i+1 ELSE 0 ENDIF,
+       closp: Vect2 = closest_point(p(i),p(next),s,BUFF),
+       thisdist: nnreal = norm(s-closp),
+       nextce = IF ce<N-1 THEN ce+1 ELSE 0 ENDIF,
+       prevclosp: Vect2 = closest_point(p(ce),p(nextce),s,BUFF),
+       prevdist: nnreal = norm(s-prevclosp)
+      IN
+        IF thisdist<prevdist THEN i ELSE ce ENDIF
+  ENDIF MEASURE i
+
+closest_edge_def: LEMMA FORALL (p:polygon_2D(N),j,i:below(N)):
+  nice_polygon_2D(N,p,BUFF) IMPLIES
+  LET nextj = IF j<N-1 THEN j+1 ELSE 0 ENDIF,
+      ce = closest_edge(N,p,BUFF,s)(i),
+      nextce = IF ce<N-1 THEN ce+1 ELSE 0 ENDIF,
+      closj = closest_point(p(j),p(nextj),s,BUFF),
+      closi = closest_point(p(ce),p(nextce),s,BUFF)
+  IN norm(p(j)-p(nextj))>=BUFF AND norm(p(ce)-p(nextce))>=BUFF AND ce<=i AND
+     (j<=i
+     IMPLIES	
+     norm(s-closj)>=norm(s-closi))
+
+nice_polygon_points_distinct: LEMMA 
+  FORALL (N:posnat,p:polygon_2D(N)):
+    nice_polygon_2D(N,p,2.1*BUFF) IMPLIES
+    FORALL (i,j:below(N)): i/=j IMPLIES p(i)-p(j)/=zero
+
+
+% eps=-1 for inside, eps=1 for outside
+
+recovery_test_point(N:posnat|N>=2,BUFF,ResolBUFF:posreal,
+	p:polygon_2D(N)|modifiable_to_size(N,BUFF,ResolBUFF,p),
+	s:Vect2,eps:Sign): Vect2 =
+  LET i=closest_edge(N,p,BUFF,s)(N-1),
+      nexti = IF i<N-1 THEN i+1 ELSE 0 ENDIF,
+      ip = closest_point(p(i),p(nexti),s,BUFF),
+      dirvect = perpR(p(nexti)-p(i)),
+      testdir = ^(dirvect),
+      testvect = ip+(eps*(ResolBUFF+BUFF/2))*testdir
+  IN testvect
+
+recovery_point(N:posnat|N>=2,BUFF,ResolBUFF:posreal,p:polygon_2D(N)|
+	modifiable_to_size(N,BUFF,ResolBUFF,p),s:Vect2,eps:Sign): Vect2 =
+  LET tv = recovery_test_point(N,BUFF,ResolBUFF,p,s,eps) IN
+  IF eps=1 AND definitely_outside(N,p,s,BUFF) AND (NOT near_any_edge_upto(N,p,s,ResolBUFF,N-1)) THEN s
+  ELSIF eps=-1 AND definitely_inside(N,p,s,BUFF) AND NOT near_any_edge_upto(N,p,s,ResolBUFF,N-1) THEN s
+  ELSIF eps=1 AND definitely_outside(N,p,tv,BUFF) AND NOT near_any_edge_upto(N,p,tv,ResolBUFF,N-1) THEN tv
+  ELSIF eps=-1 AND definitely_inside(N,p,tv,BUFF) AND NOT near_any_edge_upto(N,p,tv,ResolBUFF,N-1) THEN tv
+  ELSE
+    LET i=closest_edge(N,p,BUFF,s)(N-1),
+        nexti = IF i<N-1 THEN i+1 ELSE 0 ENDIF,
+        neari = IF sqv(s-p(i))<=sqv(s-p(nexti)) THEN i ELSE nexti ENDIF,
+        nearnexti = IF neari<N-1 THEN neari+1 ELSE 0 ENDIF,
+        nearprevi = IF neari>0 THEN neari-1 ELSE N-1 ENDIF,
+        V1 = p(neari)-p(nearprevi),
+        V2 = p(nearnexti)-p(neari),
+        leftturn = det(V2,V1)<=0,
+        pv: Vect2 = proj_vect(p(nearprevi),p(neari),p(nearnexti),BUFF),
+        pvnormed: Vect2 = ^(pv),
+        R: Vect2 = ^(perpR(p(neari)-p(nearprevi))),
+        q: Vect2 = p(neari)+(eps*ResolBUFF)*R,
+        tt = (IF abs(pv*R)<=(BUFF/100) THEN 0 ELSE ((q-p(i))*R)/(pv*R) ENDIF),
+    	ans = (IF (eps=1 AND leftturn) OR (eps=-1 AND NOT leftturn) THEN p(neari)+(eps*ResolBUFF)*pvnormed
+	       ELSE p(neari)+tt*pv ENDIF)
+    IN
+        IF eps=1 AND definitely_outside(N,p,ans,BUFF) THEN ans
+  	ELSIF eps=-1 AND definitely_inside(N,p,ans,BUFF) THEN ans
+	ELSE s ENDIF
+  ENDIF
+
+
+
+outside_recovery_point(N:posnat|N>=2,BUFF,ResolBUFF:posreal,p:polygon_2D(N)|
+	modifiable_to_size(N,BUFF,ResolBUFF,p),s:Vect2): Vect2 =
+  recovery_point(N,BUFF,ResolBUFF,p,s,1)
+      
+inside_recovery_point(N:posnat|N>=2,BUFF,ResolBUFF:posreal,p:polygon_2D(N)|
+	modifiable_to_size(N,BUFF,ResolBUFF,p),s:Vect2): Vect2 =
+  recovery_point(N,BUFF,ResolBUFF,p,s,-1)
+
+outside_recovery_point_def: LEMMA FORALL (N:posnat|N>=2,BUFF,ResolBUFF:posreal,p:polygon_2D(N)|
+	modifiable_to_size(N,BUFF,ResolBUFF,p),s:Vect2):
+  LET rp = outside_recovery_point(N,BUFF,ResolBUFF,p,s) IN
+  rp/=s IMPLIES definitely_outside(N,p,rp,BUFF)
+
+inside_recovery_point_def: LEMMA FORALL (N:posnat|N>=2,BUFF,ResolBUFF:posreal,p:polygon_2D(N)|
+	modifiable_to_size(N,BUFF,ResolBUFF,p),s:Vect2):
+  LET rp = inside_recovery_point(N,BUFF,ResolBUFF,p,s) IN
+  rp/=s IMPLIES definitely_inside(N,p,rp,BUFF)
+
+END resolution

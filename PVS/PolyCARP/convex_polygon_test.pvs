@@ -1,0 +1,101 @@
+convex_polygon_test: THEORY
+
+%
+%
+% Detect conflict between aircraft and a moving polygon
+%
+%
+
+
+BEGIN
+
+  IMPORTING convex_polygon_containment
+
+%%%%%%% Test 1
+
+p5convex(i:below(5)):Vect2 =
+  IF i=0 THEN (1,-1)
+  ELSIF i=1 THEN (1,1)
+  ELSIF i=2 THEN (-1,1)
+  ELSIF i=3 THEN (-1,-1)
+  ELSE (0,-1) ENDIF
+
+p5nonconvex(i:below(5)):Vect2 =
+  IF i=0 THEN (1,-1)
+  ELSIF i=1 THEN (1,1)
+  ELSIF i=2 THEN (-1,1)
+  ELSIF i=3 THEN (-1,-1)
+  ELSE (0,0) ENDIF
+
+conterclockwise_convex_2D_rec_test: LEMMA
+  counterclockwise_convex_rec(5,p5convex,4) AND
+  counterclockwise_convex_rec(5,p5convex,10) AND
+  counterclockwise_convex_rec(5,p5nonconvex,2) AND
+  (NOT counterclockwise_convex_rec(5,p5nonconvex,3)) AND
+  (NOT counterclockwise_convex_rec(5,p5nonconvex,4)) AND
+  (NOT counterclockwise_convex_rec(5,p5nonconvex,6))
+
+conterclockwise_convex_2D_test: LEMMA
+  counterclockwise_convex(5,p5convex) AND
+  NOT counterclockwise_convex(5,p5nonconvex)
+
+%%%%%%%%%%%% Test 2: Using metit to test
+
+p3Dconvex: polygon_3D(5) = 
+	  (# poly2D:=p5convex,
+	     minalt:=-1,
+	     maxalt:=1000 #)
+
+p3Dconvex_test: LEMMA
+  FORALL (s:Vect3): inside_convex_3D(5,p3Dconvex,s)
+    IFF (-1<=s`x AND s`x<=1 AND -1<=s`y AND s`y<=1 AND
+         p3Dconvex`minalt<=s`z AND s`z<=p3Dconvex`maxalt)
+% prove this with metit
+
+%%%%%%%%%%%%%  TEST 3: A 64 pt octogon with radius 100
+
+p64conv: polygon_2D(64) = LAMBDA (i:below(64)):
+  IF i=63 THEN (5,-100) ELSIF i=62 THEN (-5,-100) ELSIF i=61 THEN (-15,-99)  
+  ELSIF i=60 THEN (-24,-97) ELSIF i=59 THEN (-34,-94) ELSIF i=58 THEN (-43,-90) 
+  ELSIF i=57 THEN (-51,-86) ELSIF i=56 THEN (-60,-80) 
+  ELSIF i=55 THEN (-67,-74)  
+  ELSIF i=54 THEN (-74,-67) ELSIF i=53 THEN (-80,-60) ELSIF i=52 THEN (-86,-51)  
+  ELSIF i=51 THEN (-90,-43) ELSIF i=50 THEN (-94,-34) ELSIF i=49 THEN (-97,-24)  
+  ELSIF i=48 THEN (-99,-15) ELSIF i=47 THEN (-100,-5) ELSIF i=46 THEN (-100,5)  
+  ELSIF i=45 THEN (-99,15) ELSIF i=44 THEN (-97,24) ELSIF i=43 THEN (-94,34)  
+  ELSIF i=42 THEN (-90,43) ELSIF i=41 THEN (-86,51) ELSIF i=40 THEN (-80,60)  
+  ELSIF i=39 THEN (-74,67) ELSIF i=38 THEN (-67,74) ELSIF i=37 THEN (-60,80)  
+  ELSIF i=36 THEN (-51,86) ELSIF i=35 THEN (-43,90) ELSIF i=34 THEN (-34,94) 
+  ELSIF i=33 THEN (-24,97) ELSIF i=32 THEN (-15,99) ELSIF i=31 THEN (-5,100)  
+  ELSIF i=30 THEN (5,100) ELSIF i=29 THEN (15,99) ELSIF i=28 THEN (24,97) 
+  ELSIF i=27 THEN (34,94) ELSIF i=26 THEN (43,90) ELSIF i=25 THEN (51,86)  
+  ELSIF i=24 THEN (60,80) ELSIF i=23 THEN (67,74) ELSIF i=22 THEN (74,67) 
+  ELSIF i=21 THEN (80,60) ELSIF i=20 THEN (86,51) ELSIF i=19 THEN (90,43)  
+  ELSIF i=18 THEN (94,34) ELSIF i=17 THEN (97,24) ELSIF i=16 THEN (99,15) 
+  ELSIF i=15 THEN (100,5) ELSIF i=14 THEN (100,-5) ELSIF i=13 THEN (99,-15) 
+  ELSIF i=12 THEN (97,-24) ELSIF i=11 THEN (94,-34) ELSIF i=10 THEN (90,-43) 
+  ELSIF i=9 THEN (86,-51) ELSIF i=8 THEN (80,-60) ELSIF i=7 THEN (74,-67) 
+  ELSIF i=6 THEN (67,-74) ELSIF i=5 THEN (60,-80) ELSIF i=4 THEN (51,-86) 
+  ELSIF i=3 THEN (43,-90) ELSIF i=2 THEN (34,-94) ELSIF i=1 THEN (24,-97)  
+  ELSIF i=0 THEN (15,-99) ELSE (0,0) ENDIF
+
+p643D: polygon_3D(64) = 
+	  (# poly2D:=p64conv,
+	     minalt:=-1,
+	     maxalt:=1000 #)
+
+p64conv_convex: LEMMA convex_3D(64,p643D)
+
+convex64_max: LEMMA FORALL (i:below(64)): sqv(p64conv(i))<=sq(100.3)
+      AND sqv(p64conv(i))>=sq(99.7)
+
+p643D_correct: LEMMA FORALL (s:Vect3):
+  TRUE OR (
+  (p3Dconvex`minalt<=s`z AND s`z<=p3Dconvex`maxalt AND sqv(vect2(s))<=sq(99.7) IMPLIES inside_convex_3D(64,p643D,s))
+  AND
+  (sqv(vect2(s))>sq(100.3) IMPLIES NOT inside_convex_3D(64,p643D,s)))
+
+
+
+
+END convex_polygon_test

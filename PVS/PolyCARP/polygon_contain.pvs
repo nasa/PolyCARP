@@ -1,0 +1,133 @@
+polygon_contain: THEORY
+
+
+BEGIN
+
+  IMPORTING acceptable_polygon
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% IN THIS FIRST SECTION, ALL VECTORS ARE 2D   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+BUFF: VAR posreal
+
+
+%%%%% Polygons should be counterclockwise %%%%%
+
+on_any_edge?(N:posnat,p:polygon_2D(N),s:Vect2): bool =
+  EXISTS (i:below(N)): LET nexti= (IF i<N-1 THEN i+1 ELSE 0 ENDIF) IN
+    on_segment_2D?(p(i),p(nexti),s)
+
+near_any_edge_upto(N:posnat,p:polygon_2D(N),s:Vect2,BUFF:posreal,i:below(N)):
+  RECURSIVE {bb:bool | bb IFF EXISTS (j:upto(i)): near_poly_edge(N,p,s,BUFF,j)} =
+  IF i=0 THEN near_poly_edge(N,p,s,BUFF,0)
+  ELSE near_poly_edge(N,p,s,BUFF,i) OR near_any_edge_upto(N,p,s,BUFF,i-1) ENDIF
+  MEASURE i
+
+near_any_edge_upto_def: LEMMA FORALL (N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)):
+  on_any_edge?(N,p,s) IMPLIES
+  near_any_edge_upto(N,p,s,BUFF,N-1)
+
+edges_crossed_upto(N:posnat,p:polygon_2D(N),s:Vect2,i:below(N))(j:upto(i)): bool =
+  j<=i AND upshot_crosses_edge(N,p,s,j)`ans
+
+NumEdgesCross: TYPE = [# num:nat,invalid:bool #]
+
+number_upshot_crosses_upto(N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)): 
+  RECURSIVE {nec:NumEdgesCross |  nec`num<=i+1 AND
+    (EXISTS (sig:[below(nec`num)->(edges_crossed_upto(N,p,s,i))]): bijective?(sig))
+    AND (nec`invalid IFF (EXISTS (j:upto(i)): 
+      upshot_crosses_edge(N,p,s,j)`invalid))} =
+  LET thiscross = upshot_crosses_edge(N,p,s,i),
+      thisnum = IF thiscross`ans THEN 1 ELSE 0 ENDIF,
+      lastans = IF i=0 THEN (# num:=0,invalid:=false #)
+      	      	ELSE number_upshot_crosses_upto(N,p,s,i-1) ENDIF
+  IN  (# num:=lastans`num+thisnum,invalid:=thiscross`invalid OR lastans`invalid #)
+  MEASURE i
+
+% Winding Number
+
+quadrant(s:Vect2): subrange(1,4) =
+  IF s`x>=0 AND s`y>=0 THEN 1
+  ELSIF s`x<=0 AND s`y>=0 THEN 2
+  ELSIF s`x<=0 THEN 3
+  ELSE 4 ENDIF
+
+winding_number_rec(N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)): RECURSIVE int =
+  LET this:Vect2 = p(i)-s,
+      next:Vect2 = IF i<N-1 THEN p(i+1)-s ELSE p(0)-s ENDIF,
+      k:subrange(1,4) = quadrant(this),
+      p:subrange(1,4) = quadrant(next),
+      contrib:subrange(-2,2) = (IF k=p THEN 0
+      			        ELSIF p-1=mod(k,4) THEN 1
+				ELSIF k-1=mod(p,4) THEN -1
+				ELSIF det(next-this,this)<=0 THEN 2
+				ELSE -2 ENDIF)
+  IN
+    IF i=0 THEN contrib
+    ELSE winding_number_rec(N,p,s,i-1)+contrib
+    ENDIF MEASURE i
+
+winding_number_rec4: LEMMA FORALL (N:posnat,p:polygon_2D(N),s:Vect2):
+  divides(4,winding_number_rec(N,p,s,N-1))
+
+winding_number(N:posnat,p:polygon_2D(N),s:Vect2): 
+  {ii:int | ii = winding_number_rec(N,p,s,N-1)/4} =
+  winding_number_rec(N,p,s,N-1)/4
+
+fix_polygon(N:posnat,p:polygon_2D(N),s:Vect2,BUFF:posreal): polygon_2D(N) =
+  (LAMBDA (i:below(N)):
+    IF p(i)`y>=s`y-BUFF AND abs(p(i)`x-s`x)<BUFF THEN p(i) - (# x:=2*BUFF,y:=0 #) 
+    ELSE p(i) ENDIF)
+
+definitely_inside_prelim(N:posnat,p:polygon_2D(N),s:Vect2,BUFF): bool =
+  LET mcdi = min_cross_dist_index_upto(N,p,s,N-1),
+      nuc  = number_upshot_crosses_upto(N,p,s,N-1)
+  IN mcdi`index>=0 AND
+     nuc`invalid=false AND
+     mod(nuc`num,2)/=0 AND
+     (NOT near_any_edge_upto(N,p,s,BUFF,N-1)) AND
+     p(mcdi`index)`x>=s`x AND
+     p(mod(mcdi`index+1,N))`x<=s`x
+
+definitely_inside(N:posnat,p:polygon_2D(N),s:Vect2,BUFF): bool =
+  LET fixp = fix_polygon(N,p,s,BUFF),
+      insidefixp:bool = definitely_inside_prelim(N,fixp,s,BUFF)
+  IN (NOT near_any_edge_upto(N,p,s,BUFF,N-1)) AND
+     (NOT near_any_edge_upto(N,fixp,s,BUFF,N-1)) AND
+     insidefixp AND
+     winding_number(N,p,s)=1
+
+
+definitely_outside_prelim(N:posnat,p:polygon_2D(N),s:Vect2,BUFF): bool =
+  LET mcdi = min_cross_dist_index_upto(N,p,s,N-1),
+      nuc  = number_upshot_crosses_upto(N,p,s,N-1)
+  IN (NOT near_any_edge_upto(N,p,s,BUFF,N-1))
+     AND
+     nuc`invalid=false
+     AND
+     (mcdi`index<0 OR
+     (mod(nuc`num,2)=0 AND
+      p(mcdi`index)`x<=s`x AND
+      p(mod(mcdi`index+1,N))`x>=s`x))
+
+definitely_outside(N:posnat,p:polygon_2D(N),s:Vect2,BUFF): bool =
+  LET fixp = fix_polygon(N,p,s,BUFF),
+      outsidefixp:bool = definitely_outside_prelim(N,fixp,s,BUFF)
+  IN (NOT near_any_edge_upto(N,p,s,BUFF,N-1)) AND
+     (NOT near_any_edge_upto(N,fixp,s,BUFF,N-1)) AND
+     outsidefixp AND
+     winding_number(N,p,s)=0
+
+
+definitely_exclusive: LEMMA FORALL (N:posnat,p:polygon_2D(N),s:Vect2,BUFF):
+  NOT (definitely_inside(N,p,s,BUFF) AND definitely_outside(N,p,s,BUFF))
+
+nice_polygon_2D(N:posnat,p:polygon_2D(N),BUFF:posreal): bool =
+ acceptable_polygon_2D(N,p,BUFF) AND
+ counterclockwise_edges(N,p) AND
+ definitely_outside(N,p,test_point_below(N,p,BUFF),BUFF)
+
+END polygon_contain

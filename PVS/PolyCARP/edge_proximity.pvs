@@ -1,0 +1,185 @@
+edge_proximity: THEORY
+
+
+
+
+BEGIN
+
+  IMPORTING vectors@vectors_2D,
+	    quad_minmax,
+	    double_quadratic,
+	    vectors@det_2D,
+	    vectors@basis_2D,
+	    vectors@parallel_2D
+
+N: VAR posnat
+
+
+
+s2,v2: VAR Vect2
+
+s,v,segstart,segend,startvel,endvel,
+segstart1,segend1,segstart2,segend2,w: VAR Vect2
+
+T: VAR posreal
+nnr: VAR nnreal
+t: VAR real
+eps: VAR Sign
+
+
+% does s lie on one of the segments?
+
+on_segment_2D?(segstart,segend,s:Vect2): bool =
+  EXISTS (t:real): 0<=t AND t<=1 AND s = (1-t)*segstart + t*segend
+
+segment_2Ds_cross(segstart1,segend1,segstart2,segend2): bool =
+  EXISTS (s): on_segment_2D?(segstart1,segend1,s) AND
+  	      on_segment_2D?(segstart2,segend2,s)
+
+segment_2Ds_cross_alt(segstart1,segend1,segstart2,segend2): bool =
+  (EXISTS (x,y:real): 0<=x AND x<=1 AND 0<=y AND 
+   y<=1 AND (1-x)*segstart1+x*segend1=(1-y)*segstart2+y*segend2)
+
+segment_2Ds_cross_rew1: LEMMA FORALL (a,b,c,d:Vect2):
+  segment_2Ds_cross(a,b,c,d) IFF
+  segment_2Ds_cross_alt(a,b,c,d)
+
+on_strict_segment_2D_at?(segstart,segend,s:Vect2)(t:real): bool =
+  0<t AND t<1 AND s = (1-t)*segstart + t*segend
+
+on_strict_segment_2D?(segstart,segend,s:Vect2): bool =
+  EXISTS (t:real): on_strict_segment_2D_at?(segstart,segend,s)(t)
+
+open_segment_2Ds_cross(segstart1,segend1,segstart2,segend2): bool =
+  EXISTS (s): on_strict_segment_2D?(segstart1,segend1,s) AND
+  	      on_strict_segment_2D?(segstart2,segend2,s)
+
+open_segment_2Ds_cross_alt(segstart1,segend1,segstart2,segend2): bool =
+  (EXISTS (x,y:real): 0<x AND x<1 AND 0<y AND 
+   y<1 AND (1-x)*segstart1+x*segend1=(1-y)*segstart2+y*segend2)
+
+open_segment_2Ds_cross_rew1: LEMMA FORALL (a,b,c,d:Vect2):
+  open_segment_2Ds_cross(a,b,c,d) IFF
+  open_segment_2Ds_cross_alt(a,b,c,d)
+
+open_segment_2Ds_cross_rew3: LEMMA FORALL (a,b,c,d:Vect2):
+  a/=b AND c/=d IMPLIES
+  (open_segment_2Ds_cross(a,b,c,d) IFF
+  (EXISTS (x,y:real): 0<x AND x<1 AND 0<y AND 
+   y<1 AND
+   quad(sqv(b-a),sqv(d-c),2*(b-a)*(c-d),2*(a-c)*(b-a),2*(a-c)*(c-d),sqv(a-c))(x,y) = 0))
+
+on_segment_2D_sym: LEMMA
+  on_segment_2D?(segstart,segend,s) IFF
+  on_segment_2D?(segend,segstart,s)
+
+near_edge(segstart,segend,s:Vect2,BUFF:posreal): bool =
+   IF abs(s`x-segstart`x)>2*BUFF AND abs(s`x-segend`x)>2*BUFF AND sign(s`x-segend`x)=sign(s`x-segstart`x)
+     THEN FALSE
+   ELSIF abs(s`y-segstart`y)>2*BUFF AND abs(s`y-segend`y)>2*BUFF AND sign(s`y-segend`y)=sign(s`y-segstart`y)
+     THEN FALSE
+   ELSE
+     LET
+       ap = sqv(segend-segstart),
+       b = 2*((segstart-s)*(segend-segstart)),
+       c = sqv(segstart-s)
+     IN
+       sqv(segstart-s)<sq(BUFF) OR
+       sqv(segend-s)<sq(BUFF) OR
+       (ap>0 AND quad_min_le_D_int(ap,b,c,0,1,sq(BUFF)))
+   ENDIF
+
+near_edge_def: LEMMA
+  FORALL (segstart,segend,s:Vect2,BUFF:posreal):
+  near_edge(segstart,segend,s,BUFF) IFF
+  (EXISTS (w): on_segment_2D?(segstart,segend,w) AND
+          sqv(w-s)<sq(BUFF))
+
+% BUFFER is a small distance, basically
+% just to capture the special case where segstart and segend
+% are really close together
+
+BUFFER: VAR nnreal
+
+closest_point(segstart,segend,s,BUFFER): Vect2 =
+  IF norm(segend-segstart)<=BUFFER THEN segstart
+  ELSIF (s-segstart)*(segend-segstart)<=0 THEN segstart
+  ELSIF (s-segend)*(segstart-segend)<=0 THEN segend
+  ELSE LET normdir = ^(segend-segstart),
+       	   tt = det(segstart-s,normdir)
+       IN s+tt*perpR(normdir)
+  ENDIF
+
+closest_point_def: LEMMA
+  LET p = closest_point(segstart,segend,s,BUFFER) IN
+  on_segment_2D?(segstart,segend,p) AND
+  FORALL (w): on_segment_2D?(segstart,segend,w) IMPLIES
+  ((norm(segend-segstart)<=BUFFER AND p=segstart) OR
+  norm(s-w)>=norm(s-p))
+
+rev_0_global_min: LEMMA
+  LET a=sqv(v),b=sqv(w),c=-2*(v*w),
+      d=2*(s*v),ee=-2*(s*w),f=sqv(s) IN
+  sq(c) = 4*a*b IMPLIES
+  2*ee*a=c*d
+
+
+BUFF: VAR posreal
+
+segments_2D_close(segstart1,segend1,segstart2,segend2,BUFF): bool =
+      LET
+        segStartXDiff    = segstart1`x - segstart2`x,
+    	segStartEndXDiff = segstart1`x - segend2`x,
+	segStartYDiff    = segstart1`y - segstart2`y,
+    	segStartEndYDiff = segstart1`y - segend2`y,
+	segEndXDiff      = segend1`x - segend2`x,
+    	segEndStartXDiff = segend1`x - segstart2`x,
+	segEndYDiff      = segend1`y - segend2`y,
+    	segEndStartYDiff = segend1`y - segstart2`y,
+	segXApart  = abs(segStartXDiff)    > 2*BUFF AND
+                      abs(segStartEndXDiff) > 2*BUFF AND
+                      abs(segEndXDiff)      > 2*BUFF AND
+                      abs(segEndStartXDiff) > 2*BUFF AND
+                      sign(segStartXDiff) = sign(segStartEndXDiff) AND
+                      sign(segEndXDiff)   = sign(segEndStartXDiff)  AND
+                      sign(segStartXDiff) = sign(segEndXDiff),
+	segYApart  = abs(segStartYDiff)    > 2*BUFF AND
+                      abs(segStartEndYDiff) > 2*BUFF AND
+                      abs(segEndYDiff)      > 2*BUFF AND
+                      abs(segEndStartYDiff) > 2*BUFF AND
+                      sign(segStartYDiff) = sign(segStartEndYDiff) AND
+                      sign(segEndYDiff)   = sign(segEndStartYDiff)  AND
+                      sign(segStartYDiff) = sign(segEndYDiff)
+      IN
+      IF (segXApart OR segYApart) THEN FALSE
+      ELSIF near_edge(segstart2,segend2,segstart1,BUFF) THEN TRUE
+      ELSIF near_edge(segstart2,segend2,segend1,BUFF) THEN TRUE
+      ELSIF near_edge(segstart1,segend1,segstart2,BUFF) THEN TRUE
+      ELSIF near_edge(segstart1,segend1,segend2,BUFF) THEN TRUE
+      ELSIF sqv(segend1-segstart1)=0 OR sqv(segend2-segstart2)=0 
+             THEN FALSE % almost equal in code
+      ELSE
+        LET s=segstart1-segstart2,
+	    v=segend1-segstart1,
+	    w=segend2-segstart2,
+	    a=sqv(v),
+	    b=sqv(w),
+	    c=-2*(v*w),
+      	    d=2*(s*v),
+	    ee=-2*(s*w),
+	    f=sqv(s)
+        IN quad_min_unit_box(a,b,c,d,ee,f,sq(BUFF))
+      ENDIF
+      
+
+segments_2D_close_def: LEMMA
+  (EXISTS (w,v): on_segment_2D?(segstart1,segend1,v) AND
+  on_segment_2D?(segstart2,segend2,w) AND sqv(w-v)<sq(BUFF))
+  IFF   segments_2D_close(segstart1,segend1,segstart2,segend2,BUFF)
+
+
+
+
+
+
+END edge_proximity

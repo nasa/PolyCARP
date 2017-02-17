@@ -1,0 +1,201 @@
+acceptable_polygon: THEORY
+
+
+
+BEGIN
+
+  IMPORTING edge_proximity
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% IN THIS FIRST SECTION, ALL VECTORS ARE 2D   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+polygon_2D(N:posnat): TYPE = [below(N) -> Vect2]
+
+BUFF: VAR posreal
+
+%%%%% IMPORTANT: Polygons have to be counterclockwise %%%%%
+
+near_poly_edge(N:posnat,p:polygon_2D(N),s:Vect2,BUFF:posreal,i:below(N)): bool =
+  LET
+    next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF)
+  IN
+    near_edge(p(i),p(next),s,BUFF)
+
+EdgeCross: TYPE = [# ans:bool,invalid:bool #]
+
+upshot_crosses_edge(N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)): EdgeCross =
+  LET
+    next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF),
+    tester = (p(next)`x-p(i)`x)^2*(p(i)`y-s`y) + (s`x-p(i)`x)*(p(next)`y-p(i)`y)*(p(next)`x-p(i)`x)
+  IN
+    IF p(i)`x>s`x AND p(next)`x>s`x THEN (# ans:=false,invalid:=false #)
+    ELSIF p(i)`x<s`x AND p(next)`x<s`x THEN (# ans:=false,invalid:=false #)
+    ELSIF p(i)`x = p(next)`x AND (p(i)`y>=s`y OR p(next)`y>=s`y) 
+                              THEN (# ans:=true,invalid:=true #) % Call this function when already perturbed.
+    ELSIF p(i)`x = p(next)`x THEN (# ans:=false,invalid:=false #)
+    ELSIF tester>=0 THEN (# ans:=true,invalid:=false #)
+    ELSE (# ans:=false,invalid:=false #) ENDIF
+
+upshot_crosses_edge_def: LEMMA
+  FORALL (N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)):
+    LET next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF),
+    	uce = upshot_crosses_edge(N,p,s,i)
+    IN uce`ans IFF (EXISTS (r,t:nnreal): t<=1 AND (1-t)*p(i)+t*p(next)=s+(# x:=0,y:=r #))
+
+CrossAns: TYPE = [# index:int,num:real,denom:nzreal #]
+
+ca : VAR CrossAns
+
+compute_intercept(N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)): CrossAns =
+  LET next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF) IN
+    IF (p(i)`x>s`x AND p(next)`x>s`x) OR
+       (p(i)`x<s`x AND p(next)`x<s`x) OR
+       p(i)`x=p(next)`x
+    THEN (# index:=-1,num:=1,denom:=1 #)
+    ELSE LET 
+          newnum = (p(i)`y-s`y)*(p(next)`x-p(i)`x) + 
+	  	    (s`x-p(i)`x)*(p(next)`y-p(i)`y),
+          newdenom = p(next)`x-p(i)`x
+         IN
+	   IF newnum*newdenom<0 THEN (# index:=-1,num:=1,denom:=1 #)
+	   ELSE (# index:=i,num:=newnum,denom:=newdenom #)
+	   ENDIF
+    ENDIF
+
+compute_intercept_def: LEMMA
+  FORALL (N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)):
+    LET ci = compute_intercept(N,p,s,i),
+    	next = (IF i<N-1 THEN i+1 ELSE 0 ENDIF) IN
+      (ci`index>=0 IFF LET uce = upshot_crosses_edge(N,p,s,i)
+      		       IN uce`ans AND NOT uce`invalid) AND
+      (ci`index>=0 IMPLIES (ci`index=i AND
+        p(i)`x/=p(next)`x AND 
+	ci`num/ci`denom=p(i)`y+((s`x-p(i)`x)/(p(next)`x-p(i)`x))*
+			(p(next)`y-p(i)`y) - s`y))
+
+
+min_cross_dist_index_upto(N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)):
+  RECURSIVE {ca:CrossAns |
+    (ca`index>=0 IFF EXISTS (j:upto(i)): compute_intercept(N,p,s,j)`index>=0) AND
+    (ca`index>=0 IMPLIES (ca`index<=i AND 
+      ca = compute_intercept(N,p,s,ca`index) AND
+        FORALL (j:upto(i)): 
+	  LET cij = compute_intercept(N,p,s,j) IN
+	    cij`index>=0 IMPLIES
+	      cij`num/cij`denom>=ca`num/ca`denom))} =
+  IF i=0 THEN compute_intercept(N,p,s,i)
+  ELSE LET cii = compute_intercept(N,p,s,i),
+       	   cin = min_cross_dist_index_upto(N,p,s,i-1)
+       IN IF cin`index<0 THEN cii
+       	  ELSIF cii`index<0 THEN cin
+	  ELSIF cin`denom^2*cii`num*cii`denom<cin`num*cin`denom*cii`denom^2 THEN cii
+	  ELSE cin ENDIF
+  ENDIF MEASURE i
+
+corner_lt_3deg(v,w:Vect2): bool =
+    IF norm(v)<=0.1 or norm(w)<=0.1
+    THEN True
+    ELSIF (v*w)<-0.9986295347545738*(norm(v)*norm(w))
+    THEN True
+    ELSE False ENDIF
+
+acceptable_polygon_2D(N:posnat,p:polygon_2D(N),BUFF:posreal): bool =
+  N>2
+  AND
+  FORALL (i:subrange(0,N-1)): % Loop
+    FORALL (j:subrange(i,N-1)): % Loop
+      LET mj = mod(j+1,N),
+      	  mi = mod(1+i,N),
+	  pj = p(j),
+	  pi = p(i),
+	  pmi = p(mi),
+	  pmj = p(mj)
+      IN 
+        IF i=j THEN TRUE
+        ELSIF pi=pj THEN FALSE % almost equal
+        ELSIF j=mi AND (near_poly_edge(N,p,pmj,BUFF,i) OR
+	      	        near_poly_edge(N,p,pi,BUFF,j)) THEN FALSE
+        ELSIF j=mi AND corner_lt_3deg(pj-pi,pmj-pj) THEN FALSE
+	ELSIF j=mi THEN TRUE
+        ELSIF i=mj AND (near_poly_edge(N,p,pmi,BUFF,j) OR
+	      	        near_poly_edge(N,p,pj,BUFF,i)) THEN FALSE
+        ELSIF i=mj and corner_lt_3deg(pi-pj,pmi-pi) THEN FALSE
+	ELSIF i=mj THEN TRUE
+        ELSIF segments_2D_close(pi,pmi,pj,pmj,BUFF) THEN FALSE
+        ELSE TRUE
+        ENDIF
+
+polygon_indices_distinct: LEMMA FORALL (N:posnat,i,j:nat):
+  i=mod(j+1,N) AND j=mod(i+1,N) IMPLIES N<3
+
+acceptable_polygon_2D_def: LEMMA
+  FORALL (N:posnat,p:polygon_2D(N),BUFF:posreal):
+    acceptable_polygon_2D(N,p,BUFF) IMPLIES
+      (FORALL (i:subrange(0,N-1)):
+       FORALL (j:subrange(0,N-1)):
+       i/=j IMPLIES
+         (p(i)/=p(j) AND
+	  (j=mod(i+1,N) IMPLIES NOT (near_poly_edge(N,p,p(mod(j+1,N)),BUFF,i) OR
+	      	        	     near_poly_edge(N,p,p(i),BUFF,j))) AND
+          (i=mod(j+1,N) IMPLIES NOT (near_poly_edge(N,p,p(mod(i+1,N)),BUFF,j) OR
+	      	        	     near_poly_edge(N,p,p(j),BUFF,i))) AND
+	  (j/=mod(i+1,N) AND i/=mod(j+1,N) IMPLIES
+	      NOT segments_2D_close(p(i),p(mod(i+1,N)),p(j),p(mod(j+1,N)),BUFF))))
+
+
+counterclockwise_corner_index(N:posnat,p:polygon_2D(N),i:nat,eps:Sign): RECURSIVE {j:nat|
+  j<N AND FORALL (z:below(N)): z<=i IMPLIES (eps*p(z)`x>=eps*p(j)`x AND 
+      	  	 	         (p(z)`x=p(j)`x IMPLIES p(z)`y>=p(j)`y))} =
+    IF i = 0 THEN i
+    ELSIF i>=N THEN counterclockwise_corner_index(N,p,N-1,eps)
+    ELSE LET windex:nat = counterclockwise_corner_index(N,p,i-1,eps) IN
+      IF p(windex)`x=p(i)`x AND p(windex)`y>=p(i)`y THEN i % use almost equal
+      ELSIF p(windex)`x=p(i)`x THEN windex % use almost equal
+      ELSIF eps*p(windex)`x>eps*p(i)`x THEN i
+      ELSE windex ENDIF
+    ENDIF MEASURE i
+
+counterclockwise_corner_index_def: LEMMA FORALL (N:posnat,p:polygon_2D(N),i:nat,eps:Sign):
+  LET cci = counterclockwise_corner_index(N,p,i,eps) IN
+  cci<N AND FORALL (z:below(N)): z<=i IMPLIES (eps*p(z)`x>=eps*p(cci)`x AND 
+      	  	 	         (p(z)`x=p(cci)`x IMPLIES p(z)`y>=p(cci)`y))
+
+min_y_val(N:posnat,p:polygon_2D(N),i:nat): RECURSIVE {r:real|
+  (EXISTS (j:upto(i)):j<N AND r = p(j)`y) AND
+  FORALL (j:upto(i)):j<N IMPLIES p(j)`y>=r} =
+  IF i=0 THEN p(i)`y
+  ELSIF i>=N THEN min_y_val(N,p,N-1)
+  ELSE min(p(i)`y,min_y_val(N,p,i-1))
+  ENDIF MEASURE i
+
+test_point_below(N:posnat,p:polygon_2D(N),BUFF:posreal): Vect2 =
+  LET minxindex = counterclockwise_corner_index(N,p,N-1,1),
+      maxxindex = counterclockwise_corner_index(N,p,N-1,-1),
+      minx = p(minxindex)`x,
+      maxx = p(maxxindex)`x
+  IN (# x:= (minx+maxx)/2, y:= min_y_val(N,p,N-1)-abs(maxx-minx)-2*BUFF #)
+
+counterclockwise_edges(N:posnat,p:polygon_2D(N)): bool = 
+  LET l = counterclockwise_corner_index(N,p,N-1,1),
+      r = counterclockwise_corner_index(N,p,N-1,-1),
+      lprev = IF l>0 THEN l-1 ELSE N-1 ENDIF,
+      rprev = IF r>0 THEN r-1 ELSE N-1 ENDIF,
+      lnext = IF l<N-1 THEN l+1 ELSE 0 ENDIF,
+      rnext = IF r<N-1 THEN r+1 ELSE 0 ENDIF,
+      LPP:Vect2 = p(l)-p(lprev),
+      LPN:Vect2 = p(lnext)-p(l),
+      RPP:Vect2 = p(r)-p(rprev),
+      RPN:Vect2 = p(rnext)-p(r),
+      Lcc:bool  = (det(LPP,LPN)>0),
+      Rcc:bool  = (det(RPP,RPN)>0)
+  IN Lcc AND Rcc
+
+% next function is a unit length vector
+
+segment_near_any_edge(N:posnat,p:polygon_2D(N),BUFF:posreal,segstart,segend:Vect2): bool =
+  EXISTS (i:below(N)): LET nexti = IF i<N-1 THEN i+1 ELSE 0 ENDIF IN
+    segments_2D_close(segstart,segend,p(i),p(nexti),BUFF)
+
+
+END acceptable_polygon

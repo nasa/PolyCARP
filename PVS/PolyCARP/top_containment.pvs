@@ -1,0 +1,15 @@
+top_containment: THEORY
+
+% Top for Polycarp %
+
+BEGIN
+
+  IMPORTING acceptable_polygon,
+  	    edge_proximity,
+	    polygon_contain,
+	    polygon_containment_test,
+	    double_quadratic,       
+	    quad_minmax
+
+
+END top_containment

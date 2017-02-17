@@ -1,0 +1,35 @@
+recurse[T,S:Type]:THEORY
+
+BEGIN
+
+t: VAR T
+
+F,G: VAR [T->S]
+
+f,g: VAR [T->T]
+
+Rec1: VAR [T,S->S]
+
+pred: VAR [T->bool]
+
+inv: VAR [[T,S]->bool]
+
+Meas1(f,pred): TYPE = {meas:[T->nat]|
+  FORALL (t:T):(meas(t)=0 IMPLIES pred(t)) AND (meas(t)>0 IMPLIES
+    meas(f(t))<meas(t))}
+
+recurse(pred,G,Rec1,f,(meas:Meas1(f,pred)))(t): RECURSIVE S =
+  IF pred(t) THEN G(t)
+  ELSE Rec1(t,recurse(pred,G,Rec1,f,meas)(f(t)))
+  ENDIF MEASURE meas(t)
+
+recurse_def: LEMMA FORALL (meas:Meas1(f,pred)):
+  (FORALL (t): pred(t) IMPLIES inv(t,G(t))) AND
+  (FORALL (t:T,s:S): pred(t) OR (inv(f(t),s) IMPLIES inv(t,Rec1(t,s))))
+  IMPLIES
+  FORALL (t:T): inv(t,recurse(pred,G,Rec1,f,meas)(t))
+
+
+END recurse
+
+

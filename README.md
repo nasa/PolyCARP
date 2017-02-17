@@ -2,12 +2,15 @@ PolyCARP
 ========
 
 PolyCARP (Algorithms and Software for Computations with Polygons)
-is a package of algorithms, including both their formal
-models and software implementations, for computing containment,
-collision, resolution, and recovery information for polygons. The
+is a package of algorithms, implemented in Java, C++, and Python, 
+for computing containment,
+collision, resolution, and recovery information for polygons. The
 intended applications of PolyCARP are related, but not limited, to
 safety critical systems in air traffic management.
 
+This repository also the formal specification
+of PolyCARP algorithms in the Prototype Verification System ([PVS](http://pvs.csl.sri.com)).
+
 ### Documentation
 
 The API document for PolyCARP is still work in progress. In the meantime,
@@ -23,7 +26,7 @@ PolyCARP@FormalATMv2.6.1 (Nov-18-2016)
 
 ### License
 
-This code is released under NASA's Open Source Agreement. For more
+This code is released under NASA's Open Source Agreement. For more
 information see files in directory LICENSES.
 
 ### Contact

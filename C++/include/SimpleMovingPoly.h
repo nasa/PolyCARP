@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2016 United States Government as represented by
+ * Copyright (c) 2011-2017 United States Government as represented by
  * the National Aeronautics and Space Administration.  No copyright
  * is claimed in the United States under Title 17, U.S.Code. All Other
  * Rights Reserved.
@@ -38,7 +38,7 @@ class SimpleMovingPoly {
 	 * Constructor for a SimplePoly with predefined top and bottom altitudes.
 	 * 
 	 * @param b Bottom altitude
-	 * @param t Top Altitude
+	 * @param t Top altitude
 	 */
 	SimpleMovingPoly(double b, double t);
 
@@ -46,7 +46,8 @@ class SimpleMovingPoly {
 	 * Constructor for a SimplePoly with predefined top and bottom altitudes.
 	 * 
 	 * @param b Bottom altitude
-	 * @param t Top Altitude
+	 * @param t Top altitude
+	 * @param units units of altitude
 	 */
 	SimpleMovingPoly(double b, double t, const std::string& units);
 
@@ -69,11 +70,18 @@ class SimpleMovingPoly {
 
 	/**
 	 * Create a SimplePoly from a Poly3D.  This SimplePoly will use latlon coordinates.
+	 * 
+	 * @param p3 polygon
+	 * @param proj projection
+	 * @return polygon
 	 */
 	static SimpleMovingPoly make(const MovingPolygon3D& p3, const EuclideanProjection& proj);
 
 	/**
 	 * Create a SimplePoly from a Poly3D.  This SimplePoly will use Euclidean coordinates.
+	 * 
+	 * @param p3 polygon
+	 * @return polygon
 	 */
 	static SimpleMovingPoly make(const MovingPolygon3D& p3);
 
@@ -81,21 +89,25 @@ class SimpleMovingPoly {
 
 	/**
 	 * Return the polygon projected to be at time dt (dt = 0 returns a copy of the base polygon)
+	 * 
+	 * @param dt time increment
+	 * @return polygon
 	 */
 	SimplePoly position(double dt) const;
 
 	/**
 	 * Return the average Velocity (at time 0).
+	 * @return velocity
 	 */
 	Velocity averageVelocity() const;
 
 	SimpleMovingPoly linear(double dt) const;
 
 	  /**
-	   * This will return a moving polygon that starts at point i and ends at point i+1
-	   * @param i
-	   * @param proj
-	   * @return
+	   * This will return a moving polygon that starts at a time
+	   * @param time start time
+	   * @param proj relevant projection
+	   * @return moving polygon
 	   */
 	MovingPolygon3D getMovingPolygon(double time, const EuclideanProjection& proj) const;
 
@@ -105,12 +117,18 @@ class SimpleMovingPoly {
 
 	/**
 	 * Return true if point p is within the polygon at time dt from now.
+	 * 
+	 * @param p position
+	 * @param dt time increment
+	 * @return true, if point is in polygon
 	 */
 	bool contains(const Position& p, double dt) const;
 
 //	std::vector<std::string> toStringList(int vertex, bool trkgsvs, int precision) const;
 
 	std::string toString() const;
+
+	std::vector<std::string> toStringList(int vertex, bool trkgsvs, int precision) const;
 
 }; //class
 

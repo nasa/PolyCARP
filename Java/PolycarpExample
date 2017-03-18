@@ -1,1 +1,1 @@
-java -cp lib/PolyCARP.jar:. PolycarpExample
+java -cp lib/PolyCARP.jar:src PolycarpExample

@@ -17,7 +17,7 @@ example:
 	test -f lib/PolyCARP.jar || make lib
 	@echo 
 	@echo "** Building PolycarpExample application"
-	$(JAVAC) -cp lib/PolyCARP.jar PolycarpExample.java
+	$(JAVAC) -cp lib/PolyCARP.jar src/PolycarpExample.java
 	@echo 
 	@echo "** To run PolycarpExample type:"
 	@echo "./PolycarpExample"

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 United States Government as represented by
+ * Copyright (c) 2016-2017 United States Government as represented by
  * the National Aeronautics and Space Administration.  No copyright
  * is claimed in the United States under Title 17, U.S.Code. All Other
  * Rights Reserved.
@@ -67,6 +67,10 @@ bool CDPolycarp::isNicePolygon(const MovingPolygon3D& mp) const {
 
 bool CDPolycarp::definitelyInside(const Vect3& so, const Poly3D& si) const {
   return Polycarp3D::definitely_inside(so, si, buff, checkNice);
+}
+
+bool CDPolycarp::definitelyOutside(const Vect3& so, const Poly3D& si) const {
+  return Polycarp3D::definitely_outside(so, si, buff, checkNice);
 }
 
 bool CDPolycarp::nearEdge(const Vect3& so, const Poly3D& si, double h, double v) const {

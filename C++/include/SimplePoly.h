@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2016 United States Government as represented by
+ * Copyright (c) 2011-2017 United States Government as represented by
  * the National Aeronautics and Space Administration.  No copyright
  * is claimed in the United States under Title 17, U.S.Code. All Other
  * Rights Reserved.
@@ -22,20 +22,20 @@ namespace larcfm {
  * (specified as altitude values).  Points describe the cross-section area vertices in
  * a consistently clockwise (or consistently counter-clockwise) manner.  The cross-section
  * need not be convex, but an "out of order" listing of the vertices will result in edges 
- * that cross, and will cause several calculations to fail (with no warning).
+ * that cross, and will cause several calculations to fail (with no warning).<p>
  * 
  * A SimplePoly sets the altitude for all its points to be the _bottom_ altitude,
  * while the top is stored elsewhere as a single value.  The exact position for "top"
- * vertices is computed on demand.
+ * vertices is computed on demand.<p>
  * 
  * The cross-section must be a simple polygon, that is it allows for non-convex areas, but
  * vertices and edges may not overlap or cross.  Vertices may be ordered in either a clockwise
- * or counterclockwise manner.
+ * or counterclockwise manner.<p>
  * 
  * (A vertex-complete polygon allows for vertices and edges to overlap but not cross, while
- * a general polygon allows for edges to cross.)
+ * a general polygon allows for edges to cross.)<p>
  * 
- * Point indices are based on the order they are added.
+ * Point indices are based on the order they are added.<p>
  * 
  * Note: polygon support is experimental and the interface is subject to change!
  *
@@ -57,6 +57,8 @@ class SimplePoly {
     
 	mutable double maxRad;
 	mutable double bRad;
+
+	mutable double clockwiseSum;
 
     void init();
     
@@ -80,15 +82,16 @@ class SimplePoly {
 	 * Constructor for a SimplePoly with predefined top and bottom altitudes.
 	 * 
 	 * @param b Bottom altitude
-	 * @param t Top Altitude
+	 * @param t Top altitude
 	 */
 	SimplePoly(double b, double t);
 
 	/**
 	 * Constructor for a SimplePoly with predefined top and bottom altitudes.
-	 *
+	 * 
 	 * @param b Bottom altitude
-	 * @param t Top Altitude
+	 * @param t Top altitude
+	 * @param units units to interpret both altitudes
 	 */
 	SimplePoly(double b, double t, const std::string& units);
 
@@ -103,24 +106,30 @@ class SimplePoly {
 	bool equals(const SimplePoly& p) const;
 
 	/**
-	 * Create a SimplePoly from a Poly3D.  This SimplePoly will use Euclidean coordinates .
+	 * Create a SimplePoly from a Poly3D.  This SimplePoly will use Euclidean coordinates.
+	 * @param p3 3D polygon
+	 * @return a new SimplePoly
 	 */
     static SimplePoly make(const Poly3D& p3);
 
 	/**
 	 * Create a SimplePoly from a Poly3D.  This SimplePoly will use latlon coordinates .
+	 * @param p3 3D polygon
+	 * @param proj projection to use to interpret the points in the 3D polygon
+	 * @return a new SimplePoly
 	 */
     static SimplePoly make(const Poly3D& p3, const EuclideanProjection& proj);
 
+    bool isClockwise() const;
 
 	/**
-	 *  
+	 * Determine if the polygon contains geodetic points. 
 	 * @return True if this SimplePoly contains any geodetic points.
 	 */
 	bool isLatLon() const;
 
 	/**
-	 * 
+	 * Number of points
 	 * @return Number of points in this SimplePoly
 	 */
 	int size() const;
@@ -134,9 +143,16 @@ class SimplePoly {
 	 */
 	Position centroid() const;
 	
+  private:
+
+	Position avgPos(const std::vector<Position>& points, const std::vector<double>& wgts) const;
+
+  public:
+
 	/**
 	 * Return the average of all vertices.  Note this is not the same as the centroid!  This will, however, have the nice property of having
 	 * a constant velocity when dealing with a morphing polygon. 
+	 * @return average of all vertices
 	 */
 	Position averagePoint() const;
 
@@ -145,26 +161,32 @@ class SimplePoly {
 
 	/**
 	 * Returns the center of a circle completely containing this SimplePoly.  This is not necessarily the minimal bounding circle.
+	 * @return center of polygon
 	 */
 	Position boundingCircleCenter() const;
 	
-	/** Returns true if this polygon is convex */
+	/** Returns true if this polygon is convex 
+	 * @return true, if convex
+	 */
 	  bool isConvex();
 
 	/**
 	 * Returns the radius of a circle completely containing this SimplePoly.  This is not necessarily the minimal bounding circle.
+	 * @return radius of bounding circle
 	 */
 	double boundingCircleRadius() const;
 	
 	/** 
 	 * Returns the max horizontal distance between any vertex and the centroid
+	 * @return radius 
 	 */
 	double maxRadius() const;
 
 	/** 
 	 * Add a new point to the SimplePoly.  Points should be added in a consistently clockwise or consistently counter-clockwise manner. 
 	 * This currently does NOT set the Z component of the point (unless it is the first point)
-	 * Returns false if an error is detected (duplicate or invalid vertex), true otherwise. 
+	 * @param p position to add
+	 * @return false, if an error is detected (duplicate or invalid vertex), true otherwise. 
 	 */
 	bool addVertex(const Position& p);
 
@@ -178,7 +200,10 @@ class SimplePoly {
 	/**
 	 * Change the position of a point already added to the SimplePoly, indicated by its index. 
 	 * This currently does NOT set the Z component of the point.
-	 * Returns false if an invalid vertex is detected, true otherwise 
+	 * 
+	 * @param n index
+	 * @param p position
+	 * @return false, if an invalid vertex is detected, true otherwise 
 	 */
 	bool setVertex(int n, Position p);
 
@@ -190,6 +215,7 @@ class SimplePoly {
 
 	/**
 	 * Return the top altitude of this SimplePoly.
+	 * @return top altitude
 	 */
 	double getTop() const;
 
@@ -201,36 +227,55 @@ class SimplePoly {
 
 	/**
 	 * Return the bottom altitude of this SimplePoly.
+	 * @return bottom altitude
 	 */
 	double getBottom() const;
 
 	/**
 	 * Returns the position of the (bottom) point with index n.
 	 * If n is not a valid index, this returns the centroid position.
+	 * 
+	 * @param n index
+	 * @return position
 	 */
 	Position getVertex(int n) const;
+
+	std::vector<Position> getVertices() const;
 
 	/**
 	 * Returns the position of the top point with index n.
 	 * If n is not a valid index, this returns the centroid position.
+	 * 
+	 * @param n index
+	 * @return position
 	 */
 	Position getTopPoint(int n) const;
 
 	/**
 	 * Returns a deep copy of this SimplPoly.
+	 * 
+	 * @return copy
 	 */
 	SimplePoly copy() const;
 
-	/** return a aPolygon3D version of this.  proj is ignored if this is Euclidean */
+	/** return a Poly3D version of this.  proj is ignored if this is Euclidean 
+	 * @param proj projection
+	 * @return a new 3D polygon
+	 */
 	Poly3D poly3D(const EuclideanProjection& proj) const;
 
 	/**
 	 * This uses a standard raycasting check for point inclusion.  It does not explicitly use ACCoRD detection algorithms.
+	 * @param p position
+	 * @return true, if position is in the polygon
 	 */
 	bool contains(const Position& p) const;
 
 	/**
 	 * This uses a standard raycasting check for point inclusion.  It does not explicitly use ACCoRD detection algorithms.
+	 * 
+	 * @param p position
+	 * @return true, if position is in the polygon
 	 */
 	bool contains2D(const Position& p) const;
 
@@ -248,10 +293,37 @@ class SimplePoly {
 
 	BoundingRectangle getBoundingRectangle() const;
 
+	int maxInRange(const Position& p, double a1, double a2) const;
+
+	/**
+	 * Return the angle that is perpendicular to the middle of the edge from vertex i to i+1, facing outward.
+	 * Return NaN if i is out of bounds or vertex i overlaps vertex i+1.
+	 * 
+	 * @param i index
+	 * @return angle 
+	 */
+	double perpSide(int i) const;
+
+  private:
+	bool vertexConvex(const Position& p0, const Position& p1, const Position& p2) const;
+
+  public:
+	/**
+	 * Return the internal angle of vertex i.
+	 * Return NaN if i is out of bounds or vertex i overlaps with an adjacent vertex.
+	 * 
+	 * @param i index
+	 * @return angle
+	 */
+	double vertexAngle(int i) const;
+
 	/**
 	 * String representation of this SimplePoly.
 	 */
 	std::string toString() const;
+
+	std::vector<std::string> toStringList(int vertex, int precision) const;
+
 
 }; //class
 

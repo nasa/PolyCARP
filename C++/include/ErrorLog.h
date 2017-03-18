@@ -3,7 +3,7 @@
  *
  * Contact: Jeff Maddalon (j.m.maddalon@nasa.gov)
  *
- * Copyright (c) 2011-2016 United States Government as represented by
+ * Copyright (c) 2011-2017 United States Government as represented by
  * the National Aeronautics and Space Administration.  No copyright
  * is claimed in the United States under Title 17, U.S.Code. All Other
  * Rights Reserved.
@@ -43,10 +43,12 @@ public:
 	 */
 	void setFailFast(bool ff);
 
-	/**
-	 * If console output is set to true, then every error message and warning is
-	 * output to the console.
-	 */
+  /**
+   * If console output is set to true, then every error message and warning is 
+   * output to the console.
+   * 
+   * @param console true, if output should go to console.
+   */
 	void setConsoleOutput(bool console);
 
 	/**
@@ -83,34 +85,57 @@ public:
 	 */
 	static void setSizeLimit(int sz);
 
-	/**
-	 * Checks if a value is positive and, in that case, returns true. Otherwise,
-	 * adds an error message and returns false.
-	 */
+  /** 
+   * Checks if a value is positive and, in that case, returns true. Otherwise, 
+   * adds an error message and returns false.
+   * 
+   * @param method name of method
+   * @param val value
+   * @return true, if value is positive
+   */
 	bool isPositive(const std::string& method, double val);
 
-	/**
-	 * Checks if a value is non negative and, in that case, returns true. Otherwise,
-	 * adds an error message and returns false.
-	 */
+  /** 
+   * Checks if a value is non negative and, in that case, returns true. Otherwise, 
+   * adds an error message and returns false.
+   * 
+   * @param method name of method
+   * @param val value
+   * @return true, if value is non-negative
+   */
 	bool isNonNegative(const std::string& method, double val);
 
-	/**
-	 * Checks if a value is non positive and, in that case, returns true. Otherwise,
-	 * adds an error message and returns false.
-	 */
+  /** 
+   * Checks if a value is non positive and, in that case, returns true. Otherwise, 
+   * adds an error message and returns false.
+   * 
+   * @param method name of method
+   * @param val value
+   * @return true, if value is non-positive
+   */
 	bool isNonPositive(const std::string& method, double val);
 
-	/**
-	 * Checks if a value is less than value in internal units. Otherwise,
-	 * adds an error message and returns false.
-	 */
+  /** 
+   * Checks if a value is less than value in internal units. Otherwise,
+   * adds an error message and returns false.
+   * 
+   * @param method name of method
+   * @param val value #1
+   * @param thr value #2
+   * @return true, if value #1 is less than value #2
+   */
 	bool isLessThan(const std::string& method, double val, double thr);
 
-	/**
-	 * Checks if a value is between lb and ub. Otherwise, adds an error message
-	 * and returns false.
-	 */
+  /** 
+   * Checks if a value is between lb and ub. Otherwise, adds an error message 
+   * and returns false.
+   * 
+   * @param method name of method
+   * @param val value
+   * @param lb  lower bound
+   * @param ub  upper bound
+   * @return true, if value is between upper and lower bound
+   */
 	bool isBetween(const std::string& method, double val, double lb, double ub);
 
 	bool hasError() const;

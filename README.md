@@ -15,7 +15,7 @@ of PolyCARP algorithms in the Prototype Verification System ([PVS](http://pvs.cs
 
 The API document for PolyCARP is still work in progress. In the meantime,
 please refer to the release notes and the examples files
-`PolycarpExample.java` and `PolycarpExample.cpp`.
+[`PolycarpExample.java`](Java/src/PolycarpExample.java) and [`PolycarpExample.cpp`](C++/src/PolycarpExample.cpp).
 
 For technical information about the definitions and algorithms in this
 repository, visit [http://shemesh.larc.nasa.gov/fm/PolyCARP](http://shemesh.larc.nasa.gov/fm/PolyCARP).

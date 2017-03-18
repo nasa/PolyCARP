@@ -1,0 +1,38 @@
+PolyCARP: Algorithms and Software for Computations with Polygons
+------------------------------------------------------
+Release: March 18, 2017
+Authors: Anthony Narkawicz, George Hagen 
+Contact: Cesar A. Munoz (Cesar.A.Munoz@nasa.gov)
+
+Changed on date: 8/29/16
+Description: Changed java in the for loop in closest_edge. Old one was
+"for (int i = 0; i < p.size() -1; i++)". Changed this to "for (int i =
+0; i < p.size(); i++)"
+
+Description: Changed c++ function
+counterclockwise_corner_index. Made the for loop go one step
+further. Changed top iteration from p.size()-1 to p.size().
+
+Changed on date: 10/7/16
+Description: Changed c++ function recovery_point. Changed last return
+statement to return "s" instead of "ans"
+
+Changed on date: 10/17/16
+Description: Changed java and c++ version of the function
+proj_vect. Changed third if statement from "if (v.Sub(u).det(v.Sub(u))
+<= 0) {" to "if (w.Sub(v).det(v.Sub(u)) <= 0) {"
+
+Changed on date: 11/8/16 
+Description: Changed java, c++, python, pvs. Changed three functions
+in each: near_edge, segments_2D_close, and acceptable_polygon_2D. In
+both near_edge and segments_2D_close, added two new test conditions at
+the beginning that if are true, the function can immediately return
+false. In acceptable_polygon_2D, changed the inner loop to start at i
+instead of 0. This doesn't change the output but makes it faster
+because it iterates fewer times.
+
+Changed on date: 11/18/16
+Description: Changed java, c++, python, pvs. Changed the function
+winding_number. It used to return the floor of 0.5 plus the total
+number of quandrant changes divided by 4 (floor(total/4+0.5)). Now it
+simply returns total/4. This doesn't change the output.

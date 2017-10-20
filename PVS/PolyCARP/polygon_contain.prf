@@ -86,7 +86,7 @@
     (expt def-decl "real" exponentiation nil)
     (^ const-decl "real" exponentiation nil)
     (quadratic const-decl "real" quadratic "reals/")
-    (quad_min_le_D_int const-decl "bool" quad_minmax nil)
+    (quad_min_le_D_int const-decl "bool" quad_minmax "reals/")
     (near_edge const-decl "bool" edge_proximity nil)
     (near_poly_edge const-decl "bool" acceptable_polygon nil)
     (posreal_times_posreal_is_posreal application-judgement "posreal"

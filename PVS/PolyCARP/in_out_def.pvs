@@ -1,0 +1,42 @@
+in_out_def : THEORY
+
+  BEGIN
+
+IMPORTING trig@acos,
+	  good_polygon_def,
+	  matrices@matrix_props
+	  
+
+signed_area2(t1,t2,t3:Vect2):real =
+  1/2*det((: (:t1`x,t1`y,1:),(:t2`x,t2`y,1:),(:t3`x,t3`y,1:) :))
+
+sign(x:real):subrange[-1,1] = IF x<0    THEN -1
+                              ELSIF x=0 THEN 0
+			      ELSE 1
+			      ENDIF
+
+inside_triangle?(t1,t2,t3,Q:Vect2) : bool = sign(signed_area2(Q,t1,t2))>=0 AND
+                                           sign(signed_area2(Q,t2,t3))>=0 AND
+					    sign(signed_area2(Q,t3,t1))>=0
+
+arg_ac1(p1, p2: Nz_vect2 ): real = 
+     ^(p1)*^(p2)
+
+JUDGEMENT arg_ac1(p1,p2:Nz_vect2) HAS_TYPE {x:real | -1<=x AND x<=1}
+
+signed_angle(v1,v2:Nz_vect2) : real =
+  sign(signed_area2(zero,v1,v2))*1/(2*pi)*acos(^(v1)*^(v2))
+
+signed_angle_consec(N:posnat,p:polygon_2D(N),s:{x:Vect2 | FORALL (i:below(N)) : x/=p(i)})(i:below(N)) : real =
+  sign(signed_area2(s,p(i),p(mod(i+1,N))))*1/(2*pi)*acos(^(p(i)-s)*^(p(mod(i+1,N))-s))
+
+winding_number_def(N:posnat,p:polygon_2D(N),s:{x:Vect2 | FORALL (i:below(N)) : x/=p(i)}): real=
+  sigma(0,N-1,signed_angle_consec(N,p,s))
+
+inside_definition(N:posnat,p:polygon_2D(N),s:{x:Vect2 | FORALL (i:below(N)) : x/=p(i)}):bool =
+  winding_number_def(N,p,s)/=0
+
+outside_definition(N:posnat,p:polygon_2D(N),s:{x:Vect2 | FORALL (i:below(N)) : x/=p(i)}):bool =
+  NOT inside_definition(N,p,s)
+
+  END in_out_def

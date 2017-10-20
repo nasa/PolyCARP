@@ -1,11 +1,9 @@
 polygon_contain: THEORY
 
-
 BEGIN
 
-  IMPORTING acceptable_polygon
-
-
+  IMPORTING acceptable_polygon,
+            reals@sigma
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% IN THIS FIRST SECTION, ALL VECTORS ARE 2D   %%%

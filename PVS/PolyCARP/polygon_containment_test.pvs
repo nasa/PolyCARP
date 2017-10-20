@@ -1,6 +1,5 @@
 polygon_containment_test: THEORY
 
-
 BEGIN
 
   IMPORTING polygon_contain

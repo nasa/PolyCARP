@@ -1,0 +1,95 @@
+winding_equiv : THEORY
+
+  BEGIN
+
+ IMPORTING in_out_def,
+           angle_sum,
+	   vectors@angles_2D,
+	   vectors@det_2D,
+	   polygon_contain
+
+ wind_ang(ang_fr:real): int = 
+   LET whole = floor(ang_fr/(2*pi)), 
+       rem = 4*fractional(ang_fr/(2*pi)) IN
+       4*whole + IF rem<=1 THEN 0
+                 ELSIF rem<=2 THEN 1
+		 ELSIF rem<=3 THEN 2
+		 ELSE 3  
+ 		 ENDIF
+		 
+ wind_ang_plus_int: LEMMA FORALL (i:int, ang_fr: real):
+    wind_ang( 2*pi*i+ang_fr) = 4*i+wind_ang(ang_fr)
+  
+ contrib(v,w:Vect2):subrange(-2,2) = LET k:subrange(1,4) = quadrant(v),
+                                           p:subrange(1,4) = quadrant(w) IN
+                               (IF k=p THEN 0
+      			        ELSIF p-1=mod(k,4) THEN 1
+				ELSIF k-1=mod(p,4) THEN -1
+				ELSIF det(w-v,v)<=0 THEN 2
+				ELSE -2 ENDIF)
+
+ quadrant_vector: LEMMA FORALL((v:Nz_vect2),(av:nnreal|av<2*pi AND ^(v)=(cos(av),sin(av)))):
+                           (quadrant(v)=1 IFF av<=pi/2) AND
+			   (quadrant(v)=2 IFF pi/2<av AND av<=pi) AND
+			   (quadrant(v)=3 IFF pi<av AND av<=3*pi/2) AND
+			   (quadrant(v)=4 IFF 3*pi/2<av)	    
+
+ pi_bad: LEMMA FORALL((N:posnat),(p:polygon_2D(N)|NOT on_polygon(N,p,zero)),(i:below(N)),
+                       (alpha:nnreal| alpha<2*pi AND ^(p(i)) = (cos(alpha), sin(alpha))),
+		       (beta:nnreal| beta<2*pi AND ^(p(mod(i+1,N))) = (cos(beta), sin(beta)))):
+		       abs(beta-alpha)=pi IMPLIES on_polygon(N,p,zero)
+		       
+ contrib0: LEMMA FORALL((v,w:Nz_vect2),(av:nnreal|av<2*pi AND ^(v)=(cos(av),sin(av))),
+                        (aw:nnreal|aw<2*pi AND ^(w)=(cos(aw),sin(aw)))):
+          contrib(v,w)=0 IMPLIES 2*pi*signed_angle(v,w)<=pi/2
+    
+ winding_int: JUDGEMENT
+   FORALL ((N:posnat),(p:polygon_2D(N)|NOT on_polygon(N,p,zero))):
+    sigma(0,N-1,signed_angle_consec(N,p,zero)) HAS_TYPE int
+
+ base_ang: LEMMA FORALL ((N:posnat),(p:polygon_2D(N)|NOT on_polygon(N, p, zero)),
+           (alpha:nnreal| alpha<2*pi AND ^(p(0)) = (cos(alpha), sin(alpha))), 
+           i:below(N),(beta:nnreal| beta<2*pi AND ^(p(mod(i+1,N))) = (cos(beta), sin(beta)))):
+            EXISTS (n:int) : 2*pi*sigma(0,i,signed_angle_consec(N,p,zero))+alpha=beta+2*pi*n
+	    
+ iter_winding: LEMMA
+   FORALL ((N:posnat),(p:polygon_2D(N)|NOT on_polygon(N, p, zero)),
+           (alpha:nnreal| alpha<2*pi AND ^(p(0)) = (cos(alpha), sin(alpha))), 
+           i:below(N)):
+ winding_number_rec(N,p, zero,i) +wind_ang(alpha) = wind_ang(2*pi*sigma(0,i,signed_angle_consec(N,p,zero))+alpha)
+  
+ origin_reduction: LEMMA 
+   FORALL (N:posnat,p:polygon_2D(N)|NOT on_polygon(N,p,zero)) :
+  winding_number_rec(N,p,zero,N-1) = 4*sigma(0,N-1,signed_angle_consec(N,p,zero))
+
+ shiftp(N:posnat,p:polygon_2D(N),s:Vect2)(i:below(N)): Vect2 = p(i)-s
+
+ shifted_wnit: LEMMA FORALL ((N:posnat),(p:polygon_2D(N)),(s:Vect2 | NOT on_polygon(N,p,s)),(i:below(N))) :
+                      winding_number_rec(N,p,s,i) = winding_number_rec(N,shiftp(N,p,s),zero,i)
+
+ shifted_wn: LEMMA FORALL ((N:posnat),(p:polygon_2D(N)),(s:Vect2 | NOT on_polygon(N,p,s))) :
+                      winding_number(N,p,s) = winding_number(N,shiftp(N,p,s),zero)
+
+ shifted_defit: LEMMA FORALL ((N:posnat),(p:polygon_2D(N)),(s:Vect2 | NOT on_polygon(N,p,s)),(i:below(N))) :
+                       sigma(0,i,signed_angle_consec(N,p,s)) = sigma(0,i,signed_angle_consec(N,shiftp(N,p,s),zero))
+
+ shifted_def: LEMMA FORALL ((N:posnat),(p:polygon_2D(N)),(s:Vect2 | NOT on_polygon(N,p,s))) :
+                       inside_definition(N,p,s) = inside_definition(N,shiftp(N,p,s),zero)
+
+ definitely_inside_verification : LEMMA FORALL
+  (N:posnat,p:polygon_2D(N),(s:Vect2 | NOT on_polygon(N,p,s))) :
+  winding_number(N,p,s)=1 IMPLIES inside_definition(N,p,s)
+
+ definitely_inside_verification2 : LEMMA FORALL
+  (N:posnat,p:polygon_2D(N),(s:Vect2 | NOT on_polygon(N,p,s))) :
+  winding_number(N,p,s)=0 IMPLIES outside_definition(N,p,s)
+
+ definitely_inside : LEMMA FORALL
+  (N:posnat,p:polygon_2D(N),BUFF:posreal),(s:Vect2 | NOT on_polygon(N,p,s)) :
+  definitely_inside(N,p,s,BUFF) IMPLIES inside_definition(N,p,s)
+ 
+ definitely_outside : LEMMA FORALL
+  (N:posnat,p:polygon_2D(N),BUFF:posreal),(s:Vect2 | NOT on_polygon(N,p,s)) :
+  definitely_outside(N,p,s,BUFF) IMPLIES outside_definition(N,p,s)
+
+  END winding_equiv

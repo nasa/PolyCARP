@@ -1,3 +1,4 @@
+
 recurse[T,S:Type]:THEORY
 
 BEGIN
@@ -28,7 +29,6 @@ recurse_def: LEMMA FORALL (meas:Meas1(f,pred)):
   (FORALL (t:T,s:S): pred(t) OR (inv(f(t),s) IMPLIES inv(t,Rec1(t,s))))
   IMPLIES
   FORALL (t:T): inv(t,recurse(pred,G,Rec1,f,meas)(t))
-
 
 END recurse
 

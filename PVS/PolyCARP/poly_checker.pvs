@@ -1,5 +1,4 @@
-poly_checker  % [ parameters ]
-		: THEORY
+poly_checker : THEORY
 
   BEGIN
 

@@ -1,7 +1,5 @@
 acceptable_polygon: THEORY
 
-
-
 BEGIN
 
   IMPORTING edge_proximity

@@ -1,13 +1,9 @@
 edge_proximity: THEORY
-
-
-
-
 BEGIN
 
   IMPORTING vectors@vectors_2D,
-	    quad_minmax,
-	    double_quadratic,
+	    reals@quad_minmax,
+	    reals@double_quadratic,
 	    vectors@det_2D,
 	    vectors@basis_2D,
 	    vectors@parallel_2D

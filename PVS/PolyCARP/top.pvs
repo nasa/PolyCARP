@@ -1,29 +1,21 @@
 top: THEORY
-
-% Top for Polycarp %
-
 BEGIN
 
-  IMPORTING acceptable_polygon,         
-  	    edge_proximity,             
+  IMPORTING edge_proximity,
+            acceptable_polygon,   
+            good_polygon_def,
+	    in_out_def,
+            angle_sum,
+            winding_equiv,
+	    polygon_contain,
 	    detection,
 	    convex_polygon_containment,
 	    polygon_contain,
 	    convex_polygon_test,        
 	    polygon_containment_test,
-	    double_quadratic,           
-	    quad_minmax,
-	    resolution,
-	    time_inout,
 	    resolution,
 	    recurse,
+	    time_inout,
 	    multipoly
-
-
-
-
-
-
-
 
 END top

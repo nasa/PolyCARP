@@ -1,8 +1,5 @@
 multipoly: THEORY
 
-
-
-
 BEGIN
 
   IMPORTING detection,reals@real_facts

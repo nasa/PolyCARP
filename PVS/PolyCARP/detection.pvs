@@ -1,8 +1,5 @@
 detection: THEORY
 
-
-
-
 BEGIN
 
   IMPORTING ACCoRD@cd_vertical,

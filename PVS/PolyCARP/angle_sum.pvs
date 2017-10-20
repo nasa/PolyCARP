@@ -1,0 +1,73 @@
+angle_sum : THEORY
+
+  BEGIN
+
+ IMPORTING 
+
+          trig@acos,
+	  vectors@vectors_2D, 
+	  vectors@vectors_2D_cos, 
+	  fast_approx@fast_approx, 
+	  matrices@matrix_props,
+	  trig@trig_extra,
+	  in_out_def
+
+  on_line(v1, v2, s:Vect2): bool = 
+    EXISTS ((t: posreal|t<1)):
+      s = t*v1+(1-t)*v2
+
+  on_polygon(N:posnat, (p:polygon_2D(N)), s:Vect2): bool = 
+    EXISTS (i:below(N)): s = p(i) OR on_line(p(i), p(mod(i+1,N)), s) 
+ 
+  norm_angle: LEMMA FORALL (v:Nz_vect2): 
+    EXISTS (ang: {x:nnreal | x<2*pi}): 
+    ^(v) = (cos(ang), sin(ang))
+
+  norm_angle_eq: LEMMA FORALL (v,w:Nz_vect2):
+                       (EXISTS (a:nzreal): v=a*w) IMPLIES ^(v)=^(w) OR ^(v)=-^(w)      
+
+  ac_co((phi: real|abs(phi)<=2*pi)): {x:real | x= acos(cos(phi))} = 
+   IF abs(phi)<=pi THEN abs(phi)
+   ELSE 2*pi - abs(phi)
+   ENDIF
+
+  signed_acos: LEMMA FORALL (v,w:Nz_vect2, 
+  	       	       (av : nnreal | av<2*pi AND ^(v) = (cos(av), sin(av))), 
+		       (aw: nnreal | aw<2*pi AND ^(w) = (cos(aw), sin(aw)))):
+     sign(signed_area2(zero,v,w))<0 IFF
+       (aw-av>pi OR (aw-av<0 AND aw-av>-pi))
+
+  signed_acos2: LEMMA FORALL (v,w:Nz_vect2, 
+  	       	       (av : nnreal | av<2*pi AND ^(v) = (cos(av), sin(av))), 
+		       (aw: nnreal | aw<2*pi AND ^(w) = (cos(aw), sin(aw)))):
+     sign(signed_area2(zero,v,w))=0 IFF
+       (aw=av OR abs(aw-av)=pi)
+
+  signed_acos3: LEMMA FORALL (v,w:Nz_vect2, 
+  	       	       (av : nnreal | av<2*pi AND ^(v) = (cos(av), sin(av))), 
+		       (aw: nnreal | aw<2*pi AND ^(w) = (cos(aw), sin(aw)))):
+     sign(signed_area2(zero,v,w))>0 IFF
+       (aw-av>0 AND aw-av<pi) OR aw-av<-pi
+
+  vect_ang_sum4: LEMMA FORALL (p1,p2: Nz_vect2, (a1:nnreal|a1<2*pi AND ^(p1)=(cos(a1),sin(a1))),
+                               (a2:nnreal|a2<2*pi AND ^(p2)=((cos(a2),sin(a2))))):
+      LET t12 = arg_ac1(p1, p2),
+	  s12:subrange(-1,1) = sign(signed_area2(zero,p1,p2)) IN
+      IF abs(a1-a2)<pi THEN a1+s12*acos(t12)=a2
+      ELSIF abs(a1-a2)=pi THEN a1+s12*acos(t12) = a1
+      ELSIF abs(a1-a2)>pi AND a1<a2 THEN a1+s12*acos(t12)=a2-2*pi
+      ELSE a1+s12*acos(t12)=a2+2*pi
+      ENDIF
+
+
+  vect_ang_sum5: LEMMA FORALL (p1,p2: Nz_vect2, (a1:nnreal|a1<2*pi AND ^(p1)=(cos(a1),sin(a1))),
+                               (a2:nnreal|a2<2*pi AND ^(p2)=((cos(a2),sin(a2))))):
+      NOT on_line(p1, p2, zero) IMPLIES
+      sign(signed_area2(zero,p1,p2))*acos(^(p1)*^(p2)) = 
+      a2-a1 + 2*pi*(IF abs(a1-a2)<pi THEN 0 ELSIF a1<a2 THEN -1 ELSE 1 ENDIF)
+
+arg_ac(p1, p2: Vect2, (s: Vect2 | s/=p1 and s/=p2)): real = 
+     ((p1-s)*(p2-s))/(norm(p1-s)*norm(p2-s))
+  
+
+  END angle_sum

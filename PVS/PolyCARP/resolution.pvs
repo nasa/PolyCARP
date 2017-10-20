@@ -1,6 +1,5 @@
 resolution: THEORY
 
-
 BEGIN
 
   IMPORTING polygon_contain,

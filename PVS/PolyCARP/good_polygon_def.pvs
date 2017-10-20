@@ -1,0 +1,49 @@
+good_polygon_def : THEORY
+
+  BEGIN
+
+IMPORTING vectors@vectors_2D,
+          acceptable_polygon
+
+Q: VAR Vect2
+
+repeated_vertex(N:posnat,p:polygon_2D(N)) : bool =
+  FORALL(i,j:below(N)) : i/=j IMPLIES p(i)/=p(j)
+
+straight_line(N:posnat,p:polygon_2D(N)) : bool =
+  IF FORALL(i,j:below(N)) : p(i)`x=p(j)`x THEN TRUE
+    ELSIF FORALL (i,j:below(N)) : p(i)`y=p(j)`y THEN TRUE
+    ELSIF FORALL ((i:below(N) | (p(mod(i+1,N))`x-p(i)`x)/=0 AND
+      (p(mod(i+2,N))`x-p(mod(i+1,N))`x)/=0 )) :
+      (p(mod(i+1,N))`y-p(i)`y)/(p(mod(i+1,N))`x-p(i)`x) =
+      (p(mod(i+2,N))`y-p(mod(i+1,N))`y)/(p(mod(i+2,N))`x-p(mod(i+1,N))`x) THEN TRUE
+    ELSE FALSE
+  ENDIF
+
+vertex_in_edge(N:posnat,p:polygon_2D(N)) : bool =
+  EXISTS ((i,j:below(N)), (t:real| 0<t AND t<1)) : p(j) = (1-t)*p(i)+t*p(mod(i+1,N))
+
+edges_intersect(N:posnat,p:polygon_2D(N)) : bool = %does not count endpoints as intersection
+  EXISTS ((i:below(N)), (j:below(N)|j/=i)) :
+    EXISTS (s:Vect2, (t1:real|0<t1 AND t1<1)) :
+      EXISTS (t2:real| 0<t2 AND t2<1) :
+        s=(1-t1)*p(i)+t1*p(mod(i+1,N)) AND s=(1-t2)*p(j)+t2*p(mod(j+1,N))
+
+is_left?(segstart,segend,s:Vect2) : bool =
+  (segend`x-segstart`x)*(s`y-segstart`y)-(s`x-segstart`x)*(segend`y-segstart`y)>0
+
+counterclockwise_polygon?(N:posnat,p:polygon_2D(N)) : bool =
+  N>2 AND
+  LET cci = counterclockwise_corner_index(N,p,N,-1) IN
+    IF cci=0 THEN is_left?(p(N-1),p(0),p(1))
+    ELSE is_left?(p(cci-1),p(cci),p(mod(cci+1,N)))
+    ENDIF
+  
+good_polygon(N:posnat,p:polygon_2D(N)) : bool =
+  NOT repeated_vertex(N,p)
+  AND NOT straight_line(N,p)
+  AND NOT vertex_in_edge(N,p)
+  AND NOT edges_intersect(N,p)
+  AND counterclockwise_polygon?(N,p)
+
+  END good_polygon_def

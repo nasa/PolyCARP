@@ -29,8 +29,8 @@ $ provethem all-theories
 The output of that command is
 
 ```
-PolyCARP                 [OK: 273 proofs]
+PolyCARP                 [OK: 292 proofs]
 
-*** Grand Totals: 273 proofs / 273 formulas. Missed: 0 formulas.
+*** Grand Totals: 292 proofs / 292 formulas. Missed: 0 formulas.
 *** Number of libraries: 1
 ```

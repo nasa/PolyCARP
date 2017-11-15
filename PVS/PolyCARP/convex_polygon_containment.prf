@@ -558,8 +558,6 @@
     (posnat nonempty-type-eq-decl nil integers nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (int_minus_int_is_int application-judgement "int" integers nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
@@ -573,7 +571,10 @@
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (nnint_plus_posint_is_posint application-judgement "posint"
-     integers nil))
+     integers nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil))
  (counterclockwise_convex_rec_TCC1 0
   (counterclockwise_convex_rec_TCC1-1 nil 3630245335
@@ -847,8 +848,6 @@
     (posnat nonempty-type-eq-decl nil integers nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -857,7 +856,10 @@
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil))
+     real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil))
  (counterclockwise_convex_rec_TCC5 0
   (counterclockwise_convex_rec_TCC5-1 nil 3630245335
@@ -1474,6 +1476,7 @@
      nil)
     (- const-decl "Vector" vectors_2D "vectors/")
     (det const-decl "real" det_2D "vectors/")
+    (TRUE const-decl "bool" booleans nil)
     (posint_plus_nnint_is_posint application-judgement "posint"
      integers nil)
     (Vector type-eq-decl nil vectors_2D "vectors/")

@@ -26,6 +26,8 @@
     (+ const-decl "Vector" vectors_2D "vectors/")
     (real_plus_real_is_real application-judgement "real" reals nil)
     (real_times_real_is_real application-judgement "real" reals nil)
+    (TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (real nonempty-type-from-decl nil reals nil)
@@ -529,10 +531,10 @@
     (sqrt_0 formula-decl nil sqrt "reals/")
     (dot_zero_right formula-decl nil vectors_2D "vectors/")
     (orthogonal_basis formula-decl nil basis_2D "vectors/")
+    (TRUE const-decl "bool" booleans nil)
     (dot_neg_right formula-decl nil vectors_2D "vectors/")
     (perpR const-decl "Vect2" perpendicular_2D "vectors/")
     (real_div_nzreal_is_real application-judgement "real" reals nil)
-    (TRUE const-decl "bool" booleans nil)
     (id const-decl "(bijective?[T, T])" identity nil)
     (bijective? const-decl "bool" functions nil)
     (sqv const-decl "nnreal" vectors_2D "vectors/")
@@ -1134,18 +1136,19 @@
         nil))
       nil))
     nil)
-   ((IFF const-decl "[bool, bool -> bool]" booleans nil)
+   ((TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (dot_nneg_linear_2D_alt_typ application-judgement
      "[Lookahead[0, T], Lookahead[0, T]]" detection nil)
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (> const-decl "bool" reals nil)
@@ -1534,18 +1537,19 @@
         nil))
       nil))
     nil)
-   ((IFF const-decl "[bool, bool -> bool]" booleans nil)
+   ((TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (dot_nneg_linear_2D_alt_typ application-judgement
      "[Lookahead[0, T], Lookahead[0, T]]" detection nil)
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (> const-decl "bool" reals nil)
@@ -2094,7 +2098,8 @@
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (sqv_cont name-judgement "continuous_vr_fun" vect_cont_2D
-     "vect_analysis/"))
+     "vect_analysis/")
+    (TRUE const-decl "bool" booleans nil))
    shostak))
  (edge_detect_simp2_def 0
   (edge_detect_simp2_def-1 nil 3669399466
@@ -2253,10 +2258,7 @@
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-    (boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
-    (TRUE const-decl "bool" booleans nil)
     (Sign type-eq-decl nil sign "reals/")
     (- const-decl "[numfield -> numfield]" number_fields nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
@@ -2279,7 +2281,10 @@
     (nonneg_real_min application-judgement
      "{z: nonneg_real | z <= x AND z <= y}" real_defs nil)
     (nonneg_real_max application-judgement
-     "{z: nonneg_real | z >= x AND z >= y}" real_defs nil))
+     "{z: nonneg_real | z >= x AND z >= y}" real_defs nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    shostak))
  (edge_detect_simple_def 0
   (edge_detect_simple_def-1 nil 3648562963
@@ -2855,9 +2860,9 @@
     (dot_nneg_spec const-decl "[Lookahead[0, T], Lookahead[0, T]]"
      detection nil)
     (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
     (posreal_plus_nnreal_is_posreal application-judgement "posreal"
      real_types nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
     (nonneg_real_max application-judgement
      "{z: nonneg_real | z >= x AND z >= y}" real_defs nil)
     (nonneg_real_min application-judgement
@@ -3240,6 +3245,7 @@
     (norm const-decl "nnreal" vectors_2D "vectors/")
     (schwarz formula-decl nil vectors_2D "vectors/")
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (TRUE const-decl "bool" booleans nil)
     (nnreal type-eq-decl nil real_types nil)
     (<= const-decl "bool" reals nil)
     (Lookahead type-eq-decl nil Lookahead "ACCoRD/")

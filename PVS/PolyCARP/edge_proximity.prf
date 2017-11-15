@@ -29,7 +29,10 @@
         nil))
       nil))
     nil)
-   ((Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+   ((TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
     (Vector type-eq-decl nil vectors_2D "vectors/")
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
@@ -43,7 +46,6 @@
     (real_times_real_is_real application-judgement "real" reals nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
@@ -92,7 +94,6 @@
     (real_times_real_is_real application-judgement "real" reals nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
@@ -102,6 +103,9 @@
     (Vector type-eq-decl nil vectors_2D "vectors/")
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (open_segment_2Ds_cross_alt const-decl "bool" edge_proximity nil))
    nil))
  (open_segment_2Ds_cross_rew3_TCC1 0
@@ -122,7 +126,10 @@
     (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
     (- const-decl "Vector" vectors_2D "vectors/")
     (Vector type-eq-decl nil vectors_2D "vectors/")
-    (real nonempty-type-from-decl nil reals nil))
+    (real nonempty-type-from-decl nil reals nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil))
  (open_segment_2Ds_cross_rew3_TCC2 0
   (open_segment_2Ds_cross_rew3_TCC2-1 nil 3675443045
@@ -142,7 +149,10 @@
     (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
     (- const-decl "Vector" vectors_2D "vectors/")
     (Vector type-eq-decl nil vectors_2D "vectors/")
-    (real nonempty-type-from-decl nil reals nil))
+    (real nonempty-type-from-decl nil reals nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil))
  (open_segment_2Ds_cross_rew3 0
   (open_segment_2Ds_cross_rew3-1 nil 3671813602
@@ -233,24 +243,22 @@
     (number_field nonempty-type-from-decl nil number_fields nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (number nonempty-type-decl nil numbers nil)
     (minus_odd_is_odd application-judgement "odd_int" integers nil)
     (sqv_zero formula-decl nil vectors_2D "vectors/")
     (sub_eq_args formula-decl nil vectors_2D "vectors/")
     (real_plus_real_is_real application-judgement "real" reals nil)
     (sq const-decl "nonneg_real" sq "reals/")
-    (* const-decl "real" vectors_2D "vectors/")
-    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (quad const-decl "real" double_quadratic "reals/")
-    (posreal nonempty-type-eq-decl nil real_types nil)
-    (> const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (NOT const-decl "[bool -> bool]" booleans nil)
     (real_times_real_is_real application-judgement "real" reals nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (> const-decl "bool" reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (quad const-decl "real" double_quadratic "reals/")
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (* const-decl "real" vectors_2D "vectors/")
     (= const-decl "[T, T -> boolean]" equalities nil)
     (Vector type-eq-decl nil vectors_2D "vectors/")
-    (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nnreal type-eq-decl nil real_types nil)
     (sqv const-decl "nnreal" vectors_2D "vectors/")
@@ -265,7 +273,10 @@
     (real_minus_real_is_real application-judgement "real" reals nil)
     (on_strict_segment_2D_at? const-decl "bool" edge_proximity nil)
     (on_strict_segment_2D? const-decl "bool" edge_proximity nil)
-    (dot_scal_left formula-decl nil vectors_2D "vectors/"))
+    (dot_scal_left formula-decl nil vectors_2D "vectors/")
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    shostak))
  (on_segment_2D_sym 0
   (on_segment_2D_sym-2 nil 3671558410
@@ -304,6 +315,7 @@
     (real_times_real_is_real application-judgement "real" reals nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (TRUE const-decl "bool" booleans nil)
     (real nonempty-type-from-decl nil reals nil)
     (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
     (boolean nonempty-type-decl nil booleans nil)
@@ -846,9 +858,11 @@
     nil)
    ((real_minus_real_is_real application-judgement "real" reals nil)
     (near_edge const-decl "bool" edge_proximity nil)
+    (TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (real nonempty-type-from-decl nil reals nil)
     (Vector type-eq-decl nil vectors_2D "vectors/")
@@ -856,7 +870,6 @@
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nnreal type-eq-decl nil real_types nil)
     (sqv const-decl "nnreal" vectors_2D "vectors/")
@@ -933,9 +946,12 @@
  (closest_point_TCC1 0
   (closest_point_TCC1-1 nil 3658745810
    ("" (skeep*) (("" (replaces -1) (("" (assert) nil nil)) nil)) nil)
-   ((dot_zero_right formula-decl nil vectors_2D "vectors/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil))
+   ((real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (dot_zero_right formula-decl nil vectors_2D "vectors/")
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil))
  (closest_point_def 0
   (closest_point_def-1 nil 3658746706
@@ -1842,6 +1858,7 @@
     (/= const-decl "boolean" notequal nil)
     (neg_zero formula-decl nil vectors_2D "vectors/")
     (norm_zero formula-decl nil vectors_2D "vectors/")
+    (TRUE const-decl "bool" booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
@@ -1997,7 +2014,6 @@
     nil)
    ((IFF const-decl "[bool, bool -> bool]" booleans nil)
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (real nonempty-type-from-decl nil reals nil)
     (Vector type-eq-decl nil vectors_2D "vectors/")
@@ -2005,7 +2021,6 @@
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nnreal type-eq-decl nil real_types nil)
     (sqv const-decl "nnreal" vectors_2D "vectors/")
@@ -2049,7 +2064,10 @@
     (Nz_vector type-eq-decl nil vectors_2D "vectors/")
     (w skolem-const-decl "Vect2" edge_proximity nil)
     (/= const-decl "boolean" notequal nil)
-    (schwarz_converse formula-decl nil vectors_2D "vectors/"))
+    (schwarz_converse formula-decl nil vectors_2D "vectors/")
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    shostak))
  (segments_2D_close_TCC1 0
   (segments_2D_close_TCC1-1 nil 3635758233
@@ -2059,7 +2077,10 @@
     (minus_even_is_even application-judgement "even_int" integers nil)
     (minus_nzint_is_nzint application-judgement "nzint" integers nil)
     (real_times_real_is_real application-judgement "real" reals nil)
-    (real_minus_real_is_real application-judgement "real" reals nil))
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil))
  (segments_2D_close_TCC2 0
   (segments_2D_close_TCC2-1 nil 3635758233
@@ -2069,7 +2090,10 @@
     (minus_even_is_even application-judgement "even_int" integers nil)
     (minus_nzint_is_nzint application-judgement "nzint" integers nil)
     (real_times_real_is_real application-judgement "real" reals nil)
-    (real_minus_real_is_real application-judgement "real" reals nil))
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil))
  (segments_2D_close_def 0
   (segments_2D_close_def-6 nil 3649065754

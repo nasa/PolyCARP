@@ -154,6 +154,7 @@
     (pred type-eq-decl nil defined_types nil)
     (nat_induction formula-decl nil naturalnumbers nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (posint_plus_nnint_is_posint application-judgement "posint"
      integers nil)
     (real_gt_is_strict_total_order name-judgement

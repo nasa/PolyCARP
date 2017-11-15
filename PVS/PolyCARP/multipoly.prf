@@ -169,7 +169,6 @@
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
@@ -179,7 +178,6 @@
     (rational nonempty-type-from-decl nil rationals nil)
     (integer_pred const-decl "[rational -> boolean]" integers nil)
     (int nonempty-type-eq-decl nil integers nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (< const-decl "bool" reals nil)
@@ -192,7 +190,10 @@
     (j skolem-const-decl "below(M)" multipoly nil)
     (sq_nz_pos application-judgement "posreal" sq "reals/")
     (sqv_cont name-judgement "continuous_vr_fun" vect_cont_2D
-     "vect_analysis/"))
+     "vect_analysis/")
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    shostak))
  (parallel_segments_overlap 0
   (parallel_segments_overlap-1 nil 3671874508
@@ -589,7 +590,6 @@
     (nnreal type-eq-decl nil real_types nil)
     (>= const-decl "bool" reals nil) (> const-decl "bool" reals nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (nzreal_times_nzreal_is_nzreal application-judgement "nzreal"
@@ -618,7 +618,6 @@
     (* const-decl "real" vectors_2D "vectors/")
     (bijective? const-decl "bool" functions nil)
     (id const-decl "(bijective?[T, T])" identity nil)
-    (TRUE const-decl "bool" booleans nil)
     (both_sides_times_pos_ge1_imp formula-decl nil extra_real_props
      nil)
     (both_sides_times_pos_ge1 formula-decl nil real_props nil)
@@ -655,10 +654,12 @@
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
     (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-    (boolean nonempty-type-decl nil booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (Vector type-eq-decl nil vectors_2D "vectors/")
-    (zero const-decl "Vector" vectors_2D "vectors/"))
+    (zero const-decl "Vector" vectors_2D "vectors/")
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    shostak))
  (open_segment_2Ds_cross_rew2 0
   (open_segment_2Ds_cross_rew2-1 nil 3671873966
@@ -2640,6 +2641,7 @@
     (bool nonempty-type-eq-decl nil booleans nil)
     (boolean nonempty-type-decl nil booleans nil)
     (real_times_real_is_real application-judgement "real" reals nil)
+    (TRUE const-decl "bool" booleans nil)
     (on_strict_segment_2D_at? const-decl "bool" edge_proximity nil)
     (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
      nil)
@@ -2740,7 +2742,6 @@
     (orthogonal? const-decl "bool" vectors_2D "vectors/")
     (bijective? const-decl "bool" functions nil)
     (id const-decl "(bijective?[T, T])" identity nil)
-    (TRUE const-decl "bool" booleans nil)
     (orthogonal_basis formula-decl nil basis_2D "vectors/")
     (t1 skolem-const-decl "real" multipoly nil)
     (D skolem-const-decl "real" multipoly nil)
@@ -3615,13 +3616,11 @@
     (Vector type-eq-decl nil vectors_2D "vectors/")
     (+ const-decl "Vector" vectors_2D "vectors/")
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (* const-decl "Vector" vectors_2D "vectors/")
-    (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nnreal type-eq-decl nil real_types nil)
     (real_div_nzreal_is_real application-judgement "real" reals nil)
@@ -3684,7 +3683,10 @@
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (open_segment_2Ds_cross_at const-decl "bool" multipoly nil)
-    (real_minus_real_is_real application-judgement "real" reals nil))
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil)
   (on_open_segment_2Ds_cross_open-1 nil 3672057924
    ("" (skeep*)
@@ -6338,6 +6340,7 @@
     (NOT const-decl "[bool -> bool]" booleans nil)
     (segments_2Ds_notcross_at const-decl "bool" multipoly nil)
     (real_minus_real_is_real application-judgement "real" reals nil)
+    (TRUE const-decl "bool" booleans nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
     (number nonempty-type-decl nil numbers nil)
     (boolean nonempty-type-decl nil booleans nil)
@@ -11525,14 +11528,12 @@
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (>= const-decl "bool" reals nil) (<= const-decl "bool" reals nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (real nonempty-type-from-decl nil reals nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (number nonempty-type-decl nil numbers nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
     (set type-eq-decl nil sets nil)
@@ -11598,7 +11599,10 @@
     (greatest_lower_bound? const-decl "bool" bounded_real_defs nil)
     (bounded_below? const-decl "bool" bounded_real_defs nil)
     (nonempty? const-decl "bool" sets nil)
-    (segments_2Ds_notcross_at const-decl "bool" multipoly nil))
+    (segments_2Ds_notcross_at const-decl "bool" multipoly nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil)
   (on_segment_2Ds_cross-2 nil 3671973981
    ("" (skeep*)
@@ -12781,8 +12785,6 @@
     (nnreal type-eq-decl nil real_types nil)
     (moving_polygon_2D_at const-decl "Vect2" detection nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (OR const-decl "[bool, bool -> bool]" booleans nil)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
@@ -12806,7 +12808,10 @@
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (Moving_Polygon_2D type-eq-decl nil detection nil)
     (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-    (Collision_Detector const-decl "bool" detection nil))
+    (Collision_Detector const-decl "bool" detection nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    shostak))
  (Static_Shape_Polygon_Collision_Detector_def 0
   (Static_Shape_Polygon_Collision_Detector_def-1 nil 3672673925
@@ -13837,8 +13842,6 @@
     (polygon_2D_at const-decl "Vect2" detection nil)
     (add_zero_right formula-decl nil vectors_2D "vectors/")
     (scal_0 formula-decl nil vectors_2D "vectors/")
-    (boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (OR const-decl "[bool, bool -> bool]" booleans nil)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
@@ -13912,6 +13915,9 @@
      "(strict_total_order?[real])" real_props nil)
     (on_any_edge? const-decl "bool" polygon_contain nil)
     (posint_plus_nnint_is_posint application-judgement "posint"
-     integers nil))
+     integers nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil)))
 

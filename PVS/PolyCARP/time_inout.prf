@@ -83,6 +83,8 @@
     (boolean nonempty-type-decl nil booleans nil)
     (number nonempty-type-decl nil numbers nil)
     (/= const-decl "boolean" notequal nil)
+    (TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
     (real_times_real_is_real application-judgement "real" reals nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
     (nonzero_real nonempty-type-eq-decl nil reals nil)
@@ -100,7 +102,6 @@
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (minus_odd_is_odd application-judgement "odd_int" integers nil)
     (sq_0 formula-decl nil sq "reals/")
     (sq_1 formula-decl nil sq "reals/")
@@ -1282,7 +1283,8 @@
         nil))
       nil))
     nil)
-   ((quad_id_0 formula-decl nil time_inout nil)
+   ((TRUE const-decl "bool" booleans nil)
+    (quad_id_0 formula-decl nil time_inout nil)
     (sq const-decl "nonneg_real" sq "reals/")
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (neg_cont name-judgement "continuous_vv_fun" vect_cont_2D
@@ -2774,6 +2776,8 @@
     (+ const-decl "Vector" vectors_2D "vectors/")
     (real_plus_real_is_real application-judgement "real" reals nil)
     (real_times_real_is_real application-judgement "real" reals nil)
+    (TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (real nonempty-type-from-decl nil reals nil)
@@ -3277,10 +3281,10 @@
     (sqrt_0 formula-decl nil sqrt "reals/")
     (dot_zero_right formula-decl nil vectors_2D "vectors/")
     (orthogonal_basis formula-decl nil basis_2D "vectors/")
+    (TRUE const-decl "bool" booleans nil)
     (dot_neg_right formula-decl nil vectors_2D "vectors/")
     (perpR const-decl "Vect2" perpendicular_2D "vectors/")
     (real_div_nzreal_is_real application-judgement "real" reals nil)
-    (TRUE const-decl "bool" booleans nil)
     (id const-decl "(bijective?[T, T])" identity nil)
     (bijective? const-decl "bool" functions nil)
     (sqv const-decl "nnreal" vectors_2D "vectors/")
@@ -3713,6 +3717,7 @@
     (quadratic const-decl "real" quadratic "reals/")
     (discr const-decl "real" quadratic "reals/")
     (root const-decl "real" quadratic "reals/")
+    (TRUE const-decl "bool" booleans nil)
     (nonzero_real nonempty-type-eq-decl nil reals nil)
     (/= const-decl "boolean" notequal nil)
     (f skolem-const-decl "[real -> real]" time_inout nil)
@@ -3908,6 +3913,7 @@
     (integer_pred const-decl "[rational -> boolean]" integers nil)
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (TRUE const-decl "bool" booleans nil)
     (/= const-decl "boolean" notequal nil)
     (nonzero_real nonempty-type-eq-decl nil reals nil)
     (quad_eq_0 formula-decl nil quadratic "reals/")
@@ -4057,16 +4063,17 @@
         nil))
       nil))
     nil)
-   ((IFF const-decl "[bool, bool -> bool]" booleans nil)
-    (number nonempty-type-decl nil numbers nil)
+   ((TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
     (boolean nonempty-type-decl nil booleans nil)
+    (IFF const-decl "[bool, bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nnreal type-eq-decl nil real_types nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
@@ -4126,7 +4133,10 @@
    ((length def-decl "nat" list_props nil)
     (nnint_plus_posint_is_posint application-judgement "posint"
      integers nil)
-    (listn_0 name-judgement "listn[real](0)" time_inout nil))
+    (listn_0 name-judgement "listn[real](0)" time_inout nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil))
  (swap_times_ivt_TCC1 0
   (swap_times_ivt_TCC1-1 nil 3657911238
@@ -4135,6 +4145,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil))
  (swap_times_ivt 0
@@ -5975,6 +5988,7 @@
     (singular? const-decl "bool" time_inout nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (TRUE const-decl "bool" booleans nil)
     (real_times_real_is_real application-judgement "real" reals nil)
     (det const-decl "real" det_2D "vectors/")
     (perpR const-decl "Vect2" perpendicular_2D "vectors/")
@@ -6035,7 +6049,6 @@
     nil)
    ((length_append formula-decl nil list_props nil)
     (list type-decl nil list_adt nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
     (PRED type-eq-decl nil defined_types nil)
     (every adt-def-decl "boolean" list_adt nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
@@ -6057,7 +6070,6 @@
     (null? adt-recognizer-decl "[list -> boolean]" list_adt nil)
     (null adt-constructor-decl "(null?)" list_adt nil)
     (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
@@ -6069,6 +6081,9 @@
      integers nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil))
  (edge_time_def_TCC2 0
@@ -6078,6 +6093,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil)
   (edge_time_def_TCC2-1 nil 3657900237 ("" (subtype-tcc) nil nil) nil
@@ -6089,6 +6107,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil)
   (edge_time_def_TCC3-1 nil 3657900237 ("" (subtype-tcc) nil nil) nil
@@ -6100,6 +6121,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil)
   (edge_time_def_TCC4-1 nil 3657900237 ("" (subtype-tcc) nil nil) nil
@@ -6111,6 +6135,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil))
  (edge_time_def_TCC6 0
@@ -6120,6 +6147,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil)
   (edge_time_def_TCC6-1 nil 3657900237 ("" (subtype-tcc) nil nil) nil
@@ -6131,6 +6161,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil)
   (edge_time_def_TCC7-1 nil 3657900237 ("" (subtype-tcc) nil nil) nil
@@ -6142,6 +6175,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil)
   (edge_time_def_TCC8-1 nil 3657900237 ("" (subtype-tcc) nil nil) nil
@@ -6153,6 +6189,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil))
  (edge_time_def_TCC10 0
@@ -6162,6 +6201,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil))
  (edge_time_def_TCC11 0
@@ -6171,6 +6213,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil))
  (edge_time_def_TCC12 0
@@ -6180,6 +6225,9 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil)
     (listn_0 name-judgement "listn[real](0)" time_inout nil))
    nil))
  (edge_time_def 0
@@ -8598,12 +8646,12 @@
     (list type-decl nil list_adt nil)
     (number nonempty-type-decl nil numbers nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (TRUE const-decl "bool" booleans nil)
     (id const-decl "(bijective?[T, T])" identity nil)
     (bijective? const-decl "bool" functions nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
+    (listn_0 name-judgement "listn[real](0)" time_inout nil)
     (boolean nonempty-type-decl nil booleans nil)
-    (listn_0 name-judgement "listn[real](0)" time_inout nil))
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
    nil)
   (edge_time_def-14 nil 3658739702
    ("" (skeep*)

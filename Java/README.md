@@ -40,7 +40,3 @@ $ ./PolycarpExample
 ### Contact
 
 [Cesar A. Munoz](http://shemesh.larc.nasa.gov/people/cam) (cesar.a.munoz@nasa.gov)
-
-### Contact
-
-[Cesar A. Munoz](http://shemesh.larc.nasa.gov/people/cam) (cesar.a.munoz@nasa.gov)

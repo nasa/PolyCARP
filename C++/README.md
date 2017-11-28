@@ -34,3 +34,8 @@ To run the example application in a Unix environment, type
 ```
 $ ./PolycarpExample
 ```
+
+### Contact 
+
+[Cesar A. Munoz](http://shemesh.larc.nasa.gov/people/cam) (cesar.a.munoz@nasa.gov) 
+

@@ -1,0 +1,56 @@
+winding_number_contrib: THEORY BEGIN
+
+  IMPORTING float@aerr754dp_sub,
+   	    float@aerr754dp_mul,
+  	    quadrant
+
+  P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y, DET: VAR unb_double
+  K,P: VAR int
+
+  wn_fp_guard1(K,P): bool = K = P
+  wn_fp_guard2(K,P): bool = P - 1 = mod.mod(K,4)
+  wn_fp_guard3(K,P): bool = K - 1 = mod.mod(P,4)
+  wn_fp_guard4(DET): bool = DET <= RtoD(0)
+
+  winding_number_contrib(P_V1_x,P_V1_y,P_V2_x,P_V2_y,S_x,S_y): int =
+    LET THIS_x     = Dsub(P_V1_x,S_x) ,
+        THIS_y     = Dsub(P_V1_y,S_y) ,
+        NEXT_x     = Dsub(P_V2_x,S_x) ,
+        NEXT_y     = Dsub(P_V2_y,S_y) ,
+        DISTANCE_x = Dsub(NEXT_x,THIS_x) ,
+        DISTANCE_y = Dsub(NEXT_y,THIS_y) ,
+        DET        = Dsub(Dmul(DISTANCE_x,THIS_y),Dmul(DISTANCE_y,THIS_x)) ,
+        K : int    = quadrant(THIS_x,THIS_y) ,
+        P : int    = quadrant(NEXT_x,NEXT_y)
+    IN IF    wn_fp_guard1(K,P) THEN  0
+       ELSIF wn_fp_guard2(K,P) THEN  1
+       ELSIF wn_fp_guard3(K,P) THEN -1
+       ELSIF wn_fp_guard4(DET) THEN  2
+       ELSE                         -2
+       ENDIF
+
+  %
+  % The following predicates state each of the path conditions
+  % in the winding_number_contrib function.
+  %
+       
+  wn_fp_path1(K,P) : bool     = wn_fp_guard1(K,P)
+
+  wn_fp_path2(K,P) : bool     = wn_fp_guard2(K,P) AND
+  		       	        NOT wn_fp_guard1(K,P)
+
+  wn_fp_path3(K,P) : bool     = wn_fp_guard3(K,P) AND
+  		       	      	NOT wn_fp_guard2(K,P) AND
+  		       	  	NOT wn_fp_guard1(K,P)
+
+  wn_fp_path4(K,P,DET) : bool = wn_fp_guard4(DET) AND
+  		       	      	NOT wn_fp_guard3(K,P) AND
+  		       	     	NOT wn_fp_guard2(K,P) AND
+  		       	     	NOT wn_fp_guard1(K,P)
+  
+  wn_fp_path5(K,P,DET) : bool = NOT wn_fp_guard4(DET) AND
+  		       	      	NOT wn_fp_guard3(K,P) AND
+  		       	     	NOT wn_fp_guard2(K,P) AND
+  		       	     	NOT wn_fp_guard1(K,P)
+  
+END winding_number_contrib

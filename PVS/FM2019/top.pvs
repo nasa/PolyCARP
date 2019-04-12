@@ -1,0 +1,10 @@
+top : THEORY
+BEGIN
+  IMPORTING quadrant,
+            acceptable_polygon,
+            vectors_2D_fp_def,
+            winding_number_contrib,
+            winding_number_rec,
+            winding_number
+
+END top

@@ -29,8 +29,10 @@ $ provethem all-theories
 The output of that command is
 
 ```
+Processing all-theories. Output in ./all-theories.grandtotals
 PolyCARP                 [OK: 292 proofs]
+FM2019                   [OK: 13 proofs]
 
-*** Grand Totals: 292 proofs / 292 formulas. Missed: 0 formulas.
-*** Number of libraries: 1
+*** Grand Totals: 305 proofs / 305 formulas. Missed: 0 formulas.
+*** Number of libraries: 2
 ```

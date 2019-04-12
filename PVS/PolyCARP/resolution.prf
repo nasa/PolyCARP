@@ -1024,7 +1024,6 @@
                (sq_gt formula-decl nil sq "reals/")
                (sq_norm formula-decl nil vectors_2D "vectors/")
                (sq_1 formula-decl nil sq "reals/")
-               (norm_normalize formula-decl nil vectors_2D "vectors/")
                (id const-decl "(bijective?[T, T])" identity nil)
                (bijective? const-decl "bool" functions nil)
                (sq_nz_pos application-judgement "posreal" sq "reals/")

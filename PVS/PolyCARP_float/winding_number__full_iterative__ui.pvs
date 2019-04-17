@@ -1,0 +1,87 @@
+winding_number__full_iterative__ui: THEORY
+BEGIN
+
+  % Taken from inttypes
+  uint32 : TYPE = upto(exp2(32) - 1) %4294967295
+  int32  : TYPE = subrange(-exp2(31), exp2(31) - 1)
+
+  % Taken from PVS7 prelude
+  nrem(x: int, b: posnat):  {r: mod(b) |  EXISTS (q: int): x = b * q + r}
+  = rem(b)(x)
+
+  max_int32: int32 = exp2(31) - 1
+  min_int32: int32 = -exp2(31)
+
+  neg(x:int): MACRO int = -x
+
+  plus(a,b: int32): int32 =
+    LET result = a+b
+    IN IF result > max_int32 THEN result-max_int32
+       ELSIF result < min_int32 THEN result-min_int32
+       ELSE result ENDIF
+
+  % Floating-point numbers (from NASALib)
+
+  IMPORTING float@ieee754dp_sub, float@ieee754dp_mul
+
+  zero_dp: unb_double = RtoD(0)
+
+  % floating-point vectors
+
+  Vect2_fp: TYPE = [#  x, y: unb_double #]
+
+  mk_vect2_fp(x,y:unb_double) : MACRO Vect2_fp =  (# x := x, y := y #) 
+  CONVERSION mk_vect2_fp
+
+  % acceptable_polygon
+
+  N : VAR uint32
+
+  polygon_2D_fp(N): TYPE = [below(N) -> Vect2_fp]
+
+  % winding number
+
+  IMPORTING structures@for_iterate
+
+  X,Y: VAR unb_double
+
+  quadrant(X,Y): int32 =
+    IF    (zero_dp <= X) AND (zero_dp <= Y) THEN 1
+    ELSIF (X <= zero_dp) AND (zero_dp <= Y) THEN 2
+    ELSIF (X <= zero_dp) THEN 3
+    ELSE 4
+    ENDIF
+
+  P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y, DET: VAR unb_double
+  K,P: VAR int
+
+  winding_number_contrib(P_V1_x,P_V1_y,P_V2_x,P_V2_y,S_x,S_y): int32 =
+    LET THIS_x     = Dsub(P_V1_x,S_x) ,
+        THIS_y     = Dsub(P_V1_y,S_y) ,
+        NEXT_x     = Dsub(P_V2_x,S_x) ,
+        NEXT_y     = Dsub(P_V2_y,S_y) ,
+        DISTANCE_x = Dsub(NEXT_x,THIS_x) ,
+        DISTANCE_y = Dsub(NEXT_y,THIS_y) ,
+        DET        = Dsub(Dmul(DISTANCE_x,THIS_y),Dmul(DISTANCE_y,THIS_x)) ,
+        K : int    = quadrant(THIS_x,THIS_y) ,
+        P : int    = quadrant(NEXT_x,NEXT_y)
+    IN IF    K = P THEN  0
+       ELSIF P - 1 = nrem(K,4) THEN  1
+       ELSIF K - 1 = nrem(P,4) THEN -1
+       ELSIF DET <= zero_dp    THEN  2
+       ELSE                         -2
+       ENDIF
+
+  winding_number_for(N:uint32,p:polygon_2D_fp(N),s:Vect2_fp,i:below(N))
+  : int32
+  = for_down[int32](N-1,0,0,
+      LAMBDA(i:below(N),contribs_accumulation: int32):
+        LET next_i  : below(N) = IF i<N-1 THEN i+1 ELSE 0 ENDIF,
+	    contrib : int32    = winding_number_contrib
+		                  (p(i)`x,p(i)`y,p(next_i)`x,p(next_i)`y,s`x,s`y)
+	IN plus(contribs_accumulation, contrib) )
+
+  winding_number(N:uint32|N>0,p:polygon_2D_fp(N),s:Vect2_fp) : int32
+  = ndiv(winding_number_for(N,p,s,N-1),4)
+
+END winding_number__full_iterative__ui

@@ -1,0 +1,7 @@
+acceptable_polygon: THEORY BEGIN
+
+  IMPORTING vectors_2D_fp_def
+
+  polygon_2D_fp(N:posnat): TYPE = [below(N) -> Vect2_fp]
+
+END acceptable_polygon

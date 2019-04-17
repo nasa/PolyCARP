@@ -1,0 +1,30 @@
+winding_number__full_test: THEORY
+BEGIN
+
+  IMPORTING winding_number__full_iterative AS it
+%  ,         winding_number__full_iterative__ui AS it
+%  ,	     winding_number__full AS rec
+
+  % square of side 10 centered in 0 0
+  square_10_0_0: it.polygon_2D_fp(4)
+  = LAMBDA(i:below(4)):
+    IF i=0    THEN it.mk_vect2_fp(RtoD( 5),RtoD( 5))
+    ELSIF i=1 THEN it.mk_vect2_fp(RtoD(-5),RtoD( 5))
+    ELSIF i=2 THEN it.mk_vect2_fp(RtoD(-5),RtoD(-5))
+    ELSE           it.mk_vect2_fp(RtoD( 5),RtoD(-5)) ENDIF
+
+  wnit__square_10_0_0: int = it.winding_number(4,square_10_0_0,mk_vect2_fp(RtoD(0),RtoD(0)))
+%  wnrc__square_10_0_0: int = rec.winding_number(4,square_10_0_0,mk_vect2_fp(RtoD(0),RtoD(0)))
+
+  IMPORTING PolyCARP@polygon_contain as real
+
+  square_10_0_0_r: polygon_2D(4)
+  = LAMBDA(i:below(4)):
+    IF i=0    THEN mk_vect2( 5, 5)
+    ELSIF i=1 THEN mk_vect2(-5, 5)
+    ELSIF i=2 THEN mk_vect2(-5,-5)
+    ELSE           mk_vect2( 5,-5) ENDIF
+
+  wnrl__square_10_0_0: int = real.winding_number(4,square_10_0_0_r,mk_vect2(0,0))
+
+END winding_number__full_test

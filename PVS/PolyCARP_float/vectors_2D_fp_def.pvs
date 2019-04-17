@@ -1,0 +1,10 @@
+vectors_2D_fp_def: THEORY BEGIN
+
+  IMPORTING float@aerr754dp
+
+  Vect2_fp: TYPE = [#  x, y: unb_double #]
+
+  mk_vect2_fp(x,y:unb_double) : MACRO Vect2_fp =  (# x := x, y := y #) 
+  CONVERSION mk_vect2_fp
+  
+END vectors_2D_fp_def

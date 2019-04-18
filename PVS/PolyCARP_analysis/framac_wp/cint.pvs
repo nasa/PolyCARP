@@ -1,0 +1,39 @@
+cint: THEORY
+BEGIN
+
+ % Conversions
+
+ max_uint8 : int = 256
+ max_sint8 : int = 128
+ max_uint16 : int = 65536
+ max_sint16 : int = 32768
+ max_uint32 : int = 4294967296
+ max_sint32 : int = 2147483648
+ max_uint64 : int = 18446744073709551616
+ max_sint64 : int = 9223372036854775808
+
+
+ is_uint8(x:int) : bool = 0 <= x AND x < max_uint8
+ is_sint8(x:int) : bool = (- max_sint8) <= x AND x < max_sint8
+ is_uint16(x:int) : bool = 0 <= x AND x < max_uint16
+ is_sint16(x:int) : bool = (- max_sint16) <= x AND x < max_sint16
+ is_uint32(x:int) : bool = 0 <= x AND x < max_uint32
+ is_sint32(x:int) : bool = (- max_sint32) <= x AND x < max_sint32
+ is_uint64(x:int) : bool = 0 <= x AND x < max_uint64
+ is_sint64(x:int) : bool = (- max_sint64) <= x AND x < max_sint64
+
+ to_range(a: int, b: int | a < b)
+         (z: int)
+ : MACRO {r: int | a <= r AND r < b}
+ = a + mod(z-a,b-a)
+
+ to_sint32(x:int) : (is_sint32) = to_range(-max_sint32,max_sint32)(x)
+ to_sint64(x:int) : (is_sint64) = to_range(-max_sint64,max_sint64)(x)
+ of_sint32(x:(is_sint32)) : int = x
+ of_sint64(x:(is_sint64)) : int = x
+ to_uint32(x:int) : (is_uint32) = to_range(0,max_uint32)(x)
+ to_uint64(x:int) : (is_uint64) = to_range(0,max_uint64)(x)
+ of_uint32(x:(is_uint32)) : int = x
+ of_uint64(x:(is_uint64)) : int = x
+
+END cint

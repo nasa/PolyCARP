@@ -1,0 +1,206 @@
+winding_number_contrib__trans_props : THEORY BEGIN
+
+  IMPORTING quadrant__trans_props,
+  	    winding_number_contrib,
+  	    winding_number_contrib__real,
+  	    winding_number_contrib__trans
+
+  P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y: VAR unb_double
+  r_P_V1_x, r_P_V1_y, r_P_V2_x, r_P_V2_y, r_S_x, r_S_y: VAR real
+  r_THIS_x,r_THIS_y,r_NEXT_x,r_NEXT_y,r_DET: VAR real
+  e_THIS_x,e_THIS_y,e_NEXT_x,e_NEXT_y,e_DET: VAR nonneg_real
+  THIS_x,THIS_y,NEXT_x,NEXT_y,DET: VAR unb_double
+  K,P: VAR int
+
+  %
+  % Stable case: trans_fp_cond => (orig_fp_cond AND orig_r_cond)
+  %
+
+  winding_number_contrib_stable_1: LEMMA
+    LET THIS_x       = Dsub(P_V1_x,S_x),
+	r_THIS_x     = r_P_V1_x-r_S_x,
+        THIS_y       = Dsub(P_V1_y,S_y),
+	r_THIS_y     = r_P_V1_y-r_S_y,
+        NEXT_x       = Dsub(P_V2_x,S_x),
+	r_NEXT_x     = r_P_V2_x-r_S_x,
+        NEXT_y       = Dsub(P_V2_y,S_y),
+	r_NEXT_y     = r_P_V2_y-r_S_y
+    IN
+    abs(DtoR(THIS_x) - r_THIS_x)<=e_THIS_x AND
+    abs(DtoR(THIS_y) - r_THIS_y)<=e_THIS_y AND
+    abs(DtoR(NEXT_x) - r_NEXT_x)<=e_NEXT_x AND
+    abs(DtoR(NEXT_y) - r_NEXT_y)<=e_NEXT_y AND
+    wn_trans_path1( quadrant_trans(e_THIS_x, e_THIS_y)(THIS_x, THIS_y),
+    		    quadrant_trans(e_NEXT_x, e_NEXT_y)(NEXT_x, NEXT_y) )
+    IMPLIES wn_r_path1( quadrant_real(r_THIS_x, r_THIS_y),
+                        quadrant_real(r_NEXT_x, r_NEXT_y) ) AND
+	    wn_fp_path1( quadrant(THIS_x, THIS_y),
+                         quadrant(NEXT_x, NEXT_y) )
+
+  winding_number_contrib_stable_2: LEMMA
+    LET THIS_x       = Dsub(P_V1_x,S_x),
+	r_THIS_x     = r_P_V1_x-r_S_x,
+        THIS_y       = Dsub(P_V1_y,S_y),
+	r_THIS_y     = r_P_V1_y-r_S_y,
+        NEXT_x       = Dsub(P_V2_x,S_x),
+	r_NEXT_x     = r_P_V2_x-r_S_x,
+        NEXT_y       = Dsub(P_V2_y,S_y),
+	r_NEXT_y     = r_P_V2_y-r_S_y
+    IN
+    abs(DtoR(THIS_x) - r_THIS_x)<=e_THIS_x AND
+    abs(DtoR(THIS_y) - r_THIS_y)<=e_THIS_y AND
+    abs(DtoR(NEXT_x) - r_NEXT_x)<=e_NEXT_x AND
+    abs(DtoR(NEXT_y) - r_NEXT_y)<=e_NEXT_y AND
+    wn_trans_path2( quadrant_trans(e_THIS_x, e_THIS_y)(THIS_x, THIS_y),
+    		    quadrant_trans(e_NEXT_x, e_NEXT_y)(NEXT_x, NEXT_y) )
+    IMPLIES wn_r_path2( quadrant_real(r_THIS_x, r_THIS_y),
+                        quadrant_real(r_NEXT_x, r_NEXT_y) ) AND
+	    wn_fp_path2( quadrant(THIS_x, THIS_y),
+                         quadrant(NEXT_x, NEXT_y) )
+
+  winding_number_contrib_stable_3: LEMMA
+    LET THIS_x       = Dsub(P_V1_x,S_x),
+	r_THIS_x     = r_P_V1_x-r_S_x,
+        THIS_y       = Dsub(P_V1_y,S_y),
+	r_THIS_y     = r_P_V1_y-r_S_y,
+        NEXT_x       = Dsub(P_V2_x,S_x),
+	r_NEXT_x     = r_P_V2_x-r_S_x,
+        NEXT_y       = Dsub(P_V2_y,S_y),
+	r_NEXT_y     = r_P_V2_y-r_S_y
+    IN
+    abs(DtoR(THIS_x) - r_THIS_x)<=e_THIS_x AND
+    abs(DtoR(THIS_y) - r_THIS_y)<=e_THIS_y AND
+    abs(DtoR(NEXT_x) - r_NEXT_x)<=e_NEXT_x AND
+    abs(DtoR(NEXT_y) - r_NEXT_y)<=e_NEXT_y AND
+    wn_trans_path3( quadrant_trans(e_THIS_x, e_THIS_y)(THIS_x, THIS_y),
+    		    quadrant_trans(e_NEXT_x, e_NEXT_y)(NEXT_x, NEXT_y) )
+    IMPLIES wn_r_path3( quadrant_real(r_THIS_x, r_THIS_y),
+                        quadrant_real(r_NEXT_x, r_NEXT_y) ) AND
+	    wn_fp_path3( quadrant(THIS_x, THIS_y),
+                         quadrant(NEXT_x, NEXT_y) )
+
+  winding_number_contrib_stable_4: LEMMA
+    LET THIS_x       = Dsub(P_V1_x,S_x),
+	r_THIS_x     = r_P_V1_x-r_S_x,
+        THIS_y       = Dsub(P_V1_y,S_y),
+	r_THIS_y     = r_P_V1_y-r_S_y,
+        NEXT_x       = Dsub(P_V2_x,S_x),
+	r_NEXT_x     = r_P_V2_x-r_S_x,
+        NEXT_y       = Dsub(P_V2_y,S_y),
+	r_NEXT_y     = r_P_V2_y-r_S_y,
+        DISTANCE_x   = Dsub(NEXT_x,THIS_x),
+	r_DISTANCE_x = r_NEXT_x-r_THIS_x,
+        DISTANCE_y   = Dsub(NEXT_y,THIS_y),
+	r_DISTANCE_y = r_NEXT_y-r_THIS_y,
+        DET          = Dsub(Dmul(DISTANCE_x,THIS_y),Dmul(DISTANCE_y,THIS_x)),
+	r_DET        = (r_DISTANCE_x * r_THIS_y) - (r_DISTANCE_y * r_THIS_x)
+    IN
+    abs(DtoR(THIS_x) - r_THIS_x)<=e_THIS_x AND
+    abs(DtoR(THIS_y) - r_THIS_y)<=e_THIS_y AND
+    abs(DtoR(NEXT_x) - r_NEXT_x)<=e_NEXT_x AND
+    abs(DtoR(NEXT_y) - r_NEXT_y)<=e_NEXT_y AND
+    abs(DtoR(DET) - r_DET)<=e_DET AND
+    wn_trans_path4( quadrant_trans(e_THIS_x, e_THIS_y)(THIS_x, THIS_y),
+    		    quadrant_trans(e_NEXT_x, e_NEXT_y)(NEXT_x, NEXT_y),
+		    DET, e_DET)
+    IMPLIES wn_r_path4( quadrant_real(r_THIS_x, r_THIS_y),
+                        quadrant_real(r_NEXT_x, r_NEXT_y),
+			r_DET ) AND
+	    wn_fp_path4( quadrant(THIS_x, THIS_y),
+                         quadrant(NEXT_x, NEXT_y),
+			 DET )
+
+  winding_number_contrib_stable_5:  LEMMA
+    LET THIS_x       = Dsub(P_V1_x,S_x),
+	r_THIS_x     = r_P_V1_x-r_S_x,
+        THIS_y       = Dsub(P_V1_y,S_y),
+	r_THIS_y     = r_P_V1_y-r_S_y,
+        NEXT_x       = Dsub(P_V2_x,S_x),
+	r_NEXT_x     = r_P_V2_x-r_S_x,
+        NEXT_y       = Dsub(P_V2_y,S_y),
+	r_NEXT_y     = r_P_V2_y-r_S_y,
+        DISTANCE_x   = Dsub(NEXT_x,THIS_x),
+	r_DISTANCE_x = r_NEXT_x-r_THIS_x,
+        DISTANCE_y   = Dsub(NEXT_y,THIS_y),
+	r_DISTANCE_y = r_NEXT_y-r_THIS_y,
+        DET          = Dsub(Dmul(DISTANCE_x,THIS_y),Dmul(DISTANCE_y,THIS_x)),
+	r_DET        = (r_DISTANCE_x * r_THIS_y) - (r_DISTANCE_y * r_THIS_x)
+    IN
+    abs(DtoR(THIS_x) - r_THIS_x)<=e_THIS_x AND
+    abs(DtoR(THIS_y) - r_THIS_y)<=e_THIS_y AND
+    abs(DtoR(NEXT_x) - r_NEXT_x)<=e_NEXT_x AND
+    abs(DtoR(NEXT_y) - r_NEXT_y)<=e_NEXT_y AND
+    abs(DtoR(DET) - r_DET)<=e_DET AND
+    wn_trans_path5( quadrant_trans(e_THIS_x, e_THIS_y)(THIS_x, THIS_y),
+    		    quadrant_trans(e_NEXT_x, e_NEXT_y)(NEXT_x, NEXT_y),
+		    DET, e_DET)
+    IMPLIES wn_r_path5( quadrant_real(r_THIS_x, r_THIS_y),
+                        quadrant_real(r_NEXT_x, r_NEXT_y),
+			r_DET ) AND
+	    wn_fp_path5( quadrant(THIS_x, THIS_y),
+                         quadrant(NEXT_x, NEXT_y),
+			 DET )
+
+  winding_number_contrib_trans_no_warning_implies_stability_on_the_original: THEOREM
+    LET THIS_x       = Dsub(P_V1_x,S_x),
+	r_THIS_x     = r_P_V1_x-r_S_x,
+        THIS_y       = Dsub(P_V1_y,S_y),
+	r_THIS_y     = r_P_V1_y-r_S_y,
+        NEXT_x       = Dsub(P_V2_x,S_x),
+	r_NEXT_x     = r_P_V2_x-r_S_x,
+        NEXT_y       = Dsub(P_V2_y,S_y),
+	r_NEXT_y     = r_P_V2_y-r_S_y,
+        DISTANCE_x   = Dsub(NEXT_x,THIS_x),
+	r_DISTANCE_x = r_NEXT_x-r_THIS_x,
+        DISTANCE_y   = Dsub(NEXT_y,THIS_y),
+	r_DISTANCE_y = r_NEXT_y-r_THIS_y,
+        DET          = Dsub(Dmul(DISTANCE_x,THIS_y),Dmul(DISTANCE_y,THIS_x)),
+	r_DET        = (r_DISTANCE_x * r_THIS_y) - (r_DISTANCE_y * r_THIS_x) IN
+    abs(DtoR(THIS_x) - r_THIS_x)<=e_THIS_x AND
+    abs(DtoR(THIS_y) - r_THIS_y)<=e_THIS_y AND
+    abs(DtoR(NEXT_x) - r_NEXT_x)<=e_NEXT_x AND
+    abs(DtoR(NEXT_y) - r_NEXT_y)<=e_NEXT_y AND
+    abs(DtoR(DET) - r_DET)<=e_DET
+    IMPLIES (LET trans_result: Maybe[int]
+    	       	= winding_number_contrib_trans (e_THIS_x,e_THIS_y,e_NEXT_x,e_NEXT_y,e_DET)
+    	                               (P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y) IN
+	    some?(trans_result)
+            IMPLIES trans_result = winding_number_contrib
+    		    	  	     (P_V1_x,P_V1_y,P_V2_x,P_V2_y,S_x,S_y) AND
+               	    trans_result = winding_number_contrib_real
+    			  	     (r_P_V1_x,r_P_V1_y,r_P_V2_x,r_P_V2_y,r_S_x,r_S_y))
+
+  %
+  %
+  % Unstable case: (orig_fp_cond AND orig_r_cond) => trans_fp_cond
+  %
+  %
+
+  wn_unstability_on_the_original_implies_warning_on_the_transformed: THEOREM
+    LET THIS_x       = Dsub(P_V1_x,S_x),
+	r_THIS_x     = r_P_V1_x-r_S_x,
+        THIS_y       = Dsub(P_V1_y,S_y),
+	r_THIS_y     = r_P_V1_y-r_S_y,
+        NEXT_x       = Dsub(P_V2_x,S_x),
+	r_NEXT_x     = r_P_V2_x-r_S_x,
+        NEXT_y       = Dsub(P_V2_y,S_y),
+	r_NEXT_y     = r_P_V2_y-r_S_y,
+        DISTANCE_x   = Dsub(NEXT_x,THIS_x),
+	r_DISTANCE_x = r_NEXT_x-r_THIS_x,
+        DISTANCE_y   = Dsub(NEXT_y,THIS_y),
+	r_DISTANCE_y = r_NEXT_y-r_THIS_y,
+        DET          = Dsub(Dmul(DISTANCE_x,THIS_y),Dmul(DISTANCE_y,THIS_x)),
+	r_DET        = (r_DISTANCE_x * r_THIS_y) - (r_DISTANCE_y * r_THIS_x) IN
+    abs(DtoR(THIS_x) - r_THIS_x)<=e_THIS_x AND
+    abs(DtoR(THIS_y) - r_THIS_y)<=e_THIS_y AND
+    abs(DtoR(NEXT_x) - r_NEXT_x)<=e_NEXT_x AND
+    abs(DtoR(NEXT_y) - r_NEXT_y)<=e_NEXT_y AND
+    abs(DtoR(DET) - r_DET)<=e_DET
+    IMPLIES winding_number_contrib(P_V1_x,P_V1_y,P_V2_x,P_V2_y,S_x,S_y)
+    	    /=
+	    winding_number_contrib_real(r_P_V1_x,r_P_V1_y,r_P_V2_x,r_P_V2_y,r_S_x,r_S_y)
+	    IMPLIES none?(winding_number_contrib_trans
+	             (e_THIS_x,e_THIS_y,e_NEXT_x,e_NEXT_y,e_DET)
+    	             (P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y))
+
+END winding_number_contrib__trans_props

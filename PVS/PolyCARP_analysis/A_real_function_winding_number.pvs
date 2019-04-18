@@ -1,0 +1,15 @@
+% -------------------------------------------------- 
+% Axiomatic 'real_function_winding_number'           
+% -------------------------------------------------- 
+
+A_real_function_winding_number: THEORY
+BEGIN
+IMPORTING framac_wp@memory
+IMPORTING A_real_function_for_winding_number1
+
+L_winding_number(Mflt_0 : ARRAY[addr->real], N : int, Px_0 : addr,
+    Py_0 : addr, Sx_0 : real, Sy_0 : real) : int =
+    L_for_winding_number1(Mflt_0, N - 1, N, Px_0, Py_0, Sx_0, Sy_0)
+    
+END A_real_function_winding_number
+

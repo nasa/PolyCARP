@@ -1,0 +1,13 @@
+(winding_number_int_loop_inv_established
+ (goal 0
+  (goal-1 nil 3764404060
+   ("" (skeep*)
+    (("" (assert) (("" (flatten) (("" (assert) nil nil)) nil)) nil))
+    nil)
+   ((real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
+   shostak)))
+

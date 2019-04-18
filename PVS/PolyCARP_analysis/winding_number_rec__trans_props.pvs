@@ -1,0 +1,59 @@
+winding_number_rec__trans_props : THEORY BEGIN
+
+  IMPORTING winding_number_rec,
+  	    winding_number_rec__real,
+  	    winding_number_rec__trans,
+	    winding_number_contrib__trans_props
+
+  error_preconditions( N             : posnat,
+		       e_x,e_y,e_det : [below(N)->nonneg_real],
+	               P             : polygon_2D_fp(N),
+		       S             : Vect2_fp,
+		       r_P           : polygon_2D(N),
+		       r_S           : Vect2 )
+  : bool
+  = ( FORALL(j: below(N)):
+	     LET THIS_x       = Dsub(P(j)`x,S`x),
+	      	 r_THIS_x     = r_P(j)`x-r_S`x,
+		 THIS_y       = Dsub(P(j)`y,S`y),
+	      	 r_THIS_y     = r_P(j)`y-r_S`y,
+		 next_j:below(N) = IF j<N-1 THEN j+1 ELSE 0 ENDIF,
+		 NEXT_x       = Dsub(P(next_j)`x,S`x),
+	      	 r_NEXT_x     = r_P(next_j)`x-r_S`x,
+		 NEXT_y       = Dsub(P(next_j)`y,S`y),
+	      	 r_NEXT_y     = r_P(next_j)`y-r_S`y,
+                 DISTANCE_x   = Dsub(NEXT_x,THIS_x),
+	         r_DISTANCE_x = r_NEXT_x-r_THIS_x,
+                 DISTANCE_y   = Dsub(NEXT_y,THIS_y),
+	         r_DISTANCE_y = r_NEXT_y-r_THIS_y,
+                 DET          = Dsub(Dmul(DISTANCE_x,THIS_y),Dmul(DISTANCE_y,THIS_x)),
+	         r_DET        = (r_DISTANCE_x * r_THIS_y) - (r_DISTANCE_y * r_THIS_x)
+	     IN abs(DtoR(THIS_x) - r_THIS_x)<=e_x(j) AND
+    	     	abs(DtoR(THIS_y) - r_THIS_y)<=e_y(j) AND
+    		abs(DtoR(NEXT_x) - r_NEXT_x)<=e_x(next_j) AND
+    		abs(DtoR(NEXT_y) - r_NEXT_y)<=e_y(next_j)  AND
+	 	abs(DtoR(DET) - r_DET)<=e_det(j) )
+
+  wnr_trans_no_warning_implies_stability_on_the_original: THEOREM
+    FORALL(N:posnat)
+          (e_x,e_y,e_det: [below(N)->nonneg_real])
+	  (P:polygon_2D_fp(N),S:Vect2_fp)
+	  (r_P:polygon_2D(N),r_S:Vect2)
+	  (i:below(N)):
+      LET trans_result: Maybe[int] = winding_number_rec_trans(N)(e_x,e_y,e_det)(P,S,i)
+      IN error_preconditions(N,e_x,e_y,e_det,P,S,r_P,r_S)
+         IMPLIES some?(trans_result)
+	         IMPLIES trans_result = winding_number_rec(N,P,S,i) AND
+			 trans_result = winding_number_rec_real(N,r_P,r_S,i)
+
+  wnr_unstability_on_the_original_implies_warning_on_the_transformed: THEOREM
+    FORALL(N:posnat)
+          (e_x,e_y,e_det: [below(N)->nonneg_real])
+	  (P:polygon_2D_fp(N),S:Vect2_fp)
+	  (r_P:polygon_2D(N),r_S:Vect2)
+	  (i:below(N)):
+      error_preconditions(N,e_x,e_y,e_det,P,S,r_P,r_S)
+      IMPLIES winding_number_rec(N,P,S,i) /= winding_number_rec_real(N,r_P,r_S,i)
+              IMPLIES none?(winding_number_rec_trans(N)(e_x,e_y,e_det)(P,S,i))
+
+END winding_number_rec__trans_props

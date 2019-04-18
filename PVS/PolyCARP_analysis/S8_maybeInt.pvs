@@ -1,0 +1,15 @@
+% -------------------------------------------------- 
+% Struct 'maybeInt'                                  
+% -------------------------------------------------- 
+
+S8_maybeInt: THEORY
+BEGIN
+
+S8_maybeInt : Type = [# F8_maybeInt_isValid : int, F8_maybeInt_value : int #]
+IMPORTING framac_wp@cint
+
+IsS8_maybeInt(S : S8_maybeInt) : bool =
+    ((is_uint32(F8_maybeInt_isValid(S))) AND
+      (is_sint32(F8_maybeInt_value(S))))
+END S8_maybeInt
+

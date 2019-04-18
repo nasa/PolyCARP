@@ -1,0 +1,117 @@
+%
+% Alternative declaration for winding_number, using for template.
+%
+winding_number__real_for: THEORY
+BEGIN
+
+  %
+  % First, winding_number_rec_real is expressed as an iterative function
+  %
+
+  IMPORTING winding_number_rec__real
+
+  % logic definition
+  
+  winding_number_real_for_logic
+  (N:posnat,p:polygon_2D(N),s:Vect2,i:below(N))
+  : MACRO int
+  = winding_number_rec_real(N,p,s,i)
+
+  % body
+  
+  winding_number_rec_real_body
+  (N:posnat,p:polygon_2D(N),s:Vect2)
+  (i:subrange(0,N-1),a:int)
+  : MACRO int
+  = IF i<N-1
+    THEN a+winding_number_contrib_real(p(i)`x,p(i)`y,p(i+1)`x,p(i+1)`y,s`x,s`y)
+    ELSE a+winding_number_contrib_real(p(i)`x,p(i)`y,p(0)`x,p(0)`y,s`x,s`y)
+    ENDIF
+
+  % main function
+
+  IMPORTING structures@for_iterate
+
+  winding_number_real_for
+  (N:posnat,p:polygon_2D(N),s:Vect2)
+  : int
+  = for[int](0,N-1,0,winding_number_rec_real_body(N,p,s))
+
+  % invariant
+
+  winding_number_real_for_inv
+  (N:posnat,p:polygon_2D(N),s:Vect2)
+  (i:subrange(0,N),a:int)
+  : MACRO bool
+  = a = (IF i=0
+         THEN 0
+	 ELSE winding_number_real_for_logic(N,p,s,i-1) ENDIF)
+
+  % postcondition
+
+  winding_number_real_for_post
+  (N:posnat,p:polygon_2D(N),s:Vect2)
+  (a:int)
+  : MACRO bool
+  = (a = winding_number_real_for_logic(N,p,s,N-1))
+
+  % soundness
+
+  winding_number_real_for_sound
+  : LEMMA
+    FORALL(N:posnat,p:polygon_2D(N),s:Vect2)
+    : winding_number_real_for_post(N,p,s)(winding_number_real_for(N,p,s))
+
+%|- winding_number_real_for_sound : PROOF
+%|- (then (skeep) (expand "winding_number_real_for")
+%|-  (lemma "for_invariant[int]")
+%|-  (spread (inst?)
+%|-   ((then (inst -1 "winding_number_real_for_inv(N,p,s)") (assert)
+%|-     (hide 2) (skeep :preds? t) (assert)
+%|-     (expand "winding_number_rec_real" 1) (lift-if 1)
+%|-     (spread (split 1)
+%|-      ((then (flatten) (assert) (replace -5 :hide? t) (lift-if 1)
+%|-        (assert))
+%|-       (then (flatten) (grind-reals)))))
+%|-    (then (hide 2) (grind-reals)))))
+%|- QED
+
+
+  %
+  % In second place, winding_number_real_for is used to compute the winding_number
+  %
+
+  IMPORTING winding_number__real
+
+  winding_number_it_real_logic(N:posnat,p:polygon_2D(N),s:Vect2): MACRO int
+  = winding_number_real(N,p,s)
+
+  winding_number_real_for_div4(N:posnat,p:polygon_2D(N),s:Vect2): MACRO real
+  = winding_number_real_for(N,p,s)/4
+
+  winding_number_real_for_div4_j: JUDGEMENT
+    winding_number_real_for_div4(N:posnat,p:polygon_2D(N),s:Vect2) HAS_TYPE int
+
+  winding_number_it_real(N:posnat,p:polygon_2D(N),s:Vect2): int
+  = winding_number_real_for_div4(N,p,s)
+
+  winding_number_it_real_post(N:posnat,p:polygon_2D(N),s:Vect2)(a: int): MACRO bool
+  = (a = winding_number_it_real_logic(N,p,s))
+
+  winding_number_it_real_sound
+  : LEMMA
+    FORALL(N:posnat,p:polygon_2D(N),s:Vect2)
+    : winding_number_it_real_post(N,p,s)(winding_number_it_real(N,p,s))
+
+  %
+  % Finally, the equivalence between the previos definition and the original
+  % winding_number is proved.
+  %
+
+  IMPORTING PolyCARP@polygon_contain
+
+  polycarp_eq: THEOREM
+    FORALL(N:posnat,p:polygon_2D(N),s:Vect2):
+      winding_number_it_real(N,p,s) = polygon_contain.winding_number(N,p,s)
+
+END winding_number__real_for

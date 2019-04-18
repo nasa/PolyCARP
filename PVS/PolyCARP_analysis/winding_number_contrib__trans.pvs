@@ -1,0 +1,78 @@
+winding_number_contrib__trans : THEORY BEGIN
+
+  IMPORTING quadrant__trans,
+  	    float@ieee754dp_sub,
+	    float@ieee754dp_mul
+
+  P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y, DET: VAR unb_double
+  e_THIS_x,e_THIS_y,e_NEXT_x,e_NEXT_y,e_DET: VAR nonneg_real
+  K,P: VAR Maybe[int]
+
+  wn_trans_guard0(K,P): bool = some?(K) AND some?(P)
+  wn_trans_guard1(K,P:(some?)): bool = K = P
+  wn_trans_guard2(K,P:(some?)): bool = P - 1 = mod.mod(K,4)
+  wn_trans_guard3(K,P:(some?)): bool = K - 1 = mod.mod(P,4)
+  wn_trans_guard4(DET,e_DET): bool = DET <= nonPosUpperBoundErr(e_DET)
+  wn_trans_guard5(DET,e_DET): bool = nonNegLowerBoundErr(e_DET) < DET
+  
+  %
+  % The result of the transformation applied to the winding_number_contrib
+  % function is defined below.
+  %
+
+  % P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y in [-15000,15000]
+  %  LET ErrDET = RtoD(0.0000010023941285908229) IN
+  winding_number_contrib_trans(e_THIS_x,e_THIS_y,e_NEXT_x,e_NEXT_y,e_DET)
+  	        (P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y): Maybe[int] =
+    LET THIS_x = Dsub(P_V1_x,S_x),
+        THIS_y = Dsub(P_V1_y,S_y),
+        NEXT_x = Dsub(P_V2_x,S_x),
+        NEXT_y = Dsub(P_V2_y,S_y),
+        DISTANCE_x = Dsub(NEXT_x,THIS_x),
+        DISTANCE_y = Dsub(NEXT_y,THIS_y),
+        DET = Dsub(Dmul(DISTANCE_x,THIS_y),Dmul(DISTANCE_y,THIS_x)),
+        K = quadrant_trans(e_THIS_x,e_THIS_y)(THIS_x,THIS_y),
+        P = quadrant_trans(e_NEXT_x,e_NEXT_y)(NEXT_x,NEXT_y) 
+    IN IF wn_trans_guard0(K,P) THEN 
+         IF    wn_trans_guard1(K,P)       THEN Some( 0)
+         ELSIF wn_trans_guard2(K,P)       THEN Some( 1)
+         ELSIF wn_trans_guard3(K,P)       THEN Some(-1)
+         ELSIF wn_trans_guard4(DET,e_DET) THEN Some( 2)
+         ELSIF wn_trans_guard5(DET,e_DET) THEN Some(-2)
+         ELSE                          	       None
+         ENDIF
+       ELSE None ENDIF
+
+  %
+  % The following predicates state each of the path conditions
+  % in the transformed function.
+  %
+
+  wn_trans_path1(K,P): bool           = wn_trans_guard0(K,P) AND
+  		       		      	wn_trans_guard1(K,P)
+
+  wn_trans_path2(K,P): bool           = wn_trans_guard0(K,P) AND
+  		       		      	NOT wn_trans_guard1(K,P) AND
+					wn_trans_guard2(K,P)
+						   
+  wn_trans_path3(K,P): bool           = wn_trans_guard0(K,P) AND
+  		       		      	NOT wn_trans_guard1(K,P) AND
+					NOT wn_trans_guard2(K,P) AND
+					wn_trans_guard3(K,P)
+						   
+  wn_trans_path4(K,P,DET,e_DET): bool = wn_trans_guard0(K,P) AND
+  				        NOT wn_trans_guard1(K,P) AND
+					NOT wn_trans_guard2(K,P) AND
+					NOT wn_trans_guard3(K,P) AND
+					wn_trans_guard4(DET,e_DET)
+
+  wn_trans_path5(K,P,DET,e_DET): bool = wn_trans_guard0(K,P) AND
+  				        NOT wn_trans_guard1(K,P) AND
+					NOT wn_trans_guard2(K,P) AND
+					NOT wn_trans_guard3(K,P) AND
+					NOT wn_trans_guard4(DET,e_DET) AND
+					wn_trans_guard5(DET,e_DET)
+					
+  wn_trans_path6(K,P,DET,e_DET): bool = NOT wn_trans_guard0(K,P)
+
+END winding_number_contrib__trans

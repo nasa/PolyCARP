@@ -1,0 +1,48 @@
+winding_number_int_loop_inv_established: THEORY
+BEGIN
+% -------------------------------------------------- 
+% Establishment of Invariant (file winding_number_precisa.c, line 273) 
+% -------------------------------------------------- 
+
+% --- Importings requested by the user --- 
+IMPORTING float@roundoff_error_props
+
+% --- Qed-related importings and axioms --- 
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@cmath
+IMPORTING framac_wp@cfloat
+IMPORTING framac_wp@memory
+
+IMPORTING S8_maybeInt
+IMPORTING framac_wp@cint
+
+% --- Verification condition --- 
+
+  goal: LEMMA
+    FORALL (i:int):
+    FORALL (i_3, i_2, i_1:ieee_float64):
+    FORALL (a_1, a:addr):
+    FORALL (m:S8_maybeInt):
+    LET x = F8_maybeInt_isValid(m) IN
+    ((0 /= x) IMPLIES
+    ((0 = (F8_maybeInt_value(m))) IMPLIES
+    ((0 <= (of_float64(i_1))) IMPLIES
+    ((0 <= (of_float64(i_2))) IMPLIES
+    ((0 <= (of_float64(i_3))) IMPLIES
+    (((region(base(a))) <= 0) IMPLIES
+    (((region(base(a_1))) <= 0) IMPLIES
+    ((3 <= i) IMPLIES
+    ((IsS8_maybeInt(m)) IMPLIES
+    ((is_sint32(i)) IMPLIES
+    ((isfinite_float64(i_1)) IMPLIES
+    ((isfinite_float64(i_2)) IMPLIES
+    ((isfinite_float64(i_3)) IMPLIES
+    ((is_uint32(x)) IMPLIES
+    (0 <= i)))))))))))))));
+
+%|- goal : PROOF
+%|-   (grind)
+%|- QED
+
+END winding_number_int_loop_inv_established

@@ -1,0 +1,53 @@
+(winding_number_contrib__real
+ (winding_number_contrib_real_TCC1 0
+  (winding_number_contrib_real_TCC1-1 nil 3746983082 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (orig_r_guard1 const-decl "bool" quadrant_real nil)
+    (orig_r_guard2 const-decl "bool" quadrant_real nil)
+    (orig_r_guard3 const-decl "bool" quadrant_real nil)
+    (real_times_real_is_real application-judgement "real" reals nil))
+   nil))
+ (winding_number_contrib_real_TCC2 0
+  (winding_number_contrib_real_TCC2-1 nil 3746983082 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (rat_div_nzrat_is_rat application-judgement "rat" rationals nil)
+    (orig_r_guard1 const-decl "bool" quadrant_real nil)
+    (orig_r_guard2 const-decl "bool" quadrant_real nil)
+    (orig_r_guard3 const-decl "bool" quadrant_real nil)
+    (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (even_times_int_is_even application-judgement "even_int" integers
+     nil)
+    (mult_divides1 application-judgement "(divides(n))" divides nil)
+    (mult_divides2 application-judgement "(divides(m))" divides nil))
+   nil)))
+

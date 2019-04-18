@@ -1,0 +1,29 @@
+winding_number__trans_props: THEORY
+BEGIN
+
+  IMPORTING winding_number__trans,
+  	    winding_number,
+	    winding_number__real,
+	    winding_number_rec__trans_props
+
+  wn_trans_no_warning_implies_stability_on_the_original: THEOREM
+    FORALL(N:posnat)
+          (e_x,e_y,e_det: [below(N)->nonneg_real])
+	  (P:polygon_2D_fp(N),S:Vect2_fp)
+	  (r_P:polygon_2D(N),r_S:Vect2):
+      LET trans_result: Maybe[int] = winding_number_trans(N)(e_x,e_y,e_det)(P,S)
+      IN error_preconditions(N,e_x,e_y,e_det,P,S,r_P,r_S)
+         IMPLIES some?(trans_result)
+	         IMPLIES trans_result = winding_number(N,P,S) AND
+			 trans_result = winding_number_real(N,r_P,r_S)
+
+  wn_unstability_on_the_original_implies_warning_on_the_transformed: THEOREM
+    FORALL(N:posnat)
+          (e_x,e_y,e_det: [below(N)->nonneg_real])
+	  (P:polygon_2D_fp(N),S:Vect2_fp)
+	  (r_P:polygon_2D(N),r_S:Vect2):
+      error_preconditions(N,e_x,e_y,e_det,P,S,r_P,r_S)
+      IMPLIES winding_number(N,P,S) /= winding_number_real(N,r_P,r_S)
+              IMPLIES none?(winding_number_trans(N)(e_x,e_y,e_det)(P,S))
+
+END winding_number__trans_props

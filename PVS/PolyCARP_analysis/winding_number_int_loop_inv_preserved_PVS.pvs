@@ -1,0 +1,268 @@
+winding_number_int_loop_inv_preserved: THEORY
+BEGIN
+% -------------------------------------------------- 
+% Preservation of Invariant (file winding_number_precisa.c, line 273) 
+% -------------------------------------------------- 
+
+% --- Importings requested by the user --- 
+IMPORTING float@roundoff_error_props
+
+% --- Qed-related importings and axioms --- 
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@memory
+
+IMPORTING S8_maybeInt
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@cmath
+IMPORTING framac_wp@cfloat
+IMPORTING framac_wp@cint
+IMPORTING Compound
+IMPORTING A_real_function_winding_number_contrib
+IMPORTING A_real_function_for_winding_number1
+
+% --- Verification condition --- 
+
+  goal: LEMMA
+    FORALL (i_6, i_5, i_4, i_3, i_2, i_1, i:int):
+    FORALL (t:ARRAY[addr->real]):
+    FORALL (i_11, i_10, i_9, i_8, i_7:ieee_float64):
+    FORALL (a_1, a:addr):
+    FORALL (m_8, m_7, m_6, m_5, m_4, m_3, m_2, m_1, m:S8_maybeInt):
+    LET x = F8_maybeInt_isValid(m_2) IN
+    LET r = of_float64(i_9) IN
+    LET r_1 = of_float64(i_10) IN
+    LET r_2 = of_float64(i_11) IN
+    LET x_1 = F8_maybeInt_isValid(m_3) IN
+    LET x_2 = F8_maybeInt_isValid(m_5) IN
+    LET x_3 = F8_maybeInt_isValid(m_6) IN
+    LET x_4 = F8_maybeInt_isValid(m_7) IN
+    LET x_5 = F8_maybeInt_isValid(m_8) IN
+    LET x_6 = F8_maybeInt_value(m_3) IN
+    LET x_7 = F8_maybeInt_value(m_6) IN
+    LET x_8 = F8_maybeInt_value(m_7) IN
+    LET x_9 = F8_maybeInt_value(m_8) IN
+    LET x_10 = 1 + i_1 IN
+    LET r_3 = t(shift_float64(a, 0)) IN
+    LET r_4 = t(shift_float64(a, i_1)) IN
+    LET r_5 = t(shift_float64(a_1, 0)) IN
+    LET r_6 = t(shift_float64(a_1, i_1)) IN
+    LET x_11 = i - 1 IN
+    LET r_7 = t(shift_float64(a, x_11)) IN
+    LET r_8 = t(shift_float64(a, x_10)) IN
+    LET r_9 = t(shift_float64(a_1, x_11)) IN
+    LET r_10 = t(shift_float64(a_1, x_10)) IN
+    LET x_12 = F8_maybeInt_value(m_1) IN
+    LET x_13 = F8_maybeInt_value(m) IN
+    LET r_11 = -(of_float64(i_7)) IN
+    LET r_12 = of_float64(round_double(C__NearestEven, (of_float64(r_4))
+                            - (of_float64(i_7)))) IN
+    LET r_13 = -(of_float64(i_8)) IN
+    LET r_14 = of_float64(round_double(C__NearestEven, (of_float64(r_6))
+                            - (of_float64(i_8)))) IN
+    LET r_15 = of_float64(round_double(C__NearestEven, (of_float64(r_8))
+                            - (of_float64(i_7)))) IN
+    LET r_16 = of_float64(round_double(C__NearestEven, (of_float64(r_10))
+                            - (of_float64(i_8)))) IN
+    LET r_17 = of_float64(r_3) IN
+    LET r_18 = of_float64(round_double(C__NearestEven, r_17
+                            - (of_float64(i_7)))) IN
+    LET r_19 = of_float64(r_5) IN
+    LET r_20 = of_float64(round_double(C__NearestEven, r_19
+                            - (of_float64(i_8)))) IN
+    LET r_21 = of_float64(r_7) IN
+    LET r_22 = of_float64(round_double(C__NearestEven, r_21
+                            - (of_float64(i_7)))) IN
+    LET r_23 = of_float64(r_9) IN
+    LET r_24 = of_float64(round_double(C__NearestEven, r_23
+                            - (of_float64(i_8)))) IN
+    LET r_25 = of_float64(round_double(C__NearestEven,
+                            (of_float64(round_double(C__NearestEven, r_22 *
+                                          (of_float64(round_double(C__NearestEven,
+                                                        r_20 - r_24))))))
+                            - (of_float64(round_double(C__NearestEven, r_24 *
+                                            (of_float64(round_double(C__NearestEven,
+                                                          r_18 - r_22)))))))) IN
+    LET r_26 = -r_17 IN
+    LET r_27 = -r_19 IN
+    LET r_28 = -r_21 IN
+    LET r_29 = -r_23 IN
+    LET r_30 = r_19 - r_23 IN
+    LET r_31 = r_17 - r_21 IN
+    ((0 /= x) IMPLIES
+    ((0 = (F8_maybeInt_value(m_2))) IMPLIES
+    ((i_1 <= i) IMPLIES
+    ((0 <= i_1) IMPLIES
+    ((i_1 < i) IMPLIES
+    ((0 <= r) IMPLIES
+    ((0 <= r_1) IMPLIES
+    ((0 <= r_2) IMPLIES
+    (((region(base(a))) <= 0) IMPLIES
+    (((region(base(a_1))) <= 0) IMPLIES
+    ((3 <= i) IMPLIES
+    ((IsS8_maybeInt(m)) IMPLIES
+    ((IsS8_maybeInt(m_1)) IMPLIES
+    ((IsS8_maybeInt(m_2)) IMPLIES
+    ((is_sint32(i)) IMPLIES
+    ((is_sint32(i_1)) IMPLIES
+    ((is_sint32(i_2)) IMPLIES
+    ((is_sint32(i_6)) IMPLIES
+    ((isfinite_float64(i_7)) IMPLIES
+    ((isfinite_float64(i_8)) IMPLIES
+    ((isfinite_float64(i_9)) IMPLIES
+    ((isfinite_float64(i_10)) IMPLIES
+    ((isfinite_float64(i_11)) IMPLIES
+    ((is_uint32(x)) IMPLIES
+    ((is_uint32(x_1)) IMPLIES
+    ((is_uint32(x_2)) IMPLIES
+    ((is_uint32(x_3)) IMPLIES
+    ((is_uint32(x_4)) IMPLIES
+    ((is_uint32(x_5)) IMPLIES
+    ((is_sint32(x_6)) IMPLIES
+    ((is_sint32(x_7)) IMPLIES
+    ((is_sint32(x_8)) IMPLIES
+    ((is_sint32(x_9)) IMPLIES
+    ((is_sint32(x_10)) IMPLIES
+    ((isfinite_float64(r_3)) IMPLIES
+    ((isfinite_float64(r_4)) IMPLIES
+    ((isfinite_float64(r_5)) IMPLIES
+    ((isfinite_float64(r_6)) IMPLIES
+    ((isfinite_float64(r_7)) IMPLIES
+    ((isfinite_float64(r_8)) IMPLIES
+    ((isfinite_float64(r_9)) IMPLIES
+    ((isfinite_float64(r_10)) IMPLIES
+    ((IF (0 = x_5) THEN (((i_2 = i_6) AND (0 = x_3)))
+      ELSE (((m_3 = m_4) AND ((i_2 = i_3) AND
+            (IF (0 = x_4) THEN (((i_3 = i_6) AND (0 = x_3)))
+             ELSE (((m_4 = m_5) AND ((i_3 = i_4) AND
+                   (IF (0 = x_2) THEN (((i_4 = i_6) AND (0 = x_3)))
+                    ELSE (((i_4 = i_5) AND
+                          (IF ((2 + i_1) <= i)
+                           THEN (((m_1 = m_6) AND
+                                 ((0 /= (F8_maybeInt_isValid(m_1))) AND
+                                 ((i_6 = x_12) AND ((i_5 + x_9) = x_12)))))
+                           ELSE (((m = m_6) AND
+                                 ((0 /= (F8_maybeInt_isValid(m))) AND
+                                 ((i_6 = x_13) AND ((i_5 + x_8) = x_13))))) ENDIF))) ENDIF)))) ENDIF)))) ENDIF) IMPLIES
+    ((FORALL (r_37, r_36, r_35, r_34, r_33, r_32:real): LET r_38 = -r_36 IN
+      LET r_39 = -r_37 IN ((0 /= x_5) IMPLIES ((0 <= r) IMPLIES
+      ((0 <= r_1) IMPLIES ((0 <= r_2) IMPLIES
+      (((abs_real(r_32 + r_12 - r_36)) <= r) IMPLIES
+      (((abs_real(r_33 + r_14 - r_37)) <= r_1) IMPLIES
+      (((abs_real(r_32 + r_15 - r_34)) <= r) IMPLIES
+      (((abs_real(r_33 + r_16 - r_35)) <= r_1) IMPLIES
+      (((abs_real(((r_34 - r_36) * (r_37 - r_33))
+           + (of_float64(round_double(C__NearestEven,
+                           (of_float64(round_double(C__NearestEven, r_12 *
+                                         (of_float64(round_double(C__NearestEven,
+                                                       r_16 - r_14))))))
+                           - (of_float64(round_double(C__NearestEven, r_14 *
+                                           (of_float64(round_double(C__NearestEven,
+                                                         r_15 - r_12)))))))))
+           - ((r_35 - r_37) * (r_36 - r_32)))) <= r_2) IMPLIES
+      ((L_winding_number_contrib(r_37, r_36, r_35, r_34, r_33, r_32)) = x_9))))))))))) IMPLIES
+    ((FORALL (r_37, r_36, r_35, r_34, r_33, r_32:real): LET r_38 = -r_36 IN
+      LET r_39 = -r_37 IN ((0 /= x_4) IMPLIES ((0 <= r) IMPLIES
+      ((0 <= r_1) IMPLIES ((0 <= r_2) IMPLIES
+      (((abs_real(r_32 + r_18 - r_34)) <= r) IMPLIES
+      (((abs_real(r_33 + r_20 - r_35)) <= r_1) IMPLIES
+      (((abs_real(r_32 + r_22 - r_36)) <= r) IMPLIES
+      (((abs_real(r_33 + r_24 - r_37)) <= r_1) IMPLIES
+      (((abs_real(((r_34 - r_36) * (r_37 - r_33)) + r_25
+           - ((r_35 - r_37) * (r_36 - r_32)))) <= r_2) IMPLIES
+      ((L_winding_number_contrib(r_37, r_36, r_35, r_34, r_33, r_32)) = x_8))))))))))) IMPLIES
+    ((((0 /= x_1) IMPLIES
+      (((((0 = i_1) IMPLIES (((0 = i_2) AND (i_2 = x_6))))) AND
+       (((0 < i_1) IMPLIES
+        (FORALL (r_33, r_32:real): LET r_34 = -r_32 IN LET r_35 = -r_33 IN
+         ((0 <= r) IMPLIES ((0 <= r_1) IMPLIES ((0 <= r_2) IMPLIES
+         (((abs_real(r_32 + r_18 - r_17)) <= r) IMPLIES
+         (((abs_real(r_33 + r_20 - r_19)) <= r_1) IMPLIES
+         (((abs_real(r_32 + r_22 - r_21)) <= r) IMPLIES
+         (((abs_real(r_33 + r_24 - r_23)) <= r_1) IMPLIES
+         (((abs_real(((r_23 - r_33) * r_31) + r_25 - ((r_21 - r_32) * r_30)))
+             <= r_2) IMPLIES
+         ((FORALL (i_12:int):
+           LET r_36 = of_float64(t(shift_float64(a, i_12))) IN
+           LET r_37 = of_float64(round_double(C__NearestEven, r_36
+                                   - (of_float64(i_7)))) IN
+           LET r_38 = -r_36 IN
+           LET r_39 = of_float64(t(shift_float64(a_1, i_12))) IN
+           LET r_40 = of_float64(round_double(C__NearestEven, r_39
+                                   - (of_float64(i_8)))) IN
+           LET r_41 = -r_39 IN LET x_14 = 1 + i_12 IN
+           LET r_42 = of_float64(t(shift_float64(a, x_14))) IN
+           LET r_43 = of_float64(round_double(C__NearestEven, r_42
+                                   - (of_float64(i_7)))) IN
+           LET r_44 = of_float64(t(shift_float64(a_1, x_14))) IN
+           LET r_45 = of_float64(round_double(C__NearestEven, r_44
+                                   - (of_float64(i_8)))) IN
+           ((0 <= i_12) IMPLIES (((2 + i_12) <= i) IMPLIES
+           (((0 <= r) AND ((0 <= r_1) AND ((0 <= r_2) AND
+            (((abs_real(r_32 + r_37 - r_36)) <= r) AND
+            (((abs_real(r_33 + r_40 - r_39)) <= r_1) AND
+            (((abs_real(r_32 + r_43 - r_42)) <= r) AND
+            (((abs_real(r_33 + r_45 - r_44)) <= r_1) AND
+            ((abs_real(((r_39 - r_33) * (r_42 - r_36))
+                + (of_float64(round_double(C__NearestEven,
+                                (of_float64(round_double(C__NearestEven,
+                                              r_37 *
+                                              (of_float64(round_double(C__NearestEven,
+                                                            r_45 - r_40))))))
+                                - (of_float64(round_double(C__NearestEven,
+                                                r_40 *
+                                                (of_float64(round_double(C__NearestEven,
+                                                              r_43 - r_37)))))))))
+                - ((r_36 - r_32) * (r_44 - r_39)))) <= r_2)))))))))))) IMPLIES
+         (((i_2 = x_6) AND
+          ((L_for_winding_number1(t, i_1 - 1, i, a_1, a, r_33, r_32)) = x_6))))))))))))))))))) IMPLIES
+    ((((-1) <= i_1) AND
+     (((0 /= x_3) IMPLIES
+      (((FORALL (r_33, r_32:real): LET r_34 = -r_32 IN LET r_35 = -r_33 IN
+         ((0 <= r) IMPLIES ((0 <= r_1) IMPLIES ((0 <= r_2) IMPLIES
+         (((abs_real(r_32 + r_18 - r_17)) <= r) IMPLIES
+         (((abs_real(r_33 + r_20 - r_19)) <= r_1) IMPLIES
+         (((abs_real(r_32 + r_22 - r_21)) <= r) IMPLIES
+         (((abs_real(r_33 + r_24 - r_23)) <= r_1) IMPLIES
+         (((abs_real(((r_23 - r_33) * r_31) + r_25 - ((r_21 - r_32) * r_30)))
+             <= r_2) IMPLIES
+         ((FORALL (i_12:int):
+           LET r_36 = of_float64(t(shift_float64(a, i_12))) IN
+           LET r_37 = of_float64(round_double(C__NearestEven, r_36
+                                   - (of_float64(i_7)))) IN
+           LET r_38 = -r_36 IN
+           LET r_39 = of_float64(t(shift_float64(a_1, i_12))) IN
+           LET r_40 = of_float64(round_double(C__NearestEven, r_39
+                                   - (of_float64(i_8)))) IN
+           LET r_41 = -r_39 IN LET x_14 = 1 + i_12 IN
+           LET r_42 = of_float64(t(shift_float64(a, x_14))) IN
+           LET r_43 = of_float64(round_double(C__NearestEven, r_42
+                                   - (of_float64(i_7)))) IN
+           LET r_44 = of_float64(t(shift_float64(a_1, x_14))) IN
+           LET r_45 = of_float64(round_double(C__NearestEven, r_44
+                                   - (of_float64(i_8)))) IN
+           ((0 <= i_12) IMPLIES (((2 + i_12) <= i) IMPLIES
+           (((0 <= r) AND ((0 <= r_1) AND ((0 <= r_2) AND
+            (((abs_real(r_32 + r_37 - r_36)) <= r) AND
+            (((abs_real(r_33 + r_40 - r_39)) <= r_1) AND
+            (((abs_real(r_32 + r_43 - r_42)) <= r) AND
+            (((abs_real(r_33 + r_45 - r_44)) <= r_1) AND
+            ((abs_real(((r_39 - r_33) * (r_42 - r_36))
+                + (of_float64(round_double(C__NearestEven,
+                                (of_float64(round_double(C__NearestEven,
+                                              r_37 *
+                                              (of_float64(round_double(C__NearestEven,
+                                                            r_45 - r_40))))))
+                                - (of_float64(round_double(C__NearestEven,
+                                                r_40 *
+                                                (of_float64(round_double(C__NearestEven,
+                                                              r_43 - r_37)))))))))
+                - ((r_36 - r_32) * (r_44 - r_39)))) <= r_2)))))))))))) IMPLIES
+         (((i_6 = x_7) AND
+          ((L_for_winding_number1(t, i_1, i, a_1, a, r_33, r_32)) = x_7))))))))))))) AND
+       ((((-1) = i_1) IMPLIES (((0 = i_6) AND (i_6 = x_7)))))))))))))))))))))))))))))))))))))))))))))))))))))))));
+
+%|- goal : PROOF
+%|-   (grind)
+%|- QED
+
+END winding_number_int_loop_inv_preserved

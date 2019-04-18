@@ -1,0 +1,67 @@
+quadrant_int_post: THEORY
+BEGIN
+% -------------------------------------------------- 
+% Post-condition (file winding_number_precisa.c, line 50) in 'quadrant_int' 
+% -------------------------------------------------- 
+
+% --- Importings requested by the user --- 
+IMPORTING float@roundoff_error_props
+
+% --- Qed-related importings and axioms --- 
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@cmath
+IMPORTING framac_wp@cfloat
+
+IMPORTING S8_maybeInt
+IMPORTING A_real_function_quadrant
+
+% --- Verification condition --- 
+
+  goal: LEMMA
+    FORALL (r_1, r:real):
+    FORALL (i_3, i_2, i_1, i:ieee_float64):
+    FORALL (m:S8_maybeInt):
+    LET r_2 = of_float64(i_2) IN
+    LET r_3 = of_float64(i_3) IN
+    LET x = F8_maybeInt_value(m) IN
+    LET a = opp_float64(i_3) IN
+    LET a_1 = opp_float64(i_2) IN
+    ((0 /= (F8_maybeInt_isValid(m))) IMPLIES
+    ((0 <= r_2) IMPLIES
+    ((0 <= r_3) IMPLIES
+    (((abs_real((of_float64(i)) - r)) <= r_2) IMPLIES
+    (((abs_real((of_float64(i_1)) - r_1)) <= r_3) IMPLIES
+    ((IsS8_maybeInt(m)) IMPLIES
+    ((isfinite_float64(i)) IMPLIES
+    ((isfinite_float64(i_1)) IMPLIES
+    ((isfinite_float64(i_2)) IMPLIES
+    ((isfinite_float64(i_3)) IMPLIES
+    ((IF (le_float64(i_3, i_1))
+      THEN (IF (le_float64(i_2, i)) THEN (1 = x)
+            ELSE (IF (le_float64(i_1, a))
+                  THEN (((3 = x) AND
+                        (IF (lt_float64(i_3, i_1))
+                         THEN (((lt_float64(i, a_1)) OR
+                               (lt_float64(i_1, a))))
+                         ELSE (lt_float64(i, a_1)) ENDIF)))
+                  ELSE (((4 = x) AND ((lt_float64(i_3, i_1)) AND
+                        (((lt_float64(i, a_1)) OR (lt_float64(i_1, a))))))) ENDIF) ENDIF)
+      ELSE (IF (le_float64(i_1, a))
+            THEN (IF (le_float64(i_2, i))
+                  THEN (IF (lt_float64(i_1, a)) THEN (2 = x)
+                        ELSE (((2 = x) AND (lt_float64(i, a_1)))) ENDIF)
+                  ELSE (((3 = x) AND
+                        (IF (lt_float64(i_3, i_1))
+                         THEN (((lt_float64(i, a_1)) OR
+                               (lt_float64(i_1, a))))
+                         ELSE (lt_float64(i, a_1)) ENDIF))) ENDIF)
+            ELSE (((4 = x) AND ((lt_float64(i_3, i_1)) AND
+                  (((lt_float64(i, a_1)) OR (lt_float64(i_1, a))))))) ENDIF) ENDIF) IMPLIES
+    ((L_quadrant(r_1, r)) = x))))))))))));
+
+%|- goal : PROOF
+%|-   (grind)
+%|- QED
+
+END quadrant_int_post

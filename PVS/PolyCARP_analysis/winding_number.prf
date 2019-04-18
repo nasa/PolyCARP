@@ -1,0 +1,9 @@
+(winding_number
+ (winding_number_TCC1 0
+  (winding_number_TCC1-1 nil 3748092033 ("" (subtype-tcc) nil nil)
+   ((even_times_int_is_even application-judgement "even_int" integers
+     nil)
+    (mult_divides1 application-judgement "(divides(n))" divides nil)
+    (mult_divides2 application-judgement "(divides(m))" divides nil))
+   nil)))
+

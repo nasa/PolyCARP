@@ -1,0 +1,42 @@
+% -------------------------------------------------- 
+% Axiomatic 'real_function_for_winding_number1'      
+% -------------------------------------------------- 
+
+A_real_function_for_winding_number1: THEORY
+BEGIN
+IMPORTING framac_wp@memory
+IMPORTING A_real_function_winding_number_contrib
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@cmath
+IMPORTING framac_wp@cfloat
+IMPORTING Compound
+
+L_for_winding_number1 : [ARRAY[addr->real], int, int, addr, addr, real, real
+    -> int]
+FixL_for_winding_number1: AXIOM FORALL (i_1, i:int): FORALL (r_1, r:real):
+    FORALL (t:ARRAY[addr->real]): FORALL (a_1, a:addr):
+    LET x = L_for_winding_number1(t, i_1, i, a_1, a, r_1, r) IN
+    LET r_2 = of_float64(t(shift_float64(a_1, 0))) IN
+    LET r_3 = of_float64(t(shift_float64(a, 0))) IN LET x_1 = i - 1 IN
+    LET x_2 = L_winding_number_contrib(of_float64(t(shift_float64(a_1, x_1))),
+                of_float64(t(shift_float64(a, x_1))), r_2, r_3, r_1, r) IN
+    LET x_3 = L_for_winding_number1(t, i_1 - 1, i, a_1, a, r_1, r) IN
+    LET x_4 = 1 + i_1 IN
+    IF (0 = i_1)
+    THEN (IF (2 <= i)
+          THEN (x
+                  = (L_winding_number_contrib(r_2, r_3,
+                       of_float64(t(shift_float64(a_1, 1))),
+                       of_float64(t(shift_float64(a, 1))), r_1, r)))
+          ELSE (x = x_2) ENDIF)
+    ELSE (IF ((2 + i_1) <= i)
+          THEN (x
+                  = (x_3
+                     + (L_winding_number_contrib(of_float64(t(shift_float64(a_1,
+                                                                i_1))),
+                          of_float64(t(shift_float64(a, i_1))),
+                          of_float64(t(shift_float64(a_1, x_4))),
+                          of_float64(t(shift_float64(a, x_4))), r_1, r))))
+          ELSE (x = (x_3 + x_2)) ENDIF) ENDIF
+END A_real_function_for_winding_number1
+

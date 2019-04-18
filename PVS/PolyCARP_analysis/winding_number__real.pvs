@@ -1,0 +1,23 @@
+winding_number__real: THEORY BEGIN
+
+  IMPORTING winding_number_rec__real,
+	    PolyCARP@polygon_contain
+
+  winding_number_rec_real_div_4: LEMMA
+    FORALL (N:posnat,p:polygon_2D(N),s:Vect2):
+      divides(4,winding_number_rec_real(N,p,s,N-1))
+
+  wn_real_div_4(N:posnat,p:polygon_2D(N),s:Vect2): MACRO real
+  = winding_number_rec_real(N,p,s,N-1)/4
+
+  winding_number_rec_real_div_4_j: JUDGEMENT
+    wn_real_div_4(N:posnat,p:polygon_2D(N),s:Vect2) HAS_TYPE int
+
+  winding_number_real(N:posnat,p:polygon_2D(N),s:Vect2): int
+  = wn_real_div_4(N,p,s)
+
+  polycarp_eq: THEOREM
+    FORALL(N:posnat,p:polygon_2D(N),s:Vect2):
+      winding_number_real(N,p,s) = polygon_contain.winding_number(N,p,s)
+
+END winding_number__real

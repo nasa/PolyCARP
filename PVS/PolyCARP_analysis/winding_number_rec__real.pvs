@@ -1,0 +1,32 @@
+winding_number_rec__real: THEORY BEGIN
+
+  IMPORTING winding_number_contrib__real,
+  	    PolyCARP@acceptable_polygon,
+	    PolyCARP@polygon_contain,
+	    quadrant__real
+
+  %
+  % The following version of polygon_contain.winding_number_rec is more
+  % amenable for the application of the proposed technique.
+  %
+
+  winding_number_rec_real(N:posnat,p:polygon_2D(N),s:Vect2,i:below(N))
+  : RECURSIVE int
+  = LET next_i:below(N) = IF i<N-1 THEN i+1 ELSE 0 ENDIF,
+       	contrib:int     = winding_number_contrib_real
+		           (p(i)`x,p(i)`y,p(next_i)`x,p(next_i)`y,s`x,s`y)
+    IN IF i=0 THEN contrib
+       ELSE winding_number_rec_real(N,p,s,i-1)+contrib
+       ENDIF
+  MEASURE i
+
+  %
+  % Equivalence w.r.t. PolyCARP original specification.
+  %
+
+  polycarp_eq: LEMMA
+    FORALL(N:posnat,p:polygon_2D(N),s:Vect2,i:below(N)):
+      winding_number_rec_real(N,p,s,i)
+      = polygon_contain.winding_number_rec(N,p,s,i)
+
+END winding_number_rec__real

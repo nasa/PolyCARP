@@ -1,0 +1,11 @@
+winding_number: THEORY BEGIN
+
+  IMPORTING winding_number_rec,
+  	    vectors_2D_fp_def,
+  	    acceptable_polygon,
+	    ints@tdiv
+
+  winding_number(N:posnat,p:polygon_2D_fp(N),s:Vect2_fp) : int
+  = tdiv(winding_number_rec(N,p,s,N-1),4)
+
+END winding_number

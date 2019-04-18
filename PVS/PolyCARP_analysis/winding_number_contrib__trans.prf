@@ -1,0 +1,168 @@
+(winding_number_contrib__trans
+ (winding_number_contrib_trans_TCC1 0
+  (winding_number_contrib_trans_TCC1-1 nil 3747988844
+   ("" (subtype-tcc) nil nil)
+   ((- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (>= const-decl "bool" reals nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (FtoR const-decl "real" float "float/")
+    (double_precision_format const-decl "Format" ieee754dp "float/")
+    (Fopp const-decl "float" float "float/")
+    (RND_Max const-decl "(Fcanonic?(b))" float "float/")
+    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
+     ieee754dp "float/")
+    (Fg const-decl
+     "{f3: (Fcanonic?(b)) | Closest?(b)(g(FtoR(f1), FtoR(f2)), f3)}"
+     binop_em_scheme "float/")
+    (closest_double? const-decl "bool" ieee754dp "float/")
+    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Fcanonic? const-decl "bool" float "float/")
+    (dp_closest? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float "float/")
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (float type-eq-decl nil float "float/")
+    (int nonempty-type-eq-decl nil integers nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (Format type-eq-decl nil float "float/")
+    (above nonempty-type-eq-decl nil integers nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (Fsub const-decl
+     "{f3: (Fcanonic?(b)) | Closest?(b)(FtoR(f1) - FtoR(f2), f3)}"
+     cr_sub "float/")
+    (Dsub const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
+     ieee754dp_sub "float/")
+    (Fmul const-decl
+     "{f3: (Fcanonic?(b)) | Closest?(b)(FtoR(f1) * FtoR(f2), f3)}"
+     std_mul "float/")
+    (Dmul const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) * FtoR(f2))(f)}"
+     ieee754dp_mul "float/")
+    (RtoD_max const-decl "unb_double" ieee754dp "float/")
+    (smallest_fp_ge const-decl "{X: unb_double |
+         x <= DtoR(X) AND
+          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
+     quadrant__trans nil)
+    (Fminus const-decl "float" float "float/")
+    (Fle? const-decl "bool" float "float/")
+    (<= const-decl "bool" float "float/")
+    (trans_fp_guard1 const-decl "bool" quadrant__trans nil)
+    (wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
+     nil)
+    (rat_times_rat_is_rat application-judgement "rat" rationals nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (rat_plus_rat_is_rat application-judgement "rat" rationals nil)
+    (rat_minus_rat_is_rat application-judgement "rat" rationals nil)
+    (minus_int_is_int application-judgement "int" integers nil)
+    (int_min application-judgement "{k: int | k <= i AND k <= j}"
+     real_defs nil)
+    (posint_exp application-judgement "posint" exponentiation nil)
+    (nnrat_exp application-judgement "nnrat" exponentiation nil)
+    (posrat_exp application-judgement "posrat" exponentiation nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (even_times_int_is_even application-judgement "even_int" integers
+     nil)
+    (mult_divides1 application-judgement "(divides(n))" divides nil)
+    (mult_divides2 application-judgement "(divides(m))" divides nil)
+    (real_minus_real_is_real application-judgement "real" reals nil))
+   nil))
+ (winding_number_contrib_trans_TCC2 0
+  (winding_number_contrib_trans_TCC2-1 nil 3747988880
+   ("" (subtype-tcc) nil nil)
+   ((- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (>= const-decl "bool" reals nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (FtoR const-decl "real" float "float/")
+    (double_precision_format const-decl "Format" ieee754dp "float/")
+    (Fopp const-decl "float" float "float/")
+    (RND_Max const-decl "(Fcanonic?(b))" float "float/")
+    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
+     ieee754dp "float/")
+    (Fg const-decl
+     "{f3: (Fcanonic?(b)) | Closest?(b)(g(FtoR(f1), FtoR(f2)), f3)}"
+     binop_em_scheme "float/")
+    (closest_double? const-decl "bool" ieee754dp "float/")
+    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Fcanonic? const-decl "bool" float "float/")
+    (dp_closest? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float "float/")
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (float type-eq-decl nil float "float/")
+    (int nonempty-type-eq-decl nil integers nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (Format type-eq-decl nil float "float/")
+    (above nonempty-type-eq-decl nil integers nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (Fsub const-decl
+     "{f3: (Fcanonic?(b)) | Closest?(b)(FtoR(f1) - FtoR(f2), f3)}"
+     cr_sub "float/")
+    (Dsub const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
+     ieee754dp_sub "float/")
+    (Fmul const-decl
+     "{f3: (Fcanonic?(b)) | Closest?(b)(FtoR(f1) * FtoR(f2), f3)}"
+     std_mul "float/")
+    (Dmul const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) * FtoR(f2))(f)}"
+     ieee754dp_mul "float/")
+    (RtoD_max const-decl "unb_double" ieee754dp "float/")
+    (smallest_fp_ge const-decl "{X: unb_double |
+         x <= DtoR(X) AND
+          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
+     quadrant__trans nil)
+    (Fminus const-decl "float" float "float/")
+    (Fle? const-decl "bool" float "float/")
+    (<= const-decl "bool" float "float/")
+    (trans_fp_guard1 const-decl "bool" quadrant__trans nil)
+    (wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
+     nil)
+    (rat_times_rat_is_rat application-judgement "rat" rationals nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (rat_plus_rat_is_rat application-judgement "rat" rationals nil)
+    (rat_minus_rat_is_rat application-judgement "rat" rationals nil)
+    (minus_int_is_int application-judgement "int" integers nil)
+    (int_min application-judgement "{k: int | k <= i AND k <= j}"
+     real_defs nil)
+    (posint_exp application-judgement "posint" exponentiation nil)
+    (nnrat_exp application-judgement "nnrat" exponentiation nil)
+    (posrat_exp application-judgement "posrat" exponentiation nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (even_times_int_is_even application-judgement "even_int" integers
+     nil)
+    (mult_divides1 application-judgement "(divides(n))" divides nil)
+    (mult_divides2 application-judgement "(divides(m))" divides nil)
+    (real_minus_real_is_real application-judgement "real" reals nil))
+   nil))
+ (wn_trans_path1_TCC1 0
+  (wn_trans_path1_TCC1-1 nil 3747988844 ("" (subtype-tcc) nil nil)
+   ((wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
+     nil))
+   nil))
+ (wn_trans_path1_TCC2 0
+  (wn_trans_path1_TCC2-1 nil 3747988880 ("" (subtype-tcc) nil nil)
+   ((wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
+     nil))
+   nil)))
+

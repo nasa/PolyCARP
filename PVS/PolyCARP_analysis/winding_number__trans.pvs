@@ -1,0 +1,15 @@
+winding_number__trans: THEORY BEGIN
+
+  IMPORTING ints@tdiv, winding_number_rec__trans
+
+  winding_number_trans
+   (N:posnat)
+   (e_x,e_y,e_det: [below(N)->nonneg_real])
+   (p:polygon_2D_fp(N),s:Vect2_fp)
+  : Maybe[int]
+  = LET wnrt: Maybe[int] = winding_number_rec_trans(N)(e_x,e_y,e_det)(p,s,N-1)
+    IN IF some?(wnrt)
+       THEN Some(tdiv(val(wnrt),4))
+       ELSE None ENDIF
+
+END winding_number__trans

@@ -1,0 +1,23 @@
+cmath: THEORY
+BEGIN
+
+ % Operations
+
+ abs_int(x:int) : int = abs(x)
+
+ % logical shift right (corresponding to the ACSL operator on integers: >>)
+ % represents i >> n
+ lsr(i: int, n: nat): int = floor(i / 2^n)
+
+ IMPORTING ints@div
+
+ cdiv(n,m: int): int
+ = IF m /= 0 THEN div(n,m) ELSE choose({x: int | TRUE}) ENDIF
+
+ abs_real(x:real) : real = abs(x)
+ 
+ pow(x:real,y:real) : real = x^y
+
+ truncate(x:real) : int = if x < 0 then floor(x) + 1 else floor(x) endif;
+
+END cmath

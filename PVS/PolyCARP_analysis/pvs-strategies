@@ -1,0 +1,69 @@
+(defstep name-this (manip-locator &optional (but nil))
+  (let ((expr (extra-get-expr manip-locator)))
+    (if (application? expr)
+	(let ((op-id (id (operator expr))))
+	  (if (and 
+	       (not (eq '^ op-id))
+	       (not (eq 'RtoD op-id))
+	       (not (eq 'RtoS op-id)))
+	      (let ((new-locators (loop for i from 1 to (length (arguments expr))
+					collect (append manip-locator (list i)))))
+		(then
+		 (name-these$ new-locators but)
+		 (if (or (mixfix-branch? expr)
+			 (some #'(lambda (id)  (eq id op-id)) but))
+		     (skip)
+		   (let ((expr (extra-get-expr manip-locator))
+			 (name (freshname "fresh")))
+		     (name-replace name expr)))))
+	    (skip)))
+      (skip)))
+  ""
+  "")
+  
+(defstep name-these (manip-locators &optional (but nil))
+  (if manip-locators
+      (let ((manip-locator (car manip-locators))
+	    (rest-locators (cdr manip-locators)))
+	(then
+	 (name-this$ manip-locator but)
+	 (name-these$ rest-locators but)))
+    (skip))
+  ""
+  "")
+
+(defmacro string-prefix? (prefix string)
+  `(eq (string< ,prefix ,string) (length ,prefix)))
+
+(defstep unname-this (manip-locator &optional (but nil))
+  (then
+   (let ((expr (extra-get-expr manip-locator)))
+     (if (application? expr)
+	 (let ((new-locators (loop for i from 1 to (length (arguments expr))
+				   collect (append manip-locator (list i)))))
+	   (then
+	    (unname-these$ new-locators but)))
+       (if (field-application? expr)
+	   (let ((loc (append manip-locator 1)))
+	     (unname-this$ loc but))
+	 (let((expr-name (format nil "~a" expr)))
+	   (if (and (name-expr? expr)
+		    (string-prefix? "fresh" expr-name))
+	       (then
+		(expand expr-name :assert? none)
+		(unname-this$ manip-locator but))
+	     (skip)))))))
+  ""
+  "")
+
+(defstep unname-these (manip-locators &optional (but nil))
+  (then
+   (if manip-locators
+       (let ((manip-locator (car manip-locators))
+	     (rest-locators (cdr manip-locators)))
+	 (then
+	  (unname-this$ manip-locator but)
+	  (unname-these$ rest-locators but)))
+     (skip)))
+  ""
+  "")

@@ -1,0 +1,80 @@
+quadrant: THEORY BEGIN
+
+  IMPORTING float@ieee754dp
+
+  X,Y: VAR unb_double
+
+  %
+  % The following predicates state each guard appearing in the
+  % quadrant function.
+  %
+
+  orig_fp_guard1(X,Y) : bool = (RtoD(0) <= X) AND (RtoD(0) <= Y)
+  orig_fp_guard2(X,Y) : bool = (X <= RtoD(0)) AND (RtoD(0) <= Y)
+  orig_fp_guard3(X,Y) : bool = (X <= RtoD(0))
+  
+  %
+  % The quadrant function is defined below.
+  %
+  
+  quadrant(X,Y): int =
+    IF    orig_fp_guard1(X,Y) THEN 1
+    ELSIF orig_fp_guard2(X,Y) THEN 2
+    ELSIF orig_fp_guard3(X,Y) THEN 3
+    ELSE 4
+    ENDIF
+
+  %
+  % The following predicates state each of the path conditions
+  % in the quadrant function.
+  %
+       
+  orig_fp_case1(X,Y) : MACRO bool = orig_fp_guard1(X,Y)
+
+  orig_fp_case2(X,Y) : MACRO bool = orig_fp_guard2(X,Y) AND
+  		       	     	    NOT orig_fp_guard1(X,Y)
+
+  orig_fp_case3(X,Y) : MACRO bool = orig_fp_guard3(X,Y) AND
+  		       	     	    NOT orig_fp_guard2(X,Y) AND
+  		       	     	    NOT orig_fp_guard1(X,Y)
+
+  orig_fp_case4(X,Y) : MACRO bool = NOT orig_fp_guard3(X,Y) AND
+  		       	     	    NOT orig_fp_guard2(X,Y) AND
+  		       	     	    NOT orig_fp_guard1(X,Y)
+
+  quadrant_control_flow_path_1: LEMMA
+    orig_fp_case1(X,Y) IMPLIES quadrant(X,Y) = 1
+  AUTO_REWRITE+ quadrant_control_flow_path_1
+
+  quadrant_control_flow_path_2: LEMMA
+    orig_fp_case2(X,Y) IMPLIES quadrant(X,Y) = 2
+  AUTO_REWRITE+ quadrant_control_flow_path_2
+
+  quadrant_control_flow_path_3: LEMMA
+    orig_fp_case3(X,Y) IMPLIES quadrant(X,Y) = 3
+  AUTO_REWRITE+ quadrant_control_flow_path_3
+
+  quadrant_control_flow_path_4: LEMMA
+    orig_fp_case4(X,Y) IMPLIES quadrant(X,Y) = 4
+  AUTO_REWRITE+ quadrant_control_flow_path_4
+
+  quadrant_control_flow: LEMMA
+       orig_fp_case1(X,Y)
+    OR orig_fp_case2(X,Y)
+    OR orig_fp_case3(X,Y)
+    OR orig_fp_case4(X,Y)
+    
+  %
+  % Simplification of the path conditions.
+  %
+
+  orig_fp_case2_simplification: LEMMA
+    orig_fp_case2(X,Y) = (X < RtoD(0) AND RtoD(0) <= Y)
+
+  orig_fp_case3_simplification: LEMMA
+    orig_fp_case3(X,Y) = (X <= RtoD(0) AND Y < RtoD(0))
+
+  orig_fp_case4_simplification: LEMMA
+    orig_fp_case4(X,Y) = (Y < RtoD(0) AND RtoD(0) < X)
+ 
+END quadrant

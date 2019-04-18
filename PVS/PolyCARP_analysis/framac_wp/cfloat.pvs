@@ -1,0 +1,59 @@
+cfloat: THEORY
+BEGIN
+
+  IMPORTING float@ieee754dp_add,
+  	    float@ieee754dp_mul,
+	    float@ieee754dp_sub,
+	    float@ieee754dp_div,
+	    float@ieee754dp_neg,
+	    float@ieee754sp_add,
+  	    float@ieee754sp_mul,
+	    float@ieee754sp_sub,
+	    float@ieee754sp_div,
+	    float@ieee754sp_neg
+	   
+
+  % inexact representation for numbers
+  ieee_float32: TYPE                          = unb_single
+  ieee_float64: TYPE                          = unb_double
+
+  % conversion function
+  of_float32: [ieee_float32->real]                  = StoR
+  of_float64: [ieee_float64->real]                  = DtoR
+  of_float64(x:real): real = x %! TODO this is here because of a bug in frama-c, that tries to cast the content of a position of real valued memory from float to real.
+  to_float32: [real->ieee_float32]                  = RtoS
+  to_float64: [real->ieee_float64]                  = RtoD
+  CONVERSION to_float64
+
+  add_float32: [ieee_float32,ieee_float32->ieee_float32]                = Sadd
+  add_float64: [ieee_float64,ieee_float64->ieee_float64]                = Dadd
+  mul_float32: [ieee_float32,ieee_float32->ieee_float32]                = Smul
+  mul_float64: [ieee_float64,ieee_float64->ieee_float64]                = Dmul
+  sub_float32: [ieee_float32,ieee_float32->ieee_float32]                = Ssub
+  sub_float64: [ieee_float64,ieee_float64->ieee_float64]                = Dsub
+  div_float32: [ieee_float32,{x:ieee_float32|FtoR(x)/=0}->ieee_float32] = Sdiv
+  div_float64: [ieee_float64,{x:ieee_float64|FtoR(x)/=0}->ieee_float64] = Ddiv
+
+  opp_float32: [ieee_float32->ieee_float32]                = Sneg
+  opp_float64: [ieee_float64->ieee_float64]                = Dneg
+
+  % cpr_exp: [x:F,{y:F|integer?(FtoR(y))AND(FtoR(x)/=0 OR FtoR(y)>=0)}->F]                                           % = Fexp
+
+  isfinite_float32(x:ieee_float64) : bool = true
+  isfinite_float64(x:ieee_float64) : bool = true
+  isfinite_float64(x:real): bool = true %! TODO this is here because of a bug in frama-c, that tries to cast the content of a position of real valued memory from float to real.
+
+  le_float32: [ieee_float32,ieee_float32->bool]                = Fle?
+  le_float64: [ieee_float64,ieee_float64->bool]                = Fle?
+  lt_float32: [ieee_float32,ieee_float32->bool]                = Flt?
+  lt_float64: [ieee_float64,ieee_float64->bool]                = Flt?
+
+
+%  CONVERSION RtoS
+%  CONVERSION StoR
+
+  frama_c_rounding_mode: TYPE = { C__NearestEven }
+
+  round_double(rm: frama_c_rounding_mode, x: real): ieee_float64 = RtoD(x)
+
+END cfloat

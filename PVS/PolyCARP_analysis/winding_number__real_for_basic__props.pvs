@@ -1,0 +1,41 @@
+winding_number__real_for_basic__props: THEORY
+BEGIN
+
+  x,y: VAR real
+
+  IMPORTING winding_number__real_for_basic
+  IMPORTING quadrant__real
+
+  quadrant_rrb_rfb_eq : LEMMA quadrant(x,y) = quadrant_real(x,y)
+
+  IMPORTING winding_number_contrib__real
+
+  contrib_rrb_rfb_eq
+  : LEMMA
+    FORALL(P_V1_x,P_V1_y,P_V2_x,P_V2_y,S_x,S_y: real)
+    : winding_number_contrib(P_V1_x,P_V1_y,P_V2_x,P_V2_y,S_x,S_y)
+      = winding_number_contrib_real(P_V1_x,P_V1_y,P_V2_x,P_V2_y,S_x,S_y)
+
+  IMPORTING winding_number__real_for
+
+  winding_number_4_rrb_rfb_eq
+  : LEMMA
+    FORALL (n:posnat)
+    	   ( px,py : [below(n) -> real]
+	   , p     : polygon_2D(n)
+	   | FORALL(j:below(n)): p(j) = (# x:=px(j), y:=py(j) #) )
+    	   ( sx,sy :real, s:Vect2 | s = (# x:=sx, y:=sy #) )
+    : winding_number(n,px,py,sx,sy) = winding_number_real_for(n,p,s)
+
+  IMPORTING winding_number_rec__real
+
+  winding_number_4_rrr_rfb_eq
+  : COROLLARY
+    FORALL (n:posnat)
+    	   ( px,py : [below(n) -> real]
+	   , p     : polygon_2D(n)
+	   | FORALL(j:below(n)): p(j) = (# x:=px(j), y:=py(j) #) )
+    	   ( sx,sy :real, s:Vect2 | s = (# x:=sx, y:=sy #) )
+    : winding_number(n,px,py,sx,sy) = winding_number_rec_real(n,p,s,n-1)
+
+END winding_number__real_for_basic__props

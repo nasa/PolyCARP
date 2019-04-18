@@ -1,0 +1,27 @@
+winding_number_rec__trans : THEORY BEGIN
+
+  IMPORTING PolyCARP_float@vectors_2D_fp_def,
+  	    PolyCARP_float@acceptable_polygon,
+  	    winding_number_contrib__trans
+
+  winding_number_rec_trans
+   (N:posnat)
+   (e_x,e_y,e_det: [below(N)->nonneg_real])
+   (p:polygon_2D_fp(N),s:Vect2_fp,i:below(N))
+  : RECURSIVE Maybe[int]
+  = LET next_i: below(N)    = IF i<N-1 THEN i+1 ELSE 0 ENDIF,
+      	contrib: Maybe[int] = winding_number_contrib_trans
+	                       (e_x(i),e_y(i),e_x(next_i),e_y(next_i),e_det(i))
+		               (p(i)`x,p(i)`y,p(next_i)`x,p(next_i)`y,s`x,s`y)
+    IN IF some?(contrib) THEN
+         IF i=0
+	 THEN contrib
+         ELSE LET wnr_rec_result: Maybe[int] = winding_number_rec_trans(N)(e_x,e_y,e_det)(p,s,i-1)
+	      IN IF some?(wnr_rec_result)
+	      	 THEN Some(wnr_rec_result+contrib)
+	         ELSE None ENDIF ENDIF
+       ELSE None ENDIF
+  MEASURE i
+
+
+END winding_number_rec__trans

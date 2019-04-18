@@ -1,0 +1,130 @@
+quadrant__trans: THEORY
+BEGIN
+
+  IMPORTING float@roundoff_error_props
+
+  e,e_X, e_Y: VAR nonneg_real
+  r_X, r_Y: VAR real
+  X, Y: VAR unb_double
+
+  % Floating-point version of e to be used as nonnegative lower bound
+  nonNegLowerBoundErr(e): MACRO nonneg_unbdp = smallest_fp_ge(e)
+
+  % Floating-point version of e to be used as nonpositive upper bound
+  nonPosUpperBoundErr(e): MACRO nonpos_unbdp = greatest_fp_le(-e)
+
+  % Transformation of the quadrant algorithm
+
+  trans_fp_guard1(X,Y,e_X,e_Y): bool
+  = nonNegLowerBoundErr(e_X) <= X AND nonNegLowerBoundErr(e_Y) <= Y
+  AUTO_REWRITE+ trans_fp_guard1
+
+  trans_fp_guard2(X,Y,e_X,e_Y): bool
+  = ( X <= nonPosUpperBoundErr(e_X) AND
+      nonNegLowerBoundErr(e_Y) <= Y AND
+      (X < nonPosUpperBoundErr(e_X) OR Y < nonPosUpperBoundErr(e_Y)) )
+  AUTO_REWRITE+ trans_fp_guard2
+
+  trans_fp_guard3(X,Y,e_X,e_Y): bool
+  = X <= nonPosUpperBoundErr(e_X) AND
+    (X < nonPosUpperBoundErr(e_X) OR Y < nonPosUpperBoundErr(e_Y)) AND
+    (nonNegLowerBoundErr(e_X) < X OR Y < nonPosUpperBoundErr(e_Y))
+  AUTO_REWRITE+ trans_fp_guard3
+
+  trans_fp_guard4(X,Y,e_X,e_Y): bool
+  = (X < nonPosUpperBoundErr(e_X) OR Y < nonPosUpperBoundErr(e_Y)) AND
+    (nonNegLowerBoundErr(e_X) < X OR Y < nonPosUpperBoundErr(e_Y)) AND
+    nonNegLowerBoundErr(e_X) < X
+  AUTO_REWRITE+ trans_fp_guard4
+
+  %
+  % The result of the transformation applied to the quadrant function
+  % is defined below.
+  %
+
+  IMPORTING structures@Maybe[int]
+  
+  mi: VAR Maybe[int]
+  i:  VAR int
+
+  CONVERSION Maybe[int].val
+
+  ;=(mi,i):bool = some?(mi) AND val(mi) = i
+  ;=(i,mi):bool = some?(mi) AND i = val(mi)
+
+  maybe_int_id_int_l: LEMMA Some(i) = i
+  AUTO_REWRITE+ maybe_int_id_int_l
+  maybe_int_id_int_r: LEMMA i = Some(i)
+  AUTO_REWRITE+ maybe_int_id_int_r
+  
+  quadrant_trans(e_X,e_Y)(X,Y): Maybe[int] =
+    IF    trans_fp_guard1(X,Y,e_X,e_Y)  THEN Some(1)
+    ELSIF trans_fp_guard2(X,Y,e_X,e_Y)  THEN Some(2) 
+    ELSIF trans_fp_guard3(X,Y,e_X,e_Y)  THEN Some(3) 
+    ELSIF trans_fp_guard4(X,Y,e_X,e_Y)  THEN Some(4) 
+    ELSE  None
+    ENDIF
+
+  %
+  % The following predicates state each of the path conditions
+  % in the transformed function.
+  %
+       
+  trans_fp_case1(X,Y,e_X,e_Y): MACRO bool
+  = trans_fp_guard1(X,Y,e_X,e_Y)
+
+  trans_fp_case2(X,Y,e_X,e_Y): MACRO bool
+  = trans_fp_guard2(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard1(X,Y,e_X,e_Y)
+
+  trans_fp_case3(X,Y,e_X,e_Y): MACRO bool
+  = trans_fp_guard3(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard2(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard1(X,Y,e_X,e_Y)
+
+  trans_fp_case4(X,Y,e_X,e_Y): MACRO bool
+  = trans_fp_guard4(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard3(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard2(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard1(X,Y,e_X,e_Y)
+
+  trans_fp_case_warning(X,Y,e_X,e_Y): MACRO bool
+  = NOT trans_fp_guard4(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard3(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard2(X,Y,e_X,e_Y) AND
+    NOT trans_fp_guard1(X,Y,e_X,e_Y)
+
+  quadrant_control_flow_path_warning: LEMMA
+    trans_fp_case_warning(X,Y,e_X,e_Y)
+    IMPLIES none?(quadrant_trans(e_X,e_Y)(X,Y))
+  AUTO_REWRITE+ quadrant_control_flow_path_warning
+
+  %
+  % Simplification of the path conditions.
+  %
+
+  trans_fp_guard2_simplification: LEMMA
+    trans_fp_guard2(X,Y,e_X,e_Y) = ( nonNegLowerBoundErr(e_Y) <= Y AND
+    				     X < nonPosUpperBoundErr(e_X) )
+
+  trans_fp_guard3_simplification: LEMMA
+    trans_fp_guard3(X,Y,e_X,e_Y) = ( X <= nonPosUpperBoundErr(e_X) AND
+    				     Y < nonPosUpperBoundErr(e_Y) )
+
+  trans_fp_guard4_simplification: LEMMA
+    trans_fp_guard4(X,Y,e_X,e_Y) = ( Y < nonPosUpperBoundErr(e_Y) AND
+    				     nonNegLowerBoundErr(e_X) < X )
+
+  trans_fp_case2_simplification: LEMMA
+    trans_fp_case2(X,Y,e_X,e_Y) = ( X < nonPosUpperBoundErr(e_X) AND
+    				     nonNegLowerBoundErr(e_Y) <= Y )
+
+  trans_fp_case3_simplification: LEMMA
+    trans_fp_case3(X,Y,e_X,e_Y) = ( X <= nonPosUpperBoundErr(e_X) AND
+    				     Y < nonPosUpperBoundErr(e_Y) )
+
+  trans_fp_case4_simplification: LEMMA
+    trans_fp_case4(X,Y,e_X,e_Y) = ( Y < nonPosUpperBoundErr(e_Y) AND
+    				     nonNegLowerBoundErr(e_X) < X )
+
+END quadrant__trans

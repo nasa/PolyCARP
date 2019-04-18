@@ -1,0 +1,21 @@
+% -------------------------------------------------- 
+% Axiomatic 'real_function_winding_number_contrib'   
+% -------------------------------------------------- 
+
+A_real_function_winding_number_contrib: THEORY
+BEGIN
+IMPORTING A_real_function_quadrant
+
+L_winding_number_contrib(P_V1_x_0 : real, P_V1_y_0 : real, P_V2_x_0 : real,
+    P_V2_y_0 : real, S_x_0 : real, S_y_0 : real) : int =
+    LET r = -S_x_0 IN LET r_1 = P_V1_x_0 - S_x_0 IN LET r_2 = -S_y_0 IN
+      LET r_3 = P_V1_y_0 - S_y_0 IN LET x = L_quadrant(r_1, r_3) IN
+      LET x_1 = L_quadrant(P_V2_x_0 - S_x_0, P_V2_y_0 - S_y_0) IN
+      IF (x = x_1) THEN 0
+      ELSE (IF (x_1 = (1 + (mod(x, 4)))) THEN 1
+            ELSE (IF (x = (1 + (mod(x_1, 4)))) THEN (-1)
+                  ELSE (IF ((r_3 * (P_V2_x_0 - P_V1_x_0))
+                              <= (r_1 * (P_V2_y_0 - P_V1_y_0))) THEN 2
+                        ELSE (-2) ENDIF) ENDIF) ENDIF) ENDIF
+END A_real_function_winding_number_contrib
+

@@ -1,0 +1,22 @@
+memory: THEORY BEGIN
+
+% stub memory model
+
+  % See frama-c/src/plugins/wp/MemTyped.ml for details.
+
+  addr: DATATYPE
+  BEGIN
+    mk_addr(base: int, offset: int): addr?
+  END addr
+
+  shift(p: addr, k: int): addr
+  = mk_addr(base(p), offset(p)+k)
+
+  region: [int->int]
+
+  linked(t:ARRAY[int->int]): bool = TRUE
+
+  valid_rw(allocation_table:ARRAY[int->int], a: addr, offset: int): bool
+  = TRUE
+
+END memory

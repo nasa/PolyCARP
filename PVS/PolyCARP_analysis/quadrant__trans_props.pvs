@@ -1,0 +1,251 @@
+quadrant__trans_props: THEORY BEGIN
+
+  IMPORTING float@roundoff_error_props
+
+  IMPORTING quadrant,
+  	    quadrant__real,
+  	    quadrant__trans
+
+  e,e_X, e_Y: VAR nonneg_real
+  r_X, r_Y: VAR real
+  X, Y: VAR unb_double
+
+  % The expressions that appears in the guard of the conditional statements
+  % are X and Y. The bounds for their round-off errors are Err_X and Err_Y, resp.
+
+  %
+  % Stable case: trans_fp_cond => (orig_fp_cond AND orig_r_cond)
+  %
+
+  %
+  % Result: 1
+  quadrant_stable_1: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    trans_fp_case1(X,Y,e_X,e_Y)
+    IMPLIES orig_r_case1(r_X,r_Y) AND orig_fp_case1(X,Y)
+
+  %
+  % Result: 2
+  quadrant_stable_2: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    trans_fp_case2(X,Y,e_X,e_Y)
+    IMPLIES orig_r_case2(r_X,r_Y) AND orig_fp_case2(X,Y)
+
+  %
+  % Result: 3
+  quadrant_stable_3: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    trans_fp_case3(X,Y,e_X,e_Y)
+    IMPLIES orig_r_case3(r_X,r_Y) AND orig_fp_case3(X,Y)
+
+  %
+  % Result: 4
+  quadrant_stable_4: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    trans_fp_case4(X,Y,e_X,e_Y)
+    IMPLIES orig_r_case4(r_X,r_Y) AND orig_fp_case4(X,Y)
+
+  %
+
+  quadrant_trans_no_warning_implies_stability_on_the_original: THEOREM
+    LET trans_result: Maybe[int] = quadrant_trans(e_X,e_Y)(X,Y) IN
+    abs(DtoR(X) - r_X)<=e_X AND
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    some?(trans_result)
+    IMPLIES trans_result = quadrant(X,Y) AND
+    	    trans_result = quadrant_real(r_X,r_Y)
+
+  %
+  %
+  % Unstable case: (orig_fp_cond AND orig_r_cond) => trans_fp_cond
+  %
+  %
+
+  % Support Lemmata
+
+  fp_ge_0_and_r_lt_0_implies_fp_lt_err: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND
+    r_X < 0
+    IMPLIES NOT nonNegLowerBoundErr(e_X) <= X
+
+  r_le_0_implies_fp_le_err: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND
+    r_X <= 0
+    IMPLIES NOT nonNegLowerBoundErr(e_X) < X
+
+  fp_lt_0_and_r_ge_0_implies_fp_ge_err: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND
+    0 <= r_X
+    IMPLIES NOT X < nonPosUpperBoundErr(e_X)
+
+  r_gt_0_implies_fp_not_le_err: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND
+    0 < r_X
+    IMPLIES NOT X <= nonPosUpperBoundErr(e_X)
+
+  %% HINT using this kind of corollaries is easier to discover what property to use
+  %%      to close the proofs.
+
+  fp_x_ge_0_and_r_x_lt_0_not_trans_fp_guard1: COROLLARY
+    abs(DtoR(X) - r_X)<=e_X AND
+    r_X < 0
+    IMPLIES NOT trans_fp_guard1(X,Y,e_X,e_Y)
+
+  fp_y_ge_0_and_r_y_lt_0_not_trans_fp_guard1: COROLLARY
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    r_Y < 0
+    IMPLIES NOT trans_fp_guard1(X,Y,e_X,e_Y)
+
+  fp_y_ge_0_and_r_y_lt_0_not_trans_fp_guard2: COROLLARY
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    r_Y < 0
+    IMPLIES NOT trans_fp_guard2(X,Y,e_X,e_Y)
+
+  fp_y_ge_0_and_r_y_lt_0_not_trans_fp_guard3: COROLLARY
+  % Corollary from var_lt_0_trans_implies_var_not_le_0_orig
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    RtoD(0) <= Y AND r_Y < 0
+    IMPLIES NOT trans_fp_guard3(X,Y,e_X,e_Y)
+
+  fp_y_ge_0_and_r_y_lt_0_not_trans_fp_guard4: COROLLARY
+  % Corollary of var_lt_0_trans_implies_var_not_le_0_orig
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    RtoD(0) <= Y AND r_Y < 0
+    IMPLIES NOT trans_fp_guard4(X,Y,e_X,e_Y)
+
+  fp_x_lt_0_not_trans_fp_guard1: COROLLARY
+  % Corollary of var_ge_0_trans_fp
+    abs(DtoR(X) - r_X)<=e_X AND
+    X < RtoD(0)
+    IMPLIES NOT trans_fp_guard1(X,Y,e_X,e_Y)
+
+  fp_y_lt_0_not_trans_fp_guard1: COROLLARY
+  % Corollary of var_ge_0_trans_fp
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    Y < RtoD(0)
+    IMPLIES NOT trans_fp_guard1(X,Y,e_X,e_Y)
+
+  fp_y_lt_0_not_trans_fp_guard2: COROLLARY
+  % Corollary of var_ge_0_trans_fp
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    Y < RtoD(0)
+    IMPLIES NOT trans_fp_guard2(X,Y,e_X,e_Y)
+    
+  r_x_ge_0_not_trans_fp_guard2: COROLLARY
+  % Corollary of fp_lt_0_and_r_ge_0_implies_fp_ge_err
+    abs(DtoR(X) - r_X)<=e_X AND
+    0 <= r_X
+    IMPLIES NOT trans_fp_guard2(X,Y,e_X,e_Y)
+
+  r_y_ge_0_not_trans_fp_guard3: COROLLARY
+  % Corollary of fp_lt_0_and_r_ge_0_implies_fp_ge_err
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    0 <= r_Y
+    IMPLIES NOT trans_fp_guard3(X,Y,e_X,e_Y)
+
+  r_x_gt_0_not_trans_fp_guard3: COROLLARY
+  % Corollary of r_gt_0_implies_fp_not_le_err
+    abs(DtoR(X) - r_X)<=e_X AND
+    0 < r_X
+    IMPLIES NOT trans_fp_guard3(X,Y,e_X,e_Y)
+
+  fp_x_gt_0_not_trans_fp_guard3: COROLLARY
+  % Corollary of var_le_0_trans_implies_var_not_lt_0_orig
+    abs(DtoR(X) - r_X)<=e_X AND
+    RtoD(0) < X
+    IMPLIES NOT trans_fp_guard3(X,Y,e_X,e_Y)
+
+  r_y_ge_0_not_trans_fp_guard4: COROLLARY
+  % Corollary of fp_lt_0_and_r_ge_0_implies_fp_ge_err
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    0 <= r_Y
+    IMPLIES NOT trans_fp_guard4(X,Y,e_X,e_Y)
+
+  r_x_le_0_not_trans_fp_guard4: COROLLARY
+  % Corollary of r_le_0_implies_fp_le_err
+    abs(DtoR(X) - r_X)<=e_X AND
+    r_X <= 0
+    IMPLIES NOT trans_fp_guard4(X,Y,e_X,e_Y)
+
+  fp_x_lt_0_not_trans_fp_guard4: COROLLARY
+  % Corollary of var_fp_gt_err__var_fp_gt_0
+    abs(DtoR(X) - r_X)<=e_X AND
+    X <= RtoD(0)
+    IMPLIES NOT trans_fp_guard4(X,Y,e_X,e_Y)
+
+  %
+  % Main lemmas for unstable cases
+  %
+
+  quadrant_unstable_fp1_r2: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case1(X,Y) AND orig_r_case2(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp1_r3: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case1(X,Y) AND orig_r_case3(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp1_r4: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case1(X,Y) AND orig_r_case4(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp2_r1: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case2(X,Y) AND orig_r_case1(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp2_r3: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case2(X,Y) AND orig_r_case3(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp2_r4: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case2(X,Y) AND orig_r_case4(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp3_r1: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case3(X,Y) AND orig_r_case1(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp3_r2: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case3(X,Y) AND orig_r_case2(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp3_r4: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case3(X,Y) AND orig_r_case4(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp4_r1: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case4(X,Y) AND orig_r_case1(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp4_r2: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case4(X,Y) AND orig_r_case2(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  quadrant_unstable_fp4_r3: LEMMA
+    abs(DtoR(X) - r_X)<=e_X AND abs(DtoR(Y) - r_Y)<=e_Y AND
+    orig_fp_case4(X,Y) AND orig_r_case3(r_X,r_Y)
+    IMPLIES trans_fp_case_warning(X,Y,e_X,e_Y)
+
+  %
+  %
+  %
+
+  unstability_on_the_original_implies_warning_on_the_transformed: THEOREM
+    abs(DtoR(X) - r_X)<=e_X AND
+    abs(DtoR(Y) - r_Y)<=e_Y AND
+    quadrant(X,Y) /= quadrant_real(r_X,r_Y)
+    IMPLIES none?(quadrant_trans(e_X,e_Y)(X,Y))
+
+
+END quadrant__trans_props

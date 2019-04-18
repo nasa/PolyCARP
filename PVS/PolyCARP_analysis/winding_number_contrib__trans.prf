@@ -51,7 +51,7 @@
     (smallest_fp_ge const-decl "{X: unb_double |
          x <= DtoR(X) AND
           (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (Fminus const-decl "float" float "float/")
     (Fle? const-decl "bool" float "float/")
     (<= const-decl "bool" float "float/")
@@ -129,7 +129,7 @@
     (smallest_fp_ge const-decl "{X: unb_double |
          x <= DtoR(X) AND
           (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (Fminus const-decl "float" float "float/")
     (Fle? const-decl "bool" float "float/")
     (<= const-decl "bool" float "float/")

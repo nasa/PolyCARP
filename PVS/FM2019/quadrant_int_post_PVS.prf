@@ -728,15 +728,17 @@
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (FleCorrect formula-decl nil float "float/")
-    (fp_gt_re_r_gt_0 formula-decl nil roundoff_error_props nil)
-    (fp_lt_neg_re_r_lt_0 formula-decl nil roundoff_error_props nil)
-    (fp_le_neg_re_r_le_0 formula-decl nil roundoff_error_props nil)
+    (fp_gt_re_r_gt_0 formula-decl nil roundoff_error_props "float/")
+    (fp_lt_neg_re_r_lt_0 formula-decl nil roundoff_error_props
+     "float/")
+    (fp_le_neg_re_r_le_0 formula-decl nil roundoff_error_props
+     "float/")
     (L_quadrant const-decl "int" A_real_function_quadrant nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (fp_ge_re_r_ge_0 formula-decl nil roundoff_error_props nil)
+    (fp_ge_re_r_ge_0 formula-decl nil roundoff_error_props "float/")
     (opp_float64 const-decl "[ieee_float64 -> ieee_float64]" cfloat
      "./framac_wp/")
     (abs_real const-decl "real" cmath "./framac_wp/")
@@ -1129,70 +1131,28 @@
         nil))
       nil))
     nil)
-   ((TRUE const-decl "bool" booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (restrict const-decl "R" restrict nil)
-    (trans_fp_guard1 const-decl "bool" quadrant__trans nil)
-    (trans_fp_guard3 const-decl "bool" quadrant__trans nil)
-    (lt_float64 const-decl "[ieee_float64, ieee_float64 -> bool]"
+   ((lt_float64 const-decl "[ieee_float64, ieee_float64 -> bool]"
      cfloat "./framac_wp/")
-    (greatest_fp_le_dtor formula-decl nil quadrant__trans nil)
     (Fbounded? const-decl "bool" float "float/")
     (closest_double? const-decl "bool" ieee754dp "float/")
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
     (DtoR const-decl "real" ieee754dp "float/")
     (Dneg const-decl
      "{f: unb_double | closest_double?(-(DtoR(f1)))(f)}" ieee754dp_neg
      "float/")
     (Dneg_correct formula-decl nil ieee754dp_neg "float/")
-    (smallest_fp_ge_dtor formula-decl nil quadrant__trans nil)
-    (trans_fp_guard4 const-decl "bool" quadrant__trans nil)
-    (trans_fp_guard2 const-decl "bool" quadrant__trans nil)
     (opp_float64 const-decl "[ieee_float64 -> ieee_float64]" cfloat
      "./framac_wp/")
     (le_float64 const-decl "[ieee_float64, ieee_float64 -> bool]"
      cfloat "./framac_wp/")
-    (quadrant_trans_no_warning_implies_stability_on_the_original
-     formula-decl nil quadrant__trans_props nil)
     (abs_real const-decl "real" cmath "./framac_wp/")
-    (frama_c_bool_false const-decl "int" interface nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (orig_r_guard1 const-decl "bool" quadrant__real nil)
-    (orig_r_guard2 const-decl "bool" quadrant__real nil)
-    (orig_r_guard3 const-decl "bool" quadrant__real nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (L_quadrant__quadrant_real__eq formula-decl nil interface nil)
-    (real_ge_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (rational nonempty-type-from-decl nil rationals nil)
-    (integer_pred const-decl "[rational -> boolean]" integers nil)
-    (Maybe type-decl nil Maybe "structures/")
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (unb_double type-eq-decl nil ieee754dp "float/")
-    (quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
     (of_float64 const-decl "[ieee_float64 -> real]" cfloat
      "./framac_wp/")
     (S8_maybeInt type-eq-decl nil S8_maybeInt nil)
-    (S8_maybeInt__to__maybe_int const-decl "Maybe[int]" interface nil)
-    (number nonempty-type-decl nil numbers nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
     (ieee_float64 type-eq-decl nil cfloat "./framac_wp/")
     (double_precision_format const-decl "Format" ieee754dp "float/")
     (Fcanonic? const-decl "bool" float "float/")
     (Format type-eq-decl nil float "float/")
-    (above nonempty-type-eq-decl nil integers nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (float type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil))
+    (float type-eq-decl nil float "float/"))
    nil)))
 

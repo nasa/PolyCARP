@@ -1,6 +1,7 @@
-(winding_number
- (winding_number_TCC1 0
-  (winding_number_TCC1-1 nil 3748092033 ("" (subtype-tcc) nil nil)
+(winding_number__trans
+ (winding_number_trans_TCC1 0
+  (winding_number_trans_TCC1-1 nil 3764610941
+   ("" (subtype-tcc) nil nil)
    ((even_times_int_is_even application-judgement "even_int" integers
      nil)
     (mult_divides1 application-judgement "(divides(n))" divides nil)

@@ -1,13 +1,7 @@
 top : THEORY
 BEGIN
-  IMPORTING quadrant,
-            acceptable_polygon,
-            vectors_2D_fp_def,
-            winding_number_contrib,
-            winding_number_rec,
-            winding_number,
-
-  	    quadrant__real,
+  IMPORTING % Winding number algorithm in real arithmetic
+	    quadrant__real,
 	    winding_number_contrib__real,
 	    winding_number_rec__real,
 	    winding_number__real,

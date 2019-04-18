@@ -11,22 +11,25 @@ top: THEORY BEGIN
 % can be applied to the function "winding_number" from the PolyCARP development
 % (see http://github.com/nasa/polycarp).
 %
-  IMPORTING quadrant,
-  	    quadrant__real,
+  IMPORTING acceptable_polygon,
+   	    vectors_2D_fp_def,
+
+	    quadrant,
+            quadrant__real,
 	    quadrant__trans,
 	    quadrant__trans_props,
-	    
-	    winding_number_contrib,
+
+            winding_number_contrib,
 	    winding_number_contrib__real,
 	    winding_number_contrib__trans,
 	    winding_number_contrib__trans_props,
 
-	    winding_number_rec,
+            winding_number_rec,
 	    winding_number_rec__real,
 	    winding_number_rec__trans,
  	    winding_number_rec__trans_props,
 
-	    winding_number,
+            winding_number,
 	    winding_number__real,
 	    winding_number__real_for,
 	    winding_number__trans,

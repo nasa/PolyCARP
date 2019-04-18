@@ -9,7 +9,10 @@
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil) nil nil nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil))
    shostak))
  (quadrant_real_control_flow_path_1 0
   (quadrant_real_control_flow_path_1-1 nil 3746969732
@@ -22,7 +25,11 @@
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil) nil nil nil nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (quadrant_real const-decl "int" quadrant__real nil))
    shostak))
  (quadrant_real_control_flow_path_2 0
   (quadrant_real_control_flow_path_2-1 nil 3746969737
@@ -35,7 +42,11 @@
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil) nil nil nil nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (quadrant_real const-decl "int" quadrant__real nil))
    shostak))
  (quadrant_real_control_flow_path_3 0
   (quadrant_real_control_flow_path_3-1 nil 3746969740
@@ -48,7 +59,11 @@
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil) nil nil nil nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (quadrant_real const-decl "int" quadrant__real nil))
    shostak))
  (quadrant_real_control_flow_path_4 0
   (quadrant_real_control_flow_path_4-1 nil 3746969744
@@ -61,7 +76,11 @@
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil) nil nil nil nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (quadrant_real const-decl "int" quadrant__real nil))
    shostak))
  (orig_r_case2_simplification 0
   (orig_r_case2_simplification-1 nil 3746962148 ("" (grind) nil nil)
@@ -78,7 +97,8 @@
      real_props nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    nil nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil))
    shostak))
  (orig_r_case3_simplification 0
   (orig_r_case3_simplification-1 nil 3746962148 ("" (grind) nil nil)
@@ -95,7 +115,9 @@
      real_props nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    nil nil nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil))
    shostak))
  (orig_r_case4_simplification 0
   (orig_r_case4_simplification-1 nil 3746962148 ("" (grind) nil nil)
@@ -112,7 +134,9 @@
      real_props nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    nil nil nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil))
    shostak))
  (polycarp_eq 0
   (polycarp_eq-1 nil 3747860895 ("" (grind) nil nil)

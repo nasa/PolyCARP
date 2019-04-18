@@ -1,611 +1,9 @@
 (quadrant__trans
- (smallest_fp_ge_TCC1 0
-  (smallest_fp_ge_TCC1-1 nil 3746956425
-   (""
-    (then (skeep) (expand "RtoD_max") (use "RND_Max_isMax")
-     (expand "isMax?") (expand "DtoR") (flatten) (assert) (skeep)
-     (inst? -2) (assert))
-    nil nil)
-   ((RND_Max_isMax formula-decl nil float "float/")
-    (real nonempty-type-from-decl nil reals nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number nonempty-type-decl nil numbers nil)
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Format type-eq-decl nil float "float/")
-    (above nonempty-type-eq-decl nil integers nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (rndmaxismax_j application-judgement
-     "CanonicRoundingFun[2](b, isMax?(b))" ieee754dp "float/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (Fbounded? const-decl "bool" float "float/")
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (float type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (isMax? const-decl "bool" float "float/")
-    (RtoD_max const-decl "unb_double" ieee754dp "float/"))
-   nil))
- (smallest_fp_ge_is_ge 0
-  (smallest_fp_ge_is_ge-1 nil 3746956458
-   ("" (then (skeep) (typepred "smallest_fp_ge(r_X)") (propax)) nil
-    nil)
-   ((boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (number nonempty-type-decl nil numbers nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (<= const-decl "bool" reals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil))
-   shostak))
- (smallest_fp_ge_nonneg_is_nonneg 0
-  (smallest_fp_ge_nonneg_is_nonneg-1 nil 3746959119
-   ("" (skeep)
-    (("" (use "smallest_fp_ge_is_ge")
-      (("" (case "0 <= x")
-        (("1" (use "RtoD_inc")
-          (("1" (assert)
-            (("1" (hide -2)
-              (("1" (lemma "RtoD_inc")
-                (("1" (inst? -1 :where -3)
-                  (("1" (assert)
-                    (("1" (rewrite "RtoD_DtoR")
-                      (("1" (apply-transitivity 1 -1 -2) nil nil))
-                      nil))
-                    nil))
-                  nil))
-                nil))
-              nil))
-            nil))
-          nil)
-         ("2" (assert) nil nil))
-        nil))
-      nil))
-    nil)
-   ((smallest_fp_ge_is_ge formula-decl nil quadrant__trans nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (>= const-decl "bool" reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number nonempty-type-decl nil numbers nil)
-    (RtoD_inc formula-decl nil ieee754dp "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (DtoR const-decl "real" ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (RtoD_DtoR formula-decl nil ieee754dp "float/")
-    (transitive? const-decl "bool" relations nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
-    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (Fle_transitive formula-decl nil float "float/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
-     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
-    (<= const-decl "bool" reals nil))
-   nil))
- (smallest_fp_ge_nonneg_j 0
-  (smallest_fp_ge_nonneg_j-2 nil 3747683474
-   ("" (skeep)
-    (("" (use "smallest_fp_ge_is_ge")
-      (("" (case "0 <= x")
-        (("1" (use "RtoD_inc")
-          (("1" (assert)
-            (("1" (hide -2)
-              (("1" (lemma "RtoD_inc")
-                (("1" (inst? -1 :where -3)
-                  (("1" (assert)
-                    (("1" (rewrite "RtoD_DtoR")
-                      (("1" (apply-transitivity 1 -1 -2) nil nil))
-                      nil))
-                    nil))
-                  nil))
-                nil))
-              nil))
-            nil))
-          nil)
-         ("2" (assert) nil nil))
-        nil))
-      nil))
-    nil)
-   ((smallest_fp_ge_is_ge formula-decl nil quadrant__trans nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (>= const-decl "bool" reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number nonempty-type-decl nil numbers nil)
-    (RtoD_inc formula-decl nil ieee754dp "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (DtoR const-decl "real" ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (RtoD_DtoR formula-decl nil ieee754dp "float/")
-    (transitive? const-decl "bool" relations nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
-    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (Fle_transitive formula-decl nil float "float/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
-     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
-    (<= const-decl "bool" reals nil))
-   nil)
-  (smallest_fp_ge_nonneg_j-1 nil 3746956425
-   (""
-    (then (skeep) (use "smallest_fp_ge_is_ge")
-     (spread (case "0 <= x")
-      ((then (rewrite "RtoD_inc") (rewrite "RtoD_inc")
-        (rewrite "RtoD_DtoR") (apply-transitivity 1 -1 -2))
-       (assert))))
-    nil nil)
-   ((<= const-decl "bool" reals nil)
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (DtoR const-decl "real" ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (transitive? const-decl "bool" relations nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
-    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (Fle_transitive formula-decl nil float "float/")
-    (RtoD_DtoR formula-decl nil ieee754dp "float/")
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
-     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
-    (RtoD_inc formula-decl nil ieee754dp "float/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil))
-   nil))
- (smallest_fp_ge_dtor 0
-  (smallest_fp_ge_dtor-1 nil 3759148473
-   ("" (skeep)
-    (("" (typepred "smallest_fp_ge(DtoR(X))")
-      (("" (inst -3 "X")
-        (("" (assert)
-          (("" (case "DtoR(X) = DtoR(smallest_fp_ge(DtoR(X)))")
-            (("1" (hide -3 -4)
-              (("1"
-                (case "RtoD(DtoR(X)) = RtoD(DtoR(smallest_fp_ge(DtoR(X))))")
-                (("1" (rewrite "RtoD_DtoR")
-                  (("1" (rewrite "RtoD_DtoR") nil nil)) nil)
-                 ("2" (assert) nil nil))
-                nil))
-              nil)
-             ("2" (assert) nil nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (<= const-decl "bool" reals nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (real nonempty-type-from-decl nil reals nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number nonempty-type-decl nil numbers nil)
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (float type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (above nonempty-type-eq-decl nil integers nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
-     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
-    (RtoD_DtoR formula-decl nil ieee754dp "float/")
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
-    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (= const-decl "[T, T -> boolean]" equalities nil))
-   shostak))
- (greatest_fp_le_TCC1 0
-  (greatest_fp_le_TCC1-1 nil 3746956425
-   (""
-    (then (skeep) (expand "RtoD_min") (use "RND_Min_isMin")
-     (expand "isMin?") (expand "DtoR") (flatten) (assert) (skeep)
-     (inst? -2) (assert))
-    nil nil)
-   ((RND_Min_isMin formula-decl nil float "float/")
-    (real nonempty-type-from-decl nil reals nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number nonempty-type-decl nil numbers nil)
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Format type-eq-decl nil float "float/")
-    (above nonempty-type-eq-decl nil integers nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (rndminismin_j application-judgement
-     "CanonicRoundingFun[2](b, isMin?(b))" ieee754dp "float/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (Fbounded? const-decl "bool" float "float/")
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (float type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (isMin? const-decl "bool" float "float/")
-    (RtoD_min const-decl "unb_double" ieee754dp "float/"))
-   nil))
- (greatest_fp_le_is_le 0
-  (greatest_fp_le_is_le-1 nil 3746956458
-   ("" (then (skeep) (typepred "greatest_fp_le(r_X)") (propax)) nil
-    nil)
-   ((boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (number nonempty-type-decl nil numbers nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (<= const-decl "bool" reals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil))
-   shostak))
- (greatest_fp_le_nonpos_is_nonpos 0
-  (greatest_fp_le_nonpos_is_nonpos-1 nil 3746959102
-   ("" (skeep)
-    (("" (use "greatest_fp_le_is_le")
-      (("" (case "x <= 0")
-        (("1" (lemma "RtoD_inc")
-          (("1" (inst? -1 :where -2)
-            (("1" (assert)
-              (("1" (lemma "RtoD_inc")
-                (("1" (inst? -1 :where -4)
-                  (("1" (assert)
-                    (("1" (assert)
-                      (("1" (rewrite "RtoD_DtoR")
-                        (("1" (assert)
-                          (("1" (apply-transitivity 1 -1 -2) nil nil))
-                          nil))
-                        nil))
-                      nil))
-                    nil))
-                  nil))
-                nil))
-              nil))
-            nil))
-          nil)
-         ("2" (assert) nil nil))
-        nil))
-      nil))
-    nil)
-   ((greatest_fp_le_is_le formula-decl nil quadrant__trans nil)
-    (nonpos_real nonempty-type-eq-decl nil real_types nil)
-    (<= const-decl "bool" reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number nonempty-type-decl nil numbers nil)
-    (RtoD_inc formula-decl nil ieee754dp "float/")
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
-     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (DtoR const-decl "real" ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (transitive? const-decl "bool" relations nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
-    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (Fle_transitive formula-decl nil float "float/")
-    (RtoD_DtoR formula-decl nil ieee754dp "float/"))
-   nil))
- (greatest_fp_le_nonneg_j 0
-  (greatest_fp_le_nonneg_j-1 nil 3746956425
-   ("" (use "greatest_fp_le_nonpos_is_nonpos") nil nil)
-   ((greatest_fp_le_nonpos_is_nonpos formula-decl nil quadrant__trans
-     nil))
-   nil))
- (greatest_fp_le_dtor 0
-  (greatest_fp_le_dtor-1 nil 3759151978
-   ("" (skeep)
-    (("" (typepred "greatest_fp_le(DtoR(X))")
-      (("" (inst -3 "X")
-        (("" (assert)
-          (("" (case "DtoR(X) = DtoR(greatest_fp_le(DtoR(X)))")
-            (("1" (hide -3 -4)
-              (("1"
-                (case "RtoD(DtoR(X)) = RtoD(DtoR(greatest_fp_le(DtoR(X))))")
-                (("1" (rewrite "RtoD_DtoR")
-                  (("1" (rewrite "RtoD_DtoR") nil nil)) nil)
-                 ("2" (assert) nil nil))
-                nil))
-              nil)
-             ("2" (assert) nil nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((= const-decl "[T, T -> boolean]" equalities nil)
-    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
-    (Fbounded? const-decl "bool" float "float/")
-    (RtoD_DtoR formula-decl nil ieee754dp "float/")
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
-     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (number nonempty-type-decl nil numbers nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (<= const-decl "bool" reals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil))
-   nil))
- (lt_greatest_gt_smallest_contradiction 0
-  (lt_greatest_gt_smallest_contradiction-1 nil 3746956458
-   (""
-    (then (skeep) (rewrite "DtoR_strictly_increasing")
-     (rewrite "DtoR_strictly_increasing") (use "greatest_fp_le_is_le")
-     (use "smallest_fp_ge_is_ge") (assert))
-    nil nil)
-   ((smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
-    (smallest_fp_ge_is_ge formula-decl nil quadrant__trans nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (greatest_fp_le_is_le formula-decl nil quadrant__trans nil)
-    (real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (>= const-decl "bool" reals nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (<= const-decl "bool" reals nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number nonempty-type-decl nil numbers nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (Format type-eq-decl nil float "float/")
-    (above nonempty-type-eq-decl nil integers nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (float type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (DtoR_strictly_increasing formula-decl nil ieee754dp "float/")
-    (minus_real_is_real application-judgement "real" reals nil))
-   shostak))
- (lt_greatest_ge_smallest_contradiction 0
-  (lt_greatest_ge_smallest_contradiction-1 nil 3746956458
-   (""
-    (then (skeep) (rewrite "DtoR_strictly_increasing")
-     (rewrite "DtoR_inc") (use "greatest_fp_le_is_le")
-     (use "smallest_fp_ge_is_ge") (assert))
-    nil nil)
-   ((smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (DtoR_inc formula-decl nil ieee754dp "float/")
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (smallest_fp_ge_is_ge formula-decl nil quadrant__trans nil)
-    (greatest_fp_le_is_le formula-decl nil quadrant__trans nil)
-    (real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (>= const-decl "bool" reals nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (<= const-decl "bool" reals nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number nonempty-type-decl nil numbers nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (Format type-eq-decl nil float "float/")
-    (above nonempty-type-eq-decl nil integers nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (float type-eq-decl nil float "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (DtoR_strictly_increasing formula-decl nil ieee754dp "float/")
-    (minus_real_is_real application-judgement "real" reals nil))
-   shostak))
  (nonPosUpperBoundErr_TCC1 0
   (nonPosUpperBoundErr_TCC1-1 nil 3746956425
    ("" (then (skeep) (use "greatest_fp_le_nonneg_j")) nil nil)
-   ((greatest_fp_le_nonneg_j judgement-tcc nil quadrant__trans nil)
+   ((greatest_fp_le_nonneg_j judgement-tcc nil roundoff_error_props
+     "float/")
     (minus_real_is_real application-judgement "real" reals nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
@@ -625,11 +23,11 @@
     (nonneg_real nonempty-type-eq-decl nil real_types nil))
    nil))
  (maybe_int_id_int_l 0
-  (maybe_int_id_int_l-1 nil 3747993184 ("" (grind) nil nil) nil
-   shostak))
+  (maybe_int_id_int_l-1 nil 3747993184 ("" (grind) nil nil)
+   ((= const-decl "bool" quadrant__trans nil)) shostak))
  (maybe_int_id_int_r 0
-  (maybe_int_id_int_r-1 nil 3747993188 ("" (grind) nil nil) nil
-   shostak))
+  (maybe_int_id_int_r-1 nil 3747993188 ("" (grind) nil nil)
+   ((= const-decl "bool" quadrant__trans nil)) shostak))
  (quadrant_control_flow_path_warning 0
   (quadrant_control_flow_path_warning-1 nil 3746969807
    ("" (skeep)
@@ -660,7 +58,7 @@
    ((quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
     (trans_fp_guard4 const-decl "bool" quadrant__trans nil)
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (minus_real_is_real application-judgement "real" reals nil))
    shostak))
  (trans_fp_guard2_simplification 0
@@ -682,6 +80,8 @@
       nil))
     nil)
    ((trans_fp_guard2 const-decl "bool" quadrant__trans nil)
+    (< const-decl "bool" float "float/")
+    (<= const-decl "bool" float "float/")
     (NOT const-decl "[bool -> bool]" booleans nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
@@ -715,14 +115,23 @@
     (mult_divides1 application-judgement "(divides(n))" divides nil)
     (mult_divides2 application-judgement "(divides(m))" divides nil)
     (real_minus_real_is_real application-judgement "real" reals nil)
-    (lt_greatest_ge_smallest_contradiction formula-decl nil
+    (fresh_3 skolem-const-decl "{X: unb_double |
+         e_Y <= DtoR(X) AND
+          (FORALL Y: e_Y <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
      quadrant__trans nil)
+    (fresh_5 skolem-const-decl "{X: unb_double |
+         DtoR(X) <= fresh_4 AND
+          (FORALL Y: DtoR(Y) <= fresh_4 IMPLIES DtoR(Y) <= DtoR(X))}"
+     quadrant__trans nil)
+    (fresh_4 skolem-const-decl "real" quadrant__trans nil)
+    (lt_greatest_ge_smallest_contradiction formula-decl nil
+     roundoff_error_props "float/")
     (smallest_fp_ge const-decl "{X: unb_double |
          x <= DtoR(X) AND
           (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (int nonempty-type-eq-decl nil integers nil)
     (float type-eq-decl nil float "float/")
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
@@ -738,7 +147,7 @@
     (greatest_fp_le const-decl "{X: unb_double |
          DtoR(X) <= x AND
           (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (minus_real_is_real application-judgement "real" reals nil)
     (number nonempty-type-decl nil numbers nil)
     (boolean nonempty-type-decl nil booleans nil)
@@ -774,6 +183,7 @@
       nil))
     nil)
    ((trans_fp_guard3 const-decl "bool" quadrant__trans nil)
+    (< const-decl "bool" float "float/")
     (NOT const-decl "[bool -> bool]" booleans nil)
     (posint_exp application-judgement "posint" exponentiation nil)
     (nnrat_exp application-judgement "nnrat" exponentiation nil)
@@ -786,14 +196,23 @@
     (mult_divides1 application-judgement "(divides(n))" divides nil)
     (mult_divides2 application-judgement "(divides(m))" divides nil)
     (real_minus_real_is_real application-judgement "real" reals nil)
-    (lt_greatest_gt_smallest_contradiction formula-decl nil
+    (fresh_7 skolem-const-decl "{X: unb_double |
+         DtoR(X) <= fresh_6 AND
+          (FORALL Y: DtoR(Y) <= fresh_6 IMPLIES DtoR(Y) <= DtoR(X))}"
      quadrant__trans nil)
+    (fresh_6 skolem-const-decl "real" quadrant__trans nil)
+    (fresh_10 skolem-const-decl "{X: unb_double |
+         e_X <= DtoR(X) AND
+          (FORALL Y: e_X <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
+     quadrant__trans nil)
+    (lt_greatest_gt_smallest_contradiction formula-decl nil
+     roundoff_error_props "float/")
     (smallest_fp_ge const-decl "{X: unb_double |
          x <= DtoR(X) AND
           (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (int nonempty-type-eq-decl nil integers nil)
     (float type-eq-decl nil float "float/")
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
@@ -809,7 +228,7 @@
     (greatest_fp_le const-decl "{X: unb_double |
          DtoR(X) <= x AND
           (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (minus_real_is_real application-judgement "real" reals nil)
     (number nonempty-type-decl nil numbers nil)
     (boolean nonempty-type-decl nil booleans nil)
@@ -844,6 +263,7 @@
       nil))
     nil)
    ((trans_fp_guard4 const-decl "bool" quadrant__trans nil)
+    (< const-decl "bool" float "float/")
     (NOT const-decl "[bool -> bool]" booleans nil)
     (posint_exp application-judgement "posint" exponentiation nil)
     (nnrat_exp application-judgement "nnrat" exponentiation nil)
@@ -856,14 +276,23 @@
     (mult_divides1 application-judgement "(divides(n))" divides nil)
     (mult_divides2 application-judgement "(divides(m))" divides nil)
     (real_minus_real_is_real application-judgement "real" reals nil)
-    (lt_greatest_gt_smallest_contradiction formula-decl nil
+    (fresh_12 skolem-const-decl "{X: unb_double |
+         DtoR(X) <= fresh_11 AND
+          (FORALL Y: DtoR(Y) <= fresh_11 IMPLIES DtoR(Y) <= DtoR(X))}"
      quadrant__trans nil)
+    (fresh_11 skolem-const-decl "real" quadrant__trans nil)
+    (fresh_15 skolem-const-decl "{X: unb_double |
+         e_X <= DtoR(X) AND
+          (FORALL Y: e_X <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
+     quadrant__trans nil)
+    (lt_greatest_gt_smallest_contradiction formula-decl nil
+     roundoff_error_props "float/")
     (smallest_fp_ge const-decl "{X: unb_double |
          x <= DtoR(X) AND
           (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (int nonempty-type-eq-decl nil integers nil)
     (float type-eq-decl nil float "float/")
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
@@ -879,7 +308,7 @@
     (greatest_fp_le const-decl "{X: unb_double |
          DtoR(X) <= x AND
           (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (minus_real_is_real application-judgement "real" reals nil)
     (number nonempty-type-decl nil numbers nil)
     (boolean nonempty-type-decl nil booleans nil)
@@ -960,11 +389,11 @@
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (minus_real_is_real application-judgement "real" reals nil)
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (smallest_fp_ge const-decl "{X: unb_double |
          x <= DtoR(X) AND
           (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (DtoR const-decl "real" ieee754dp "float/")
     (<= const-decl "bool" reals nil)
@@ -975,10 +404,21 @@
     (greatest_fp_le const-decl "{X: unb_double |
          DtoR(X) <= x AND
           (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (DtoR_inc formula-decl nil ieee754dp "float/")
-    (greatest_fp_le_is_le formula-decl nil quadrant__trans nil)
-    (smallest_fp_ge_is_ge formula-decl nil quadrant__trans nil)
+    (greatest_fp_le_is_le formula-decl nil roundoff_error_props
+     "float/")
+    (smallest_fp_ge_is_ge formula-decl nil roundoff_error_props
+     "float/")
+    (fresh_19 skolem-const-decl "{X: unb_double |
+         e_X <= DtoR(X) AND
+          (FORALL Y: e_X <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
+     quadrant__trans nil)
+    (fresh_17 skolem-const-decl "real" quadrant__trans nil)
+    (fresh_18 skolem-const-decl "{X: unb_double |
+         DtoR(X) <= fresh_17 AND
+          (FORALL Y: DtoR(Y) <= fresh_17 IMPLIES DtoR(Y) <= DtoR(X))}"
+     quadrant__trans nil)
     (TRUE const-decl "bool" booleans nil)
     (Flt_Fle_Flt formula-decl nil float "float/")
     (real_minus_real_is_real application-judgement "real" reals nil)
@@ -995,6 +435,7 @@
     (posint_times_posint_is_posint application-judgement "posint"
      integers nil)
     (expt def-decl "real" exponentiation nil)
+    (<= const-decl "bool" float "float/")
     (Fle? const-decl "bool" float "float/")
     (Flt? const-decl "bool" float "float/")
     (Fminus const-decl "float" float "float/")
@@ -1015,6 +456,8 @@
      real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
+    (< const-decl "bool" float "float/")
+    (> const-decl "bool" float "float/")
     (trans_fp_guard1 const-decl "bool" quadrant__trans nil))
    nil))
  (trans_fp_case3_simplification 0
@@ -1085,6 +528,8 @@
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (minus_real_is_real application-judgement "real" reals nil)
     (trans_fp_guard1 const-decl "bool" quadrant__trans nil)
+    (> const-decl "bool" float "float/")
+    (< const-decl "bool" float "float/")
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
@@ -1105,6 +550,7 @@
     (Fminus const-decl "float" float "float/")
     (Flt? const-decl "bool" float "float/")
     (Fle? const-decl "bool" float "float/")
+    (<= const-decl "bool" float "float/")
     (expt def-decl "real" exponentiation nil)
     (posint_times_posint_is_posint application-judgement "posint"
      integers nil)
@@ -1121,17 +567,28 @@
     (real_minus_real_is_real application-judgement "real" reals nil)
     (Flt_Fle_Flt formula-decl nil float "float/")
     (TRUE const-decl "bool" booleans nil)
-    (smallest_fp_ge_is_ge formula-decl nil quadrant__trans nil)
-    (greatest_fp_le_is_le formula-decl nil quadrant__trans nil)
+    (fresh_23 skolem-const-decl "{X: unb_double |
+         DtoR(X) <= fresh_22 AND
+          (FORALL Y: DtoR(Y) <= fresh_22 IMPLIES DtoR(Y) <= DtoR(X))}"
+     quadrant__trans nil)
+    (fresh_22 skolem-const-decl "real" quadrant__trans nil)
+    (fresh_24 skolem-const-decl "{X: unb_double |
+         e_Y <= DtoR(X) AND
+          (FORALL Y: e_Y <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
+     quadrant__trans nil)
+    (smallest_fp_ge_is_ge formula-decl nil roundoff_error_props
+     "float/")
+    (greatest_fp_le_is_le formula-decl nil roundoff_error_props
+     "float/")
     (DtoR_inc formula-decl nil ieee754dp "float/")
     (smallest_fp_ge const-decl "{X: unb_double |
          x <= DtoR(X) AND
           (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (greatest_fp_le const-decl "{X: unb_double |
          DtoR(X) <= x AND
           (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (DtoR const-decl "real" ieee754dp "float/")
     (<= const-decl "bool" reals nil)
@@ -1140,7 +597,7 @@
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (trans_fp_guard2_simplification formula-decl nil quadrant__trans
      nil))
    nil))
@@ -1258,7 +715,7 @@
     (>= const-decl "bool" reals nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (minus_real_is_real application-judgement "real" reals nil)
     (trans_fp_guard2_simplification formula-decl nil quadrant__trans
      nil)
@@ -1272,14 +729,23 @@
     (greatest_fp_le const-decl "{X: unb_double |
          DtoR(X) <= x AND
           (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
+     roundoff_error_props "float/")
     (smallest_fp_ge const-decl "{X: unb_double |
          x <= DtoR(X) AND
           (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
+     roundoff_error_props "float/")
+    (fresh_28 skolem-const-decl "{X: unb_double |
+         e_X <= DtoR(X) AND
+          (FORALL Y: e_X <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
      quadrant__trans nil)
     (Fle_definition formula-decl nil float "float/")
     (Flt_transitive formula-decl nil float "float/")
     (transitive? const-decl "bool" relations nil)
+    (fresh_29 skolem-const-decl "real" quadrant__trans nil)
+    (fresh_30 skolem-const-decl "{X: unb_double |
+         DtoR(X) <= fresh_29 AND
+          (FORALL Y: DtoR(Y) <= fresh_29 IMPLIES DtoR(Y) <= DtoR(X))}"
+     quadrant__trans nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
@@ -1300,6 +766,7 @@
     (Fminus const-decl "float" float "float/")
     (Flt? const-decl "bool" float "float/")
     (Fle? const-decl "bool" float "float/")
+    (<= const-decl "bool" float "float/")
     (expt def-decl "real" exponentiation nil)
     (posint_times_posint_is_posint application-judgement "posint"
      integers nil)
@@ -1316,9 +783,21 @@
     (real_minus_real_is_real application-judgement "real" reals nil)
     (Flt_Fle_Flt formula-decl nil float "float/")
     (TRUE const-decl "bool" booleans nil)
-    (smallest_fp_ge_is_ge formula-decl nil quadrant__trans nil)
-    (greatest_fp_le_is_le formula-decl nil quadrant__trans nil)
+    (fresh_27 skolem-const-decl "{X: unb_double |
+         DtoR(X) <= fresh_26 AND
+          (FORALL Y: DtoR(Y) <= fresh_26 IMPLIES DtoR(Y) <= DtoR(X))}"
+     quadrant__trans nil)
+    (fresh_26 skolem-const-decl "real" quadrant__trans nil)
+    (fresh_31 skolem-const-decl "{X: unb_double |
+         e_Y <= DtoR(X) AND
+          (FORALL Y: e_Y <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
+     quadrant__trans nil)
+    (smallest_fp_ge_is_ge formula-decl nil roundoff_error_props
+     "float/")
+    (greatest_fp_le_is_le formula-decl nil roundoff_error_props
+     "float/")
     (DtoR_inc formula-decl nil ieee754dp "float/")
+    (< const-decl "bool" float "float/")
     (trans_fp_guard1 const-decl "bool" quadrant__trans nil)
     (trans_fp_guard3_simplification formula-decl nil quadrant__trans
      nil))

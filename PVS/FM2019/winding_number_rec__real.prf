@@ -31,12 +31,20 @@
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (int_minus_int_is_int application-judgement "int" integers nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
     (real_minus_real_is_real application-judgement "real" reals nil))
    nil))
  (winding_number_rec_real_TCC2 0
   (winding_number_rec_real_TCC2-1 nil 3747304721
    ("" (subtype-tcc) nil nil)
-   ((real_minus_real_is_real application-judgement "real" reals nil))
+   ((orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
+    (real_minus_real_is_real application-judgement "real" reals nil))
    nil))
  (winding_number_rec_real_TCC3 0
   (winding_number_rec_real_TCC3-1 nil 3747304721
@@ -319,9 +327,9 @@
     (det const-decl "real" det_2D "vectors/")
     (wn_r_guard3 const-decl "bool" winding_number_contrib__real nil)
     (- const-decl "Vector" vectors_2D "vectors/")
-    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
     (polycarp_eq formula-decl nil quadrant__real nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (int_minus_int_is_int application-judgement "int" integers nil)

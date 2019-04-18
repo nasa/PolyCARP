@@ -51,12 +51,24 @@
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil))
+     "(strict_total_order?[real])" real_props nil)
+    (even_times_int_is_even application-judgement "even_int" integers
+     nil)
+    (mult_divides1 application-judgement "(divides(n))" divides nil)
+    (mult_divides2 application-judgement "(divides(m))" divides nil))
    nil))
  (winding_number_rec_TCC4 0
   (winding_number_rec_TCC4-1 nil 3749981715 ("" (subtype-tcc) nil nil)
-   nil nil))
+   ((even_times_int_is_even application-judgement "even_int" integers
+     nil)
+    (mult_divides1 application-judgement "(divides(n))" divides nil)
+    (mult_divides2 application-judgement "(divides(m))" divides nil))
+   nil))
  (winding_number_TCC1 0
-  (winding_number_TCC1-1 nil 3749981715 ("" (subtype-tcc) nil nil) nil
+  (winding_number_TCC1-1 nil 3749981715 ("" (subtype-tcc) nil nil)
+   ((even_times_int_is_even application-judgement "even_int" integers
+     nil)
+    (mult_divides1 application-judgement "(divides(n))" divides nil)
+    (mult_divides2 application-judgement "(divides(m))" divides nil))
    nil)))
 

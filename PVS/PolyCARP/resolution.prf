@@ -4517,14 +4517,6 @@
                (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
                (modifiable_to_size const-decl "bool" resolution nil)
-               (/= const-decl "boolean" notequal nil)
-               (nzint nonempty-type-eq-decl nil integers nil)
-               (OR const-decl "[bool, bool -> bool]" booleans nil)
-               (= const-decl "[T, T -> boolean]" equalities nil)
-               (numfield nonempty-type-eq-decl nil number_fields nil)
-               (- const-decl "[numfield -> numfield]" number_fields
-                  nil)
-               (Sign type-eq-decl nil sign "reals/")
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (real_gt_is_strict_total_order name-judgement

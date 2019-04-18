@@ -1,0 +1,64 @@
+winding_number_contrib__real: THEORY BEGIN
+
+  IMPORTING quadrant__real
+
+  P_V1_x,P_V1_y,P_V2_x,P_V2_y,r_S_x,r_S_y: VAR real
+  r_DET: VAR real
+  K,P: VAR int
+
+  %
+  % The following predicates state each guard appearing in the
+  % real-valued version of the function.
+  %
+
+  wn_r_guard1(K,P): bool = K = P           
+  wn_r_guard2(K,P): bool = P - 1 = mod.mod(K,4)
+  wn_r_guard3(K,P): bool = K - 1 = mod.mod(P,4)
+  wn_r_guard4(r_DET)  : bool = r_DET <= 0
+
+  %
+  % The winding_number_contrib_real function is defined below.
+  %
+  
+  winding_number_contrib_real(P_V1_x,P_V1_y,P_V2_x,P_V2_y,r_S_x,r_S_y): int
+  = LET r_THIS_x     : real = (P_V1_x - r_S_x),
+    	r_THIS_y     : real = (P_V1_y - r_S_y),
+	r_NEXT_x     : real = (P_V2_x - r_S_x),
+	r_NEXT_y     : real = (P_V2_y - r_S_y),
+	r_DISTANCE_x : real = (r_NEXT_x - r_THIS_x),
+	r_DISTANCE_y : real = (r_NEXT_y - r_THIS_y),
+	r_DET        : real = ((r_DISTANCE_x * r_THIS_y) - (r_DISTANCE_y * r_THIS_x)),
+	K          : int = quadrant_real(r_THIS_x, r_THIS_y),
+	P          : int = quadrant_real(r_NEXT_x, r_NEXT_y)
+    IN IF    wn_r_guard1(K,P) THEN  0
+       ELSIF wn_r_guard2(K,P) THEN  1
+       ELSIF wn_r_guard3(K,P) THEN -1
+       ELSIF wn_r_guard4(r_DET)   THEN  2
+       ELSE  	       		       -2
+       ENDIF
+
+  %
+  % The following predicates state each of the path conditions
+  % in the winding_number_contrib function.
+  %
+       
+  wn_r_path1(K,P) : bool       = wn_r_guard1(K,P)
+				   
+  wn_r_path2(K,P) : bool       = wn_r_guard2(K,P) AND
+  		      		 NOT wn_r_guard1(K,P)
+				   
+  wn_r_path3(K,P) : bool       = wn_r_guard3(K,P) AND
+  		      		 NOT wn_r_guard2(K,P) AND
+  		      		 NOT wn_r_guard1(K,P)
+
+  wn_r_path4(K,P,r_DET) : bool = wn_r_guard4(r_DET) AND
+  		      		 NOT wn_r_guard3(K,P) AND
+  		      		 NOT wn_r_guard2(K,P) AND
+  		      		 NOT wn_r_guard1(K,P)
+
+  wn_r_path5(K,P,r_DET) : bool = NOT wn_r_guard4(r_DET) AND
+  		      		 NOT wn_r_guard3(K,P) AND
+  		      		 NOT wn_r_guard2(K,P) AND
+  		      		 NOT wn_r_guard1(K,P)
+
+END winding_number_contrib__real

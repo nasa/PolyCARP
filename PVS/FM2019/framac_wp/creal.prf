@@ -1,0 +1,9 @@
+(creal
+ (rdiv_TCC1 0
+  (rdiv_TCC1-1 nil 3735998866 ("" (subtype-tcc) nil nil)
+   ((/= const-decl "boolean" notequal nil)
+    (member const-decl "bool" sets nil)
+    (empty? const-decl "bool" sets nil)
+    (nonempty? const-decl "bool" sets nil))
+   nil)))
+

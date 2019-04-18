@@ -1,0 +1,7 @@
+creal: THEORY
+BEGIN
+
+  rdiv(x,y: real): real
+  = IF y /= 0 THEN x/y ELSE choose({x:real | TRUE}) ENDIF
+
+END creal

@@ -1,0 +1,15 @@
+% -------------------------------------------------- 
+% Memory Compound Updates                            
+% -------------------------------------------------- 
+
+Compound: THEORY
+BEGIN
+IMPORTING framac_wp@memory
+
+shift_sint8(p : addr, k : int) : addr = shift(p, k)
+
+shift_sint32(p : addr, k : int) : addr = shift(p, k)
+
+shift_float64(p : addr, k : int) : addr = shift(p, k)
+END Compound
+

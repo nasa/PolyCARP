@@ -1,0 +1,79 @@
+%
+% This is a hand-made ad-hoc theory which intended purpose is to serve
+% as an intermedary between the definitions automatically generated
+% by Frama-C and the polycarp-analysis formalization.
+%
+interface: THEORY
+BEGIN
+
+  IMPORTING S8_maybeInt
+
+  frama_c_bool_true: int = 1
+  frama_c_bool_false: int = 0
+
+  % EqS8_maybeInt_equal
+  % : LEMMA
+  %   FORALL (S : S8_maybeInt, S_1 : S8_maybeInt)
+  %   : EqS8_maybeInt(S,S_1) IFF (S=S_1)
+
+  IMPORTING structures@Maybe
+
+  S8_maybeInt__to__maybe_int(s: S8_maybeInt) : Maybe[int]
+  = IF s`F8_maybeInt_isValid = frama_c_bool_false
+    THEN None
+    ELSE Some(s`F8_maybeInt_value)
+    ENDIF
+
+  IMPORTING quadrant__real
+  IMPORTING A_real_function_quadrant
+
+  L_quadrant__quadrant_real__eq
+  : LEMMA
+    FORALL(r_X, r_Y: real)
+    : L_quadrant(r_X, r_Y) = quadrant_real(r_X, r_Y)
+
+  IMPORTING winding_number_contrib__real,
+	    A_real_function_winding_number_contrib
+
+  L_winding_number_contrib__winding_number_contrib_real__eq
+  : LEMMA
+    FORALL(P_V1_x,P_V1_y,P_V2_x,P_V2_y,r_S_x,r_S_y: real)
+    : L_winding_number_contrib(P_V1_x,P_V1_y,P_V2_x,P_V2_y,r_S_x,r_S_y) = winding_number_contrib_real(P_V1_x,P_V1_y,P_V2_x,P_V2_y,r_S_x,r_S_y)
+
+  IMPORTING winding_number_rec__real,
+  	    A_real_function_for_winding_number1
+
+  L_for_winding_number1__winding_number_rec_real__eq
+  : LEMMA
+    FORALL(t: ARRAY[addr->real], a_1,a: addr, n: int, sx,sy: real, s:Vect2, i:below(n), p: polygon_2D(n))
+    : ( FORALL(j: below(n))
+        : LET pjx = t(shift_float64(a_1, j)),
+              pjy = t(shift_float64(a, j))
+          in p(j) = (# x := pjx, y := pjy #) ) AnD
+      s = (# x := sx, y := sy #)
+      iMPLiES L_for_winding_number1(t, i, n, a_1, a, sx, sy) = winding_number_rec_real(n,p,s,i)
+
+  IMPORTING winding_number__real_for_basic__props
+
+  L_for_winding_number1__winding_number__eq
+  : COROLLARY
+    FORALL(t: ARRAY[addr->real], ax,ay: addr, n: int, sx,sy: real, i:below(n), px,py: [below(n)->real])
+    : ( FORALL(j: below(n))
+        : LET pjx = t(shift_float64(ax, j)),
+              pjy = t(shift_float64(ay, j))
+          IN pjx = px(j) AND pjy=py(j) )
+      iMPLiES L_for_winding_number1(t, n-1, n, ax, ay, sx, sy) = winding_number(n,px,py,sx,sy)
+
+  IMPORTING A_real_function_winding_number
+
+  L_winding_number__winding_number__eq
+  : THEOREM
+    FORALL(t: ARRAY[addr->real], ax,ay: addr, n: int, sx,sy: real, i:below(n), px,py: [below(n)->real])
+    : ( FORALL(j: below(n))
+        : LET pjx = t(shift_float64(ax, j)),
+              pjy = t(shift_float64(ay, j))
+          IN pjx = px(j) AND pjy=py(j) )
+      iMPLiES L_winding_number(t,n,ax,ay,sx,sy) = winding_number(n,px,py,sx,sy)
+
+
+END interface

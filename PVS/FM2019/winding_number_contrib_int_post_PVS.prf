@@ -1,0 +1,1272 @@
+(winding_number_contrib_int_post
+ (goal 0
+  (goal-2
+   "This proof does not depend on polycarp_analysis (the PVS transformed functions)"
+   3764520187
+   ("" (skeep*)
+    (("" (skoletin*)
+      (("" (flatten)
+        ((""
+          (for 21
+           (let ((fnum '-11)
+                 (cfnum fnum)
+                 (dummy (setq fnum (- fnum 1))))
+             (hide fnum)))
+          (("" (name-replace "r_p_v1_x" "r_5")
+            (("" (name-replace "r_p_v1_y" "r_4")
+              (("" (name-replace "r_p_v2_x" "r_3")
+                (("" (name-replace "r_p_v2_y" "r_2")
+                  (("" (name-replace "r_s_x" "r_1")
+                    (("" (name-replace "r_s_y" "r")
+                      (("" (name-replace "this_y" "r_12")
+                        (("" (name-replace "this_x" "r_15")
+                          (("" (name-replace "e_this_y" "r_6")
+                            (("" (name-replace "e_this_x" "r_7")
+                              ((""
+                                (name-replace "next_y" "r_17")
+                                ((""
+                                  (name-replace "next_x" "r_18")
+                                  ((""
+                                    (name-replace "e_next_y" "r_8")
+                                    ((""
+                                      (name-replace "e_next_x" "r_9")
+                                      ((""
+                                        (name-replace "p_v1_x" "i_5")
+                                        ((""
+                                          (name-replace "p_v1_y" "i_4")
+                                          ((""
+                                            (name-replace
+                                             "p_v2_x"
+                                             "i_3")
+                                            ((""
+                                              (name-replace
+                                               "p_v2_y"
+                                               "i_2")
+                                              ((""
+                                                (name-replace
+                                                 "s_x"
+                                                 "i_1")
+                                                ((""
+                                                  (name-replace
+                                                   "s_y"
+                                                   "i")
+                                                  ((""
+                                                    (name-replace
+                                                     "e_det"
+                                                     "r_10")
+                                                    ((""
+                                                      (expand
+                                                       "sub_float64")
+                                                      ((""
+                                                        (expand
+                                                         "mul_float64")
+                                                        ((""
+                                                          (expand
+                                                           "of_float64")
+                                                          ((""
+                                                            (assert)
+                                                            ((""
+                                                              (expand
+                                                               "round_double")
+                                                              ((""
+                                                                (expand
+                                                                 "abs_real")
+                                                                ((""
+                                                                  (replace
+                                                                   -14
+                                                                   :hide?
+                                                                   t)
+                                                                  ((""
+                                                                    (replace
+                                                                     -14
+                                                                     :hide?
+                                                                     t)
+                                                                    ((""
+                                                                      (replace
+                                                                       -14
+                                                                       :hide?
+                                                                       t)
+                                                                      ((""
+                                                                        (replace
+                                                                         -14
+                                                                         :hide?
+                                                                         t)
+                                                                        ((""
+                                                                          (replace
+                                                                           -14
+                                                                           :hide?
+                                                                           t)
+                                                                          ((""
+                                                                            (replace
+                                                                             -14
+                                                                             :hide?
+                                                                             t)
+                                                                            ((""
+                                                                              (replace
+                                                                               -14
+                                                                               :hide?
+                                                                               t)
+                                                                              ((""
+                                                                                (replace
+                                                                                 -14
+                                                                                 :hide?
+                                                                                 t)
+                                                                                ((""
+                                                                                  (replace
+                                                                                   -14
+                                                                                   :hide?
+                                                                                   t)
+                                                                                  ((""
+                                                                                    (replace
+                                                                                     -14
+                                                                                     :hide?
+                                                                                     t)
+                                                                                    ((""
+                                                                                      (expand
+                                                                                       "le_float64")
+                                                                                      ((""
+                                                                                        (expand
+                                                                                         "restrict")
+                                                                                        ((""
+                                                                                          (expand
+                                                                                           "lt_float64")
+                                                                                          ((""
+                                                                                            (expand
+                                                                                             "restrict")
+                                                                                            ((""
+                                                                                              (expand
+                                                                                               "opp_float64")
+                                                                                              ((""
+                                                                                                (expand
+                                                                                                 "L_winding_number_contrib")
+                                                                                                ((""
+                                                                                                  (inst
+                                                                                                   -11
+                                                                                                   "r_p_v2_x - r_s_x"
+                                                                                                   "r_p_v2_y - r_s_y")
+                                                                                                  ((""
+                                                                                                    (inst
+                                                                                                     -12
+                                                                                                     "r_p_v1_x - r_s_x"
+                                                                                                     "r_p_v1_y - r_s_y")
+                                                                                                    ((""
+                                                                                                      (rewrite
+                                                                                                       "Dsub_correctly_rounded"
+                                                                                                       -11)
+                                                                                                      ((""
+                                                                                                        (rewrite
+                                                                                                         "Dsub_correctly_rounded"
+                                                                                                         -11)
+                                                                                                        ((""
+                                                                                                          (rewrite
+                                                                                                           "Dsub_correctly_rounded"
+                                                                                                           -12)
+                                                                                                          ((""
+                                                                                                            (rewrite
+                                                                                                             "Dsub_correctly_rounded"
+                                                                                                             -12)
+                                                                                                            ((""
+                                                                                                              (assert)
+                                                                                                              ((""
+                                                                                                                (replace
+                                                                                                                 -11
+                                                                                                                 :hide?
+                                                                                                                 t)
+                                                                                                                ((""
+                                                                                                                  (replace
+                                                                                                                   -11
+                                                                                                                   :hide?
+                                                                                                                   t)
+                                                                                                                  ((""
+                                                                                                                    (split
+                                                                                                                     -11)
+                                                                                                                    (("1"
+                                                                                                                      (flatten)
+                                                                                                                      (("1"
+                                                                                                                        (assert)
+                                                                                                                        nil
+                                                                                                                        nil))
+                                                                                                                      nil)
+                                                                                                                     ("2"
+                                                                                                                      (flatten)
+                                                                                                                      (("2"
+                                                                                                                        (assert)
+                                                                                                                        (("2"
+                                                                                                                          (split
+                                                                                                                           -1)
+                                                                                                                          (("1"
+                                                                                                                            (flatten)
+                                                                                                                            (("1"
+                                                                                                                              (assert)
+                                                                                                                              nil
+                                                                                                                              nil))
+                                                                                                                            nil)
+                                                                                                                           ("2"
+                                                                                                                            (flatten)
+                                                                                                                            (("2"
+                                                                                                                              (assert)
+                                                                                                                              (("2"
+                                                                                                                                (split
+                                                                                                                                 -1)
+                                                                                                                                (("1"
+                                                                                                                                  (flatten)
+                                                                                                                                  (("1"
+                                                                                                                                    (assert)
+                                                                                                                                    nil
+                                                                                                                                    nil))
+                                                                                                                                  nil)
+                                                                                                                                 ("2"
+                                                                                                                                  (flatten)
+                                                                                                                                  (("2"
+                                                                                                                                    (assert)
+                                                                                                                                    (("2"
+                                                                                                                                      (split
+                                                                                                                                       -1)
+                                                                                                                                      (("1"
+                                                                                                                                        (flatten)
+                                                                                                                                        (("1"
+                                                                                                                                          (case
+                                                                                                                                           "(r_p_v1_x * r_s_y - r_p_v2_x * r_s_y +
+             (r_p_v1_y * r_p_v2_x - r_p_v1_x * r_p_v1_y)
+             -
+             (r_p_v1_x * r_p_v2_y - r_p_v1_x * r_p_v1_y +
+              (r_p_v1_y * r_s_x - r_p_v2_y * r_s_x))) <= 0")
+                                                                                                                                          (("1"
+                                                                                                                                            (assert)
+                                                                                                                                            nil
+                                                                                                                                            nil)
+                                                                                                                                           ("2"
+                                                                                                                                            (lemma
+                                                                                                                                             "fp_le_neg_re_r_le_0")
+                                                                                                                                            (("2"
+                                                                                                                                              (hide
+                                                                                                                                               8)
+                                                                                                                                              (("2"
+                                                                                                                                                (inst
+                                                                                                                                                 -1
+                                                                                                                                                 "i_10"
+                                                                                                                                                 "Dsub(Dmul(Dsub(RtoD(DtoR(p_v2_x) - DtoR(s_x)),
+                          RtoD(DtoR(p_v1_x) - DtoR(s_x))),
+                     RtoD(DtoR(p_v1_y) - DtoR(s_y))),
+                Dmul(Dsub(RtoD(DtoR(p_v2_y) - DtoR(s_y)),
+                          RtoD(DtoR(p_v1_y) - DtoR(s_y))),
+                     RtoD(DtoR(p_v1_x) - DtoR(s_x))))"
+                                                                                                                                                 "(r_p_v1_x * r_s_y - r_p_v2_x * r_s_y +
+        (r_p_v1_y * r_p_v2_x - r_p_v1_x * r_p_v1_y)
+        -
+        (r_p_v1_x * r_p_v2_y - r_p_v1_x * r_p_v1_y +
+          (r_p_v1_y * r_s_x - r_p_v2_y * r_s_x)))")
+                                                                                                                                                (("2"
+                                                                                                                                                  (split
+                                                                                                                                                   -1)
+                                                                                                                                                  (("1"
+                                                                                                                                                    (propax)
+                                                                                                                                                    nil
+                                                                                                                                                    nil)
+                                                                                                                                                   ("2"
+                                                                                                                                                    (rewrite
+                                                                                                                                                     "Dsub_correctly_rounded"
+                                                                                                                                                     1)
+                                                                                                                                                    (("2"
+                                                                                                                                                      (rewrite
+                                                                                                                                                       "Dsub_correctly_rounded"
+                                                                                                                                                       1)
+                                                                                                                                                      (("2"
+                                                                                                                                                        (rewrite
+                                                                                                                                                         "Dsub_correctly_rounded"
+                                                                                                                                                         1)
+                                                                                                                                                        (("2"
+                                                                                                                                                          (rewrite
+                                                                                                                                                           "Dmul_correctly_rounded"
+                                                                                                                                                           1)
+                                                                                                                                                          (("2"
+                                                                                                                                                            (rewrite
+                                                                                                                                                             "Dmul_correctly_rounded"
+                                                                                                                                                             1)
+                                                                                                                                                            (("2"
+                                                                                                                                                              (assert)
+                                                                                                                                                              nil
+                                                                                                                                                              nil))
+                                                                                                                                                            nil))
+                                                                                                                                                          nil))
+                                                                                                                                                        nil))
+                                                                                                                                                      nil))
+                                                                                                                                                    nil)
+                                                                                                                                                   ("3"
+                                                                                                                                                    (expand
+                                                                                                                                                     "<="
+                                                                                                                                                     1)
+                                                                                                                                                    (("3"
+                                                                                                                                                      (propax)
+                                                                                                                                                      nil
+                                                                                                                                                      nil))
+                                                                                                                                                    nil))
+                                                                                                                                                  nil))
+                                                                                                                                                nil))
+                                                                                                                                              nil))
+                                                                                                                                            nil))
+                                                                                                                                          nil))
+                                                                                                                                        nil)
+                                                                                                                                       ("2"
+                                                                                                                                        (flatten)
+                                                                                                                                        (("2"
+                                                                                                                                          (lift-if
+                                                                                                                                           8)
+                                                                                                                                          (("2"
+                                                                                                                                            (split
+                                                                                                                                             8)
+                                                                                                                                            (("1"
+                                                                                                                                              (flatten)
+                                                                                                                                              (("1"
+                                                                                                                                                (case
+                                                                                                                                                 "(r_p_v1_x * r_s_y - r_p_v2_x * r_s_y +
+             (r_p_v1_y * r_p_v2_x - r_p_v1_x * r_p_v1_y)
+             -
+             (r_p_v1_x * r_p_v2_y - r_p_v1_x * r_p_v1_y +
+              (r_p_v1_y * r_s_x - r_p_v2_y * r_s_x))) <= 0")
+                                                                                                                                                (("1"
+                                                                                                                                                  (hide
+                                                                                                                                                   -2)
+                                                                                                                                                  (("1"
+                                                                                                                                                    (lemma
+                                                                                                                                                     "fp_gt_re_r_gt_0")
+                                                                                                                                                    (("1"
+                                                                                                                                                      (inst
+                                                                                                                                                       -1
+                                                                                                                                                       "i_10"
+                                                                                                                                                       "Dsub(Dmul(Dsub(RtoD(DtoR(p_v2_x) - DtoR(s_x)),
+                          RtoD(DtoR(p_v1_x) - DtoR(s_x))),
+                     RtoD(DtoR(p_v1_y) - DtoR(s_y))),
+                Dmul(Dsub(RtoD(DtoR(p_v2_y) - DtoR(s_y)),
+                          RtoD(DtoR(p_v1_y) - DtoR(s_y))),
+                     RtoD(DtoR(p_v1_x) - DtoR(s_x))))"
+                                                                                                                                                       "(r_p_v1_x * r_s_y - r_p_v2_x * r_s_y +
+        (r_p_v1_y * r_p_v2_x - r_p_v1_x * r_p_v1_y)
+        -
+        (r_p_v1_x * r_p_v2_y - r_p_v1_x * r_p_v1_y +
+          (r_p_v1_y * r_s_x - r_p_v2_y * r_s_x)))")
+                                                                                                                                                      (("1"
+                                                                                                                                                        (split
+                                                                                                                                                         -1)
+                                                                                                                                                        (("1"
+                                                                                                                                                          (assert)
+                                                                                                                                                          nil
+                                                                                                                                                          nil)
+                                                                                                                                                         ("2"
+                                                                                                                                                          (rewrite
+                                                                                                                                                           "Dmul_correctly_rounded"
+                                                                                                                                                           1)
+                                                                                                                                                          (("2"
+                                                                                                                                                            (rewrite
+                                                                                                                                                             "Dmul_correctly_rounded"
+                                                                                                                                                             1)
+                                                                                                                                                            (("2"
+                                                                                                                                                              (rewrite
+                                                                                                                                                               "Dsub_correctly_rounded"
+                                                                                                                                                               1)
+                                                                                                                                                              (("2"
+                                                                                                                                                                (rewrite
+                                                                                                                                                                 "Dsub_correctly_rounded"
+                                                                                                                                                                 1)
+                                                                                                                                                                (("2"
+                                                                                                                                                                  (rewrite
+                                                                                                                                                                   "Dsub_correctly_rounded"
+                                                                                                                                                                   1)
+                                                                                                                                                                  (("2"
+                                                                                                                                                                    (assert)
+                                                                                                                                                                    nil
+                                                                                                                                                                    nil))
+                                                                                                                                                                  nil))
+                                                                                                                                                                nil))
+                                                                                                                                                              nil))
+                                                                                                                                                            nil))
+                                                                                                                                                          nil)
+                                                                                                                                                         ("3"
+                                                                                                                                                          (expand
+                                                                                                                                                           "<"
+                                                                                                                                                           1)
+                                                                                                                                                          (("3"
+                                                                                                                                                            (propax)
+                                                                                                                                                            nil
+                                                                                                                                                            nil))
+                                                                                                                                                          nil))
+                                                                                                                                                        nil))
+                                                                                                                                                      nil))
+                                                                                                                                                    nil))
+                                                                                                                                                  nil)
+                                                                                                                                                 ("2"
+                                                                                                                                                  (assert)
+                                                                                                                                                  nil
+                                                                                                                                                  nil))
+                                                                                                                                                nil))
+                                                                                                                                              nil)
+                                                                                                                                             ("2"
+                                                                                                                                              (flatten)
+                                                                                                                                              nil
+                                                                                                                                              nil))
+                                                                                                                                            nil))
+                                                                                                                                          nil))
+                                                                                                                                        nil))
+                                                                                                                                      nil))
+                                                                                                                                    nil))
+                                                                                                                                  nil))
+                                                                                                                                nil))
+                                                                                                                              nil))
+                                                                                                                            nil))
+                                                                                                                          nil))
+                                                                                                                        nil))
+                                                                                                                      nil))
+                                                                                                                    nil))
+                                                                                                                  nil))
+                                                                                                                nil))
+                                                                                                              nil))
+                                                                                                            nil))
+                                                                                                          nil))
+                                                                                                        nil))
+                                                                                                      nil))
+                                                                                                    nil))
+                                                                                                  nil))
+                                                                                                nil))
+                                                                                              nil))
+                                                                                            nil))
+                                                                                          nil))
+                                                                                        nil))
+                                                                                      nil))
+                                                                                    nil))
+                                                                                  nil))
+                                                                                nil))
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((TRUE const-decl "bool" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (restrict const-decl "R" restrict nil)
+    (fp_gt_re_r_gt_0 formula-decl nil roundoff_error_props nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (< const-decl "bool" float "float/")
+    (fp_le_neg_re_r_le_0 formula-decl nil roundoff_error_props nil)
+    (DtoR const-decl "real" ieee754dp "float/")
+    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
+     ieee754dp "float/")
+    (Dmul const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) * FtoR(f2))(f)}"
+     ieee754dp_mul "float/")
+    (Dsub const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
+     ieee754dp_sub "float/")
+    (FtoR const-decl "real" float "float/")
+    (closest_double? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float "float/")
+    (<= const-decl "bool" float "float/")
+    (Dmul_correctly_rounded formula-decl nil ieee754dp_mul "float/")
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (rtos_canonicroundfun_exactrepconservation_j name-judgement
+     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
+         exact_rep_conservation[2]
+             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
+     "float/")
+    (Dsub_correctly_rounded formula-decl nil ieee754dp_sub "float/")
+    (unb_double type-eq-decl nil ieee754dp "float/")
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (nil application-judgement "below(m)" mod nil)
+    (minus_real_is_real application-judgement "real" reals nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (float type-eq-decl nil float "float/")
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (above nonempty-type-eq-decl nil integers nil)
+    (Format type-eq-decl nil float "float/")
+    (Fcanonic? const-decl "bool" float "float/")
+    (double_precision_format const-decl "Format" ieee754dp "float/")
+    (ieee_float64 type-eq-decl nil cfloat "./framac_wp/")
+    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
+    (/= const-decl "boolean" notequal nil)
+    (<= const-decl "bool" reals nil)
+    (abs_real const-decl "real" cmath "./framac_wp/")
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (of_float64 const-decl "[ieee_float64 -> real]" cfloat
+     "./framac_wp/")
+    (frama_c_rounding_mode type-decl nil cfloat "./framac_wp/")
+    (round_double const-decl "ieee_float64" cfloat "./framac_wp/")
+    (C__NearestEven? adt-recognizer-decl
+     "[frama_c_rounding_mode -> boolean]" cfloat "./framac_wp/")
+    (C__NearestEven adt-constructor-decl "(C__NearestEven?)" cfloat
+     "./framac_wp/")
+    (IsS8_maybeInt const-decl "bool" S8_maybeInt nil)
+    (isfinite_float64 const-decl "bool" cfloat "./framac_wp/")
+    (is_uint32 const-decl "bool" cint "./framac_wp/")
+    (L_quadrant const-decl "int" A_real_function_quadrant nil)
+    (IF const-decl "[boolean, T, T -> T]" if_def nil)
+    (nonzero_integer nonempty-type-eq-decl nil integers nil)
+    (< const-decl "bool" reals nil) (>= const-decl "bool" reals nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (- const-decl "[numfield -> numfield]" number_fields nil)
+    (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
+         nil)
+    (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
+    (le_float64 const-decl "[ieee_float64, ieee_float64 -> bool]"
+     cfloat "./framac_wp/")
+    (opp_float64 const-decl "[ieee_float64 -> ieee_float64]" cfloat
+     "./framac_wp/")
+    (lt_float64 const-decl "[ieee_float64, ieee_float64 -> bool]"
+     cfloat "./framac_wp/")
+    (L_winding_number_contrib const-decl "int"
+     A_real_function_winding_number_contrib nil)
+    (sub_float64 const-decl
+     "[ieee_float64, ieee_float64 -> ieee_float64]" cfloat
+     "./framac_wp/")
+    (mul_float64 const-decl
+     "[ieee_float64, ieee_float64 -> ieee_float64]" cfloat
+     "./framac_wp/")
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (S8_maybeInt type-eq-decl nil S8_maybeInt nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (number nonempty-type-decl nil numbers nil)
+    (IFF const-decl "[bool, bool -> bool]" booleans nil))
+   shostak)
+  (goal-1 nil 3764091048
+   ("" (skeep*)
+    (("" (skoletin*)
+      (("" (flatten)
+        ((""
+          (for 21
+           (let ((fnum '-11)
+                 (cfnum fnum)
+                 (dummy (setq fnum (- fnum 1))))
+             (hide fnum)))
+          (("" (name-replace "r_p_v1_x" "r_5")
+            (("" (name-replace "r_p_v1_y" "r_4")
+              (("" (name-replace "r_p_v2_x" "r_3")
+                (("" (name-replace "r_p_v2_y" "r_2")
+                  (("" (name-replace "r_s_x" "r_1")
+                    (("" (name-replace "r_s_y" "r")
+                      (("" (name-replace "this_y" "r_12")
+                        (("" (name-replace "this_x" "r_15")
+                          (("" (name-replace "e_this_y" "r_6")
+                            (("" (name-replace "e_this_x" "r_7")
+                              ((""
+                                (name-replace "next_y" "r_17")
+                                ((""
+                                  (name-replace "next_x" "r_18")
+                                  ((""
+                                    (name-replace "e_next_y" "r_8")
+                                    ((""
+                                      (name-replace "e_next_x" "r_9")
+                                      ((""
+                                        (name-replace "p_v1_x" "i_5")
+                                        ((""
+                                          (name-replace "p_v1_y" "i_4")
+                                          ((""
+                                            (name-replace
+                                             "p_v2_x"
+                                             "i_3")
+                                            ((""
+                                              (name-replace
+                                               "p_v2_y"
+                                               "i_2")
+                                              ((""
+                                                (name-replace
+                                                 "s_x"
+                                                 "i_1")
+                                                ((""
+                                                  (name-replace
+                                                   "s_y"
+                                                   "i")
+                                                  ((""
+                                                    (name-replace
+                                                     "e_det"
+                                                     "r_10")
+                                                    ((""
+                                                      (rewrite
+                                                       "L_winding_number_contrib__winding_number_contrib_real__eq")
+                                                      ((""
+                                                        (expand
+                                                         "sub_float64")
+                                                        ((""
+                                                          (expand
+                                                           "mul_float64")
+                                                          ((""
+                                                            (expand
+                                                             "of_float64")
+                                                            ((""
+                                                              (assert)
+                                                              ((""
+                                                                (expand
+                                                                 "round_double")
+                                                                ((""
+                                                                  (expand
+                                                                   "abs_real")
+                                                                  ((""
+                                                                    (replace
+                                                                     -14
+                                                                     :hide?
+                                                                     t)
+                                                                    ((""
+                                                                      (replace
+                                                                       -14
+                                                                       :hide?
+                                                                       t)
+                                                                      ((""
+                                                                        (replace
+                                                                         -14
+                                                                         :hide?
+                                                                         t)
+                                                                        ((""
+                                                                          (replace
+                                                                           -14
+                                                                           :hide?
+                                                                           t)
+                                                                          ((""
+                                                                            (replace
+                                                                             -14
+                                                                             :hide?
+                                                                             t)
+                                                                            ((""
+                                                                              (replace
+                                                                               -14
+                                                                               :hide?
+                                                                               t)
+                                                                              ((""
+                                                                                (replace
+                                                                                 -14
+                                                                                 :hide?
+                                                                                 t)
+                                                                                ((""
+                                                                                  (replace
+                                                                                   -14
+                                                                                   :hide?
+                                                                                   t)
+                                                                                  ((""
+                                                                                    (replace
+                                                                                     -14
+                                                                                     :hide?
+                                                                                     t)
+                                                                                    ((""
+                                                                                      (replace
+                                                                                       -14
+                                                                                       :hide?
+                                                                                       t)
+                                                                                      ((""
+                                                                                        (expand
+                                                                                         "le_float64")
+                                                                                        ((""
+                                                                                          (expand
+                                                                                           "restrict")
+                                                                                          ((""
+                                                                                            (expand
+                                                                                             "lt_float64")
+                                                                                            ((""
+                                                                                              (expand
+                                                                                               "restrict")
+                                                                                              ((""
+                                                                                                (expand
+                                                                                                 "opp_float64")
+                                                                                                ((""
+                                                                                                  (inst
+                                                                                                   -11
+                                                                                                   "r_p_v2_x - r_s_x"
+                                                                                                   "r_p_v2_y - r_s_y")
+                                                                                                  ((""
+                                                                                                    (inst
+                                                                                                     -12
+                                                                                                     "r_p_v1_x - r_s_x"
+                                                                                                     "r_p_v1_y - r_s_y")
+                                                                                                    ((""
+                                                                                                      (rewrite
+                                                                                                       "Dsub_correctly_rounded"
+                                                                                                       -11)
+                                                                                                      ((""
+                                                                                                        (rewrite
+                                                                                                         "Dsub_correctly_rounded"
+                                                                                                         -11)
+                                                                                                        ((""
+                                                                                                          (rewrite
+                                                                                                           "Dsub_correctly_rounded"
+                                                                                                           -12)
+                                                                                                          ((""
+                                                                                                            (rewrite
+                                                                                                             "Dsub_correctly_rounded"
+                                                                                                             -12)
+                                                                                                            ((""
+                                                                                                              (assert)
+                                                                                                              ((""
+                                                                                                                (rewrite
+                                                                                                                 "L_quadrant__quadrant_real__eq")
+                                                                                                                ((""
+                                                                                                                  (rewrite
+                                                                                                                   "L_quadrant__quadrant_real__eq")
+                                                                                                                  ((""
+                                                                                                                    (expand
+                                                                                                                     "winding_number_contrib_real")
+                                                                                                                    ((""
+                                                                                                                      (expand
+                                                                                                                       "wn_r_guard1"
+                                                                                                                       :assert?
+                                                                                                                       none)
+                                                                                                                      ((""
+                                                                                                                        (split
+                                                                                                                         -13)
+                                                                                                                        (("1"
+                                                                                                                          (flatten)
+                                                                                                                          (("1"
+                                                                                                                            (assert)
+                                                                                                                            nil
+                                                                                                                            nil))
+                                                                                                                          nil)
+                                                                                                                         ("2"
+                                                                                                                          (flatten)
+                                                                                                                          (("2"
+                                                                                                                            (assert)
+                                                                                                                            (("2"
+                                                                                                                              (expand
+                                                                                                                               "wn_r_guard2")
+                                                                                                                              (("2"
+                                                                                                                                (replace
+                                                                                                                                 -12
+                                                                                                                                 :hide?
+                                                                                                                                 t)
+                                                                                                                                (("2"
+                                                                                                                                  (replace
+                                                                                                                                   -12
+                                                                                                                                   :hide?
+                                                                                                                                   t)
+                                                                                                                                  (("2"
+                                                                                                                                    (rewrite
+                                                                                                                                     "mod_int"
+                                                                                                                                     -1)
+                                                                                                                                    (("2"
+                                                                                                                                      (rewrite
+                                                                                                                                       "mod_int"
+                                                                                                                                       -1)
+                                                                                                                                      (("2"
+                                                                                                                                        (split
+                                                                                                                                         -1)
+                                                                                                                                        (("1"
+                                                                                                                                          (flatten)
+                                                                                                                                          (("1"
+                                                                                                                                            (assert)
+                                                                                                                                            nil
+                                                                                                                                            nil))
+                                                                                                                                          nil)
+                                                                                                                                         ("2"
+                                                                                                                                          (flatten)
+                                                                                                                                          (("2"
+                                                                                                                                            (assert)
+                                                                                                                                            (("2"
+                                                                                                                                              (expand
+                                                                                                                                               "wn_r_guard3")
+                                                                                                                                              (("2"
+                                                                                                                                                (split
+                                                                                                                                                 -1)
+                                                                                                                                                (("1"
+                                                                                                                                                  (flatten)
+                                                                                                                                                  (("1"
+                                                                                                                                                    (assert)
+                                                                                                                                                    nil
+                                                                                                                                                    nil))
+                                                                                                                                                  nil)
+                                                                                                                                                 ("2"
+                                                                                                                                                  (flatten)
+                                                                                                                                                  (("2"
+                                                                                                                                                    (assert)
+                                                                                                                                                    (("2"
+                                                                                                                                                      (expand
+                                                                                                                                                       "wn_r_guard4")
+                                                                                                                                                      (("2"
+                                                                                                                                                        (split
+                                                                                                                                                         -1)
+                                                                                                                                                        (("1"
+                                                                                                                                                          (flatten)
+                                                                                                                                                          (("1"
+                                                                                                                                                            (assert)
+                                                                                                                                                            (("1"
+                                                                                                                                                              (lift-if
+                                                                                                                                                               7)
+                                                                                                                                                              (("1"
+                                                                                                                                                                (split)
+                                                                                                                                                                (("1"
+                                                                                                                                                                  (assert)
+                                                                                                                                                                  nil
+                                                                                                                                                                  nil)
+                                                                                                                                                                 ("2"
+                                                                                                                                                                  (flatten)
+                                                                                                                                                                  (("2"
+                                                                                                                                                                    (lemma
+                                                                                                                                                                     "var_le_0_trans_real")
+                                                                                                                                                                    (("2"
+                                                                                                                                                                      (inst?
+                                                                                                                                                                       -1
+                                                                                                                                                                       :where
+                                                                                                                                                                       1)
+                                                                                                                                                                      (("2"
+                                                                                                                                                                        (inst?
+                                                                                                                                                                         -1
+                                                                                                                                                                         :where
+                                                                                                                                                                         -13)
+                                                                                                                                                                        (("2"
+                                                                                                                                                                          (assert)
+                                                                                                                                                                          (("2"
+                                                                                                                                                                            (replace
+                                                                                                                                                                             -21
+                                                                                                                                                                             :hide?
+                                                                                                                                                                             t)
+                                                                                                                                                                            (("2"
+                                                                                                                                                                              (rewrite
+                                                                                                                                                                               "Dneg_correct"
+                                                                                                                                                                               1
+                                                                                                                                                                               :dir
+                                                                                                                                                                               rl)
+                                                                                                                                                                              (("2"
+                                                                                                                                                                                (rewrite
+                                                                                                                                                                                 "greatest_fp_le_dtor"
+                                                                                                                                                                                 1
+                                                                                                                                                                                 :dir
+                                                                                                                                                                                 rl)
+                                                                                                                                                                                (("2"
+                                                                                                                                                                                  (expand
+                                                                                                                                                                                   "<=")
+                                                                                                                                                                                  (("2"
+                                                                                                                                                                                    (rewrite
+                                                                                                                                                                                     "Dmul_correctly_rounded"
+                                                                                                                                                                                     -1)
+                                                                                                                                                                                    (("2"
+                                                                                                                                                                                      (rewrite
+                                                                                                                                                                                       "Dsub_correctly_rounded"
+                                                                                                                                                                                       -1)
+                                                                                                                                                                                      (("2"
+                                                                                                                                                                                        (rewrite
+                                                                                                                                                                                         "Dsub_correctly_rounded"
+                                                                                                                                                                                         -1)
+                                                                                                                                                                                        (("2"
+                                                                                                                                                                                          (rewrite
+                                                                                                                                                                                           "Dsub_correctly_rounded"
+                                                                                                                                                                                           -1)
+                                                                                                                                                                                          (("2"
+                                                                                                                                                                                            (assert)
+                                                                                                                                                                                            (("2"
+                                                                                                                                                                                              (replace
+                                                                                                                                                                                               -19
+                                                                                                                                                                                               :hide?
+                                                                                                                                                                                               t)
+                                                                                                                                                                                              (("2"
+                                                                                                                                                                                                (replace
+                                                                                                                                                                                                 -13
+                                                                                                                                                                                                 :hide?
+                                                                                                                                                                                                 t)
+                                                                                                                                                                                                (("2"
+                                                                                                                                                                                                  (replace
+                                                                                                                                                                                                   -15
+                                                                                                                                                                                                   :hide?
+                                                                                                                                                                                                   t)
+                                                                                                                                                                                                  (("2"
+                                                                                                                                                                                                    (replace
+                                                                                                                                                                                                     -13
+                                                                                                                                                                                                     :hide?
+                                                                                                                                                                                                     t)
+                                                                                                                                                                                                    (("2"
+                                                                                                                                                                                                      (assert)
+                                                                                                                                                                                                      (("2"
+                                                                                                                                                                                                        (case
+                                                                                                                                                                                                         "RtoD(DtoR(RtoD(DtoR(RtoD(DtoR(RtoD(DtoR(p_v2_x) - DtoR(s_x))) - DtoR(RtoD(DtoR(p_v1_x) - DtoR(s_x))))) * DtoR(RtoD(DtoR(p_v1_y) - DtoR(s_y))))) -
+                                                                                     DtoR(Dmul(RtoD(DtoR(RtoD(DtoR(p_v2_y) - DtoR(s_y))) - DtoR(RtoD(DtoR(p_v1_y) - DtoR(s_y)))), RtoD(DtoR(p_v1_x) - DtoR(s_x))))) = RtoD((DtoR(RtoD(DtoR(RtoD((DtoR(p_v1_y)) - (DtoR(s_y)))) * (DtoR(RtoD(DtoR(RtoD((DtoR(p_v2_x)) - (DtoR(s_x)))) - DtoR(RtoD((DtoR(p_v1_x)) - (DtoR(s_x)))))))))) -
+                                                                                     (DtoR(RtoD(DtoR(RtoD((DtoR(p_v1_x)) - (DtoR(s_x)))) * (DtoR(RtoD(DtoR(RtoD((DtoR(p_v2_y)) - (DtoR(s_y)))) - DtoR(RtoD((DtoR(p_v1_y)) - (DtoR(s_y)))))))))))")
+                                                                                                                                                                                                        (("1"
+                                                                                                                                                                                                          (assert)
+                                                                                                                                                                                                          nil
+                                                                                                                                                                                                          nil)
+                                                                                                                                                                                                         ("2"
+                                                                                                                                                                                                          (rewrite
+                                                                                                                                                                                                           "Dmul_correctly_rounded"
+                                                                                                                                                                                                           1)
+                                                                                                                                                                                                          (("2"
+                                                                                                                                                                                                            (assert)
+                                                                                                                                                                                                            nil
+                                                                                                                                                                                                            nil))
+                                                                                                                                                                                                          nil))
+                                                                                                                                                                                                        nil))
+                                                                                                                                                                                                      nil))
+                                                                                                                                                                                                    nil))
+                                                                                                                                                                                                  nil))
+                                                                                                                                                                                                nil))
+                                                                                                                                                                                              nil))
+                                                                                                                                                                                            nil))
+                                                                                                                                                                                          nil))
+                                                                                                                                                                                        nil))
+                                                                                                                                                                                      nil))
+                                                                                                                                                                                    nil))
+                                                                                                                                                                                  nil))
+                                                                                                                                                                                nil))
+                                                                                                                                                                              nil))
+                                                                                                                                                                            nil))
+                                                                                                                                                                          nil))
+                                                                                                                                                                        nil))
+                                                                                                                                                                      nil))
+                                                                                                                                                                    nil))
+                                                                                                                                                                  nil))
+                                                                                                                                                                nil))
+                                                                                                                                                              nil))
+                                                                                                                                                            nil))
+                                                                                                                                                          nil)
+                                                                                                                                                         ("2"
+                                                                                                                                                          (flatten)
+                                                                                                                                                          (("2"
+                                                                                                                                                            (assert)
+                                                                                                                                                            (("2"
+                                                                                                                                                              (lift-if
+                                                                                                                                                               8)
+                                                                                                                                                              (("2"
+                                                                                                                                                                (assert)
+                                                                                                                                                                (("2"
+                                                                                                                                                                  (split
+                                                                                                                                                                   8)
+                                                                                                                                                                  (("1"
+                                                                                                                                                                    (assert)
+                                                                                                                                                                    (("1"
+                                                                                                                                                                      (lemma
+                                                                                                                                                                       "var_gt_error__var_r_gt_0")
+                                                                                                                                                                      (("1"
+                                                                                                                                                                        (inst
+                                                                                                                                                                         -1
+                                                                                                                                                                         "_"
+                                                                                                                                                                         "_"
+                                                                                                                                                                         "-1 * (r_p_v1_x * r_p_v2_y) - r_p_v1_y * r_s_x - r_p_v2_x * r_s_y + r_p_v1_x * r_s_y + r_p_v1_y * r_p_v2_x + r_p_v2_y * r_s_x")
+                                                                                                                                                                        (("1"
+                                                                                                                                                                          (inst
+                                                                                                                                                                           -1
+                                                                                                                                                                           "RtoD((DtoR(RtoD(this_y * (DtoR(RtoD(next_x - this_x)))))) - (DtoR(RtoD(this_x * (DtoR(RtoD(next_y - this_y)))))))"
+                                                                                                                                                                           "e_det")
+                                                                                                                                                                          (("1"
+                                                                                                                                                                            (split
+                                                                                                                                                                             -1)
+                                                                                                                                                                            (("1"
+                                                                                                                                                                              (assert)
+                                                                                                                                                                              nil
+                                                                                                                                                                              nil)
+                                                                                                                                                                             ("2"
+                                                                                                                                                                              (assert)
+                                                                                                                                                                              nil
+                                                                                                                                                                              nil)
+                                                                                                                                                                             ("3"
+                                                                                                                                                                              (assert)
+                                                                                                                                                                              (("3"
+                                                                                                                                                                                (replace
+                                                                                                                                                                                 -22
+                                                                                                                                                                                 :hide?
+                                                                                                                                                                                 t)
+                                                                                                                                                                                (("3"
+                                                                                                                                                                                  (rewrite
+                                                                                                                                                                                   "smallest_fp_ge_dtor"
+                                                                                                                                                                                   1
+                                                                                                                                                                                   :dir
+                                                                                                                                                                                   rl)
+                                                                                                                                                                                  (("3"
+                                                                                                                                                                                    (expand
+                                                                                                                                                                                     "<")
+                                                                                                                                                                                    (("3"
+                                                                                                                                                                                      (rewrite
+                                                                                                                                                                                       "Dmul_correctly_rounded"
+                                                                                                                                                                                       -3)
+                                                                                                                                                                                      (("3"
+                                                                                                                                                                                        (rewrite
+                                                                                                                                                                                         "Dmul_correctly_rounded"
+                                                                                                                                                                                         -3)
+                                                                                                                                                                                        (("3"
+                                                                                                                                                                                          (rewrite
+                                                                                                                                                                                           "Dsub_correctly_rounded"
+                                                                                                                                                                                           -3)
+                                                                                                                                                                                          (("3"
+                                                                                                                                                                                            (rewrite
+                                                                                                                                                                                             "Dsub_correctly_rounded"
+                                                                                                                                                                                             -3)
+                                                                                                                                                                                            (("3"
+                                                                                                                                                                                              (rewrite
+                                                                                                                                                                                               "Dsub_correctly_rounded"
+                                                                                                                                                                                               -3)
+                                                                                                                                                                                              (("3"
+                                                                                                                                                                                                (assert)
+                                                                                                                                                                                                nil
+                                                                                                                                                                                                nil))
+                                                                                                                                                                                              nil))
+                                                                                                                                                                                            nil))
+                                                                                                                                                                                          nil))
+                                                                                                                                                                                        nil))
+                                                                                                                                                                                      nil))
+                                                                                                                                                                                    nil))
+                                                                                                                                                                                  nil))
+                                                                                                                                                                                nil))
+                                                                                                                                                                              nil))
+                                                                                                                                                                            nil))
+                                                                                                                                                                          nil))
+                                                                                                                                                                        nil))
+                                                                                                                                                                      nil))
+                                                                                                                                                                    nil)
+                                                                                                                                                                   ("2"
+                                                                                                                                                                    (propax)
+                                                                                                                                                                    nil
+                                                                                                                                                                    nil))
+                                                                                                                                                                  nil))
+                                                                                                                                                                nil))
+                                                                                                                                                              nil))
+                                                                                                                                                            nil))
+                                                                                                                                                          nil))
+                                                                                                                                                        nil))
+                                                                                                                                                      nil))
+                                                                                                                                                    nil))
+                                                                                                                                                  nil))
+                                                                                                                                                nil))
+                                                                                                                                              nil))
+                                                                                                                                            nil))
+                                                                                                                                          nil))
+                                                                                                                                        nil))
+                                                                                                                                      nil))
+                                                                                                                                    nil))
+                                                                                                                                  nil))
+                                                                                                                                nil))
+                                                                                                                              nil))
+                                                                                                                            nil))
+                                                                                                                          nil))
+                                                                                                                        nil))
+                                                                                                                      nil))
+                                                                                                                    nil))
+                                                                                                                  nil))
+                                                                                                                nil))
+                                                                                                              nil))
+                                                                                                            nil))
+                                                                                                          nil))
+                                                                                                        nil))
+                                                                                                      nil))
+                                                                                                    nil))
+                                                                                                  nil))
+                                                                                                nil))
+                                                                                              nil))
+                                                                                            nil))
+                                                                                          nil))
+                                                                                        nil))
+                                                                                      nil))
+                                                                                    nil))
+                                                                                  nil))
+                                                                                nil))
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((IFF const-decl "[bool, bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (S8_maybeInt type-eq-decl nil S8_maybeInt nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (mul_float64 const-decl
+     "[ieee_float64, ieee_float64 -> ieee_float64]" cfloat
+     "./framac_wp/")
+    (sub_float64 const-decl
+     "[ieee_float64, ieee_float64 -> ieee_float64]" cfloat
+     "./framac_wp/")
+    (L_winding_number_contrib const-decl "int"
+     A_real_function_winding_number_contrib nil)
+    (lt_float64 const-decl "[ieee_float64, ieee_float64 -> bool]"
+     cfloat "./framac_wp/")
+    (opp_float64 const-decl "[ieee_float64 -> ieee_float64]" cfloat
+     "./framac_wp/")
+    (le_float64 const-decl "[ieee_float64, ieee_float64 -> bool]"
+     cfloat "./framac_wp/")
+    (mod const-decl "{k | abs(k) < abs(j)}" reals_mod "reals/")
+    (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
+         nil)
+    (- const-decl "[numfield -> numfield]" number_fields nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (>= const-decl "bool" reals nil) (< const-decl "bool" reals nil)
+    (nonzero_real nonempty-type-eq-decl nil reals nil)
+    (IF const-decl "[boolean, T, T -> T]" if_def nil)
+    (L_quadrant const-decl "int" A_real_function_quadrant nil)
+    (is_uint32 const-decl "bool" cint "./framac_wp/")
+    (IsS8_maybeInt const-decl "bool" S8_maybeInt nil)
+    (C__NearestEven adt-constructor-decl "(C__NearestEven?)" cfloat
+     "./framac_wp/")
+    (C__NearestEven? adt-recognizer-decl
+     "[frama_c_rounding_mode -> boolean]" cfloat "./framac_wp/")
+    (round_double const-decl "ieee_float64" cfloat "./framac_wp/")
+    (frama_c_rounding_mode type-decl nil cfloat "./framac_wp/")
+    (of_float64 const-decl "[ieee_float64 -> real]" cfloat
+     "./framac_wp/")
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (abs_real const-decl "real" cmath "./framac_wp/")
+    (<= const-decl "bool" reals nil)
+    (/= const-decl "boolean" notequal nil)
+    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
+    (ieee_float64 type-eq-decl nil cfloat "./framac_wp/")
+    (double_precision_format const-decl "Format" ieee754dp "float/")
+    (Fcanonic? const-decl "bool" float "float/")
+    (Format type-eq-decl nil float "float/")
+    (above nonempty-type-eq-decl nil integers nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (float type-eq-decl nil float "float/")
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (minus_real_is_real application-judgement "real" reals nil)
+    (nil application-judgement "below(m)" reals_mod "reals/")
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (L_winding_number_contrib__winding_number_contrib_real__eq
+     formula-decl nil interface nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (restrict const-decl "R" restrict nil)
+    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Dsub_correctly_rounded formula-decl nil ieee754dp_sub "float/")
+    (rtos_canonicroundfun_exactrepconservation_j name-judgement
+     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
+         exact_rep_conservation[2]
+             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
+     "float/")
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
+    (wn_r_guard2 const-decl "bool" winding_number_contrib__real nil)
+    (wn_r_guard3 const-decl "bool" winding_number_contrib__real nil)
+    (wn_r_guard4 const-decl "bool" winding_number_contrib__real nil)
+    (var_gt_error__var_r_gt_0 formula-decl nil quadrant__trans_props
+     nil)
+    (smallest_fp_ge_dtor formula-decl nil quadrant__trans nil)
+    (Dneg_correct formula-decl nil ieee754dp_neg "float/")
+    (Dmul const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) * FtoR(f2))(f)}"
+     ieee754dp_mul "float/")
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (Dmul_correctly_rounded formula-decl nil ieee754dp_mul "float/")
+    (FtoR const-decl "real" float "float/")
+    (Dsub const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
+     ieee754dp_sub "float/")
+    (greatest_fp_le_dtor formula-decl nil quadrant__trans nil)
+    (Dneg const-decl
+     "{f: unb_double | closest_double?(-(DtoR(f1)))(f)}" ieee754dp_neg
+     "float/")
+    (Fbounded? const-decl "bool" float "float/")
+    (closest_double? const-decl "bool" ieee754dp "float/")
+    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
+     ieee754dp "float/")
+    (DtoR const-decl "real" ieee754dp "float/")
+    (var_le_0_trans_real formula-decl nil quadrant__trans_props nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (nil application-judgement "below(m)" mod nil)
+    (mod_int formula-decl nil reals_mod "reals/")
+    (nonzero_integer nonempty-type-eq-decl nil integers nil)
+    (winding_number_contrib_real const-decl "int"
+     winding_number_contrib__real nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (L_quadrant__quadrant_real__eq formula-decl nil interface nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
+   nil)))
+

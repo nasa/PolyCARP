@@ -1,0 +1,172 @@
+winding_number_int_post: THEORY
+BEGIN
+% -------------------------------------------------- 
+% Post-condition (file winding_number_precisa.c, line 212) in 'winding_number_int' 
+% -------------------------------------------------- 
+
+% --- Importings requested by the user --- 
+IMPORTING float@roundoff_error_props
+
+% --- Qed-related importings and axioms --- 
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@memory
+IMPORTING framac_wp@creal
+IMPORTING framac_wp@cmath
+IMPORTING framac_wp@cfloat
+
+IMPORTING S8_maybeInt
+IMPORTING Compound
+IMPORTING framac_wp@cint
+IMPORTING A_real_function_for_winding_number1
+IMPORTING A_real_function_winding_number
+
+% --- Verification condition --- 
+
+  goal: LEMMA
+    FORALL (i_2, i_1, i:int):
+    FORALL (r_1, r:real):
+    FORALL (t:ARRAY[addr->real]):
+    FORALL (i_7, i_6, i_5, i_4, i_3:ieee_float64):
+    FORALL (a_1, a:addr):
+    FORALL (m_1, m:S8_maybeInt):
+    LET x = F8_maybeInt_isValid(m) IN
+    LET x_1 = F8_maybeInt_isValid(m_1) IN
+    LET r_2 = of_float64(i_5) IN
+    LET r_3 = of_float64(i_6) IN
+    LET r_4 = of_float64(i_7) IN
+    LET r_5 = of_float64(t(shift_float64(a, 0))) IN
+    LET r_6 = -(of_float64(i_3)) IN
+    LET r_7 = of_float64(round_double(C__NearestEven, r_5
+                           - (of_float64(i_3)))) IN
+    LET r_8 = -r_5 IN
+    LET r_9 = of_float64(t(shift_float64(a_1, 0))) IN
+    LET r_10 = -(of_float64(i_4)) IN
+    LET r_11 = of_float64(round_double(C__NearestEven, r_9
+                            - (of_float64(i_4)))) IN
+    LET r_12 = -r_9 IN
+    LET x_2 = i - 1 IN
+    LET r_13 = of_float64(t(shift_float64(a, x_2))) IN
+    LET r_14 = of_float64(round_double(C__NearestEven, r_13
+                            - (of_float64(i_3)))) IN
+    LET r_15 = -r_13 IN
+    LET r_16 = of_float64(t(shift_float64(a_1, x_2))) IN
+    LET r_17 = of_float64(round_double(C__NearestEven, r_16
+                            - (of_float64(i_4)))) IN
+    LET r_18 = -r_16 IN
+    LET r_19 = of_float64(round_double(C__NearestEven,
+                            (of_float64(round_double(C__NearestEven, r_14 *
+                                          (of_float64(round_double(C__NearestEven,
+                                                        r_11 - r_17))))))
+                            - (of_float64(round_double(C__NearestEven, r_17 *
+                                            (of_float64(round_double(C__NearestEven,
+                                                          r_7 - r_14)))))))) IN
+    LET r_20 = -r IN
+    LET r_21 = r_9 - r_16 IN
+    LET r_22 = -r_1 IN
+    LET r_23 = r_5 - r_13 IN
+    LET x_3 = F8_maybeInt_value(m) IN
+    ((0 /= x) IMPLIES
+    ((0 /= x_1) IMPLIES
+    ((0 = (F8_maybeInt_value(m_1))) IMPLIES
+    ((i_1 <= i) IMPLIES
+    ((0 <= i_1) IMPLIES
+    ((i <= i_1) IMPLIES
+    ((0 <= r_2) IMPLIES
+    ((0 <= r_3) IMPLIES
+    ((0 <= r_4) IMPLIES
+    (((region(base(a))) <= 0) IMPLIES
+    (((region(base(a_1))) <= 0) IMPLIES
+    (((abs_real(r + r_7 - r_5)) <= r_2) IMPLIES
+    (((abs_real(r_1 + r_11 - r_9)) <= r_3) IMPLIES
+    (((abs_real(r + r_14 - r_13)) <= r_2) IMPLIES
+    (((abs_real(r_1 + r_17 - r_16)) <= r_3) IMPLIES
+    (((abs_real(((r_16 - r_1) * r_23) + r_19 - ((r_13 - r) * r_21))) <= r_4) IMPLIES
+    ((3 <= i) IMPLIES
+    ((IsS8_maybeInt(m)) IMPLIES
+    ((IsS8_maybeInt(m_1)) IMPLIES
+    ((is_sint32(i)) IMPLIES
+    ((is_sint32(i_1)) IMPLIES
+    ((is_sint32(i_2)) IMPLIES
+    ((isfinite_float64(i_3)) IMPLIES
+    ((isfinite_float64(i_4)) IMPLIES
+    ((isfinite_float64(i_5)) IMPLIES
+    ((isfinite_float64(i_6)) IMPLIES
+    ((isfinite_float64(i_7)) IMPLIES
+    ((is_uint32(x)) IMPLIES
+    ((is_uint32(x_1)) IMPLIES
+    ((is_sint32(x_3)) IMPLIES
+    ((FORALL (i_8:int): LET r_24 = of_float64(t(shift_float64(a, i_8))) IN
+      LET r_25 = of_float64(round_double(C__NearestEven, r_24
+                              - (of_float64(i_3)))) IN LET r_26 = -r_24 IN
+      LET r_27 = of_float64(t(shift_float64(a_1, i_8))) IN
+      LET r_28 = of_float64(round_double(C__NearestEven, r_27
+                              - (of_float64(i_4)))) IN LET r_29 = -r_27 IN
+      LET x_4 = 1 + i_8 IN LET r_30 = of_float64(t(shift_float64(a, x_4))) IN
+      LET r_31 = of_float64(round_double(C__NearestEven, r_30
+                              - (of_float64(i_3)))) IN
+      LET r_32 = of_float64(t(shift_float64(a_1, x_4))) IN
+      LET r_33 = of_float64(round_double(C__NearestEven, r_32
+                              - (of_float64(i_4)))) IN ((0 <= i_8) IMPLIES
+      (((2 + i_8) <= i) IMPLIES
+      (((0 <= r_2) AND ((0 <= r_3) AND ((0 <= r_4) AND
+       (((abs_real(r + r_25 - r_24)) <= r_2) AND
+       (((abs_real(r_1 + r_28 - r_27)) <= r_3) AND
+       (((abs_real(r + r_31 - r_30)) <= r_2) AND
+       (((abs_real(r_1 + r_33 - r_32)) <= r_3) AND
+       ((abs_real(((r_27 - r_1) * (r_30 - r_24))
+           + (of_float64(round_double(C__NearestEven,
+                           (of_float64(round_double(C__NearestEven, r_25 *
+                                         (of_float64(round_double(C__NearestEven,
+                                                       r_33 - r_28))))))
+                           - (of_float64(round_double(C__NearestEven, r_28 *
+                                           (of_float64(round_double(C__NearestEven,
+                                                         r_31 - r_25)))))))))
+           - ((r_24 - r) * (r_32 - r_27)))) <= r_4)))))))))))) IMPLIES
+    ((((0 = i_1) IMPLIES (((0 = i_2) AND (i_2 = x_3))))) IMPLIES
+    ((((0 < i_1) IMPLIES
+      (FORALL (r_25, r_24:real): LET r_26 = -r_24 IN LET r_27 = -r_25 IN
+       ((0 <= r_2) IMPLIES ((0 <= r_3) IMPLIES ((0 <= r_4) IMPLIES
+       (((abs_real(r_24 + r_7 - r_5)) <= r_2) IMPLIES
+       (((abs_real(r_25 + r_11 - r_9)) <= r_3) IMPLIES
+       (((abs_real(r_24 + r_14 - r_13)) <= r_2) IMPLIES
+       (((abs_real(r_25 + r_17 - r_16)) <= r_3) IMPLIES
+       (((abs_real(((r_16 - r_25) * r_23) + r_19 - ((r_13 - r_24) * r_21)))
+           <= r_4) IMPLIES
+       ((FORALL (i_8:int): LET r_28 = of_float64(t(shift_float64(a, i_8))) IN
+         LET r_29 = of_float64(round_double(C__NearestEven, r_28
+                                 - (of_float64(i_3)))) IN LET r_30 = -r_28 IN
+         LET r_31 = of_float64(t(shift_float64(a_1, i_8))) IN
+         LET r_32 = of_float64(round_double(C__NearestEven, r_31
+                                 - (of_float64(i_4)))) IN LET r_33 = -r_31 IN
+         LET x_4 = 1 + i_8 IN
+         LET r_34 = of_float64(t(shift_float64(a, x_4))) IN
+         LET r_35 = of_float64(round_double(C__NearestEven, r_34
+                                 - (of_float64(i_3)))) IN
+         LET r_36 = of_float64(t(shift_float64(a_1, x_4))) IN
+         LET r_37 = of_float64(round_double(C__NearestEven, r_36
+                                 - (of_float64(i_4)))) IN ((0 <= i_8) IMPLIES
+         (((2 + i_8) <= i) IMPLIES
+         (((0 <= r_2) AND ((0 <= r_3) AND ((0 <= r_4) AND
+          (((abs_real(r_24 + r_29 - r_28)) <= r_2) AND
+          (((abs_real(r_25 + r_32 - r_31)) <= r_3) AND
+          (((abs_real(r_24 + r_35 - r_34)) <= r_2) AND
+          (((abs_real(r_25 + r_37 - r_36)) <= r_3) AND
+          ((abs_real(((r_31 - r_25) * (r_34 - r_28))
+              + (of_float64(round_double(C__NearestEven,
+                              (of_float64(round_double(C__NearestEven, r_29 *
+                                            (of_float64(round_double(C__NearestEven,
+                                                          r_37 - r_32))))))
+                              - (of_float64(round_double(C__NearestEven,
+                                              r_32 *
+                                              (of_float64(round_double(C__NearestEven,
+                                                            r_35 - r_29)))))))))
+              - ((r_28 - r_24) * (r_36 - r_31)))) <= r_4)))))))))))) IMPLIES
+       (((i_2 = x_3) AND
+        ((L_for_winding_number1(t, i_1 - 1, i, a_1, a, r_25, r_24)) = x_3))))))))))))))) IMPLIES
+    ((L_winding_number(t, i, a_1, a, r_1, r)) = x_3))))))))))))))))))))))))))))))))));
+
+%|- goal : PROOF
+%|-   (grind)
+%|- QED
+
+END winding_number_int_post

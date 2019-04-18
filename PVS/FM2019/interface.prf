@@ -1,0 +1,515 @@
+(interface
+ (L_quadrant__quadrant_real__eq 0
+  (L_quadrant__quadrant_real__eq-1 nil 3760813351
+   ("" (skeep)
+    (("" (expand "L_quadrant")
+      (("" (expand "quadrant_real")
+        (("" (expand "orig_r_guard1")
+          (("" (expand "orig_r_guard2")
+            (("" (expand "orig_r_guard3") (("" (propax) nil nil)) nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((L_quadrant const-decl "int" A_real_function_quadrant nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (quadrant_real const-decl "int" quadrant__real nil))
+   nil))
+ (L_winding_number_contrib__winding_number_contrib_real__eq 0
+  (L_winding_number_contrib__winding_number_contrib_real__eq-1 nil
+   3760813392
+   ("" (skeep*)
+    (("" (expand "L_winding_number_contrib")
+      (("" (expand "winding_number_contrib_real")
+        (("" (expand "wn_r_guard1")
+          (("" (expand "wn_r_guard2")
+            (("" (expand "wn_r_guard3")
+              (("" (expand "wn_r_guard4")
+                (("" (rewrite "L_quadrant__quadrant_real__eq")
+                  (("" (rewrite "L_quadrant__quadrant_real__eq")
+                    (("" (rewrite "mod_int" :dir rl)
+                      (("" (rewrite "mod_int" :dir rl)
+                        (("" (lift-if 1) (("" (ground) nil nil)) nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((nil application-judgement "below(m)" mod nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (L_winding_number_contrib const-decl "int"
+     A_real_function_winding_number_contrib nil)
+    (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
+    (wn_r_guard3 const-decl "bool" winding_number_contrib__real nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number nonempty-type-decl nil numbers nil)
+    (L_quadrant__quadrant_real__eq formula-decl nil interface nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (nonzero_integer nonempty-type-eq-decl nil integers nil)
+    (/= const-decl "boolean" notequal nil)
+    (quadrant_real const-decl "int" quadrant__real nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (mod_int formula-decl nil reals_mod "reals/")
+    (nil application-judgement "below(m)" reals_mod "reals/")
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (wn_r_guard4 const-decl "bool" winding_number_contrib__real nil)
+    (wn_r_guard2 const-decl "bool" winding_number_contrib__real nil)
+    (winding_number_contrib_real const-decl "int"
+     winding_number_contrib__real nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
+   nil))
+ (L_for_winding_number1__winding_number_rec_real__eq_TCC1 0
+  (L_for_winding_number1__winding_number_rec_real__eq_TCC1-1 nil
+   3764424285 ("" (subtype-tcc) nil nil)
+   ((shift const-decl "addr" memory "./framac_wp/")
+    (shift_float64 const-decl "addr" Compound nil))
+   nil))
+ (L_for_winding_number1__winding_number_rec_real__eq 0
+  (L_for_winding_number1__winding_number_rec_real__eq-1 nil 3764424674
+   ("" (skeep*)
+    (("" (typepred "i")
+      (("" (generalize "i" "idx" "nat")
+        (("" (induct "idx")
+          (("1" (skeep)
+            (("1" (inst -2 "j") (("1" (assert) nil nil)) nil)) nil)
+           ("2" (flatten)
+            (("2" (expand "winding_number_rec_real")
+              (("2" (lemma "FixL_for_winding_number1")
+                (("2" (inst? -1 :where 1 :subst ("i_1" "0" "i" "n"))
+                  (("2" (assert)
+                    (("2" (split -1)
+                      (("1" (flatten)
+                        (("1" (replace -2 :hide? t)
+                          (("1" (assert)
+                            (("1" (inst-cp -3 "0")
+                              (("1"
+                                (replace -4 :hide? t)
+                                (("1"
+                                  (assert)
+                                  (("1"
+                                    (inst -3 "1")
+                                    (("1"
+                                      (replace -3 :hide? t)
+                                      (("1"
+                                        (assert)
+                                        (("1"
+                                          (replace -3 :hide? t)
+                                          (("1"
+                                            (assert)
+                                            (("1"
+                                              (rewrite
+                                               "L_winding_number_contrib__winding_number_contrib_real__eq"
+                                               :dir
+                                               rl)
+                                              (("1"
+                                                (expand "of_float64")
+                                                (("1"
+                                                  (propax)
+                                                  nil
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil)
+                       ("2" (flatten)
+                        (("2" (assert)
+                          (("2" (replace -1 :hide? t)
+                            (("2" (expand "of_float64")
+                              (("2"
+                                (case "n=1")
+                                (("1"
+                                  (replace -1 :hide? t)
+                                  (("1"
+                                    (assert)
+                                    (("1"
+                                      (inst -2 "0")
+                                      (("1"
+                                        (replace -2 :hide? t)
+                                        (("1"
+                                          (assert)
+                                          (("1"
+                                            (rewrite
+                                             "L_winding_number_contrib__winding_number_contrib_real__eq"
+                                             :dir
+                                             rl)
+                                            (("1" (assert) nil nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil)
+                                 ("2" (assert) nil nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil)
+           ("3" (skolem 1 ("index"))
+            (("3" (flatten)
+              (("3" (split -1)
+                (("1" (lemma "FixL_for_winding_number1")
+                  (("1"
+                    (inst? -1 :where 1 :subst
+                     ("i_1" "index+1" "i" "n"))
+                    (("1" (assert)
+                      (("1" (split -1)
+                        (("1" (flatten)
+                          (("1" (expand "of_float64")
+                            (("1" (replace -2 :hide? t)
+                              (("1"
+                                (replace -2 :hide? t)
+                                (("1"
+                                  (inst-cp -3 "1+index")
+                                  (("1"
+                                    (inst -3 "2+index")
+                                    (("1"
+                                      (decompose-equality -3)
+                                      (("1"
+                                        (decompose-equality -5)
+                                        (("1"
+                                          (replace -2 :hide? t :dir rl)
+                                          (("1"
+                                            (replace
+                                             -2
+                                             :hide?
+                                             t
+                                             :dir
+                                             rl)
+                                            (("1"
+                                              (replace
+                                               -2
+                                               :hide?
+                                               t
+                                               :dir
+                                               rl)
+                                              (("1"
+                                                (replace
+                                                 -1
+                                                 :hide?
+                                                 t
+                                                 :dir
+                                                 rl)
+                                                (("1"
+                                                  (rewrite
+                                                   "L_winding_number_contrib__winding_number_contrib_real__eq")
+                                                  (("1"
+                                                    (expand
+                                                     "winding_number_rec_real"
+                                                     1
+                                                     2)
+                                                    (("1"
+                                                      (assert)
+                                                      nil
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil)
+                                     ("2" (assert) nil nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil)
+                         ("2" (flatten)
+                          (("2" (case "index = n -2")
+                            (("1" (replace -1 :hide? t)
+                              (("1"
+                                (assert)
+                                (("1"
+                                  (replace -1 :hide? t)
+                                  (("1"
+                                    (replace -1 :hide? t)
+                                    (("1"
+                                      (expand "of_float64")
+                                      (("1"
+                                        (inst-cp -2 "0")
+                                        (("1"
+                                          (inst -2 "n-1")
+                                          (("1"
+                                            (decompose-equality -2)
+                                            (("1"
+                                              (decompose-equality -4)
+                                              (("1"
+                                                (replace
+                                                 -1
+                                                 :hide?
+                                                 t
+                                                 :dir
+                                                 rl)
+                                                (("1"
+                                                  (replace
+                                                   -1
+                                                   :hide?
+                                                   t
+                                                   :dir
+                                                   rl)
+                                                  (("1"
+                                                    (replace
+                                                     -1
+                                                     :hide?
+                                                     t
+                                                     :dir
+                                                     rl)
+                                                    (("1"
+                                                      (replace
+                                                       -1
+                                                       :hide?
+                                                       t
+                                                       :dir
+                                                       rl)
+                                                      (("1"
+                                                        (rewrite
+                                                         "L_winding_number_contrib__winding_number_contrib_real__eq")
+                                                        (("1"
+                                                          (expand
+                                                           "winding_number_rec_real"
+                                                           2
+                                                           2)
+                                                          (("1"
+                                                            (assert)
+                                                            nil
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil)
+                             ("2" (assert) nil nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil)
+                 ("2" (assert) nil nil) ("3" (propax) nil nil)
+                 ("4" (propax) nil nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((below type-eq-decl nil naturalnumbers nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (>= const-decl "bool" reals nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (< const-decl "bool" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number nonempty-type-decl nil numbers nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (pred type-eq-decl nil defined_types nil)
+    (nat_induction formula-decl nil naturalnumbers nil)
+    (L_winding_number_contrib__winding_number_contrib_real__eq
+     formula-decl nil interface nil)
+    (of_float64 const-decl "real" cfloat "./framac_wp/")
+    (odd_minus_odd_is_even application-judgement "even_int" integers
+     nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (odd_plus_even_is_odd application-judgement "odd_int" integers nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (FixL_for_winding_number1 formula-decl nil
+     A_real_function_for_winding_number1 nil)
+    (int_plus_int_is_int application-judgement "int" integers nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (n skolem-const-decl "int" interface nil)
+    (index skolem-const-decl "nat" interface nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (nnint_plus_posint_is_posint application-judgement "posint"
+     integers nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
+    (addr type-decl nil memory "./framac_wp/")
+    (shift_float64 const-decl "addr" Compound nil)
+    (L_for_winding_number1 const-decl
+     "[[addr -> real], int, int, addr, addr, real, real -> int]"
+     A_real_function_for_winding_number1 nil)
+    (posnat nonempty-type-eq-decl nil integers nil)
+    (nonneg_int nonempty-type-eq-decl nil integers nil)
+    (> const-decl "bool" reals nil)
+    (winding_number_rec_real def-decl "int" winding_number_rec__real
+     nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
+   shostak))
+ (L_for_winding_number1__winding_number__eq_TCC1 0
+  (L_for_winding_number1__winding_number__eq_TCC1-1 nil 3764435651
+   ("" (subtype-tcc) nil nil)
+   ((shift const-decl "addr" memory "./framac_wp/")
+    (shift_float64 const-decl "addr" Compound nil))
+   nil))
+ (L_for_winding_number1__winding_number__eq 0
+  (L_for_winding_number1__winding_number__eq-1 nil 3764435233
+   ("" (skeep*)
+    (("" (use "L_for_winding_number1__winding_number_rec_real__eq")
+      (("" (inst -1 "LAMBDA(j:below(n)): (# x:=px(j), y:=py(j) #)")
+        (("" (split -1)
+          (("1" (replace -1 :hide? t)
+            (("1" (use "winding_number_4_rrr_rfb_eq")
+              (("1" (replace -1 :hide? t :dir rl)
+                (("1" (propax) nil nil)) nil))
+              nil))
+            nil)
+           ("2" (hide 2)
+            (("2" (skeep)
+              (("2" (inst -1 "j_1")
+                (("2" (assert)
+                  (("2" (flatten) (("2" (assert) nil nil)) nil)) nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((L_for_winding_number1__winding_number_rec_real__eq formula-decl
+     nil interface nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (below type-eq-decl nil naturalnumbers nil)
+    (< const-decl "bool" reals nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (>= const-decl "bool" reals nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number nonempty-type-decl nil numbers nil)
+    (addr type-decl nil memory "./framac_wp/")
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (winding_number_4_rrr_rfb_eq formula-decl nil
+     winding_number__real_for_basic__props nil)
+    (nonneg_int nonempty-type-eq-decl nil integers nil)
+    (> const-decl "bool" reals nil)
+    (posnat nonempty-type-eq-decl nil integers nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
+   shostak))
+ (L_winding_number__winding_number__eq 0
+  (L_winding_number__winding_number__eq-1 nil 3764435889
+   ("" (skeep*)
+    (("" (expand "L_winding_number")
+      (("" (use "L_for_winding_number1__winding_number__eq")
+        (("" (assert) nil nil)) nil))
+      nil))
+    nil)
+   ((L_winding_number const-decl "int" A_real_function_winding_number
+     nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (addr type-decl nil memory "./framac_wp/")
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (>= const-decl "bool" reals nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (< const-decl "bool" reals nil)
+    (below type-eq-decl nil naturalnumbers nil)
+    (L_for_winding_number1__winding_number__eq formula-decl nil
+     interface nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (TRUE const-decl "bool" booleans nil))
+   shostak)))
+

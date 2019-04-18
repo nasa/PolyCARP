@@ -1,0 +1,13 @@
+% -------------------------------------------------- 
+% Axiomatic 'real_function_quadrant'                 
+% -------------------------------------------------- 
+
+A_real_function_quadrant: THEORY
+BEGIN
+
+L_quadrant(X : real, Y : real) : int =
+    IF (((0 <= X) AND (0 <= Y))) THEN 1
+    ELSE (IF (((X <= 0) AND (0 <= Y))) THEN 2
+          ELSE (IF (X <= 0) THEN 3 ELSE 4 ENDIF) ENDIF) ENDIF
+END A_real_function_quadrant
+

@@ -18,7 +18,7 @@ The floating-point versions of the above declarations are defined in the followi
 * `winding_number_contrib`
 * `quadrant`
 
-These theories depend on the [high-level floating-point formalization from the NASALib]. Compound floating-point based datatypes correspoding to the ones handled by the real-valued version of the Winding Number functions, such as _point_ and _polygon_, are defined in the theories `acceptable_polygon` and `vectors_2D_fp_def`.
+These theories depend on the [high-level floating-point formalization from the NASALib]. Compound floating-point based datatypes corresponding to the ones handled by the real-valued version of the Winding Number functions, such as _point_ and _polygon_, are defined in the theories `acceptable_polygon` and `vectors_2D_fp_def`.
 
 The technique presented in [1] have been modified in order to be able to deal with function calls, (simple) recursion, and compound datatypes (_point_, _polygon_). The result of the application of such modified technique on the Winding Number functions is declared in the theories mentioned below.
 
@@ -50,7 +50,7 @@ As part of the analysis, the PRECiSA static analyzer was modified in order to pr
 * `A_real_function_winding_number` : Axiomatic real-valued definition of the entry point for the Winding Number function
 * `A_real_function_winding_number_contrib` : Axiomatic real-valued definition of the contribution of each iteration in the Winding Number function
 * `quadrant_int_post` : Postcondition of the quadrant function
-* `winding_number_contrib_int_post` : Postconfition of the contribution function
+* `winding_number_contrib_int_post` : Postcondition of the contribution function
 * `winding_number_int_loop_inv_established` : Verification condition from the _for_ loop in the Winding Number function
 * `winding_number_int_loop_inv_preserved` : Verification condition from the _for_ loop in the Winding Number function
 * `winding_number_int_post` : Postcondition for the Winding Number function

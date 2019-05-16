@@ -1,18 +1,19 @@
 winding_number_int_loop_inv_established: THEORY
 BEGIN
 % -------------------------------------------------- 
-% Establishment of Invariant (file winding_number_precisa.c, line 273) 
+% Establishment of Invariant (file winding_number__real.c, line 221) 
 % -------------------------------------------------- 
 
 % --- Importings requested by the user --- 
-IMPORTING float@roundoff_error_props
+IMPORTING quadrant__trans_props
+IMPORTING interface
 
 % --- Qed-related importings and axioms --- 
 IMPORTING framac_wp@creal
+IMPORTING framac_wp@memory
 IMPORTING framac_wp@creal
 IMPORTING framac_wp@cmath
 IMPORTING framac_wp@cfloat
-IMPORTING framac_wp@memory
 
 IMPORTING S8_maybeInt
 IMPORTING framac_wp@cint

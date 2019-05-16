@@ -1,7 +1,7 @@
 winding_number_contrib_int_post: THEORY
 BEGIN
 % -------------------------------------------------- 
-% Post-condition (file winding_number_precisa.c, line 98) in 'winding_number_contrib_int' 
+% Post-condition (file winding_number__real.c, line 102) in 'winding_number_contrib_int' 
 % -------------------------------------------------- 
 
 % --- Importings requested by the user --- 
@@ -96,16 +96,14 @@ IMPORTING A_real_function_winding_number_contrib
     ((isfinite_float64(a_4)) IMPLIES
     ((isfinite_float64(a_5)) IMPLIES
     ((isfinite_float64(a_6)) IMPLIES
-    ((FORALL (r_20, r_19:real): ((0 /= x) IMPLIES ((0 <= r_8) IMPLIES
-      ((0 <= r_9) IMPLIES
+    ((FORALL (r_20, r_19:real): ((0 /= x) IMPLIES
       (((abs_real((of_float64(a)) - r_19)) <= r_8) IMPLIES
       (((abs_real((of_float64(a_1)) - r_20)) <= r_9) IMPLIES
-      ((L_quadrant(r_20, r_19)) = x_2))))))) IMPLIES
-    ((FORALL (r_20, r_19:real): ((0 /= x_1) IMPLIES ((0 <= r_6) IMPLIES
-      ((0 <= r_7) IMPLIES
+      ((L_quadrant(r_20, r_19)) = x_2))))) IMPLIES
+    ((FORALL (r_20, r_19:real): ((0 /= x_1) IMPLIES
       (((abs_real((of_float64(a_2)) - r_19)) <= r_6) IMPLIES
       (((abs_real((of_float64(a_3)) - r_20)) <= r_7) IMPLIES
-      ((L_quadrant(r_20, r_19)) = x_3))))))) IMPLIES
+      ((L_quadrant(r_20, r_19)) = x_3))))) IMPLIES
     ((IF (x_2 = x_3) THEN (0 = x_4)
       ELSE (IF ((1 + (mod(x_3, 4))) = x_2) THEN (1 = x_4)
             ELSE (IF ((1 + (mod(x_2, 4))) = x_3) THEN ((-1) = x_4)

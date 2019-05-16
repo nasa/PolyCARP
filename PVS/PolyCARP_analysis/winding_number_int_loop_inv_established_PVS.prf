@@ -1,8 +1,10 @@
 (winding_number_int_loop_inv_established
  (goal 0
-  (goal-1 nil 3764404060
+  (goal-1 nil 3766751619
    ("" (skeep*)
-    (("" (assert) (("" (flatten) (("" (assert) nil nil)) nil)) nil))
+    (("" (beta)
+      (("" (assert) (("" (flatten) (("" (assert) nil nil)) nil)) nil))
+      nil))
     nil)
    ((real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)

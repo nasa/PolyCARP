@@ -1,11 +1,12 @@
 quadrant_int_post: THEORY
 BEGIN
 % -------------------------------------------------- 
-% Post-condition (file winding_number_precisa.c, line 50) in 'quadrant_int' 
+% Post-condition (file winding_number__real.c, line 52) in 'quadrant_int' 
 % -------------------------------------------------- 
 
 % --- Importings requested by the user --- 
-IMPORTING float@roundoff_error_props
+IMPORTING quadrant__trans_props
+IMPORTING interface
 
 % --- Qed-related importings and axioms --- 
 IMPORTING framac_wp@creal

@@ -36,182 +36,182 @@ using namespace std;
 // the static initialization fiasco problem.  This problem manifests itself differently
 // between g++ and Visual C++, so be careful if you want to "optimize" this section.
 
-static double _FormalATM_unspecified() {
+static double FormalATM_unspecified() {
 	static double ans = 1.0;
 	return ans;
 }
-static double _FormalATM_unitless() {
+static double FormalATM_unitless() {
 	static double ans = 1.0;
 	return ans;
 }
-static double _FormalATM_internal() {
+static double FormalATM_internal() {
 	static double ans = 1.0;
 	return ans;
 }
 
-static double _FormalATM_m() {
+static double FormalATM_m() {
 	static double ans = 1.0;
 	return ans;
 }
-static double _FormalATM_km() {
-	static double ans = 1000.0 * _FormalATM_m();
+static double FormalATM_km() {
+	static double ans = 1000.0 * FormalATM_m();
 	return ans;
 }
-static double _FormalATM_NM() {
-	static double ans = 1852.0 * _FormalATM_m();
+static double FormalATM_NM() {
+	static double ans = 1852.0 * FormalATM_m();
 	return ans;
 }
-static double _FormalATM_ft() {
-	static double ans = 0.3048 * _FormalATM_m();
+static double FormalATM_ft() {
+	static double ans = 0.3048 * FormalATM_m();
 	return ans;
 }
-static double _FormalATM_mile() {
-	static double ans = 5280.0 * _FormalATM_ft();
+static double FormalATM_mile() {
+	static double ans = 5280.0 * FormalATM_ft();
 	return ans;
 }
-static double _FormalATM_inch() {
-	static double ans = _FormalATM_ft() / 12.0;
+static double FormalATM_inch() {
+	static double ans = FormalATM_ft() / 12.0;
 	return ans;
 }
-static double _FormalATM_yard() {
-	static double ans = 3.0 * _FormalATM_ft();
+static double FormalATM_yard() {
+	static double ans = 3.0 * FormalATM_ft();
 	return ans;
 }
-static double _FormalATM_mm() {
-	static double ans = 0.001 * _FormalATM_m();
-	return ans;
-}
-
-static double _FormalATM_m2() {
-	static double ans = _FormalATM_m() * _FormalATM_m();
-	return ans;
-}
-static double _FormalATM_ft2() {
-	static double ans = _FormalATM_ft() * _FormalATM_ft();
+static double FormalATM_mm() {
+	static double ans = 0.001 * FormalATM_m();
 	return ans;
 }
 
-static double _FormalATM_kg() {
+static double FormalATM_m2() {
+	static double ans = FormalATM_m() * FormalATM_m();
+	return ans;
+}
+static double FormalATM_ft2() {
+	static double ans = FormalATM_ft() * FormalATM_ft();
+	return ans;
+}
+
+static double FormalATM_kg() {
 	static double ans = 1.0;
 	return ans;
 }
-static double _FormalATM_pound_mass() {
-	static double ans = 0.45359237 * _FormalATM_kg();
+static double FormalATM_pound_mass() {
+	static double ans = 0.45359237 * FormalATM_kg();
 	return ans;
 }
 
-static double _FormalATM_s() {
+static double FormalATM_s() {
 	static double ans = 1.0;
 	return ans;
 }
-static double _FormalATM_min() {
-	static double ans = 60.0 * _FormalATM_s();
+static double FormalATM_min() {
+	static double ans = 60.0 * FormalATM_s();
 	return ans;
 }
-static double _FormalATM_hour() {
-	static double ans = 3600.0 * _FormalATM_s();
+static double FormalATM_hour() {
+	static double ans = 3600.0 * FormalATM_s();
 	return ans;
 }
-static double _FormalATM_day() {
-	static double ans = 8640000.0 * _FormalATM_s();
+static double FormalATM_day() {
+	static double ans = 8640000.0 * FormalATM_s();
 	return ans;
 }
-static double _FormalATM_ms() {
-	static double ans = 0.001 * _FormalATM_s();
+static double FormalATM_ms() {
+	static double ans = 0.001 * FormalATM_s();
 	return ans;
 }
 
-static double _FormalATM_rad() {
+static double FormalATM_rad() {
 	static double ans = 1.0;
 	return ans;
 }
-static double _FormalATM_deg() {
+static double FormalATM_deg() {
 	static double ans = M_PI / 180.0;
 	return ans;
 }
 
-static double _FormalATM_radian_per_second() {
-	static double ans = _FormalATM_rad() / _FormalATM_s();
+static double FormalATM_radian_per_second() {
+	static double ans = FormalATM_rad() / FormalATM_s();
 	return ans;
 }
 
-static double _FormalATM_degree_per_second() {
-	static double ans = _FormalATM_deg() / _FormalATM_s();
+static double FormalATM_degree_per_second() {
+	static double ans = FormalATM_deg() / FormalATM_s();
 	return ans;
 }
 
-static double _FormalATM_mps() {
+static double FormalATM_mps() {
 	static double ans = 1.0;
 	return ans;
 }
-static double _FormalATM_kph() {
-	static double ans = _FormalATM_km() / _FormalATM_hour();
+static double FormalATM_kph() {
+	static double ans = FormalATM_km() / FormalATM_hour();
 	return ans;
 }
-static double _FormalATM_kn() {
-	static double ans = _FormalATM_NM() / _FormalATM_hour();
+static double FormalATM_kn() {
+	static double ans = FormalATM_NM() / FormalATM_hour();
 	return ans;
 }
-static double _FormalATM_fpm() {
-	static double ans = _FormalATM_ft() / _FormalATM_min();
+static double FormalATM_fpm() {
+	static double ans = FormalATM_ft() / FormalATM_min();
 	return ans;
 }
-static double _FormalATM_mph() {
-	static double ans = _FormalATM_mile() / _FormalATM_hour();
+static double FormalATM_mph() {
+	static double ans = FormalATM_mile() / FormalATM_hour();
 	return ans;
 }
-static double _FormalATM_foot_per_second() {
-	static double ans = _FormalATM_ft() / _FormalATM_s();
-	return ans;
-}
-
-static double _FormalATM_meter_per_second2() {
-	static double ans = _FormalATM_m() / (_FormalATM_s() * _FormalATM_s());
-	return ans;
-}
-double larcfm::_FormalATM_gn() {
-	static double ans = 9.80665 * _FormalATM_meter_per_second2();
-	return ans;
-}
-static double _FormalATM_foot_per_second2() {
-	static double ans = _FormalATM_ft() / (_FormalATM_s() * _FormalATM_s());
+static double FormalATM_foot_per_second() {
+	static double ans = FormalATM_ft() / FormalATM_s();
 	return ans;
 }
 
-static double _FormalATM_newton() {
-	static double ans = _FormalATM_kg() * _FormalATM_meter_per_second2();
+static double FormalATM_meter_per_second2() {
+	static double ans = FormalATM_m() / (FormalATM_s() * FormalATM_s());
 	return ans;
 }
-static double _FormalATM_slug() {
-	static double ans = _FormalATM_pound_mass() * _FormalATM_gn()
-							/ _FormalATM_foot_per_second2();
+double larcfm::FormalATM_gn() {
+	static double ans = 9.80665 * FormalATM_meter_per_second2();
 	return ans;
 }
-static double _FormalATM_pound_force() {
-	static double ans = _FormalATM_slug() * _FormalATM_foot_per_second2();
-	return ans;
-}
-
-static double _FormalATM_joule() {
-	static double ans = _FormalATM_newton() * _FormalATM_m();
-	return ans;
-}
-static double _FormalATM_foot_pound_force() {
-	static double ans = _FormalATM_ft() * _FormalATM_pound_force();
+static double FormalATM_foot_per_second2() {
+	static double ans = FormalATM_ft() / (FormalATM_s() * FormalATM_s());
 	return ans;
 }
 
+static double FormalATM_newton() {
+	static double ans = FormalATM_kg() * FormalATM_meter_per_second2();
+	return ans;
+}
+static double FormalATM_slug() {
+	static double ans = FormalATM_pound_mass() * FormalATM_gn()
+							/ FormalATM_foot_per_second2();
+	return ans;
+}
+static double FormalATM_pound_force() {
+	static double ans = FormalATM_slug() * FormalATM_foot_per_second2();
+	return ans;
+}
 
-static double _FormalATM_pascal() {
-	static double ans = _FormalATM_newton() / (_FormalATM_m() * _FormalATM_m());
+static double FormalATM_joule() {
+	static double ans = FormalATM_newton() * FormalATM_m();
 	return ans;
 }
-double larcfm::_FormalATM_P0() {
-	static double ans = 101325.0 * _FormalATM_pascal();
+static double FormalATM_foot_pound_force() {
+	static double ans = FormalATM_ft() * FormalATM_pound_force();
 	return ans;
 }
-static double _FormalATM_atm() {
-	static double ans = 1.0 * _FormalATM_P0();
+
+
+static double FormalATM_pascal() {
+	static double ans = FormalATM_newton() / (FormalATM_m() * FormalATM_m());
+	return ans;
+}
+double larcfm::FormalATM_P0() {
+	static double ans = 101325.0 * FormalATM_pascal();
+	return ans;
+}
+static double FormalATM_atm() {
+	static double ans = 1.0 * FormalATM_P0();
 	return ans;
 }
 
@@ -246,13 +246,13 @@ const double Units::kn = Units::getFactor("kn");
 const double Units::fpm = Units::getFactor("fpm");
 
 const double Units::meter_per_second2 = Units::getFactor("meter_per_second2");
-const double Units::gn = _FormalATM_gn();
+const double Units::gn = FormalATM_gn();
 const double Units::G = Units::getFactor("G");
 
 const double Units::newton = Units::getFactor("newton");
 const double Units::pascal = Units::getFactor("pascal");
 
-const double Units::P0 = _FormalATM_P0();
+const double Units::P0 = FormalATM_P0();
 const double Units::atm = Units::getFactor("atm");
 
 // Converts value canonical units to [symbol] units
@@ -261,95 +261,95 @@ double Units::getFactor(const std::string& symbolp) {
 	const std::string symbol = Units::canonical(symbolp);
 
 	if (symbol == "m") {
-		return _FormalATM_m();
+		return FormalATM_m();
 	} else if (symbol == "ft") {
-		return _FormalATM_ft();
+		return FormalATM_ft();
 	} else if (symbol == "yard") {
-		return _FormalATM_yard();
+		return FormalATM_yard();
 	} else if (symbol == "in") {
-		return _FormalATM_inch();
+		return FormalATM_inch();
 	} else if (symbol == "km") {
-		return _FormalATM_km();
+		return FormalATM_km();
 	} else if (symbol == "mi") {
-		return _FormalATM_mile();
+		return FormalATM_mile();
 	} else if (symbol == "NM") {
-		return _FormalATM_NM();
+		return FormalATM_NM();
 	} else if (symbol == "mm") {
-		return _FormalATM_mm();
+		return FormalATM_mm();
 
 	} else if (symbol == "m^2") {
-		return _FormalATM_m2();
+		return FormalATM_m2();
 	} else if (symbol == "ft^2") {
-		return _FormalATM_ft2();
+		return FormalATM_ft2();
 
 	} else if (symbol == "s") {
-		return _FormalATM_s();
+		return FormalATM_s();
 	} else if (symbol == "min") {
-		return _FormalATM_min();
+		return FormalATM_min();
 	} else if (symbol == "hour") {
-		return _FormalATM_hour();
+		return FormalATM_hour();
 	} else if (symbol == "day") {
-		return _FormalATM_day();
+		return FormalATM_day();
 	} else if (symbol == "ms") {
-		return _FormalATM_ms();
+		return FormalATM_ms();
 
 	} else if (symbol == "rad") {
-		return _FormalATM_rad();
+		return FormalATM_rad();
 	} else if (symbol == "deg") {
-		return _FormalATM_deg();
+		return FormalATM_deg();
 	} else if (symbol == "deg/s") {
-		return _FormalATM_degree_per_second();
+		return FormalATM_degree_per_second();
 	} else if (symbol == "rad/s") {
-		return _FormalATM_radian_per_second();
+		return FormalATM_radian_per_second();
 
 	} else if (symbol == "kg") {
-		return _FormalATM_kg();
+		return FormalATM_kg();
 	} else if (symbol == "lbm") {
-		return _FormalATM_pound_mass();
+		return FormalATM_pound_mass();
 	} else if (symbol == "slug") {
-		return _FormalATM_slug();
+		return FormalATM_slug();
 
 	} else if (symbol == "km/h") {
-		return _FormalATM_kph();
+		return FormalATM_kph();
 	} else if (symbol == "kn") {
-		return _FormalATM_kn();
+		return FormalATM_kn();
 	} else if (symbol == "fpm") {
-		return _FormalATM_fpm();
+		return FormalATM_fpm();
 	} else if (symbol == "ft/s") {
-		return _FormalATM_foot_per_second();
+		return FormalATM_foot_per_second();
 	} else if (symbol == "mph") {
-		return _FormalATM_mph();
+		return FormalATM_mph();
 	} else if (symbol == "m/s") {
-		return _FormalATM_mps();
+		return FormalATM_mps();
 
 	} else if (symbol == "m/s^2") {
-		return _FormalATM_meter_per_second2();
+		return FormalATM_meter_per_second2();
 	} else if (symbol == "G") {
-		return _FormalATM_gn();
+		return FormalATM_gn();
 	} else if (symbol == "ft/s^2") {
-		return _FormalATM_foot_per_second2();
+		return FormalATM_foot_per_second2();
 
 	} else if (symbol == "N") {
-		return _FormalATM_newton();
+		return FormalATM_newton();
 	} else if (symbol == "lbf") {
-		return _FormalATM_pound_force();
+		return FormalATM_pound_force();
 
 	} else if (symbol == "J") {
-		return _FormalATM_joule();
+		return FormalATM_joule();
 	} else if (symbol == "ft-lbf") {
-		return _FormalATM_foot_pound_force();
+		return FormalATM_foot_pound_force();
 
 	} else if (symbol == "atm") {
-		return _FormalATM_atm();
+		return FormalATM_atm();
 	} else if (symbol == "Pa") {
-		return _FormalATM_pascal();
+		return FormalATM_pascal();
 
 	} else if (symbol == "internal") {
-		return _FormalATM_internal();
+		return FormalATM_internal();
 	} else if (symbol == "unspecified") {
-		return _FormalATM_unspecified();
+		return FormalATM_unspecified();
 	} else if (symbol == "unitless") {
-		return _FormalATM_unitless();
+		return FormalATM_unitless();
 	}
 	return 0.0;  // this is a special value that indicates an invalid unit
 }

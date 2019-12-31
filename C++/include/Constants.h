@@ -21,12 +21,12 @@ namespace larcfm {
 
 
 // these will all eventually be moved into the object initialization
-static const std::string _FormalATM_version = "v2.6.2";
-static const double _FormalATM_GPS_LIMIT_HORIZONTAL = Units::from("ft", 25.0); // in order to keep both versions tied to a single entry, this needs to be defined here.
-static const double _FormalATM_GPS_LIMIT_VERTICAL = Units::from("ft", 25.0); // in order to keep both versions tied to a single entry, this needs to be defined here.
-static const double _FormalATM_TIME_LIMIT_EPSILON = 1.0;// in order to keep both versions tied to a single entry, this needs to be defined here.
-static const double _FormalATM_NO_TIME_LIMIT_EPSILON = -1;
-static const double _FormalATM_NO_TIME = -1;
+static const std::string FormalATM_version = "v2.6.2";
+static const double FormalATM_GPS_LIMIT_HORIZONTAL = Units::from("ft", 25.0); // in order to keep both versions tied to a single entry, this needs to be defined here.
+static const double FormalATM_GPS_LIMIT_VERTICAL = Units::from("ft", 25.0); // in order to keep both versions tied to a single entry, this needs to be defined here.
+static const double FormalATM_TIME_LIMIT_EPSILON = 1.0;// in order to keep both versions tied to a single entry, this needs to be defined here.
+static const double FormalATM_NO_TIME_LIMIT_EPSILON = -1;
+static const double FormalATM_NO_TIME = -1;
 
   class Constants {
   private:
@@ -188,27 +188,27 @@ static const double _FormalATM_NO_TIME = -1;
    *   WAAS specification requirements (25 ft) for horizontal
    *   accuracy, 95% of the time.  In practice, the actual accuracy is
    *   much better. */
-  static const double GPS_LIMIT_HORIZONTAL = _FormalATM_GPS_LIMIT_HORIZONTAL;// in order to keep both versions tied to a single entry, this needs to be defined here.
+  static const double GPS_LIMIT_HORIZONTAL = FormalATM_GPS_LIMIT_HORIZONTAL;// in order to keep both versions tied to a single entry, this needs to be defined here.
   /**
    *   \deprecated {Use Constants:: version}
    *
    *   WAAS specification requirements (25 ft) for vertical
    *   accuracy, 95% of the time. */
-  static const double GPS_LIMIT_VERTICAL = _FormalATM_GPS_LIMIT_VERTICAL;// in order to keep both versions tied to a single entry, this needs to be defined here.
+  static const double GPS_LIMIT_VERTICAL = FormalATM_GPS_LIMIT_VERTICAL;// in order to keep both versions tied to a single entry, this needs to be defined here.
   /**
    * \deprecated {Use Constants:: version}
    * Most GPS units update with a frequency of at least 1 HZ.  */
-  static const double TIME_LIMIT_EPSILON = _FormalATM_TIME_LIMIT_EPSILON;// in order to keep both versions tied to a single entry, this needs to be defined here.
+  static const double TIME_LIMIT_EPSILON = FormalATM_TIME_LIMIT_EPSILON;// in order to keep both versions tied to a single entry, this needs to be defined here.
   
   /**
    * \deprecated {Use Constants:: version}
    */
-  static const double NO_TIME_LIMIT_EPSILON = _FormalATM_NO_TIME_LIMIT_EPSILON;
+  static const double NO_TIME_LIMIT_EPSILON = FormalATM_NO_TIME_LIMIT_EPSILON;
 
   /**
    * \deprecated {Use Constants:: version}
    */
-  static const double NO_TIME = _FormalATM_NO_TIME;
+  static const double NO_TIME = FormalATM_NO_TIME;
   /**
    * \deprecated {Use Constants:: version}
    * Set the time accuracy value.  This value means any two times that

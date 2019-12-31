@@ -20,13 +20,13 @@
 
 namespace larcfm {
 
-//  double _FormalATM_m();
+//  double FormalATM_m();
 
 /** See Units::gn */
-double _FormalATM_gn();
+double FormalATM_gn();
 
 /** See Units::P0 */
-double _FormalATM_P0();
+double FormalATM_P0();
 
 
 

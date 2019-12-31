@@ -53,31 +53,31 @@
 
 #ifdef SIMPLE_PROJECTION_
 #define EuclideanProjection SimpleProjection
-#define projection_type_value__ SIMPLE
+#define projection_type_value_ SIMPLE
 #include "SimpleProjection.h"
 #endif
 
 #ifdef SIMPLE_NO_POLAR_PROJECTION_
 #define EuclideanProjection SimpleNoPolarProjection
-#define projection_type_value__ SIMPLE_NO_POLAR
+#define projection_type_value_ SIMPLE_NO_POLAR
 #include "SimpleNoPolarProjection.h"
 #endif
 
 #ifdef ENU_PROJECTION_
 #define EuclideanProjection ENUProjection
-#define projection_type_value__ ENU
+#define projection_type_value_ ENU
 #include "ENUProjection.h"
 #endif
 
 #ifdef AZIEQUI_PROJECTION_
 #define EuclideanProjection AziEquiProjection
-#define projection_type_value__ AZIEQUI
+#define projection_type_value_ AZIEQUI
 #include "AziEquiProjection.h"
 #endif
 
 #ifdef ORTHO_PROJECTION_
 #define EuclideanProjection OrthographicProjection
-#define projection_type_value__ ORTHO
+#define projection_type_value_ ORTHO
 #include "OrthographicProjection.h"
 #endif
 

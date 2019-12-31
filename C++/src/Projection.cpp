@@ -27,7 +27,7 @@ namespace larcfm {
 
   // the default!!!
   EuclideanProjection Projection::projection = EuclideanProjection();
-  ProjectionType Projection::ptype = projection_type_value__;
+  ProjectionType Projection::ptype = projection_type_value_;
 
   EuclideanProjection Projection::createProjection(double lat, double lon, double alt) {
     return projection.makeNew(lat, lon, alt);

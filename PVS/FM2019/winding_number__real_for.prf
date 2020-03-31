@@ -1,7 +1,9 @@
 (winding_number__real_for
  (winding_number_rec_real_body_TCC1 0
   (winding_number_rec_real_body_TCC1-1 nil 3759600132
-   ("" (subtype-tcc) nil nil) nil nil))
+   ("" (subtype-tcc) nil nil) nil nil
+   (winding_number_rec_real_body subtype "winding_number__real_for.i"
+    "naturalnumbers.below(winding_number__real_for.N)")))
  (winding_number_rec_real_body_TCC2 0
   (winding_number_rec_real_body_TCC2-1 nil 3759600132
    ("" (subtype-tcc) nil nil)
@@ -35,13 +37,20 @@
      real_props nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (winding_number_rec_real_body subtype
+    "(number_fields.+)(winding_number__real_for.i, 1)"
+    "naturalnumbers.below(winding_number__real_for.N)")))
  (winding_number_rec_real_body_TCC3 0
   (winding_number_rec_real_body_TCC3-1 nil 3759600132
-   ("" (subtype-tcc) nil nil) nil nil))
+   ("" (subtype-tcc) nil nil) nil nil
+   (winding_number_rec_real_body subtype "winding_number__real_for.i"
+    "naturalnumbers.below(winding_number__real_for.N)")))
  (winding_number_rec_real_body_TCC4 0
   (winding_number_rec_real_body_TCC4-1 nil 3764079316
-   ("" (subtype-tcc) nil nil) nil nil))
+   ("" (subtype-tcc) nil nil) nil nil
+   (winding_number_rec_real_body subtype "0"
+    "naturalnumbers.below(winding_number__real_for.N)")))
  (winding_number_real_for_inv_TCC1 0
   (winding_number_real_for_inv_TCC1-1 nil 3759600132
    ("" (subtype-tcc) nil nil)
@@ -72,10 +81,16 @@
      real_props nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (winding_number_real_for_inv subtype
+    "(number_fields.-)(winding_number__real_for.i, 1)"
+    "naturalnumbers.below(winding_number__real_for.N)")))
  (winding_number_real_for_post_TCC1 0
   (winding_number_real_for_post_TCC1-1 nil 3759600132
-   ("" (subtype-tcc) nil nil) nil nil))
+   ("" (subtype-tcc) nil nil) nil nil
+   (winding_number_real_for_post subtype
+    "(number_fields.-)(winding_number__real_for.N, 1)"
+    "naturalnumbers.below(winding_number__real_for.N)")))
  (winding_number_real_for_sound 0
   (winding_number_real_for_sound-2 "" 3764428868
    ("" (skeep)
@@ -109,7 +124,8 @@
                     nil))
                   nil))
                 nil))
-              nil))
+              nil)
+             ("2" (grind-reals) nil nil))
             nil)
            ("2" (hide 2) (("2" (grind-reals) nil nil)) nil))
           nil))
@@ -136,24 +152,24 @@
     (<= const-decl "bool" reals nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
-    (ForBody type-eq-decl nil for_iterate "structures/")
+    (ForBody type-eq-decl nil for_iterate structures)
     (IF const-decl "[boolean, T, T -> T]" if_def nil)
     (winding_number_contrib_real const-decl "int"
      winding_number_contrib__real nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (below type-eq-decl nil naturalnumbers nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
+    (polygon_2D type-eq-decl nil acceptable_polygon PolyCARP)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (PRED type-eq-decl nil defined_types nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
     (winding_number_rec_real def-decl "int" winding_number_rec__real
      nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
-    (for_invariant formula-decl nil for_iterate "structures/")
+    (for_invariant formula-decl nil for_iterate structures)
     (number nonempty-type-decl nil numbers nil)
     (boolean nonempty-type-decl nil booleans nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
@@ -210,14 +226,14 @@
         nil))
       nil))
     nil)
-   ((ForBody type-eq-decl nil for_iterate "structures/")
+   ((ForBody type-eq-decl nil for_iterate structures)
     (winding_number_contrib_real const-decl "int"
      winding_number_contrib__real nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
+    (polygon_2D type-eq-decl nil acceptable_polygon PolyCARP)
     (winding_number_rec_real def-decl "int" winding_number_rec__real
      nil)
-    (for_invariant formula-decl nil for_iterate "structures/"))
+    (for_invariant formula-decl nil for_iterate structures))
    shostak))
  (winding_number_real_for_div4_j 0
   (winding_number_real_for_div4_j-1 nil 3759668199
@@ -234,8 +250,8 @@
     nil)
    ((winding_number_real_for_sound formula-decl nil
      winding_number__real_for nil)
-    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (polygon_2D type-eq-decl nil acceptable_polygon PolyCARP)
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (below type-eq-decl nil naturalnumbers nil)
     (< const-decl "bool" reals nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
@@ -261,7 +277,10 @@
      "(strict_total_order?[real])" real_props nil)
     (winding_number_rec_real_div_4_j judgement-tcc nil
      winding_number__real nil))
-   nil))
+   nil
+   (winding_number_real_for_div4_j subtype
+    "number_fields./(winding_number__real_for.winding_number_real_for(winding_number__real_for.N, winding_number__real_for.p, winding_number__real_for.s), 4)"
+    "int")))
  (winding_number_it_real_sound 0
   (winding_number_it_real_sound-1 nil 3759668284
    ("" (skeep :preds? t)
@@ -282,8 +301,8 @@
      nil)
     (winding_number_real_for_sound formula-decl nil
      winding_number__real_for nil)
-    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (polygon_2D type-eq-decl nil acceptable_polygon PolyCARP)
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (below type-eq-decl nil naturalnumbers nil)
     (< const-decl "bool" reals nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
@@ -319,8 +338,8 @@
     nil)
    ((winding_number_it_real_sound formula-decl nil
      winding_number__real_for nil)
-    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (polygon_2D type-eq-decl nil acceptable_polygon PolyCARP)
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (below type-eq-decl nil naturalnumbers nil)
     (< const-decl "bool" reals nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)

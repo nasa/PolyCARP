@@ -87,28 +87,28 @@
     (boolean nonempty-type-decl nil booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Format type-eq-decl nil float float)
+    (Fcanonic? const-decl "bool" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (unb_double type-eq-decl nil ieee754dp float)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float float)
+    (closest_double? const-decl "bool" ieee754dp float)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (FtoR const-decl "real" float "float/")
+    (FtoR const-decl "real" float float)
     (Dsub const-decl
      "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
-     ieee754dp_sub "float/")
+     ieee754dp_sub float)
     (quadrant const-decl "int" quadrant nil)
     (wn_fp_path1 const-decl "bool" winding_number_contrib nil)
     (quadrant_real const-decl "int" quadrant__real nil)
@@ -116,11 +116,11 @@
     (quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
     (wn_trans_path1 const-decl "bool" winding_number_contrib__trans
      nil)
-    (Maybe type-decl nil Maybe "structures/")
+    (Maybe type-decl nil Maybe structures)
     (integer_pred const-decl "[rational -> boolean]" integers nil)
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
+    (DtoR const-decl "real" ieee754dp float)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
@@ -138,8 +138,7 @@
     (orig_r_guard2 const-decl "bool" quadrant__real nil)
     (orig_r_guard1 const-decl "bool" quadrant__real nil)
     (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
-    (wn_fp_guard1 const-decl "bool" winding_number_contrib nil)
-    (= const-decl "bool" quadrant__trans nil)
+    (wn_fp_guard1 const-decl "bool" winding_number_contrib nil) nil
     (wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
      nil)
     (real_minus_real_is_real application-judgement "real" reals nil))
@@ -292,28 +291,28 @@
     (boolean nonempty-type-decl nil booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Format type-eq-decl nil float float)
+    (Fcanonic? const-decl "bool" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (unb_double type-eq-decl nil ieee754dp float)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float float)
+    (closest_double? const-decl "bool" ieee754dp float)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (FtoR const-decl "real" float "float/")
+    (FtoR const-decl "real" float float)
     (Dsub const-decl
      "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
-     ieee754dp_sub "float/")
+     ieee754dp_sub float)
     (quadrant const-decl "int" quadrant nil)
     (wn_fp_path2 const-decl "bool" winding_number_contrib nil)
     (quadrant_real const-decl "int" quadrant__real nil)
@@ -321,11 +320,11 @@
     (quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
     (wn_trans_path2 const-decl "bool" winding_number_contrib__trans
      nil)
-    (Maybe type-decl nil Maybe "structures/")
+    (Maybe type-decl nil Maybe structures)
     (integer_pred const-decl "[rational -> boolean]" integers nil)
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
+    (DtoR const-decl "real" ieee754dp float)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
@@ -342,9 +341,8 @@
     (wn_fp_guard1 const-decl "bool" winding_number_contrib nil)
     (wn_fp_guard2 const-decl "bool" winding_number_contrib nil)
     (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
-    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe
-     "structures/")
-    (Maybe_Some_extensionality formula-decl nil Maybe "structures/")
+    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (Maybe_Some_extensionality formula-decl nil Maybe structures)
     (wn_r_guard2 const-decl "bool" winding_number_contrib__real nil)
     (orig_r_guard3 const-decl "bool" quadrant__real nil)
     (orig_r_guard2 const-decl "bool" quadrant__real nil)
@@ -352,8 +350,7 @@
     (nil application-judgement "below(m)" mod nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (= const-decl "bool" quadrant__trans nil)
+    (int_minus_int_is_int application-judgement "int" integers nil) nil
     (wn_trans_guard1 const-decl "bool" winding_number_contrib__trans
      nil)
     (real_minus_real_is_real application-judgement "real" reals nil))
@@ -531,28 +528,28 @@
     (boolean nonempty-type-decl nil booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Format type-eq-decl nil float float)
+    (Fcanonic? const-decl "bool" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (unb_double type-eq-decl nil ieee754dp float)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float float)
+    (closest_double? const-decl "bool" ieee754dp float)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (FtoR const-decl "real" float "float/")
+    (FtoR const-decl "real" float float)
     (Dsub const-decl
      "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
-     ieee754dp_sub "float/")
+     ieee754dp_sub float)
     (quadrant const-decl "int" quadrant nil)
     (wn_fp_path3 const-decl "bool" winding_number_contrib nil)
     (quadrant_real const-decl "int" quadrant__real nil)
@@ -560,11 +557,11 @@
     (quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
     (wn_trans_path3 const-decl "bool" winding_number_contrib__trans
      nil)
-    (Maybe type-decl nil Maybe "structures/")
+    (Maybe type-decl nil Maybe structures)
     (integer_pred const-decl "[rational -> boolean]" integers nil)
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
+    (DtoR const-decl "real" ieee754dp float)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
@@ -576,8 +573,7 @@
      nil)
     (wn_trans_guard2 const-decl "bool" winding_number_contrib__trans
      nil)
-    (= const-decl "bool" quadrant__trans nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
+    nil (int_minus_int_is_int application-judgement "int" integers nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (nil application-judgement "below(m)" mod nil)
@@ -586,9 +582,8 @@
     (orig_r_guard3 const-decl "bool" quadrant__real nil)
     (wn_r_guard3 const-decl "bool" winding_number_contrib__real nil)
     (wn_r_guard2 const-decl "bool" winding_number_contrib__real nil)
-    (Maybe_Some_extensionality formula-decl nil Maybe "structures/")
-    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe
-     "structures/")
+    (Maybe_Some_extensionality formula-decl nil Maybe structures)
+    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
     (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
     (wn_fp_guard3 const-decl "bool" winding_number_contrib nil)
     (wn_fp_guard2 const-decl "bool" winding_number_contrib nil)
@@ -844,28 +839,28 @@
     (boolean nonempty-type-decl nil booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Format type-eq-decl nil float float)
+    (Fcanonic? const-decl "bool" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (unb_double type-eq-decl nil ieee754dp float)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float float)
+    (closest_double? const-decl "bool" ieee754dp float)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (FtoR const-decl "real" float "float/")
+    (FtoR const-decl "real" float float)
     (Dsub const-decl
      "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
-     ieee754dp_sub "float/")
+     ieee754dp_sub float)
     (quadrant const-decl "int" quadrant nil)
     (wn_fp_path4 const-decl "bool" winding_number_contrib nil)
     (quadrant_real const-decl "int" quadrant__real nil)
@@ -873,11 +868,11 @@
     (quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
     (wn_trans_path4 const-decl "bool" winding_number_contrib__trans
      nil)
-    (Maybe type-decl nil Maybe "structures/")
+    (Maybe type-decl nil Maybe structures)
     (integer_pred const-decl "[rational -> boolean]" integers nil)
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
+    (DtoR const-decl "real" ieee754dp float)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
@@ -887,7 +882,7 @@
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (Dmul const-decl
      "{f: unb_double | closest_double?(FtoR(f1) * FtoR(f2))(f)}"
-     ieee754dp_mul "float/")
+     ieee754dp_mul float)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
      nil)
@@ -902,20 +897,15 @@
     (wn_fp_guard3 const-decl "bool" winding_number_contrib nil)
     (wn_fp_guard4 const-decl "bool" winding_number_contrib nil)
     (greatest_fp_le_nonpos_is_nonpos formula-decl nil
-     roundoff_error_props "float/")
+     roundoff_error_props float)
     (nonpos_real nonempty-type-eq-decl nil real_types nil)
-    (Fle_transitive formula-decl nil float "float/")
+    (Fle_transitive formula-decl nil float float)
     (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
-     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
+     ieee754dp float)
+    nil
     (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     roundoff_error_props "float/")
+   DtoR(X) <= x AND FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X)}"
+     roundoff_error_props float)
     (transitive? const-decl "bool" relations nil)
     (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
     (wn_r_guard2 const-decl "bool" winding_number_contrib__real nil)
@@ -925,13 +915,10 @@
     (orig_r_guard1 const-decl "bool" quadrant__real nil)
     (nil application-judgement "below(m)" mod nil)
     (int_minus_int_is_int application-judgement "int" integers nil)
-    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe
-     "structures/")
-    (Maybe_Some_extensionality formula-decl nil Maybe "structures/")
-    (= const-decl "bool" quadrant__trans nil)
+    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (Maybe_Some_extensionality formula-decl nil Maybe structures) nil
     (wn_r_guard4 const-decl "bool" winding_number_contrib__real nil)
-    (var_le_0_trans_real formula-decl nil roundoff_error_props
-     "float/")
+    (var_le_0_trans_real formula-decl nil roundoff_error_props float)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (minus_real_is_real application-judgement "real" reals nil)
@@ -1123,7 +1110,7 @@
                                                                                -1
                                                                                "RtoD(0)"
                                                                                "smallest_fp_ge(e_DET)"
-                                                                               "DET_1")
+                                                                               "DET")
                                                                               (("1"
                                                                                 (assert)
                                                                                 (("1"
@@ -1274,32 +1261,34 @@
     nil)
    ((real_times_real_is_real application-judgement "real" reals nil)
     (TRUE const-decl "bool" booleans nil)
+    (id const-decl "(bijective?[T, T])" identity nil)
+    (bijective? const-decl "bool" functions nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (boolean nonempty-type-decl nil booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Format type-eq-decl nil float float)
+    (Fcanonic? const-decl "bool" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (unb_double type-eq-decl nil ieee754dp float)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float float)
+    (closest_double? const-decl "bool" ieee754dp float)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (FtoR const-decl "real" float "float/")
+    (FtoR const-decl "real" float float)
     (Dsub const-decl
      "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
-     ieee754dp_sub "float/")
+     ieee754dp_sub float)
     (quadrant const-decl "int" quadrant nil)
     (wn_fp_path5 const-decl "bool" winding_number_contrib nil)
     (quadrant_real const-decl "int" quadrant__real nil)
@@ -1307,11 +1296,11 @@
     (quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
     (wn_trans_path5 const-decl "bool" winding_number_contrib__trans
      nil)
-    (Maybe type-decl nil Maybe "structures/")
+    (Maybe type-decl nil Maybe structures)
     (integer_pred const-decl "[rational -> boolean]" integers nil)
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
+    (DtoR const-decl "real" ieee754dp float)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
@@ -1321,7 +1310,7 @@
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (Dmul const-decl
      "{f: unb_double | closest_double?(FtoR(f1) * FtoR(f2))(f)}"
-     ieee754dp_mul "float/")
+     ieee754dp_mul float)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
      nil)
@@ -1330,16 +1319,15 @@
     (wn_trans_guard4 const-decl "bool" winding_number_contrib__trans
      nil)
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
+     roundoff_error_props float)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (var_gt_error__var_r_gt_0 formula-decl nil roundoff_error_props
-     "float/")
+     float)
     (wn_r_guard4 const-decl "bool" winding_number_contrib__real nil)
     (= const-decl "bool" quadrant__trans nil)
-    (Maybe_Some_extensionality formula-decl nil Maybe "structures/")
-    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe
-     "structures/")
+    (Maybe_Some_extensionality formula-decl nil Maybe structures)
+    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
     (int_minus_int_is_int application-judgement "int" integers nil)
     (nil application-judgement "below(m)" mod nil)
     (orig_r_guard1 const-decl "bool" quadrant__real nil)
@@ -1350,22 +1338,20 @@
     (minus_real_is_real application-judgement "real" reals nil)
     (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
     (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     roundoff_error_props "float/")
+   x <= DtoR(X) AND FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y)}"
+     roundoff_error_props float)
     (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (leq_def formula-decl nil ieee754dp "float/")
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
+     ieee754dp float)
+    (leq_def formula-decl nil ieee754dp float)
+    (rtod_canonicroundfun_exactrepconservation_j name-judgement
      "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
-    (Flt_transitive formula-decl nil float "float/")
-    (Fle_neg_Flt formula-decl nil float "float/")
+   exact_rep_conservation[2](double_precision_format, dp_closest?)(RtoF)}"
+     ieee754dp float)
+    (Flt_transitive formula-decl nil float float)
+    (Fle_neg_Flt formula-decl nil float float)
     (transitive? const-decl "bool" relations nil)
     (smallest_fp_ge_nonneg_is_nonneg formula-decl nil
-     roundoff_error_props "float/")
+     roundoff_error_props float)
     (wn_fp_guard4 const-decl "bool" winding_number_contrib nil)
     (wn_fp_guard3 const-decl "bool" winding_number_contrib nil)
     (wn_fp_guard2 const-decl "bool" winding_number_contrib nil)
@@ -1635,13 +1621,13 @@
      winding_number_contrib__trans nil)
     (winding_number_contrib_stable_1 formula-decl nil
      winding_number_contrib__trans_props nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (Format type-eq-decl nil float "float/")
+    (unb_double type-eq-decl nil ieee754dp float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (Fcanonic? const-decl "bool" float float)
+    (Format type-eq-decl nil float float)
     (above nonempty-type-eq-decl nil integers nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (int nonempty-type-eq-decl nil integers nil)
     (wn_fp_path1 const-decl "bool" winding_number_contrib nil)
     (winding_number_contrib_real const-decl "int"
@@ -1697,7 +1683,7 @@
      nil)
     (wn_fp_path5 const-decl "bool" winding_number_contrib nil)
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
+     roundoff_error_props float)
     (wn_r_path5 const-decl "bool" winding_number_contrib__real nil)
     (wn_trans_path5 const-decl "bool" winding_number_contrib__trans
      nil)
@@ -1832,6 +1818,1200 @@
     nil)
    nil shostak))
  (wn_unstability_on_the_original_implies_warning_on_the_transformed 0
+  (wn_unstability_on_the_original_implies_warning_on_the_transformed-2
+   nil 3794646466
+   ("" (skeep)
+    (("" (skoletin*)
+      (("" (flatten)
+        (("" (expand "winding_number_contrib_trans")
+          (("" (lift-if 2)
+            (("" (split 2)
+              (("1" (flatten)
+                (("1" (expand "wn_trans_guard0")
+                  (("1"
+                    (with-labels (flatten)
+                     (("quadrant_trans_is_not_warning THIS"
+                       "quadrant_trans_is_not_warning NEXT")))
+                    (("1" (label "wn_trans" 1)
+                      (("1" (hide "wn_trans" 1)
+                        (("1" (replace -21 :dir rl)
+                          (("1" (replace -19 :dir rl)
+                            (("1" (replace -17 :dir rl)
+                              (("1"
+                                (replace -15 :dir rl)
+                                (("1"
+                                  (case
+                                   "quadrant_trans(e_THIS_x, e_THIS_y)(THIS_x, THIS_y)::int = quadrant(THIS_x, THIS_y) AND quadrant_trans(e_THIS_x, e_THIS_y)(THIS_x, THIS_y)::int = quadrant_real(r_THIS_x, r_THIS_y)")
+                                  (("1"
+                                    (flatten)
+                                    (("1"
+                                      (hide
+                                       "quadrant_trans_is_not_warning THIS")
+                                      (("1"
+                                        (case
+                                         "quadrant_trans(e_NEXT_x, e_NEXT_y)(NEXT_x, NEXT_y)::int = quadrant(NEXT_x, NEXT_y) AND quadrant_trans(e_NEXT_x, e_NEXT_y)(NEXT_x, NEXT_y)::int = quadrant_real(r_NEXT_x, r_NEXT_y)")
+                                        (("1"
+                                          (flatten)
+                                          (("1"
+                                            (hide
+                                             "quadrant_trans_is_not_warning NEXT")
+                                            (("1"
+                                              (expand
+                                               "winding_number_contrib")
+                                              (("1"
+                                                (lift-if 1)
+                                                (("1"
+                                                  (split 1)
+                                                  (("1"
+                                                    (flatten)
+                                                    (("1"
+                                                      (expand
+                                                       "winding_number_contrib_real")
+                                                      (("1"
+                                                        (lift-if 1)
+                                                        (("1"
+                                                          (split 1)
+                                                          (("1"
+                                                            (propax)
+                                                            nil
+                                                            nil)
+                                                           ("2"
+                                                            (flatten)
+                                                            (("2"
+                                                              (split 2)
+                                                              (("1"
+                                                                (flatten)
+                                                                (("1"
+                                                                  (expand
+                                                                   "wn_r_guard1")
+                                                                  (("1"
+                                                                    (expand
+                                                                     "wn_fp_guard1")
+                                                                    (("1"
+                                                                      (assert)
+                                                                      nil
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil)
+                                                               ("2"
+                                                                (flatten)
+                                                                (("2"
+                                                                  (split
+                                                                   2)
+                                                                  (("1"
+                                                                    (flatten)
+                                                                    (("1"
+                                                                      (expand
+                                                                       "wn_fp_guard1")
+                                                                      (("1"
+                                                                        (expand
+                                                                         "wn_r_guard1")
+                                                                        (("1"
+                                                                          (assert)
+                                                                          nil
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil)
+                                                                   ("2"
+                                                                    (flatten)
+                                                                    (("2"
+                                                                      (split
+                                                                       2)
+                                                                      (("1"
+                                                                        (flatten)
+                                                                        (("1"
+                                                                          (expand
+                                                                           "wn_r_guard1")
+                                                                          (("1"
+                                                                            (expand
+                                                                             "wn_fp_guard1")
+                                                                            (("1"
+                                                                              (assert)
+                                                                              nil
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil)
+                                                                       ("2"
+                                                                        (flatten)
+                                                                        (("2"
+                                                                          (expand
+                                                                           "wn_fp_guard1")
+                                                                          (("2"
+                                                                            (expand
+                                                                             "wn_r_guard1")
+                                                                            (("2"
+                                                                              (assert)
+                                                                              nil
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil)
+                                                   ("2"
+                                                    (flatten)
+                                                    (("2"
+                                                      (split 2)
+                                                      (("1"
+                                                        (flatten)
+                                                        (("1"
+                                                          (expand
+                                                           "winding_number_contrib_real")
+                                                          (("1"
+                                                            (lift-if 1)
+                                                            (("1"
+                                                              (split 1)
+                                                              (("1"
+                                                                (flatten)
+                                                                (("1"
+                                                                  (expand
+                                                                   "wn_r_guard1")
+                                                                  (("1"
+                                                                    (expand
+                                                                     "wn_fp_guard1")
+                                                                    (("1"
+                                                                      (assert)
+                                                                      nil
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil)
+                                                               ("2"
+                                                                (flatten)
+                                                                (("2"
+                                                                  (split
+                                                                   2)
+                                                                  (("1"
+                                                                    (propax)
+                                                                    nil
+                                                                    nil)
+                                                                   ("2"
+                                                                    (flatten)
+                                                                    (("2"
+                                                                      (split
+                                                                       2)
+                                                                      (("1"
+                                                                        (flatten)
+                                                                        (("1"
+                                                                          (expand
+                                                                           "wn_fp_guard2")
+                                                                          (("1"
+                                                                            (expand
+                                                                             "wn_r_guard2")
+                                                                            (("1"
+                                                                              (assert)
+                                                                              nil
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil)
+                                                                       ("2"
+                                                                        (flatten)
+                                                                        (("2"
+                                                                          (split
+                                                                           2)
+                                                                          (("1"
+                                                                            (flatten)
+                                                                            (("1"
+                                                                              (expand
+                                                                               "wn_fp_guard2")
+                                                                              (("1"
+                                                                                (expand
+                                                                                 "wn_r_guard2")
+                                                                                (("1"
+                                                                                  (assert)
+                                                                                  nil
+                                                                                  nil))
+                                                                                nil))
+                                                                              nil))
+                                                                            nil)
+                                                                           ("2"
+                                                                            (flatten)
+                                                                            (("2"
+                                                                              (expand
+                                                                               "wn_r_guard2")
+                                                                              (("2"
+                                                                                (expand
+                                                                                 "wn_fp_guard2")
+                                                                                (("2"
+                                                                                  (assert)
+                                                                                  nil
+                                                                                  nil))
+                                                                                nil))
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil)
+                                                       ("2"
+                                                        (flatten)
+                                                        (("2"
+                                                          (split 2)
+                                                          (("1"
+                                                            (flatten)
+                                                            (("1"
+                                                              (expand
+                                                               "winding_number_contrib_real")
+                                                              (("1"
+                                                                (lift-if
+                                                                 1)
+                                                                (("1"
+                                                                  (split
+                                                                   1)
+                                                                  (("1"
+                                                                    (flatten)
+                                                                    (("1"
+                                                                      (expand
+                                                                       "wn_r_guard1")
+                                                                      (("1"
+                                                                        (expand
+                                                                         "wn_fp_guard1")
+                                                                        (("1"
+                                                                          (assert)
+                                                                          nil
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil)
+                                                                   ("2"
+                                                                    (flatten)
+                                                                    (("2"
+                                                                      (split
+                                                                       2)
+                                                                      (("1"
+                                                                        (flatten)
+                                                                        (("1"
+                                                                          (expand
+                                                                           "wn_r_guard2")
+                                                                          (("1"
+                                                                            (expand
+                                                                             "wn_fp_guard2")
+                                                                            (("1"
+                                                                              (assert)
+                                                                              nil
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil)
+                                                                       ("2"
+                                                                        (flatten)
+                                                                        (("2"
+                                                                          (split
+                                                                           2)
+                                                                          (("1"
+                                                                            (propax)
+                                                                            nil
+                                                                            nil)
+                                                                           ("2"
+                                                                            (flatten)
+                                                                            (("2"
+                                                                              (split
+                                                                               2)
+                                                                              (("1"
+                                                                                (flatten)
+                                                                                (("1"
+                                                                                  (expand
+                                                                                   "wn_fp_guard3")
+                                                                                  (("1"
+                                                                                    (expand
+                                                                                     "wn_r_guard3")
+                                                                                    (("1"
+                                                                                      (assert)
+                                                                                      nil
+                                                                                      nil))
+                                                                                    nil))
+                                                                                  nil))
+                                                                                nil)
+                                                                               ("2"
+                                                                                (flatten)
+                                                                                (("2"
+                                                                                  (expand
+                                                                                   "wn_r_guard3")
+                                                                                  (("2"
+                                                                                    (expand
+                                                                                     "wn_fp_guard3")
+                                                                                    (("2"
+                                                                                      (assert)
+                                                                                      nil
+                                                                                      nil))
+                                                                                    nil))
+                                                                                  nil))
+                                                                                nil))
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil)
+                                                           ("2"
+                                                            (flatten)
+                                                            (("2"
+                                                              (expand
+                                                               "winding_number_contrib_real"
+                                                               :assert?
+                                                               none)
+                                                              (("2"
+                                                                (beta
+                                                                 2)
+                                                                (("2"
+                                                                  (reveal
+                                                                   "wn_trans")
+                                                                  (("2"
+                                                                    (replace
+                                                                     -23
+                                                                     :dir
+                                                                     rl
+                                                                     :hide?
+                                                                     t)
+                                                                    (("2"
+                                                                      (replace
+                                                                       -22
+                                                                       :dir
+                                                                       rl
+                                                                       :hide?
+                                                                       t)
+                                                                      (("2"
+                                                                        (replace
+                                                                         -21
+                                                                         :dir
+                                                                         rl
+                                                                         :hide?
+                                                                         t)
+                                                                        (("2"
+                                                                          (replace
+                                                                           -20
+                                                                           :dir
+                                                                           rl
+                                                                           :hide?
+                                                                           t)
+                                                                          (("2"
+                                                                            (replace
+                                                                             -19
+                                                                             :dir
+                                                                             rl
+                                                                             :hide?
+                                                                             t)
+                                                                            (("2"
+                                                                              (replace
+                                                                               -18
+                                                                               :dir
+                                                                               rl
+                                                                               :hide?
+                                                                               t)
+                                                                              (("2"
+                                                                                (replace
+                                                                                 -17
+                                                                                 :dir
+                                                                                 rl
+                                                                                 :hide?
+                                                                                 t)
+                                                                                (("2"
+                                                                                  (replace
+                                                                                   -16
+                                                                                   :dir
+                                                                                   rl
+                                                                                   :hide?
+                                                                                   t)
+                                                                                  (("2"
+                                                                                    (replace
+                                                                                     -15
+                                                                                     :dir
+                                                                                     rl
+                                                                                     :hide?
+                                                                                     t)
+                                                                                    (("2"
+                                                                                      (replace
+                                                                                       -14
+                                                                                       :dir
+                                                                                       rl
+                                                                                       :hide?
+                                                                                       t)
+                                                                                      (("2"
+                                                                                        (replace
+                                                                                         -13
+                                                                                         :dir
+                                                                                         rl
+                                                                                         :hide?
+                                                                                         t)
+                                                                                        (("2"
+                                                                                          (replace
+                                                                                           -12
+                                                                                           :dir
+                                                                                           rl
+                                                                                           :hide?
+                                                                                           t)
+                                                                                          (("2"
+                                                                                            (replace
+                                                                                             -11
+                                                                                             :dir
+                                                                                             rl
+                                                                                             :hide?
+                                                                                             t)
+                                                                                            (("2"
+                                                                                              (replace
+                                                                                               -10
+                                                                                               :dir
+                                                                                               rl
+                                                                                               :hide?
+                                                                                               t)
+                                                                                              (("2"
+                                                                                                (hide
+                                                                                                 "wn_trans")
+                                                                                                (("2"
+                                                                                                  (lift-if
+                                                                                                   2)
+                                                                                                  (("2"
+                                                                                                    (split
+                                                                                                     2)
+                                                                                                    (("1"
+                                                                                                      (flatten)
+                                                                                                      (("1"
+                                                                                                        (split
+                                                                                                         1)
+                                                                                                        (("1"
+                                                                                                          (flatten)
+                                                                                                          (("1"
+                                                                                                            (expand
+                                                                                                             "wn_r_guard1")
+                                                                                                            (("1"
+                                                                                                              (expand
+                                                                                                               "wn_fp_guard1")
+                                                                                                              (("1"
+                                                                                                                (assert)
+                                                                                                                nil
+                                                                                                                nil))
+                                                                                                              nil))
+                                                                                                            nil))
+                                                                                                          nil)
+                                                                                                         ("2"
+                                                                                                          (flatten)
+                                                                                                          (("2"
+                                                                                                            (split
+                                                                                                             2)
+                                                                                                            (("1"
+                                                                                                              (flatten)
+                                                                                                              (("1"
+                                                                                                                (expand
+                                                                                                                 "wn_r_guard2")
+                                                                                                                (("1"
+                                                                                                                  (expand
+                                                                                                                   "wn_fp_guard2")
+                                                                                                                  (("1"
+                                                                                                                    (assert)
+                                                                                                                    nil
+                                                                                                                    nil))
+                                                                                                                  nil))
+                                                                                                                nil))
+                                                                                                              nil)
+                                                                                                             ("2"
+                                                                                                              (flatten)
+                                                                                                              (("2"
+                                                                                                                (split
+                                                                                                                 2)
+                                                                                                                (("1"
+                                                                                                                  (flatten)
+                                                                                                                  (("1"
+                                                                                                                    (expand
+                                                                                                                     "wn_fp_guard3")
+                                                                                                                    (("1"
+                                                                                                                      (expand
+                                                                                                                       "wn_r_guard3")
+                                                                                                                      (("1"
+                                                                                                                        (assert)
+                                                                                                                        nil
+                                                                                                                        nil))
+                                                                                                                      nil))
+                                                                                                                    nil))
+                                                                                                                  nil)
+                                                                                                                 ("2"
+                                                                                                                  (flatten)
+                                                                                                                  (("2"
+                                                                                                                    (split
+                                                                                                                     2)
+                                                                                                                    (("1"
+                                                                                                                      (propax)
+                                                                                                                      nil
+                                                                                                                      nil)
+                                                                                                                     ("2"
+                                                                                                                      (flatten)
+                                                                                                                      (("2"
+                                                                                                                        (reveal
+                                                                                                                         "wn_trans")
+                                                                                                                        (("2"
+                                                                                                                          (hide
+                                                                                                                           2)
+                                                                                                                          (("2"
+                                                                                                                            (split
+                                                                                                                             1)
+                                                                                                                            (("1"
+                                                                                                                              (flatten)
+                                                                                                                              (("1"
+                                                                                                                                (expand
+                                                                                                                                 "wn_trans_guard1")
+                                                                                                                                (("1"
+                                                                                                                                  (expand
+                                                                                                                                   "wn_fp_guard1")
+                                                                                                                                  (("1"
+                                                                                                                                    (assert)
+                                                                                                                                    nil
+                                                                                                                                    nil))
+                                                                                                                                  nil))
+                                                                                                                                nil))
+                                                                                                                              nil)
+                                                                                                                             ("2"
+                                                                                                                              (flatten)
+                                                                                                                              (("2"
+                                                                                                                                (split
+                                                                                                                                 2)
+                                                                                                                                (("1"
+                                                                                                                                  (flatten)
+                                                                                                                                  (("1"
+                                                                                                                                    (expand
+                                                                                                                                     "wn_trans_guard2")
+                                                                                                                                    (("1"
+                                                                                                                                      (expand
+                                                                                                                                       "wn_fp_guard2")
+                                                                                                                                      (("1"
+                                                                                                                                        (assert)
+                                                                                                                                        nil
+                                                                                                                                        nil))
+                                                                                                                                      nil))
+                                                                                                                                    nil))
+                                                                                                                                  nil)
+                                                                                                                                 ("2"
+                                                                                                                                  (flatten)
+                                                                                                                                  (("2"
+                                                                                                                                    (split
+                                                                                                                                     2)
+                                                                                                                                    (("1"
+                                                                                                                                      (flatten)
+                                                                                                                                      (("1"
+                                                                                                                                        (expand
+                                                                                                                                         "wn_trans_guard3")
+                                                                                                                                        (("1"
+                                                                                                                                          (expand
+                                                                                                                                           "wn_r_guard3")
+                                                                                                                                          (("1"
+                                                                                                                                            (assert)
+                                                                                                                                            nil
+                                                                                                                                            nil))
+                                                                                                                                          nil))
+                                                                                                                                        nil))
+                                                                                                                                      nil)
+                                                                                                                                     ("2"
+                                                                                                                                      (flatten)
+                                                                                                                                      (("2"
+                                                                                                                                        (split
+                                                                                                                                         2)
+                                                                                                                                        (("1"
+                                                                                                                                          (flatten)
+                                                                                                                                          (("1"
+                                                                                                                                            (expand
+                                                                                                                                             "wn_trans_guard4")
+                                                                                                                                            (("1"
+                                                                                                                                              (expand
+                                                                                                                                               "wn_fp_guard4")
+                                                                                                                                              (("1"
+                                                                                                                                                (expand
+                                                                                                                                                 "wn_r_guard4")
+                                                                                                                                                (("1"
+                                                                                                                                                  (lemma
+                                                                                                                                                   "var_le_0_trans_real")
+                                                                                                                                                  (("1"
+                                                                                                                                                    (inst?
+                                                                                                                                                     -1
+                                                                                                                                                     :where
+                                                                                                                                                     -12)
+                                                                                                                                                    (("1"
+                                                                                                                                                      (assert)
+                                                                                                                                                      nil
+                                                                                                                                                      nil))
+                                                                                                                                                    nil))
+                                                                                                                                                  nil))
+                                                                                                                                                nil))
+                                                                                                                                              nil))
+                                                                                                                                            nil))
+                                                                                                                                          nil)
+                                                                                                                                         ("2"
+                                                                                                                                          (flatten)
+                                                                                                                                          (("2"
+                                                                                                                                            (split
+                                                                                                                                             2)
+                                                                                                                                            (("1"
+                                                                                                                                              (flatten)
+                                                                                                                                              (("1"
+                                                                                                                                                (expand
+                                                                                                                                                 "wn_trans_guard5")
+                                                                                                                                                (("1"
+                                                                                                                                                  (expand
+                                                                                                                                                   "wn_fp_guard4")
+                                                                                                                                                  (("1"
+                                                                                                                                                    (lemma
+                                                                                                                                                     "var_fp_gt_err__var_fp_gt_0")
+                                                                                                                                                    (("1"
+                                                                                                                                                      (inst?
+                                                                                                                                                       -1
+                                                                                                                                                       :where
+                                                                                                                                                       -12)
+                                                                                                                                                      (("1"
+                                                                                                                                                        (split
+                                                                                                                                                         -1)
+                                                                                                                                                        (("1"
+                                                                                                                                                          (rewrite
+                                                                                                                                                           "Fle_neg_Flt")
+                                                                                                                                                          nil
+                                                                                                                                                          nil)
+                                                                                                                                                         ("2"
+                                                                                                                                                          (propax)
+                                                                                                                                                          nil
+                                                                                                                                                          nil)
+                                                                                                                                                         ("3"
+                                                                                                                                                          (assert)
+                                                                                                                                                          nil
+                                                                                                                                                          nil))
+                                                                                                                                                        nil))
+                                                                                                                                                      nil))
+                                                                                                                                                    nil))
+                                                                                                                                                  nil))
+                                                                                                                                                nil))
+                                                                                                                                              nil)
+                                                                                                                                             ("2"
+                                                                                                                                              (flatten)
+                                                                                                                                              (("2"
+                                                                                                                                                (expand
+                                                                                                                                                 "wn_r_guard1")
+                                                                                                                                                (("2"
+                                                                                                                                                  (expand
+                                                                                                                                                   "wn_fp_guard1")
+                                                                                                                                                  (("2"
+                                                                                                                                                    (assert)
+                                                                                                                                                    nil
+                                                                                                                                                    nil))
+                                                                                                                                                  nil))
+                                                                                                                                                nil))
+                                                                                                                                              nil))
+                                                                                                                                            nil))
+                                                                                                                                          nil))
+                                                                                                                                        nil))
+                                                                                                                                      nil))
+                                                                                                                                    nil))
+                                                                                                                                  nil))
+                                                                                                                                nil))
+                                                                                                                              nil))
+                                                                                                                            nil))
+                                                                                                                          nil))
+                                                                                                                        nil))
+                                                                                                                      nil))
+                                                                                                                    nil))
+                                                                                                                  nil))
+                                                                                                                nil))
+                                                                                                              nil))
+                                                                                                            nil))
+                                                                                                          nil))
+                                                                                                        nil))
+                                                                                                      nil)
+                                                                                                     ("2"
+                                                                                                      (flatten)
+                                                                                                      (("2"
+                                                                                                        (lift-if
+                                                                                                         2)
+                                                                                                        (("2"
+                                                                                                          (split
+                                                                                                           2)
+                                                                                                          (("1"
+                                                                                                            (flatten)
+                                                                                                            (("1"
+                                                                                                              (expand
+                                                                                                               "wn_r_guard1")
+                                                                                                              (("1"
+                                                                                                                (expand
+                                                                                                                 "wn_fp_guard1")
+                                                                                                                (("1"
+                                                                                                                  (assert)
+                                                                                                                  nil
+                                                                                                                  nil))
+                                                                                                                nil))
+                                                                                                              nil))
+                                                                                                            nil)
+                                                                                                           ("2"
+                                                                                                            (flatten)
+                                                                                                            (("2"
+                                                                                                              (split
+                                                                                                               2)
+                                                                                                              (("1"
+                                                                                                                (flatten)
+                                                                                                                (("1"
+                                                                                                                  (expand
+                                                                                                                   "wn_r_guard2")
+                                                                                                                  (("1"
+                                                                                                                    (expand
+                                                                                                                     "wn_fp_guard2")
+                                                                                                                    (("1"
+                                                                                                                      (assert)
+                                                                                                                      nil
+                                                                                                                      nil))
+                                                                                                                    nil))
+                                                                                                                  nil))
+                                                                                                                nil)
+                                                                                                               ("2"
+                                                                                                                (flatten)
+                                                                                                                (("2"
+                                                                                                                  (split
+                                                                                                                   2)
+                                                                                                                  (("1"
+                                                                                                                    (flatten)
+                                                                                                                    (("1"
+                                                                                                                      (expand
+                                                                                                                       "wn_fp_guard3")
+                                                                                                                      (("1"
+                                                                                                                        (expand
+                                                                                                                         "wn_r_guard3")
+                                                                                                                        (("1"
+                                                                                                                          (assert)
+                                                                                                                          nil
+                                                                                                                          nil))
+                                                                                                                        nil))
+                                                                                                                      nil))
+                                                                                                                    nil)
+                                                                                                                   ("2"
+                                                                                                                    (flatten)
+                                                                                                                    (("2"
+                                                                                                                      (split
+                                                                                                                       2)
+                                                                                                                      (("1"
+                                                                                                                        (flatten)
+                                                                                                                        (("1"
+                                                                                                                          (reveal
+                                                                                                                           "wn_trans")
+                                                                                                                          (("1"
+                                                                                                                            (hide
+                                                                                                                             2)
+                                                                                                                            (("1"
+                                                                                                                              (split
+                                                                                                                               1)
+                                                                                                                              (("1"
+                                                                                                                                (flatten)
+                                                                                                                                (("1"
+                                                                                                                                  (expand
+                                                                                                                                   "wn_trans_guard1")
+                                                                                                                                  (("1"
+                                                                                                                                    (expand
+                                                                                                                                     "wn_fp_guard1")
+                                                                                                                                    (("1"
+                                                                                                                                      (assert)
+                                                                                                                                      nil
+                                                                                                                                      nil))
+                                                                                                                                    nil))
+                                                                                                                                  nil))
+                                                                                                                                nil)
+                                                                                                                               ("2"
+                                                                                                                                (flatten)
+                                                                                                                                (("2"
+                                                                                                                                  (split
+                                                                                                                                   2)
+                                                                                                                                  (("1"
+                                                                                                                                    (flatten)
+                                                                                                                                    (("1"
+                                                                                                                                      (expand
+                                                                                                                                       "wn_trans_guard2")
+                                                                                                                                      (("1"
+                                                                                                                                        (expand
+                                                                                                                                         "wn_fp_guard2")
+                                                                                                                                        (("1"
+                                                                                                                                          (assert)
+                                                                                                                                          nil
+                                                                                                                                          nil))
+                                                                                                                                        nil))
+                                                                                                                                      nil))
+                                                                                                                                    nil)
+                                                                                                                                   ("2"
+                                                                                                                                    (flatten)
+                                                                                                                                    (("2"
+                                                                                                                                      (split
+                                                                                                                                       2)
+                                                                                                                                      (("1"
+                                                                                                                                        (flatten)
+                                                                                                                                        (("1"
+                                                                                                                                          (expand
+                                                                                                                                           "wn_trans_guard3")
+                                                                                                                                          (("1"
+                                                                                                                                            (expand
+                                                                                                                                             "wn_r_guard3")
+                                                                                                                                            (("1"
+                                                                                                                                              (assert)
+                                                                                                                                              nil
+                                                                                                                                              nil))
+                                                                                                                                            nil))
+                                                                                                                                          nil))
+                                                                                                                                        nil)
+                                                                                                                                       ("2"
+                                                                                                                                        (flatten)
+                                                                                                                                        (("2"
+                                                                                                                                          (split
+                                                                                                                                           2)
+                                                                                                                                          (("1"
+                                                                                                                                            (flatten)
+                                                                                                                                            (("1"
+                                                                                                                                              (expand
+                                                                                                                                               "wn_trans_guard4")
+                                                                                                                                              (("1"
+                                                                                                                                                (expand
+                                                                                                                                                 "wn_fp_guard4")
+                                                                                                                                                (("1"
+                                                                                                                                                  (lemma
+                                                                                                                                                   "var_le_0_trans_implies_var_not_lt_0_orig")
+                                                                                                                                                  (("1"
+                                                                                                                                                    (inst?
+                                                                                                                                                     -1
+                                                                                                                                                     :where
+                                                                                                                                                     -12)
+                                                                                                                                                    (("1"
+                                                                                                                                                      (assert)
+                                                                                                                                                      (("1"
+                                                                                                                                                        (rewrite
+                                                                                                                                                         "Fle_neg_Flt"
+                                                                                                                                                         10
+                                                                                                                                                         :dir
+                                                                                                                                                         rl)
+                                                                                                                                                        nil
+                                                                                                                                                        nil))
+                                                                                                                                                      nil))
+                                                                                                                                                    nil))
+                                                                                                                                                  nil))
+                                                                                                                                                nil))
+                                                                                                                                              nil))
+                                                                                                                                            nil)
+                                                                                                                                           ("2"
+                                                                                                                                            (flatten)
+                                                                                                                                            (("2"
+                                                                                                                                              (split
+                                                                                                                                               2)
+                                                                                                                                              (("1"
+                                                                                                                                                (flatten)
+                                                                                                                                                (("1"
+                                                                                                                                                  (expand
+                                                                                                                                                   "wn_trans_guard5")
+                                                                                                                                                  (("1"
+                                                                                                                                                    (expand
+                                                                                                                                                     "wn_fp_guard4")
+                                                                                                                                                    (("1"
+                                                                                                                                                      (expand
+                                                                                                                                                       "wn_r_guard4")
+                                                                                                                                                      (("1"
+                                                                                                                                                        (lemma
+                                                                                                                                                         "var_gt_error__var_r_gt_0")
+                                                                                                                                                        (("1"
+                                                                                                                                                          (inst?
+                                                                                                                                                           -1
+                                                                                                                                                           :where
+                                                                                                                                                           -12)
+                                                                                                                                                          (("1"
+                                                                                                                                                            (assert)
+                                                                                                                                                            nil
+                                                                                                                                                            nil))
+                                                                                                                                                          nil))
+                                                                                                                                                        nil))
+                                                                                                                                                      nil))
+                                                                                                                                                    nil))
+                                                                                                                                                  nil))
+                                                                                                                                                nil)
+                                                                                                                                               ("2"
+                                                                                                                                                (flatten)
+                                                                                                                                                (("2"
+                                                                                                                                                  (assert)
+                                                                                                                                                  nil
+                                                                                                                                                  nil))
+                                                                                                                                                nil))
+                                                                                                                                              nil))
+                                                                                                                                            nil))
+                                                                                                                                          nil))
+                                                                                                                                        nil))
+                                                                                                                                      nil))
+                                                                                                                                    nil))
+                                                                                                                                  nil))
+                                                                                                                                nil))
+                                                                                                                              nil))
+                                                                                                                            nil))
+                                                                                                                          nil))
+                                                                                                                        nil)
+                                                                                                                       ("2"
+                                                                                                                        (propax)
+                                                                                                                        nil
+                                                                                                                        nil))
+                                                                                                                      nil))
+                                                                                                                    nil))
+                                                                                                                  nil))
+                                                                                                                nil))
+                                                                                                              nil))
+                                                                                                            nil))
+                                                                                                          nil))
+                                                                                                        nil))
+                                                                                                      nil))
+                                                                                                    nil))
+                                                                                                  nil))
+                                                                                                nil))
+                                                                                              nil))
+                                                                                            nil))
+                                                                                          nil))
+                                                                                        nil))
+                                                                                      nil))
+                                                                                    nil))
+                                                                                  nil))
+                                                                                nil))
+                                                                              nil))
+                                                                            nil))
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil)
+                                         ("2"
+                                          (lemma
+                                           "unstability_on_the_original_implies_warning_on_the_transformed")
+                                          (("2"
+                                            (inst?
+                                             -1
+                                             :where
+                                             "quadrant_trans_is_not_warning NEXT")
+                                            (("2"
+                                              (inst
+                                               -1
+                                               "r_NEXT_x"
+                                               "r_NEXT_y")
+                                              (("2"
+                                                (lemma
+                                                 "quadrant_trans_no_warning_implies_stability_on_the_original")
+                                                (("2"
+                                                  (inst?
+                                                   -1
+                                                   :where
+                                                   "quadrant_trans_is_not_warning NEXT")
+                                                  (("2"
+                                                    (inst
+                                                     -1
+                                                     "r_NEXT_x"
+                                                     "r_NEXT_y")
+                                                    (("2"
+                                                      (assert)
+                                                      (("2"
+                                                        (assert)
+                                                        (("2"
+                                                          (flatten)
+                                                          (("2"
+                                                            (assert)
+                                                            (("2"
+                                                              (expand
+                                                               "=")
+                                                              (("2"
+                                                                (assert)
+                                                                nil
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil)
+                                         ("3" (assert) nil nil)
+                                         ("4" (propax) nil nil))
+                                        nil))
+                                      nil))
+                                    nil)
+                                   ("2"
+                                    (lemma
+                                     "quadrant_trans_no_warning_implies_stability_on_the_original")
+                                    (("2"
+                                      (inst?
+                                       -1
+                                       :where
+                                       "quadrant_trans_is_not_warning THIS")
+                                      (("2"
+                                        (inst -1 "r_THIS_x" "r_THIS_y")
+                                        (("2"
+                                          (assert)
+                                          (("2"
+                                            (assert)
+                                            (("2"
+                                              (expand "=")
+                                              (("2" (propax) nil nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil)
+                                   ("3" (assert) nil nil)
+                                   ("4" (propax) nil nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil)
+               ("2" (assert) nil nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((real_minus_real_is_real application-judgement "real" reals nil)
+    (wn_trans_guard1 const-decl "bool" winding_number_contrib__trans
+     nil)
+    (wn_trans_guard2 const-decl "bool" winding_number_contrib__trans
+     nil)
+    (wn_trans_guard3 const-decl "bool" winding_number_contrib__trans
+     nil)
+    (wn_trans_guard4 const-decl "bool" winding_number_contrib__trans
+     nil)
+    (wn_r_guard4 const-decl "bool" winding_number_contrib__real nil)
+    (minus_real_is_real application-judgement "real" reals nil)
+    (rtod_canonicroundfun_exactrepconservation_j name-judgement
+     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
+   exact_rep_conservation[2](double_precision_format, dp_closest?)(RtoF)}"
+     ieee754dp float)
+    (var_le_0_trans_real formula-decl nil roundoff_error_props float)
+    (wn_fp_guard4 const-decl "bool" winding_number_contrib nil)
+    (wn_trans_guard5 const-decl "bool" winding_number_contrib__trans
+     nil)
+    (var_fp_gt_err__var_fp_gt_0 formula-decl nil roundoff_error_props
+     float)
+    (Fle_neg_Flt formula-decl nil float float)
+    (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
+     ieee754dp float)
+    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
+     roundoff_error_props float)
+    (var_gt_error__var_r_gt_0 formula-decl nil roundoff_error_props
+     float)
+    (var_le_0_trans_implies_var_not_lt_0_orig formula-decl nil
+     roundoff_error_props float)
+    (wn_r_guard3 const-decl "bool" winding_number_contrib__real nil)
+    (wn_fp_guard3 const-decl "bool" winding_number_contrib nil)
+    (wn_r_guard2 const-decl "bool" winding_number_contrib__real nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (nil application-judgement "below(m)" mod nil)
+    (wn_fp_guard2 const-decl "bool" winding_number_contrib nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (wn_fp_guard1 const-decl "bool" winding_number_contrib nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (orig_r_guard1 const-decl "bool" quadrant__real nil)
+    (orig_r_guard2 const-decl "bool" quadrant__real nil)
+    (orig_r_guard3 const-decl "bool" quadrant__real nil)
+    (wn_r_guard1 const-decl "bool" winding_number_contrib__real nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (quadrant_trans_no_warning_implies_stability_on_the_original
+     formula-decl nil quadrant__trans_props nil)
+    (= const-decl "bool" quadrant__trans nil)
+    (unstability_on_the_original_implies_warning_on_the_transformed
+     formula-decl nil quadrant__trans_props nil)
+    (quadrant_real const-decl "int" quadrant__real nil)
+    (quadrant const-decl "int" quadrant nil)
+    (quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
+    (val adt-accessor-decl "[(some?) -> T]" Maybe structures)
+    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
+     nil)
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (Dmul const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) * FtoR(f2))(f)}"
+     ieee754dp_mul float)
+    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (<= const-decl "bool" reals nil) (>= const-decl "bool" reals nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (- const-decl "[numfield -> numfield]" number_fields nil)
+    (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
+         nil)
+    (DtoR const-decl "real" ieee754dp float)
+    (/= const-decl "boolean" notequal nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (winding_number_contrib const-decl "int" winding_number_contrib
+     nil)
+    (winding_number_contrib_real const-decl "int"
+     winding_number_contrib__real nil)
+    (Maybe type-decl nil Maybe structures)
+    (none? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (winding_number_contrib_trans const-decl "Maybe[int]"
+     winding_number_contrib__trans nil)
+    (Dsub const-decl
+     "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
+     ieee754dp_sub float)
+    (FtoR const-decl "real" float float)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (closest_double? const-decl "bool" ieee754dp float)
+    (Fbounded? const-decl "bool" float float)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number nonempty-type-decl nil numbers nil)
+    (unb_double type-eq-decl nil ieee754dp float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (Fcanonic? const-decl "bool" float float)
+    (Format type-eq-decl nil float float)
+    (above nonempty-type-eq-decl nil integers nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (float type-eq-decl nil float float)
+    (int nonempty-type-eq-decl nil integers nil)
+    (IFF const-decl "[bool, bool -> bool]" booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (bijective? const-decl "bool" functions nil)
+    (id const-decl "(bijective?[T, T])" identity nil)
+    (TRUE const-decl "bool" booleans nil)
+    (real_times_real_is_real application-judgement "real" reals nil))
+   nil)
   (wn_unstability_on_the_original_implies_warning_on_the_transformed-1
    nil 3747156983
    ("" (skeep)
@@ -2921,33 +4101,32 @@
     (boolean nonempty-type-decl nil booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
+    (Format type-eq-decl nil float float)
+    (Fcanonic? const-decl "bool" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (unb_double type-eq-decl nil ieee754dp float)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (real nonempty-type-from-decl nil reals nil)
-    (Fbounded? const-decl "bool" float "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
+    (Fbounded? const-decl "bool" float float)
+    (closest_double? const-decl "bool" ieee754dp float)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (FtoR const-decl "real" float "float/")
+    (FtoR const-decl "real" float float)
     (Dsub const-decl
      "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
-     ieee754dp_sub "float/")
+     ieee754dp_sub float)
     (winding_number_contrib_trans const-decl "Maybe[int]"
      winding_number_contrib__trans nil)
-    (none? adt-recognizer-decl "[Maybe -> boolean]" Maybe
-     "structures/")
-    (Maybe type-decl nil Maybe "structures/")
+    (none? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (Maybe type-decl nil Maybe structures)
     (winding_number_contrib_real const-decl "int"
      winding_number_contrib__real nil)
     (winding_number_contrib const-decl "int" winding_number_contrib
@@ -2956,7 +4135,7 @@
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
     (/= const-decl "boolean" notequal nil)
-    (DtoR const-decl "real" ieee754dp "float/")
+    (DtoR const-decl "real" ieee754dp float)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
@@ -2966,19 +4145,18 @@
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (Dmul const-decl
      "{f: unb_double | closest_double?(FtoR(f1) * FtoR(f2))(f)}"
-     ieee754dp_mul "float/")
+     ieee754dp_mul float)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (wn_trans_guard0 const-decl "bool" winding_number_contrib__trans
      nil)
-    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe
-     "structures/")
-    (val adt-accessor-decl "[(some?) -> T]" Maybe "structures/")
+    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (val adt-accessor-decl "[(some?) -> T]" Maybe structures)
     (quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
     (quadrant const-decl "int" quadrant nil)
     (quadrant_real const-decl "int" quadrant__real nil)
     (unstability_on_the_original_implies_warning_on_the_transformed
      formula-decl nil quadrant__trans_props nil)
-    (= const-decl "bool" quadrant__trans nil)
+    nil
     (quadrant_trans_no_warning_implies_stability_on_the_original
      formula-decl nil quadrant__trans_props nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
@@ -2999,27 +4177,21 @@
     (wn_fp_guard3 const-decl "bool" winding_number_contrib nil)
     (wn_r_guard3 const-decl "bool" winding_number_contrib__real nil)
     (var_le_0_trans_implies_var_not_lt_0_orig formula-decl nil
-     roundoff_error_props "float/")
+     roundoff_error_props float)
     (var_gt_error__var_r_gt_0 formula-decl nil roundoff_error_props
-     "float/")
+     float)
     (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
+     roundoff_error_props float)
     (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
-    (Fle_neg_Flt formula-decl nil float "float/")
+     ieee754dp float)
+    (Fle_neg_Flt formula-decl nil float float)
     (var_fp_gt_err__var_fp_gt_0 formula-decl nil roundoff_error_props
-     "float/")
+     float)
     (wn_trans_guard5 const-decl "bool" winding_number_contrib__trans
      nil)
     (wn_fp_guard4 const-decl "bool" winding_number_contrib nil)
-    (var_le_0_trans_real formula-decl nil roundoff_error_props
-     "float/")
-    (rtos_canonicroundfun_exactrepconservation_j name-judgement
-     "{RtoF: CanonicRoundingFun(double_precision_format, dp_closest?) |
-         exact_rep_conservation[2]
-             (double_precision_format, dp_closest?)(RtoF)}" ieee754dp
-     "float/")
-    (minus_real_is_real application-judgement "real" reals nil)
+    (var_le_0_trans_real formula-decl nil roundoff_error_props float)
+    nil (minus_real_is_real application-judgement "real" reals nil)
     (wn_r_guard4 const-decl "bool" winding_number_contrib__real nil)
     (wn_trans_guard4 const-decl "bool" winding_number_contrib__trans
      nil)

@@ -16,53 +16,46 @@
     (> const-decl "bool" reals nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
     (^ const-decl "real" exponentiation nil)
-    (vNum const-decl "posnat" float "float/")
-    (Fnormal? const-decl "bool" float "float/")
-    (Fsubnormal? const-decl "bool" float "float/")
-    (Closest? const-decl "bool" float "float/")
+    (vNum const-decl "posnat" float float)
+    (Fnormal? const-decl "bool" float float)
+    (Fsubnormal? const-decl "bool" float float)
+    (Closest? const-decl "bool" float float)
     (even? const-decl "bool" integers nil)
-    (EvenClosest? const-decl "bool" float "float/")
+    (EvenClosest? const-decl "bool" float float)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (dp_closest?_j name-judgement
      "{round: RestrictedRounding[2](double_precision_format, EvenClosest?) |
-         rounded_mode?(double_precision_format)(round)}" ieee754dp
-     "float/")
+   rounded_mode?(double_precision_format)(round)}" ieee754dp float)
     (dp_closest?_closestroundingpred_j name-judgement
-     "ClosestRoundingPred[2](double_precision_format)" ieee754dp
-     "float/")
+     "ClosestRoundingPred[2](double_precision_format)" ieee754dp float)
     (posnat_expt application-judgement "posnat" exponentiation nil)
     (int_abs_is_nonneg application-judgement "{j: nonneg_int | j >= i}"
      real_defs nil)
-    (minus_rat_is_rat application-judgement "rat" rationals nil)
-    (rndmaxismax_j application-judgement
-     "CanonicRoundingFun[2](b, isMax?(b))" ieee754dp "float/")
+    (minus_rat_is_rat application-judgement "rat" rationals nil) nil
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (rndminismin_j application-judgement
-     "CanonicRoundingFun[2](b, isMin?(b))" ieee754dp "float/")
+    nil
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (rndeclosest_j application-judgement
-     "CanonicRoundingFun[2](b, EvenClosest?(b))" ieee754dp "float/")
-    (FtoR const-decl "real" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Fopp const-decl "float" float "float/")
-    (RND_Max const-decl "(Fcanonic?(b))" float "float/")
+    nil (FtoR const-decl "real" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (Fopp const-decl "float" float float)
+    (RND_Max const-decl "(Fcanonic?(b))" float float)
     (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
+     ieee754dp float)
     (Fg const-decl
      "{f3: (Fcanonic?(b)) | Closest?(b)(g(FtoR(f1), FtoR(f2)), f3)}"
-     binop_em_scheme "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (dp_closest? const-decl "bool" ieee754dp "float/")
-    (Fbounded? const-decl "bool" float "float/")
+     binop_em_scheme float)
+    (closest_double? const-decl "bool" ieee754dp float)
+    (unb_double type-eq-decl nil ieee754dp float)
+    (Fcanonic? const-decl "bool" float float)
+    (dp_closest? const-decl "bool" ieee754dp float)
+    (Fbounded? const-decl "bool" float float)
     (bool nonempty-type-eq-decl nil booleans nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (int nonempty-type-eq-decl nil integers nil)
     (real nonempty-type-from-decl nil reals nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
@@ -71,15 +64,15 @@
      nil)
     (boolean nonempty-type-decl nil booleans nil)
     (number nonempty-type-decl nil numbers nil)
-    (Format type-eq-decl nil float "float/")
+    (Format type-eq-decl nil float float)
     (above nonempty-type-eq-decl nil integers nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (Fsub const-decl
      "{f3: (Fcanonic?(b)) | Closest?(b)(FtoR(f1) - FtoR(f2), f3)}"
-     cr_sub "float/")
+     cr_sub float)
     (Dsub const-decl
      "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
-     ieee754dp_sub "float/")
+     ieee754dp_sub float)
     (rat_times_rat_is_rat application-judgement "rat" rationals nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
     (rat_plus_rat_is_rat application-judgement "rat" rationals nil)
@@ -96,25 +89,28 @@
     (posint_plus_nnint_is_posint application-judgement "posint"
      integers nil)
     (int_minus_int_is_int application-judgement "int" integers nil))
-   nil))
+   nil
+   (error_preconditions subtype
+    "(number_fields.+)(winding_number_rec__trans_props.j, 1)"
+    "naturalnumbers.below(winding_number_rec__trans_props.N)")))
  (error_preconditions_TCC2 0
   (error_preconditions_TCC2-1 nil 3747414143 ("" (subtype-tcc) nil nil)
-   ((FtoR const-decl "real" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Fopp const-decl "float" float "float/")
-    (RND_Max const-decl "(Fcanonic?(b))" float "float/")
+   ((FtoR const-decl "real" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (Fopp const-decl "float" float float)
+    (RND_Max const-decl "(Fcanonic?(b))" float float)
     (RtoD const-decl "{f: unb_double | closest_double?(x1)(f)}"
-     ieee754dp "float/")
+     ieee754dp float)
     (Fg const-decl
      "{f3: (Fcanonic?(b)) | Closest?(b)(g(FtoR(f1), FtoR(f2)), f3)}"
-     binop_em_scheme "float/")
-    (closest_double? const-decl "bool" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (dp_closest? const-decl "bool" ieee754dp "float/")
-    (Fbounded? const-decl "bool" float "float/")
+     binop_em_scheme float)
+    (closest_double? const-decl "bool" ieee754dp float)
+    (unb_double type-eq-decl nil ieee754dp float)
+    (Fcanonic? const-decl "bool" float float)
+    (dp_closest? const-decl "bool" ieee754dp float)
+    (Fbounded? const-decl "bool" float float)
     (bool nonempty-type-eq-decl nil booleans nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (int nonempty-type-eq-decl nil integers nil)
     (real nonempty-type-from-decl nil reals nil)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
@@ -123,15 +119,15 @@
      nil)
     (boolean nonempty-type-decl nil booleans nil)
     (number nonempty-type-decl nil numbers nil)
-    (Format type-eq-decl nil float "float/")
+    (Format type-eq-decl nil float float)
     (above nonempty-type-eq-decl nil integers nil)
     (nat nonempty-type-eq-decl nil naturalnumbers nil)
     (Fsub const-decl
      "{f3: (Fcanonic?(b)) | Closest?(b)(FtoR(f1) - FtoR(f2), f3)}"
-     cr_sub "float/")
+     cr_sub float)
     (Dsub const-decl
      "{f: unb_double | closest_double?(FtoR(f1) - FtoR(f2))(f)}"
-     ieee754dp_sub "float/")
+     ieee754dp_sub float)
     (minus_int_is_int application-judgement "int" integers nil)
     (rat_minus_rat_is_rat application-judgement "rat" rationals nil)
     (rat_plus_rat_is_rat application-judgement "rat" rationals nil)
@@ -148,7 +144,9 @@
     (posint_plus_nnint_is_posint application-judgement "posint"
      integers nil)
     (int_minus_int_is_int application-judgement "int" integers nil))
-   nil))
+   nil
+   (error_preconditions subtype "0"
+    "naturalnumbers.below(winding_number_rec__trans_props.N)")))
  (wnr_trans_no_warning_implies_stability_on_the_original 0
   (wnr_trans_no_warning_implies_stability_on_the_original-1 nil
    3747413701
@@ -205,11 +203,8 @@
                                                        :dir
                                                        rl)
                                                       (("1"
-                                                        (expand "=")
-                                                        (("1"
-                                                          (propax)
-                                                          nil
-                                                          nil))
+                                                        (propax)
+                                                        nil
                                                         nil))
                                                       nil))
                                                     nil)
@@ -295,8 +290,7 @@
                     (("2" (expand "winding_number_rec_trans")
                       (("2"
                         (with-labels
-                         (invoke (name "wnc_trans" "%1" :hide? nil)
-                          (! -1 1 1 1))
+                         (invoke (name "wnc_trans" "%1") (! -1 1 1 1))
                          "wnc_trans_def")
                         (("1" (replace "wnc_trans_def" :hide? t)
                           (("1" (lift-if "wnr_trans_def")
@@ -613,29 +607,345 @@
         nil))
       nil))
     nil)
+   ((nnint_plus_posint_is_posint application-judgement "posint"
+     integers nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (int_plus_int_is_int application-judgement "int" integers nil)
+    (jb skolem-const-decl "below(N)" winding_number_rec__trans_props
+     nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (N skolem-const-decl "posnat" winding_number_rec__trans_props nil)
+    (winding_number_contrib_trans_no_warning_implies_stability_on_the_original
+     formula-decl nil winding_number_contrib__trans_props nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (IF const-decl "[boolean, T, T -> T]" if_def nil)
+    (winding_number_contrib_trans const-decl "Maybe[int]"
+     winding_number_contrib__trans nil)
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (Fcanonic? const-decl "bool" float float)
+    (Format type-eq-decl nil float float)
+    (above nonempty-type-eq-decl nil integers nil)
+    (float type-eq-decl nil float float)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (below_induction formula-decl nil bounded_nat_inductions nil)
+    (number nonempty-type-decl nil numbers nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (>= const-decl "bool" reals nil)
+    (nonneg_int nonempty-type-eq-decl nil integers nil)
+    (> const-decl "bool" reals nil)
+    (posnat nonempty-type-eq-decl nil integers nil)
+    (winding_number_rec_real def-decl "int" winding_number_rec__real
+     nil)
+    (winding_number_rec def-decl "int" winding_number_rec nil)
+    (= const-decl "bool" quadrant__trans nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (winding_number_rec_trans def-decl "Maybe[int]"
+     winding_number_rec__trans nil)
+    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (Maybe type-decl nil Maybe structures)
+    (error_preconditions const-decl "bool"
+     winding_number_rec__trans_props nil)
+    (polygon_2D type-eq-decl nil acceptable_polygon PolyCARP)
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
+    (polygon_2D_fp type-eq-decl nil acceptable_polygon nil)
+    (Vect2_fp type-eq-decl nil vectors_2D_fp_def nil)
+    (unb_double type-eq-decl nil ieee754dp float)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
+    (pred type-eq-decl nil defined_types nil)
+    (below type-eq-decl nil naturalnumbers nil)
+    (< const-decl "bool" reals nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil))
+   shostak))
+ (wnr_unstability_on_the_original_implies_warning_on_the_transformed 0
+  (wnr_unstability_on_the_original_implies_warning_on_the_transformed-2
+   nil 3794647299
+   ("" (skeep)
+    (("" (skeep)
+      (("" (skeep)
+        (("" (skeep)
+          (("" (induct "i")
+            (("1" (flatten)
+              (("1" (expand "winding_number_rec_trans")
+                (("1"
+                  (with-labels
+                   (invoke (name "wnc_trans" "%1") (! 2 1 1 1))
+                   "wnc_trans_def")
+                  (("1" (replace "wnc_trans_def")
+                    (("1"
+                      (lemma
+                       "wn_unstability_on_the_original_implies_warning_on_the_transformed")
+                      (("1" (inst? -1 :where "wnc_trans_def")
+                        (("1" (beta)
+                          (("1" (expand "winding_number_rec")
+                            (("1" (expand "winding_number_rec_real")
+                              (("1"
+                                (inst? -1 :where 1)
+                                (("1"
+                                  (expand "error_preconditions")
+                                  (("1"
+                                    (inst -4 "0")
+                                    (("1"
+                                      (split -1)
+                                      (("1"
+                                        (lift-if 2)
+                                        (("1"
+                                          (split 2)
+                                          (("1"
+                                            (flatten)
+                                            (("1"
+                                              (replace "wnc_trans_def")
+                                              (("1" (propax) nil nil))
+                                              nil))
+                                            nil)
+                                           ("2"
+                                            (flatten)
+                                            (("2" (assert) nil nil))
+                                            nil))
+                                          nil))
+                                        nil)
+                                       ("2"
+                                        (expand "/=")
+                                        (("2" (propax) nil nil))
+                                        nil)
+                                       ("3"
+                                        (flatten)
+                                        (("3" (assert) nil nil))
+                                        nil)
+                                       ("4"
+                                        (flatten)
+                                        (("4" (assert) nil nil))
+                                        nil)
+                                       ("5"
+                                        (flatten)
+                                        (("5" (assert) nil nil))
+                                        nil)
+                                       ("6"
+                                        (flatten)
+                                        (("6" (assert) nil nil))
+                                        nil)
+                                       ("7"
+                                        (flatten)
+                                        (("7"
+                                          (assert)
+                                          (("7" (assert) nil nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil)
+                                 ("2"
+                                  (flatten)
+                                  (("2" (assert) nil nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil)
+                         ("2" (flatten) (("2" (assert) nil nil)) nil))
+                        nil))
+                      nil))
+                    nil)
+                   ("2" (flatten) (("2" (assert) nil nil)) nil))
+                  nil))
+                nil))
+              nil)
+             ("2" (skeep)
+              (("2" (assert)
+                (("2" (expand "winding_number_rec_trans" 2)
+                  (("2"
+                    (with-labels
+                     (invoke (name "wnc_trans" "%1") (! 2 1 1 1))
+                     "wnc_trans_def")
+                    (("1" (replace "wnc_trans_def")
+                      (("1" (lift-if 2)
+                        (("1" (split 2)
+                          (("1" (flatten)
+                            (("1" (split 1)
+                              (("1"
+                                (flatten)
+                                (("1"
+                                  (split -5)
+                                  (("1" (assert) nil nil)
+                                   ("2"
+                                    (expand "/=")
+                                    (("2"
+                                      (expand "winding_number_rec" 2)
+                                      (("2"
+                                        (expand
+                                         "winding_number_rec_real"
+                                         2)
+                                        (("2"
+                                          (lemma
+                                           "wn_unstability_on_the_original_implies_warning_on_the_transformed")
+                                          (("2"
+                                            (inst?
+                                             -1
+                                             :where
+                                             "wnc_trans_def")
+                                            (("1"
+                                              (inst? -1 :where 2)
+                                              (("1"
+                                                (expand
+                                                 "error_preconditions")
+                                                (("1"
+                                                  (inst -7 "1 + jb")
+                                                  (("1"
+                                                    (beta -1)
+                                                    (("1"
+                                                      (split -1)
+                                                      (("1"
+                                                        (replace
+                                                         "wnc_trans_def")
+                                                        (("1"
+                                                          (assert)
+                                                          nil
+                                                          nil))
+                                                        nil)
+                                                       ("2"
+                                                        (expand "/=")
+                                                        (("2"
+                                                          (assert)
+                                                          (("2"
+                                                            (replace
+                                                             -1)
+                                                            (("2"
+                                                              (replace
+                                                               -2)
+                                                              (("2"
+                                                                (propax)
+                                                                nil
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil)
+                                                       ("3"
+                                                        (flatten)
+                                                        (("3"
+                                                          (assert)
+                                                          nil
+                                                          nil))
+                                                        nil)
+                                                       ("4"
+                                                        (flatten)
+                                                        (("4"
+                                                          (assert)
+                                                          nil
+                                                          nil))
+                                                        nil)
+                                                       ("5"
+                                                        (flatten)
+                                                        (("5"
+                                                          (assert)
+                                                          nil
+                                                          nil))
+                                                        nil)
+                                                       ("6"
+                                                        (flatten)
+                                                        (("6"
+                                                          (assert)
+                                                          nil
+                                                          nil))
+                                                        nil)
+                                                       ("7"
+                                                        (flatten)
+                                                        (("7"
+                                                          (assert)
+                                                          (("7"
+                                                            (assert)
+                                                            nil
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil)
+                                               ("2"
+                                                (flatten)
+                                                (("2"
+                                                  (assert)
+                                                  nil
+                                                  nil))
+                                                nil))
+                                              nil)
+                                             ("2"
+                                              (flatten)
+                                              (("2" (assert) nil nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil)
+                               ("2"
+                                (flatten)
+                                (("2" (assert) nil nil))
+                                nil))
+                              nil))
+                            nil)
+                           ("2" (flatten) (("2" (assert) nil nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil)
+                     ("2" (flatten) (("2" (assert) nil nil)) nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
    ((nat nonempty-type-eq-decl nil naturalnumbers nil)
     (< const-decl "bool" reals nil)
     (below type-eq-decl nil naturalnumbers nil)
     (pred type-eq-decl nil defined_types nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
+    (unb_double type-eq-decl nil ieee754dp float)
     (Vect2_fp type-eq-decl nil vectors_2D_fp_def nil)
     (polygon_2D_fp type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
+    (polygon_2D type-eq-decl nil acceptable_polygon PolyCARP)
     (error_preconditions const-decl "bool"
      winding_number_rec__trans_props nil)
-    (Maybe type-decl nil Maybe "structures/")
-    (some? adt-recognizer-decl "[Maybe -> boolean]" Maybe
-     "structures/")
-    (winding_number_rec_trans def-decl "Maybe[int]"
-     winding_number_rec__trans nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (= const-decl "bool" quadrant__trans nil)
+    (/= const-decl "boolean" notequal nil)
     (winding_number_rec def-decl "int" winding_number_rec nil)
     (winding_number_rec_real def-decl "int" winding_number_rec__real
      nil)
+    (Maybe type-decl nil Maybe structures)
+    (none? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (winding_number_rec_trans def-decl "Maybe[int]"
+     winding_number_rec__trans nil)
     (posnat nonempty-type-eq-decl nil integers nil)
     (> const-decl "bool" reals nil)
     (nonneg_int nonempty-type-eq-decl nil integers nil)
@@ -653,12 +963,23 @@
     (boolean nonempty-type-decl nil booleans nil)
     (number nonempty-type-decl nil numbers nil)
     (below_induction formula-decl nil bounded_nat_inductions nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (N skolem-const-decl "posnat" winding_number_rec__trans_props nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (wn_unstability_on_the_original_implies_warning_on_the_transformed
+     formula-decl nil winding_number_contrib__trans_props nil)
     (int_minus_int_is_int application-judgement "int" integers nil)
-    (float type-eq-decl nil float "float/")
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (float type-eq-decl nil float float)
     (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
+    (Format type-eq-decl nil float float)
+    (Fcanonic? const-decl "bool" float float)
+    (double_precision_format const-decl "Format" ieee754dp float)
     (winding_number_contrib_trans const-decl "Maybe[int]"
      winding_number_contrib__trans nil)
     (IF const-decl "[boolean, T, T -> T]" if_def nil)
@@ -666,28 +987,16 @@
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
+    (nnint_plus_posint_is_posint application-judgement "posint"
+     integers nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
-    (winding_number_contrib_trans_no_warning_implies_stability_on_the_original
-     formula-decl nil winding_number_contrib__trans_props nil)
-    (N skolem-const-decl "posnat" winding_number_rec__trans_props nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (real_times_real_is_real application-judgement "real" reals nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (posint_plus_nnint_is_posint application-judgement "posint"
      integers nil)
-    (real_plus_real_is_real application-judgement "real" reals nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
     (jb skolem-const-decl "below(N)" winding_number_rec__trans_props
      nil)
-    (int_plus_int_is_int application-judgement "int" integers nil)
-    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (nnint_plus_posint_is_posint application-judgement "posint"
-     integers nil))
-   shostak))
- (wnr_unstability_on_the_original_implies_warning_on_the_transformed 0
+    (int_plus_int_is_int application-judgement "int" integers nil))
+   nil)
   (wnr_unstability_on_the_original_implies_warning_on_the_transformed-1
    nil 3747584161
    ("" (skeep)
@@ -934,9 +1243,7 @@
         nil))
       nil))
     nil)
-   ((int_plus_int_is_int application-judgement "int" integers nil)
-    (jb skolem-const-decl "below(N)" winding_number_rec__trans_props
-     nil)
+   ((int_plus_int_is_int application-judgement "int" integers nil) nil
     (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
     (nnint_plus_posint_is_posint application-judgement "posint"
@@ -948,11 +1255,11 @@
     (IF const-decl "[boolean, T, T -> T]" if_def nil)
     (winding_number_contrib_trans const-decl "Maybe[int]"
      winding_number_contrib__trans nil)
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (Format type-eq-decl nil float "float/")
+    (double_precision_format const-decl "Format" ieee754dp float)
+    (Fcanonic? const-decl "bool" float float)
+    (Format type-eq-decl nil float float)
     (above nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
+    (float type-eq-decl nil float float)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (int_minus_int_is_int application-judgement "int" integers nil)
     (wn_unstability_on_the_original_implies_warning_on_the_transformed
@@ -965,7 +1272,7 @@
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (N skolem-const-decl "posnat" winding_number_rec__trans_props nil)
+    nil
     (real_minus_real_is_real application-judgement "real" reals nil)
     (below_induction formula-decl nil bounded_nat_inductions nil)
     (number nonempty-type-decl nil numbers nil)
@@ -986,20 +1293,19 @@
     (posnat nonempty-type-eq-decl nil integers nil)
     (winding_number_rec_trans def-decl "Maybe[int]"
      winding_number_rec__trans nil)
-    (none? adt-recognizer-decl "[Maybe -> boolean]" Maybe
-     "structures/")
-    (Maybe type-decl nil Maybe "structures/")
+    (none? adt-recognizer-decl "[Maybe -> boolean]" Maybe structures)
+    (Maybe type-decl nil Maybe structures)
     (winding_number_rec_real def-decl "int" winding_number_rec__real
      nil)
     (winding_number_rec def-decl "int" winding_number_rec nil)
     (/= const-decl "boolean" notequal nil)
     (error_preconditions const-decl "bool"
      winding_number_rec__trans_props nil)
-    (polygon_2D type-eq-decl nil acceptable_polygon "PolyCARP/")
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (polygon_2D type-eq-decl nil acceptable_polygon PolyCARP)
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D_fp type-eq-decl nil acceptable_polygon nil)
     (Vect2_fp type-eq-decl nil vectors_2D_fp_def nil)
-    (unb_double type-eq-decl nil ieee754dp "float/")
+    (unb_double type-eq-decl nil ieee754dp float)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (pred type-eq-decl nil defined_types nil)

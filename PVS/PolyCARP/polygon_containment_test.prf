@@ -56,7 +56,9 @@
      real_props nil)
     (XNum const-decl "posnat" polygon_containment_test nil)
     (YNum const-decl "posnat" polygon_containment_test nil))
-   nil))
+   nil
+   (MyPolyTester subtype "polygon_containment_test.j"
+                 "naturalnumbers.upto(polygon_containment_test.YNum)")))
  (MyPolyTester_TCC2 0
   (MyPolyTester_TCC2-1 nil 3653413518 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -88,7 +90,10 @@
      real_props nil)
     (XNum const-decl "posnat" polygon_containment_test nil)
     (YNum const-decl "posnat" polygon_containment_test nil))
-   nil))
+   nil
+   (MyPolyTester subtype
+                 "(number_fields.-)(polygon_containment_test.j, 1)"
+                 "naturalnumbers.upto(polygon_containment_test.XNum)")))
  (MyPolyTester_TCC3 0
   (MyPolyTester_TCC3-1 nil 3653413518 ("" (termination-tcc) nil nil)
    ((nnint_times_nnint_is_nnint application-judgement "nonneg_int"
@@ -99,7 +104,10 @@
      integers nil)
     (YNum const-decl "posnat" polygon_containment_test nil)
     (XNum const-decl "posnat" polygon_containment_test nil))
-   nil))
+   nil
+   (MyPolyTester termination
+                 "polygon_containment_test.MyPolyTester(polygon_containment_test.i, (number_fields.-)(polygon_containment_test.j, 1))"
+                 "nil")))
  (MyPolyTester_TCC4 0
   (MyPolyTester_TCC4-1 nil 3653413518 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -131,12 +139,17 @@
      real_props nil)
     (XNum const-decl "posnat" polygon_containment_test nil)
     (YNum const-decl "posnat" polygon_containment_test nil))
-   nil))
+   nil
+   (MyPolyTester subtype
+                 "(number_fields.-)(polygon_containment_test.i, 1)"
+                 "naturalnumbers.upto(polygon_containment_test.XNum)")))
  (MyPolyTester_TCC5 0
   (MyPolyTester_TCC5-1 nil 3653413518 ("" (subtype-tcc) nil nil)
    ((XNum const-decl "posnat" polygon_containment_test nil)
     (YNum const-decl "posnat" polygon_containment_test nil))
-   nil))
+   nil
+   (MyPolyTester subtype "polygon_containment_test.YNum"
+                 "naturalnumbers.upto(polygon_containment_test.XNum)")))
  (MyPolyTester_TCC6 0
   (MyPolyTester_TCC6-1 nil 3653413518 ("" (termination-tcc) nil nil)
    ((nnint_times_nnint_is_nnint application-judgement "nonneg_int"
@@ -145,20 +158,37 @@
     (mult_divides2 application-judgement "(divides(m))" divides nil)
     (YNum const-decl "posnat" polygon_containment_test nil)
     (XNum const-decl "posnat" polygon_containment_test nil))
-   nil))
+   nil
+   (MyPolyTester termination
+                 "polygon_containment_test.MyPolyTester((number_fields.-)(polygon_containment_test.i, 1), polygon_containment_test.YNum)"
+                 "nil")))
+ (MyPolyTester_tr_TCC1 0
+  (MyPolyTester_tr_TCC1-1 nil 3794671245 ("" (subtype-tcc) nil nil) nil
+   nil
+   (MyPolyTester_tr subtype "polygon_containment_test.j"
+                    "naturalnumbers.upto(polygon_containment_test.YNum)")))
+ (MyPolyTester_tr_TCC2 0
+  (MyPolyTester_tr_TCC2-1 nil 3794671245 ("" (subtype-tcc) nil nil) nil
+   nil
+   (MyPolyTester_tr subtype "polygon_containment_test.j"
+                    "naturalnumbers.upto(polygon_containment_test.YNum)")))
  (MyPolyTester_def_TCC1 0
   (MyPolyTester_def_TCC1-1 nil 3653413867 ("" (subtype-tcc) nil nil)
    ((XNum const-decl "posnat" polygon_containment_test nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil))
-   nil))
+   nil
+   (MyPolyTester_def subtype "polygon_containment_test.XNum"
+    "naturalnumbers.upto(polygon_containment_test.XNum)")))
  (MyPolyTester_def_TCC2 0
   (MyPolyTester_def_TCC2-1 nil 3653413867 ("" (subtype-tcc) nil nil)
    ((YNum const-decl "posnat" polygon_containment_test nil)
     (XNum const-decl "posnat" polygon_containment_test nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil))
-   nil))
+   nil
+   (MyPolyTester_def subtype "polygon_containment_test.YNum"
+    "naturalnumbers.upto(polygon_containment_test.XNum)")))
  (MyPolyTester_def 0
   (MyPolyTester_def-1 nil 3653413869 ("" (eval-formula) nil nil)
    ((TRUE const-decl "bool" booleans nil)
@@ -167,6 +197,14 @@
     (bool nonempty-type-eq-decl nil booleans nil)
     (boolean nonempty-type-decl nil booleans nil))
    shostak))
+ (MyPolyTester_tr_def 0
+  (MyPolyTester_tr_def-1 nil 3794671248 ("" (eval-formula) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (bijective? const-decl "bool" functions nil)
+    (id const-decl "(bijective?[T, T])" identity nil)
+    (TRUE const-decl "bool" booleans nil))
+   shostak))
  (CompleteTester_def 0
   (CompleteTester_def-1 nil 3653739663 ("" (eval-formula) nil nil)
    ((TRUE const-decl "bool" booleans nil)
@@ -174,5 +212,13 @@
     (bijective? const-decl "bool" functions nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (boolean nonempty-type-decl nil booleans nil))
+   shostak))
+ (CompleteTester_tr_def 0
+  (CompleteTester_tr_def-1 nil 3794673865 ("" (eval-formula) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (bijective? const-decl "bool" functions nil)
+    (id const-decl "(bijective?[T, T])" identity nil)
+    (TRUE const-decl "bool" booleans nil))
    shostak)))
 

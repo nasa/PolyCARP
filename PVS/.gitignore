@@ -1,7 +1,9 @@
 # Ignore binary files
 bin/
 lib/
+pvsbin/
 *.bin
+*.dep
 .pvscontext
 # Ignore orphaned and old proofs
 orphaned-proofs.prf

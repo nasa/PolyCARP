@@ -29,10 +29,14 @@
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (int_minus_int_is_int application-judgement "int" integers nil))
-   nil))
+   nil
+   (near_poly_edge subtype "acceptable_polygon.next"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (upshot_crosses_edge_TCC1 0
   (upshot_crosses_edge_TCC1-1 nil 3634487032 ("" (subtype-tcc) nil nil)
-   ((/= const-decl "boolean" notequal nil)) nil))
+   ((/= const-decl "boolean" notequal nil)) nil
+   (upshot_crosses_edge subtype "2"
+    "{i_1: integers.int | booleans.OR(((number_fields.-)(acceptable_polygon.p(acceptable_polygon.next)`x, acceptable_polygon.p(acceptable_polygon.i)`x)) /= 0, reals.>=(i_1, 0))}")))
  (upshot_crosses_edge_def 0
   (upshot_crosses_edge_def-1 nil 3634487135
    ("" (skeep)
@@ -682,7 +686,7 @@
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (EdgeCross type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (upshot_crosses_edge const-decl "EdgeCross" acceptable_polygon nil)
     (nnreal type-eq-decl nil real_types nil)
@@ -691,61 +695,49 @@
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (Vector type-eq-decl nil vectors_2D "vectors/")
-    (+ const-decl "Vector" vectors_2D "vectors/")
-    (* const-decl "Vector" vectors_2D "vectors/")
+    (Vector type-eq-decl nil vectors_2D vectors)
+    (+ const-decl "Vector" vectors_2D vectors)
+    (* const-decl "Vector" vectors_2D vectors)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_times_real_is_real application-judgement "real" reals nil)
     (posint_plus_nnint_is_posint application-judgement "posint"
      integers nil)
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (next skolem-const-decl "naturalnumber" acceptable_polygon nil)
-    (N skolem-const-decl "posnat" acceptable_polygon nil)
-    (p skolem-const-decl "polygon_2D(N)" acceptable_polygon nil)
-    (i skolem-const-decl "below(N)" acceptable_polygon nil)
-    (s skolem-const-decl "Vect2" acceptable_polygon nil)
-    (t skolem-const-decl "nnreal" acceptable_polygon nil)
-    (both_sides_times_pos_ge1 formula-decl nil real_props nil)
+    (NOT const-decl "[bool -> bool]" booleans nil) nil nil nil nil nil
+    nil (both_sides_times_pos_ge1 formula-decl nil real_props nil)
     (real_div_nzreal_is_real application-judgement "real" reals nil)
     (nznum nonempty-type-eq-decl nil number_fields nil)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (both_sides_times1 formula-decl nil real_props nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
-    (P skolem-const-decl "Vector" acceptable_polygon nil)
-    (tt skolem-const-decl "real" acceptable_polygon nil)
-    (sq const-decl "nonneg_real" sq "reals/")
+    (minus_odd_is_odd application-judgement "odd_int" integers nil) nil
+    nil (sq const-decl "nonneg_real" sq reals)
     (expt def-decl "real" exponentiation nil)
     (div_cancel3 formula-decl nil real_props nil)
     (both_sides_minus_ge1 formula-decl nil real_props nil)
-    (sq_gt_0 formula-decl nil sq "reals/")
+    (sq_gt_0 formula-decl nil sq reals)
     (div_mult_pos_neg_le1 formula-decl nil extra_real_props nil)
     (div_mult_pos_neg_le2 formula-decl nil extra_real_props nil)
     (nonzero_real nonempty-type-eq-decl nil reals nil)
     (both_sides_times_pos_ge1_imp formula-decl nil extra_real_props
      nil)
-    (tester skolem-const-decl "real" acceptable_polygon nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
+    nil (- const-decl "[numfield -> numfield]" number_fields nil)
     (minus_nzint_is_nzint application-judgement "nzint" integers nil)
     (minus_even_is_even application-judgement "even_int" integers nil)
     (nnreal_times_nnreal_is_nnreal application-judgement "nnreal"
      real_types nil)
-    (div_cancel4 formula-decl nil real_props nil)
-    (tt skolem-const-decl "real" acceptable_polygon nil)
-    (both_sides_times_pos_lt1 formula-decl nil real_props nil)
-    (t skolem-const-decl "nnreal" acceptable_polygon nil)
+    (div_cancel4 formula-decl nil real_props nil) nil
+    (both_sides_times_pos_lt1 formula-decl nil real_props nil) nil
     (odd_minus_odd_is_even application-judgement "even_int" integers
      nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (scal_0 formula-decl nil vectors_2D "vectors/")
-    (scal_1 formula-decl nil vectors_2D "vectors/")
-    (add_zero_left formula-decl nil vectors_2D "vectors/")
+    (scal_0 formula-decl nil vectors_2D vectors)
+    (scal_1 formula-decl nil vectors_2D vectors)
+    (add_zero_left formula-decl nil vectors_2D vectors)
     (both_sides_times_pos_gt1 formula-decl nil real_props nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (posreal nonempty-type-eq-decl nil real_types nil)
-    (t!1 skolem-const-decl "nnreal" acceptable_polygon nil)
-    (add_zero_right formula-decl nil vectors_2D "vectors/")
+    (posreal nonempty-type-eq-decl nil real_types nil) nil
+    (add_zero_right formula-decl nil vectors_2D vectors)
     (odd_minus_even_is_odd application-judgement "odd_int" integers
      nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
@@ -790,7 +782,8 @@
     (real_times_real_is_real application-judgement "real" reals nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
     (real_minus_real_is_real application-judgement "real" reals nil))
-   nil))
+   nil
+   (compute_intercept subtype "acceptable_polygon.newdenom" "nzreal")))
  (compute_intercept_def_TCC1 0
   (compute_intercept_def_TCC1-1 nil 3634575881
    ("" (subtype-tcc) nil nil)
@@ -827,7 +820,10 @@
     (real_minus_real_is_real application-judgement "real" reals nil)
     (naturalnumber type-eq-decl nil naturalnumbers nil)
     (/= const-decl "boolean" notequal nil))
-   nil))
+   nil
+   (compute_intercept_def subtype
+    "((number_fields.-)(acceptable_polygon.p(acceptable_polygon.next)`x, acceptable_polygon.p(acceptable_polygon.i)`x))"
+    "nznum")))
  (compute_intercept_def 0
   (compute_intercept_def-1 nil 3634575935
    ("" (skeep)
@@ -1490,21 +1486,16 @@
     (^ const-decl "real" exponentiation nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
-    (tester skolem-const-decl "real" acceptable_polygon nil)
-    (newdenom skolem-const-decl "real" acceptable_polygon nil)
-    (expt def-decl "real" exponentiation nil)
-    (newnum skolem-const-decl "real" acceptable_polygon nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (newdenom skolem-const-decl "real" acceptable_polygon nil)
-    (newnum skolem-const-decl "real" acceptable_polygon nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil) nil
+    nil (expt def-decl "real" exponentiation nil) nil
+    (- const-decl "[numfield -> numfield]" number_fields nil) nil nil
     (TRUE const-decl "bool" booleans nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (posint_plus_nnint_is_posint application-judgement "posint"
      integers nil)
     (compute_intercept const-decl "CrossAns" acceptable_polygon nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (CrossAns type-eq-decl nil acceptable_polygon nil)
     (nzreal nonempty-type-eq-decl nil reals nil))
    shostak))
@@ -1557,7 +1548,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.j"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (min_cross_dist_index_upto_TCC2 0
   (min_cross_dist_index_upto_TCC2-2 nil 3634582053
    ("" (skeep*)
@@ -1611,9 +1604,13 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil)
+   nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.ca`index"
+    "naturalnumbers.below(acceptable_polygon.N)"))
   (min_cross_dist_index_upto_TCC2-1 nil 3634580796
-   ("" (subtype-tcc) nil nil) nil nil))
+   ("" (subtype-tcc) nil nil) nil nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.ca`index"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (min_cross_dist_index_upto_TCC3 0
   (min_cross_dist_index_upto_TCC3-2 nil 3651833734
    ("" (skeep*)
@@ -1680,7 +1677,7 @@
     (upto nonempty-type-eq-decl nil naturalnumbers nil)
     (compute_intercept const-decl "CrossAns" acceptable_polygon nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (CrossAns type-eq-decl nil acceptable_polygon nil)
     (nzreal nonempty-type-eq-decl nil reals nil)
@@ -1692,16 +1689,21 @@
      "(strict_total_order?[real])" real_props nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    (ci skolem-const-decl "CrossAns" acceptable_polygon nil)
-    (NOT const-decl "[bool -> bool]" booleans nil)
+    nil (NOT const-decl "[bool -> bool]" booleans nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil)
+   nil
+   (min_cross_dist_index_upto subtype
+    "acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, acceptable_polygon.i)"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}"))
   (min_cross_dist_index_upto_TCC3-1 nil 3634580796
-   ("" (termination-tcc) nil nil) nil nil))
+   ("" (termination-tcc) nil nil) nil nil
+   (min_cross_dist_index_upto subtype
+    "acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, acceptable_polygon.i)"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}")))
  (min_cross_dist_index_upto_TCC4 0
   (min_cross_dist_index_upto_TCC4-1 nil 3634580796
    ("" (subtype-tcc) nil nil)
@@ -1734,7 +1736,10 @@
     (int_minus_int_is_int application-judgement "int" integers nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil))
-   nil))
+   nil
+   (min_cross_dist_index_upto subtype
+    "(number_fields.-)(acceptable_polygon.i, 1)"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (min_cross_dist_index_upto_TCC5 0
   (min_cross_dist_index_upto_TCC5-1 nil 3634580796
    ("" (skeep*)
@@ -1799,7 +1804,10 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (min_cross_dist_index_upto termination
+    "acceptable_polygon.min_cross_dist_index_upto(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, (number_fields.-)(acceptable_polygon.i, 1))"
+    "nil")))
  (min_cross_dist_index_upto_TCC6 0
   (min_cross_dist_index_upto_TCC6-2 nil 3651833340
    ("" (skeep*)
@@ -1886,7 +1894,7 @@
     (CrossAns type-eq-decl nil acceptable_polygon nil)
     (nzreal nonempty-type-eq-decl nil reals nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
     (upto nonempty-type-eq-decl nil naturalnumbers nil)
@@ -1912,7 +1920,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil)
+   nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.cii"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}"))
   (min_cross_dist_index_upto_TCC6-1 nil 3634580796
    ("" (skeep*)
     (("" (assert)
@@ -1940,7 +1950,9 @@
         nil))
       nil))
     nil)
-   ((Vect2 type-eq-decl nil vectors_2D_def "vectors/")) nil))
+   ((Vect2 type-eq-decl nil vectors_2D_def vectors)) nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.cii"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}")))
  (min_cross_dist_index_upto_TCC7 0
   (min_cross_dist_index_upto_TCC7-2 nil 3651833320
    ("" (skeep*)
@@ -1977,10 +1989,7 @@
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (real_div_nzreal_is_real application-judgement "real" reals nil)
-    (j skolem-const-decl "upto(i)" acceptable_polygon nil)
-    (i skolem-const-decl "below(N)" acceptable_polygon nil)
-    (N skolem-const-decl "posnat" acceptable_polygon nil)
-    (NOT const-decl "[bool -> bool]" booleans nil)
+    nil nil nil (NOT const-decl "[bool -> bool]" booleans nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (number nonempty-type-decl nil numbers nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
@@ -1999,7 +2008,7 @@
     (nonneg_int nonempty-type-eq-decl nil integers nil)
     (> const-decl "bool" reals nil)
     (below type-eq-decl nil naturalnumbers nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (nzreal nonempty-type-eq-decl nil reals nil)
     (CrossAns type-eq-decl nil acceptable_polygon nil)
@@ -2017,13 +2026,19 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil)
+   nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.cin"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}"))
   (min_cross_dist_index_upto_TCC7-1 nil 3634580796
-   ("" (subtype-tcc) nil nil) nil nil))
+   ("" (subtype-tcc) nil nil) nil nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.cin"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}")))
  (min_cross_dist_index_upto_TCC8 0
   (min_cross_dist_index_upto_TCC8-1 nil 3634580796
    ("" (subtype-tcc) nil nil) ((/= const-decl "boolean" notequal nil))
-   nil))
+   nil
+   (min_cross_dist_index_upto subtype "2"
+    "{i: integers.int | booleans.OR(acceptable_polygon.cin`denom /= 0, reals.>=(i, 0))}")))
  (min_cross_dist_index_upto_TCC9 0
   (min_cross_dist_index_upto_TCC9-1 nil 3634580796
    ("" (skeep*)
@@ -2081,7 +2096,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (min_cross_dist_index_upto subtype "2"
+    "{i: integers.int | booleans.OR(acceptable_polygon.cii`denom /= 0, reals.>=(i, 0))}")))
  (min_cross_dist_index_upto_TCC10 0
   (min_cross_dist_index_upto_TCC10-2 nil 3651833295
    ("" (skeep*)
@@ -2107,7 +2124,7 @@
                   (("1" (assert) nil nil)
                    ("2" (case "cin`num/cin`denom>=cii`num/cii`denom")
                     (("1" (typepred "v(N,p,s,i-1)")
-                      (("1" (replace -9 :dir rl)
+                      (("1" (replace -8 :dir rl)
                         (("1" (assert)
                           (("1" (hide -2)
                             (("1" (flatten)
@@ -2121,7 +2138,7 @@
                         nil))
                       nil)
                      ("2" (mult-by 1 "sq(cin`denom)*sq(cii`denom)")
-                      (("2" (hide-all-but (-4 1))
+                      (("2" (hide-all-but (-5 1))
                         (("2" (grind) nil nil)) nil))
                       nil))
                     nil))
@@ -2135,11 +2152,11 @@
     nil)
    ((real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
     (nzreal_exp application-judgement "nzreal" exponentiation nil)
     (real_times_real_is_real application-judgement "real" reals nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
     (real_div_nzreal_is_real application-judgement "real" reals nil)
     (posreal_times_posreal_is_posreal application-judgement "posreal"
      real_types nil)
@@ -2147,21 +2164,19 @@
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (posreal nonempty-type-eq-decl nil real_types nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (sq const-decl "nonneg_real" sq "reals/")
+    (sq const-decl "nonneg_real" sq reals)
     (expt def-decl "real" exponentiation nil)
     (^ const-decl "real" exponentiation nil)
-    (nzreal_div_nzreal_is_nzreal application-judgement "nzreal"
-     real_types nil)
     (nzreal_expt application-judgement "nzreal" exponentiation nil)
     (nzreal_times_nzreal_is_nzreal application-judgement "nzreal"
      real_types nil)
-    (sq_nz_pos application-judgement "posreal" sq "reals/")
+    (sq_nz_pos application-judgement "posreal" sq reals)
     (/= const-decl "boolean" notequal nil)
     (nznum nonempty-type-eq-decl nil number_fields nil)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
@@ -2174,12 +2189,11 @@
     (IF const-decl "[boolean, T, T -> T]" if_def nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (naturalnumber type-eq-decl nil naturalnumbers nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
     (compute_intercept const-decl "CrossAns" acceptable_polygon nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
     (number nonempty-type-decl nil numbers nil)
@@ -2205,7 +2219,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil)
+   nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.cii"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}"))
   (min_cross_dist_index_upto_TCC10-1 nil 3634581969
    ("" (skeep*)
     (("" (assert)
@@ -2240,10 +2256,12 @@
         nil))
       nil))
     nil)
-   ((Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-    (sq const-decl "nonneg_real" sq "reals/")
-    (sq_nz_pos application-judgement "posreal" sq "reals/"))
-   nil))
+   ((Vect2 type-eq-decl nil vectors_2D_def vectors)
+    (sq const-decl "nonneg_real" sq reals)
+    (sq_nz_pos application-judgement "posreal" sq reals))
+   nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.cii"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}")))
  (min_cross_dist_index_upto_TCC11 0
   (min_cross_dist_index_upto_TCC11-2 nil 3651833273
    ("" (skeep*)
@@ -2312,7 +2330,7 @@
     (= const-decl "[T, T -> boolean]" equalities nil)
     (compute_intercept const-decl "CrossAns" acceptable_polygon nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
@@ -2327,8 +2345,8 @@
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (posreal nonempty-type-eq-decl nil real_types nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (sq const-decl "nonneg_real" sq "reals/")
-    (sq_nz_pos application-judgement "posreal" sq "reals/")
+    (sq const-decl "nonneg_real" sq reals)
+    (sq_nz_pos application-judgement "posreal" sq reals)
     (nzreal_times_nzreal_is_nzreal application-judgement "nzreal"
      real_types nil)
     (nzreal_expt application-judgement "nzreal" exponentiation nil)
@@ -2340,9 +2358,13 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil)
+   nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.cin"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}"))
   (min_cross_dist_index_upto_TCC11-1 nil 3651832370
-   ("" (subtype-tcc) nil nil) nil nil))
+   ("" (subtype-tcc) nil nil) nil nil
+   (min_cross_dist_index_upto subtype "acceptable_polygon.cin"
+    "{ca: acceptable_polygon.CrossAns | booleans.AND((booleans.IFF(reals.>=(ca`index, 0), EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0))), (booleans.IMPLIES(reals.>=(ca`index, 0), (booleans.AND(reals.<=(ca`index, acceptable_polygon.i), booleans.AND(ca = acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, ca`index), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.>=(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`index, 0), reals.>=(number_fields./(acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`num, acceptable_polygon.compute_intercept(acceptable_polygon.N, acceptable_polygon.p, acceptable_polygon.s, j)`denom), number_fields./(ca`num, ca`denom)))))))))}")))
  (acceptable_polygon_2D_TCC1 0
   (acceptable_polygon_2D_TCC1-1 nil 3640969777
    ("" (subtype-tcc) nil nil)
@@ -2351,7 +2373,9 @@
     (mult_divides1 application-judgement "(divides(n))" divides nil)
     (mult_divides2 application-judgement "(divides(m))" divides nil)
     (mod const-decl "{k | abs(k) < abs(j)}" mod nil))
-   nil))
+   nil
+   (acceptable_polygon_2D subtype "acceptable_polygon.j"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (acceptable_polygon_2D_TCC2 0
   (acceptable_polygon_2D_TCC2-1 nil 3640969777
    ("" (subtype-tcc) nil nil)
@@ -2360,7 +2384,9 @@
     (mult_divides1 application-judgement "(divides(n))" divides nil)
     (mult_divides2 application-judgement "(divides(m))" divides nil)
     (mod const-decl "{k | abs(k) < abs(j)}" mod nil))
-   nil))
+   nil
+   (acceptable_polygon_2D subtype "acceptable_polygon.i"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (acceptable_polygon_2D_TCC3 0
   (acceptable_polygon_2D_TCC3-1 nil 3640969777
    ("" (skeep*)
@@ -2406,7 +2432,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (acceptable_polygon_2D subtype "acceptable_polygon.mi"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (acceptable_polygon_2D_TCC4 0
   (acceptable_polygon_2D_TCC4-1 nil 3640969777
    ("" (skeep*)
@@ -2452,7 +2480,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (acceptable_polygon_2D subtype "acceptable_polygon.mj"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (polygon_indices_distinct 0
   (polygon_indices_distinct-1 nil 3641024800
    (""
@@ -2639,11 +2669,10 @@
   (acceptable_polygon_2D_def_TCC1-1 nil 3641024381
    ("" (subtype-tcc) nil nil)
    ((mod const-decl "{k | abs(k) < abs(j)}" mod nil)
-    (near_poly_edge const-decl "bool" acceptable_polygon nil)
-    (- const-decl "Vector" vectors_2D "vectors/")
-    (* const-decl "real" vectors_2D "vectors/")
-    (sqv const-decl "nnreal" vectors_2D "vectors/")
-    (norm const-decl "nnreal" vectors_2D "vectors/")
+    (near_poly_edge const-decl "bool" acceptable_polygon nil) nil
+    (* const-decl "real" vectors_2D vectors)
+    (sqv const-decl "nnreal" vectors_2D vectors)
+    (norm const-decl "nnreal" vectors_2D vectors)
     (acceptable_polygon_2D const-decl "bool" acceptable_polygon nil)
     (/= const-decl "boolean" notequal nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
@@ -2653,16 +2682,17 @@
     (mult_divides1 application-judgement "(divides(n))" divides nil)
     (int_plus_int_is_int application-judgement "int" integers nil)
     (int_minus_int_is_int application-judgement "int" integers nil))
-   nil))
+   nil
+   (acceptable_polygon_2D_def subtype "acceptable_polygon.i"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (acceptable_polygon_2D_def_TCC2 0
   (acceptable_polygon_2D_def_TCC2-1 nil 3641024381
    ("" (subtype-tcc) nil nil)
    ((mod const-decl "{k | abs(k) < abs(j)}" mod nil)
-    (near_poly_edge const-decl "bool" acceptable_polygon nil)
-    (- const-decl "Vector" vectors_2D "vectors/")
-    (* const-decl "real" vectors_2D "vectors/")
-    (sqv const-decl "nnreal" vectors_2D "vectors/")
-    (norm const-decl "nnreal" vectors_2D "vectors/")
+    (near_poly_edge const-decl "bool" acceptable_polygon nil) nil
+    (* const-decl "real" vectors_2D vectors)
+    (sqv const-decl "nnreal" vectors_2D vectors)
+    (norm const-decl "nnreal" vectors_2D vectors)
     (acceptable_polygon_2D const-decl "bool" acceptable_polygon nil)
     (/= const-decl "boolean" notequal nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
@@ -2672,7 +2702,9 @@
     (mult_divides1 application-judgement "(divides(n))" divides nil)
     (int_plus_int_is_int application-judgement "int" integers nil)
     (int_minus_int_is_int application-judgement "int" integers nil))
-   nil))
+   nil
+   (acceptable_polygon_2D_def subtype "acceptable_polygon.j"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (acceptable_polygon_2D_def 0
   (acceptable_polygon_2D_def-1 nil 3641024446
    ("" (skeep*)
@@ -2893,10 +2925,7 @@
     (number_field nonempty-type-from-decl nil number_fields nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
-    (number nonempty-type-decl nil numbers nil)
-    (j skolem-const-decl "subrange(0, N - 1)" acceptable_polygon nil)
-    (i skolem-const-decl "subrange(0, N - 1)" acceptable_polygon nil)
-    (N skolem-const-decl "posnat" acceptable_polygon nil)
+    (number nonempty-type-decl nil numbers nil) nil nil nil
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (int_plus_int_is_int application-judgement "int" integers nil)
@@ -2908,7 +2937,7 @@
      "(strict_total_order?[real])" real_props nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (posreal nonempty-type-eq-decl nil real_types nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (< const-decl "bool" reals nil)
     (below type-eq-decl nil naturalnumbers nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
@@ -2924,13 +2953,12 @@
     (real_times_real_is_real application-judgement "real" reals nil)
     (posreal_times_posreal_is_posreal application-judgement "posreal"
      real_types nil)
-    (sq const-decl "nonneg_real" sq "reals/")
-    (sqv const-decl "nnreal" vectors_2D "vectors/")
-    (* const-decl "real" vectors_2D "vectors/")
-    (- const-decl "Vector" vectors_2D "vectors/")
+    (sq const-decl "nonneg_real" sq reals)
+    (sqv const-decl "nnreal" vectors_2D vectors)
+    (* const-decl "real" vectors_2D vectors) nil
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    (sq_nz_pos application-judgement "posreal" sq "reals/")
+    (sq_nz_pos application-judgement "posreal" sq reals)
     (segments_2D_close_def formula-decl nil edge_proximity nil)
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
@@ -2963,7 +2991,7 @@
     (= const-decl "[T, T -> boolean]" equalities nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (real_times_real_is_real application-judgement "real" reals nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
@@ -2976,10 +3004,14 @@
      real_props nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype "acceptable_polygon.i"
+    "{j: naturalnumbers.nat | booleans.AND(reals.<(j, acceptable_polygon.N), FORALL (z: naturalnumbers.below(acceptable_polygon.N)): booleans.IMPLIES(reals.<=(z, acceptable_polygon.i), (booleans.AND(reals.>=(number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(z)`x), number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(j)`x)), (booleans.IMPLIES(acceptable_polygon.p(z)`x = acceptable_polygon.p(j)`x, reals.>=(acceptable_polygon.p(z)`y, acceptable_polygon.p(j)`y)))))))}")))
  (counterclockwise_corner_index_TCC2 0
   (counterclockwise_corner_index_TCC2-1 nil 3652541071
-   ("" (subtype-tcc) nil nil) nil nil))
+   ("" (subtype-tcc) nil nil) nil nil
+   (counterclockwise_corner_index subtype
+    "(number_fields.-)(acceptable_polygon.N, 1)" "nat")))
  (counterclockwise_corner_index_TCC3 0
   (counterclockwise_corner_index_TCC3-1 nil 3652541071
    ("" (termination-tcc) nil nil)
@@ -3007,7 +3039,7 @@
     (= const-decl "[T, T -> boolean]" equalities nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (int_minus_int_is_int application-judgement "int" integers nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
@@ -3015,7 +3047,10 @@
      real_props nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (counterclockwise_corner_index termination
+    "acceptable_polygon.counterclockwise_corner_index(acceptable_polygon.N, acceptable_polygon.p, (number_fields.-)(acceptable_polygon.N, 1), acceptable_polygon.eps)"
+    "nil")))
  (counterclockwise_corner_index_TCC4 0
   (counterclockwise_corner_index_TCC4-1 nil 3652541071
    ("" (skeep*)
@@ -3027,7 +3062,7 @@
     (<= const-decl "bool" reals nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (- const-decl "[numfield -> numfield]" number_fields nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -3035,7 +3070,7 @@
     (nzint nonempty-type-eq-decl nil integers nil)
     (/= const-decl "boolean" notequal nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (below type-eq-decl nil naturalnumbers nil)
     (> const-decl "bool" reals nil)
     (nonneg_int nonempty-type-eq-decl nil integers nil)
@@ -3062,7 +3097,10 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype
+    "acceptable_polygon.counterclockwise_corner_index(acceptable_polygon.N, acceptable_polygon.p, (number_fields.-)(acceptable_polygon.N, 1), acceptable_polygon.eps)"
+    "{j: naturalnumbers.nat | booleans.AND(reals.<(j, acceptable_polygon.N), FORALL (z: naturalnumbers.below(acceptable_polygon.N)): booleans.IMPLIES(reals.<=(z, acceptable_polygon.i), (booleans.AND(reals.>=(number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(z)`x), number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(j)`x)), (booleans.IMPLIES(acceptable_polygon.p(z)`x = acceptable_polygon.p(j)`x, reals.>=(acceptable_polygon.p(z)`y, acceptable_polygon.p(j)`y)))))))}")))
  (counterclockwise_corner_index_TCC5 0
   (counterclockwise_corner_index_TCC5-1 nil 3652541071
    ("" (subtype-tcc) nil nil)
@@ -3090,7 +3128,7 @@
     (= const-decl "[T, T -> boolean]" equalities nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_gt_is_strict_total_order name-judgement
@@ -3098,7 +3136,9 @@
     (int_minus_int_is_int application-judgement "int" integers nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype "acceptable_polygon.windex"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (counterclockwise_corner_index_TCC6 0
   (counterclockwise_corner_index_TCC6-1 nil 3652541071
    ("" (subtype-tcc) nil nil)
@@ -3126,7 +3166,7 @@
     (= const-decl "[T, T -> boolean]" equalities nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_gt_is_strict_total_order name-judgement
@@ -3134,7 +3174,9 @@
     (int_minus_int_is_int application-judgement "int" integers nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype "acceptable_polygon.i"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (counterclockwise_corner_index_TCC7 0
   (counterclockwise_corner_index_TCC7-1 nil 3652541071
    ("" (skeep*)
@@ -3161,7 +3203,7 @@
     (<= const-decl "bool" reals nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (- const-decl "[numfield -> numfield]" number_fields nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -3169,7 +3211,7 @@
     (nzint nonempty-type-eq-decl nil integers nil)
     (/= const-decl "boolean" notequal nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (below type-eq-decl nil naturalnumbers nil)
     (> const-decl "bool" reals nil)
     (nonneg_int nonempty-type-eq-decl nil integers nil)
@@ -3194,7 +3236,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype "acceptable_polygon.i"
+    "{j: naturalnumbers.nat | booleans.AND(reals.<(j, acceptable_polygon.N), FORALL (z: naturalnumbers.below(acceptable_polygon.N)): booleans.IMPLIES(reals.<=(z, acceptable_polygon.i), (booleans.AND(reals.>=(number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(z)`x), number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(j)`x)), (booleans.IMPLIES(acceptable_polygon.p(z)`x = acceptable_polygon.p(j)`x, reals.>=(acceptable_polygon.p(z)`y, acceptable_polygon.p(j)`y)))))))}")))
  (counterclockwise_corner_index_TCC8 0
   (counterclockwise_corner_index_TCC8-1 nil 3652541071
    ("" (skeep*)
@@ -3231,7 +3275,7 @@
     (nonneg_int nonempty-type-eq-decl nil integers nil)
     (> const-decl "bool" reals nil)
     (below type-eq-decl nil naturalnumbers nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (/= const-decl "boolean" notequal nil)
     (nzint nonempty-type-eq-decl nil integers nil)
@@ -3239,7 +3283,7 @@
     (= const-decl "[T, T -> boolean]" equalities nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (<= const-decl "bool" reals nil)
@@ -3248,7 +3292,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype "acceptable_polygon.windex"
+    "{j: naturalnumbers.nat | booleans.AND(reals.<(j, acceptable_polygon.N), FORALL (z: naturalnumbers.below(acceptable_polygon.N)): booleans.IMPLIES(reals.<=(z, acceptable_polygon.i), (booleans.AND(reals.>=(number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(z)`x), number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(j)`x)), (booleans.IMPLIES(acceptable_polygon.p(z)`x = acceptable_polygon.p(j)`x, reals.>=(acceptable_polygon.p(z)`y, acceptable_polygon.p(j)`y)))))))}")))
  (counterclockwise_corner_index_TCC9 0
   (counterclockwise_corner_index_TCC9-1 nil 3652541071
    ("" (skeep*)
@@ -3272,7 +3318,7 @@
     (<= const-decl "bool" reals nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (- const-decl "[numfield -> numfield]" number_fields nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -3280,7 +3326,7 @@
     (nzint nonempty-type-eq-decl nil integers nil)
     (/= const-decl "boolean" notequal nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (below type-eq-decl nil naturalnumbers nil)
     (> const-decl "bool" reals nil)
     (nonneg_int nonempty-type-eq-decl nil integers nil)
@@ -3304,7 +3350,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype "acceptable_polygon.i"
+    "{j: naturalnumbers.nat | booleans.AND(reals.<(j, acceptable_polygon.N), FORALL (z: naturalnumbers.below(acceptable_polygon.N)): booleans.IMPLIES(reals.<=(z, acceptable_polygon.i), (booleans.AND(reals.>=(number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(z)`x), number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(j)`x)), (booleans.IMPLIES(acceptable_polygon.p(z)`x = acceptable_polygon.p(j)`x, reals.>=(acceptable_polygon.p(z)`y, acceptable_polygon.p(j)`y)))))))}")))
  (counterclockwise_corner_index_TCC10 0
   (counterclockwise_corner_index_TCC10-1 nil 3652541071
    ("" (skeep*)
@@ -3343,7 +3391,7 @@
     (nonneg_int nonempty-type-eq-decl nil integers nil)
     (> const-decl "bool" reals nil)
     (below type-eq-decl nil naturalnumbers nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (/= const-decl "boolean" notequal nil)
     (nzint nonempty-type-eq-decl nil integers nil)
@@ -3351,7 +3399,7 @@
     (= const-decl "[T, T -> boolean]" equalities nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (<= const-decl "bool" reals nil)
@@ -3360,7 +3408,9 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype "acceptable_polygon.windex"
+    "{j: naturalnumbers.nat | booleans.AND(reals.<(j, acceptable_polygon.N), FORALL (z: naturalnumbers.below(acceptable_polygon.N)): booleans.IMPLIES(reals.<=(z, acceptable_polygon.i), (booleans.AND(reals.>=(number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(z)`x), number_fields.*(acceptable_polygon.eps, acceptable_polygon.p(j)`x)), (booleans.IMPLIES(acceptable_polygon.p(z)`x = acceptable_polygon.p(j)`x, reals.>=(acceptable_polygon.p(z)`y, acceptable_polygon.p(j)`y)))))))}")))
  (counterclockwise_corner_index_TCC11 0
   (counterclockwise_corner_index_TCC11-1 nil 3652541071
    ("" (subtype-tcc) nil nil)
@@ -3388,16 +3438,21 @@
     (= const-decl "[T, T -> boolean]" equalities nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (int_minus_int_is_int application-judgement "int" integers nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (counterclockwise_corner_index subtype
+    "(number_fields.-)(acceptable_polygon.i, 1)" "nat")))
  (counterclockwise_corner_index_TCC12 0
   (counterclockwise_corner_index_TCC12-1 nil 3652541071
-   ("" (termination-tcc) nil nil) nil nil))
+   ("" (termination-tcc) nil nil) nil nil
+   (counterclockwise_corner_index termination
+    "acceptable_polygon.counterclockwise_corner_index(acceptable_polygon.N, acceptable_polygon.p, (number_fields.-)(acceptable_polygon.i, 1), acceptable_polygon.eps)"
+    "nil")))
  (counterclockwise_corner_index_def 0
   (counterclockwise_corner_index_def-1 nil 3687797692
    ("" (skeep*) (("" (skoletin) (("" (assert) nil nil)) nil)) nil)
@@ -3420,24 +3475,24 @@
     (nonneg_int nonempty-type-eq-decl nil integers nil)
     (> const-decl "bool" reals nil)
     (below type-eq-decl nil naturalnumbers nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (/= const-decl "boolean" notequal nil)
     (nzint nonempty-type-eq-decl nil integers nil)
     (OR const-decl "[bool, bool -> bool]" booleans nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (Sign type-eq-decl nil sign reals)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (<= const-decl "bool" reals nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (counterclockwise_corner_index def-decl "{j: nat |
-         j < N AND
-          (FORALL (z: below(N)):
-             z <= i IMPLIES
-              (eps * p(z)`x >= eps * p(j)`x AND
-                (p(z)`x = p(j)`x IMPLIES p(z)`y >= p(j)`y)))}"
+   j < N AND
+    FORALL (z: below(N)):
+      z <= i IMPLIES
+       (eps * p(z)`x >= eps * p(j)`x AND
+         (p(z)`x = p(j)`x IMPLIES p(z)`y >= p(j)`y))}"
      acceptable_polygon nil)
     (real_times_real_is_real application-judgement "real" reals nil)
     (real_lt_is_strict_total_order name-judgement
@@ -3472,7 +3527,9 @@
      real_props nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (min_y_val subtype "acceptable_polygon.i"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (min_y_val_TCC2 0
   (min_y_val_TCC2-1 nil 3652545389 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -3497,9 +3554,13 @@
      "(strict_total_order?[real])" real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil))
-   nil))
+   nil
+   (min_y_val subtype "acceptable_polygon.p(acceptable_polygon.i)`y"
+    "{r: reals.real | booleans.AND(EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.AND(reals.<(j, acceptable_polygon.N), r = acceptable_polygon.p(j)`y), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.<(j, acceptable_polygon.N), reals.>=(acceptable_polygon.p(j)`y, r)))}")))
  (min_y_val_TCC3 0
-  (min_y_val_TCC3-1 nil 3652545389 ("" (subtype-tcc) nil nil) nil nil))
+  (min_y_val_TCC3-1 nil 3652545389 ("" (subtype-tcc) nil nil) nil nil
+   (min_y_val subtype "(number_fields.-)(acceptable_polygon.N, 1)"
+    "nat")))
  (min_y_val_TCC4 0
   (min_y_val_TCC4-1 nil 3652545389 ("" (termination-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -3527,7 +3588,10 @@
      real_props nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (min_y_val termination
+    "acceptable_polygon.min_y_val(acceptable_polygon.N, acceptable_polygon.p, (number_fields.-)(acceptable_polygon.N, 1))"
+    "nil")))
  (min_y_val_TCC5 0
   (min_y_val_TCC5-1 nil 3652545389
    ("" (skeep*)
@@ -3546,7 +3610,7 @@
    ((IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (AND const-decl "[bool, bool -> bool]" booleans nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (below type-eq-decl nil naturalnumbers nil)
     (< const-decl "bool" reals nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -3575,16 +3639,16 @@
      "(strict_total_order?[real])" real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (j skolem-const-decl "upto(i)" acceptable_polygon nil)
-    (i skolem-const-decl "nat" acceptable_polygon nil)
-    (j skolem-const-decl "upto(N - 1)" acceptable_polygon nil)
-    (N skolem-const-decl "posnat" acceptable_polygon nil)
+    nil nil nil nil
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (min_y_val subtype
+    "acceptable_polygon.min_y_val(acceptable_polygon.N, acceptable_polygon.p, (number_fields.-)(acceptable_polygon.N, 1))"
+    "{r: reals.real | booleans.AND(EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.AND(reals.<(j, acceptable_polygon.N), r = acceptable_polygon.p(j)`y), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.<(j, acceptable_polygon.N), reals.>=(acceptable_polygon.p(j)`y, r)))}")))
  (min_y_val_TCC6 0
   (min_y_val_TCC6-1 nil 3652545389 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -3611,7 +3675,9 @@
      real_props nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (min_y_val subtype "acceptable_polygon.i"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (min_y_val_TCC7 0
   (min_y_val_TCC7-1 nil 3652545389 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -3637,10 +3703,15 @@
      real_props nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (min_y_val subtype "(number_fields.-)(acceptable_polygon.i, 1)"
+    "nat")))
  (min_y_val_TCC8 0
   (min_y_val_TCC8-1 nil 3652545389 ("" (termination-tcc) nil nil) nil
-   nil))
+   nil
+   (min_y_val termination
+    "acceptable_polygon.min_y_val(acceptable_polygon.N, acceptable_polygon.p, (number_fields.-)(acceptable_polygon.i, 1))"
+    "nil")))
  (min_y_val_TCC9 0
   (min_y_val_TCC9-1 nil 3652545389
    ("" (skeep*)
@@ -3670,7 +3741,7 @@
     nil)
    ((IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (below type-eq-decl nil naturalnumbers nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (posnat nonempty-type-eq-decl nil integers nil)
@@ -3700,8 +3771,7 @@
      "(strict_total_order?[real])" real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (i skolem-const-decl "nat" acceptable_polygon nil)
-    (j skolem-const-decl "upto(i)" acceptable_polygon nil)
+    nil nil
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
@@ -3710,10 +3780,15 @@
     (boolean nonempty-type-decl nil booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (TRUE const-decl "bool" booleans nil))
-   nil))
+   nil
+   (min_y_val subtype
+    "real_defs.min(acceptable_polygon.p(acceptable_polygon.i)`y, acceptable_polygon.min_y_val(acceptable_polygon.N, acceptable_polygon.p, (number_fields.-)(acceptable_polygon.i, 1)))"
+    "{r: reals.real | booleans.AND(EXISTS (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.AND(reals.<(j, acceptable_polygon.N), r = acceptable_polygon.p(j)`y), FORALL (j: naturalnumbers.upto(acceptable_polygon.i)): booleans.IMPLIES(reals.<(j, acceptable_polygon.N), reals.>=(acceptable_polygon.p(j)`y, r)))}")))
  (test_point_below_TCC1 0
   (test_point_below_TCC1-1 nil 3655210113 ("" (subtype-tcc) nil nil)
-   nil nil))
+   nil nil
+   (test_point_below subtype
+    "(number_fields.-)(acceptable_polygon.N, 1)" "nat")))
  (counterclockwise_edges_TCC1 0
   (counterclockwise_edges_TCC1-1 nil 3652543392
    ("" (subtype-tcc) nil nil)
@@ -3741,7 +3816,7 @@
     (below type-eq-decl nil naturalnumbers nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -3751,14 +3826,13 @@
      integers nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (counterclockwise_corner_index def-decl "{j: nat |
-         j < N AND
-          (FORALL (z: below(N)):
-             z <= i IMPLIES
-              (eps * p(z)`x >= eps * p(j)`x AND
-                (p(z)`x = p(j)`x IMPLIES p(z)`y >= p(j)`y)))}"
+   j < N AND
+    FORALL (z: below(N)):
+      z <= i IMPLIES
+       (eps * p(z)`x >= eps * p(j)`x AND
+         (p(z)`x = p(j)`x IMPLIES p(z)`y >= p(j)`y))}"
      acceptable_polygon nil)
-    (<= const-decl "bool" reals nil)
-    (Sign type-eq-decl nil sign "reals/")
+    (<= const-decl "bool" reals nil) (Sign type-eq-decl nil sign reals)
     (OR const-decl "[bool, bool -> bool]" booleans nil)
     (nzint nonempty-type-eq-decl nil integers nil)
     (/= const-decl "boolean" notequal nil)
@@ -3770,7 +3844,9 @@
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (- const-decl "[numfield -> numfield]" number_fields nil))
-   nil))
+   nil
+   (counterclockwise_edges subtype "acceptable_polygon.lprev"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (counterclockwise_edges_TCC2 0
   (counterclockwise_edges_TCC2-1 nil 3652543392
    ("" (subtype-tcc) nil nil)
@@ -3798,7 +3874,7 @@
     (below type-eq-decl nil naturalnumbers nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -3811,9 +3887,10 @@
      "(strict_total_order?[real])" real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (- const-decl "Vector" vectors_2D "vectors/"))
-   nil))
+    (- const-decl "[numfield -> numfield]" number_fields nil) nil)
+   nil
+   (counterclockwise_edges subtype "acceptable_polygon.lnext"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (counterclockwise_edges_TCC3 0
   (counterclockwise_edges_TCC3-1 nil 3652543392
    ("" (subtype-tcc) nil nil)
@@ -3841,7 +3918,7 @@
     (below type-eq-decl nil naturalnumbers nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -3852,14 +3929,13 @@
     (/= const-decl "boolean" notequal nil)
     (nzint nonempty-type-eq-decl nil integers nil)
     (OR const-decl "[bool, bool -> bool]" booleans nil)
-    (Sign type-eq-decl nil sign "reals/")
-    (<= const-decl "bool" reals nil)
+    (Sign type-eq-decl nil sign reals) (<= const-decl "bool" reals nil)
     (counterclockwise_corner_index def-decl "{j: nat |
-         j < N AND
-          (FORALL (z: below(N)):
-             z <= i IMPLIES
-              (eps * p(z)`x >= eps * p(j)`x AND
-                (p(z)`x = p(j)`x IMPLIES p(z)`y >= p(j)`y)))}"
+   j < N AND
+    FORALL (z: below(N)):
+      z <= i IMPLIES
+       (eps * p(z)`x >= eps * p(j)`x AND
+         (p(z)`x = p(j)`x IMPLIES p(z)`y >= p(j)`y))}"
      acceptable_polygon nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
@@ -3870,9 +3946,10 @@
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_minus_real_is_real application-judgement "real" reals nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (- const-decl "Vector" vectors_2D "vectors/"))
-   nil))
+    (- const-decl "[numfield -> numfield]" number_fields nil) nil)
+   nil
+   (counterclockwise_edges subtype "acceptable_polygon.rprev"
+    "naturalnumbers.below(acceptable_polygon.N)")))
  (counterclockwise_edges_TCC4 0
   (counterclockwise_edges_TCC4-1 nil 3652543392
    ("" (subtype-tcc) nil nil)
@@ -3900,7 +3977,7 @@
     (below type-eq-decl nil naturalnumbers nil)
     (numfield nonempty-type-eq-decl nil number_fields nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (polygon_2D type-eq-decl nil acceptable_polygon nil)
     (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
@@ -3913,7 +3990,8 @@
      "(strict_total_order?[real])" real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (- const-decl "Vector" vectors_2D "vectors/"))
-   nil)))
+    (- const-decl "[numfield -> numfield]" number_fields nil) nil)
+   nil
+   (counterclockwise_edges subtype "acceptable_polygon.rnext"
+    "naturalnumbers.below(acceptable_polygon.N)"))))
 

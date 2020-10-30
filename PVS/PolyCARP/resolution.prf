@@ -510,13 +510,10 @@
                                              (("1"
                                                (case "^(V)*^(W)>=0")
                                                (("1"
-                                                 (hide-all-but (-1 1))
+                                                 (expand "^")
                                                  (("1"
-                                                   (expand "^")
-                                                   (("1"
-                                                     (grind)
-                                                     nil
-                                                     nil))
+                                                   (grind-reals)
+                                                   nil
                                                    nil))
                                                  nil)
                                                 ("2"
@@ -579,7 +576,9 @@
                    nil))
                  nil))
                nil)
-              ((Vect2 type-eq-decl nil vectors_2D_def vectors)
+              ((- const-decl "Vector" vectors_2D vectors)
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
+               (- const-decl "Vector" vectors_2D vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
                (Vector type-eq-decl nil vectors_2D vectors)
                (real nonempty-type-from-decl nil reals nil)
@@ -593,6 +592,7 @@
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (/= const-decl "boolean" notequal nil)
+               (W skolem-const-decl "Vector" resolution nil)
                (zero const-decl "Vector" vectors_2D vectors)
                (Nz_vector type-eq-decl nil vectors_2D vectors)
                (number nonempty-type-decl nil numbers nil)
@@ -611,16 +611,28 @@
                 reals nil)
                (* const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
+               (nzreal_times_nzreal_is_nzreal application-judgement
+                "nzreal" real_types nil)
                (nz_sqv_gt_0 application-judgement "posreal" vectors_2D
                 vectors)
                (sqv const-decl "nnreal" vectors_2D vectors)
-               (* const-decl "Vector" vectors_2D vectors)
-               (real_plus_real_is_real application-judgement "real"
-                reals nil)
-               (div_mult_pos_gt1 formula-decl nil extra_real_props nil)
-               (div_mult_pos_ge1 formula-decl nil real_props nil)
                (nnreal_times_nnreal_is_nnreal application-judgement
                 "nnreal" real_types nil)
+               (real_div_nzreal_is_real application-judgement "real"
+                reals nil)
+               (real_lt_is_strict_total_order name-judgement
+                "(strict_total_order?[real])" real_props nil)
+               (div_mult_pos_ge1 formula-decl nil real_props nil)
+               (zero_times1 formula-decl nil real_props nil)
+               (pos_times_gt formula-decl nil real_props nil)
+               (neg_times_lt formula-decl nil real_props nil)
+               (neg_times_le formula-decl nil real_props nil)
+               (dot_scal_canon formula-decl nil vectors_2D vectors)
+               (times_div2 formula-decl nil real_props nil)
+               (nonzero_times3 formula-decl nil real_props nil)
+               (div_times formula-decl nil real_props nil)
+               (* const-decl "real" vectors_2D vectors)
+               (div_mult_pos_gt1 formula-decl nil extra_real_props nil)
                (real_gt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil)
                (AND const-decl "[bool, bool -> bool]" booleans nil)
@@ -628,16 +640,19 @@
                (nznum nonempty-type-eq-decl nil number_fields nil)
                (/ const-decl "[numfield, nznum -> numfield]"
                   number_fields nil)
+               (V skolem-const-decl "Vector" resolution nil)
                (> const-decl "bool" reals nil)
-               (* const-decl "real" vectors_2D vectors)
                (posreal nonempty-type-eq-decl nil real_types nil)
                (nonneg_real nonempty-type-eq-decl nil real_types nil)
-               (both_sides_times_pos_ge1 formula-decl nil real_props
+               (both_sides_times_pos_le1 formula-decl nil real_props
                 nil)
                (nzreal_div_nzreal_is_nzreal application-judgement
                 "nzreal" real_types nil)
+               (* const-decl "Vector" vectors_2D vectors)
                (+ const-decl "Vector" vectors_2D vectors)
-               (dot_zero_right formula-decl nil vectors_2D vectors)
+               (real_plus_real_is_real application-judgement "real"
+                reals nil)
+               (norm_zero formula-decl nil vectors_2D vectors)
                (sub_eq_zero formula-decl nil vectors_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
@@ -1484,7 +1499,7 @@
                   number_fields nil)
                (nonneg_real nonempty-type-eq-decl nil real_types nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
                (NOT const-decl "[bool -> bool]" booleans nil)
                (real_lt_is_strict_total_order name-judgement
@@ -1571,7 +1586,7 @@
                (modifiable_to_size const-decl "bool" resolution nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (* const-decl "real" vectors_2D vectors)
                (sqv const-decl "nnreal" vectors_2D vectors)
                (norm const-decl "nnreal" vectors_2D vectors)
@@ -1583,12 +1598,12 @@
                (test_point_below const-decl "Vect2" acceptable_polygon
                 nil)
                (definitely_outside_prelim const-decl "bool"
-                 polygon_contain nil)
+                polygon_contain nil)
                (winding_number const-decl
-                               "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
-                               polygon_contain nil)
+                "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
+                polygon_contain nil)
                (definitely_outside const-decl "bool" polygon_contain
-                                   nil)
+                nil)
                (nice_polygon_2D const-decl "bool" polygon_contain nil)
                (posreal_plus_nnreal_is_posreal application-judgement
                 "posreal" real_types nil)
@@ -1722,12 +1737,12 @@
                 "posint" integers nil)
                (nice_polygon_2D const-decl "bool" polygon_contain nil)
                (definitely_outside const-decl "bool" polygon_contain
-                                   nil)
+                nil)
                (winding_number const-decl
-                               "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
-                               polygon_contain nil)
+                "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
+                polygon_contain nil)
                (definitely_outside_prelim const-decl "bool"
-                 polygon_contain nil)
+                polygon_contain nil)
                (test_point_below const-decl "Vect2" acceptable_polygon
                 nil)
                (counterclockwise_edges const-decl "bool"
@@ -1739,7 +1754,7 @@
                (sqv const-decl "nnreal" vectors_2D vectors)
                (* const-decl "real" vectors_2D vectors)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil))
               nil
               (expand_polygon_2D subtype
@@ -1997,7 +2012,7 @@
                (modifiable_to_size const-decl "bool" resolution nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
                (det const-decl "real" det_2D vectors)
@@ -2006,12 +2021,12 @@
                (test_point_below const-decl "Vect2" acceptable_polygon
                 nil)
                (definitely_outside_prelim const-decl "bool"
-                 polygon_contain nil)
+                polygon_contain nil)
                (winding_number const-decl
-                               "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
-                               polygon_contain nil)
+                "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
+                polygon_contain nil)
                (definitely_outside const-decl "bool" polygon_contain
-                                   nil)
+                nil)
                (nice_polygon_2D const-decl "bool" polygon_contain nil)
                (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}"
                     real_defs nil)
@@ -2272,7 +2287,7 @@
                (naturalnumber type-eq-decl nil naturalnumbers nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (* const-decl "real" vectors_2D vectors)
                (sqv const-decl "nnreal" vectors_2D vectors)
                (norm const-decl "nnreal" vectors_2D vectors)
@@ -2284,12 +2299,12 @@
                (test_point_below const-decl "Vect2" acceptable_polygon
                 nil)
                (definitely_outside_prelim const-decl "bool"
-                 polygon_contain nil)
+                polygon_contain nil)
                (winding_number const-decl
-                               "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
-                               polygon_contain nil)
+                "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
+                polygon_contain nil)
                (definitely_outside const-decl "bool" polygon_contain
-                                   nil)
+                nil)
                (nice_polygon_2D const-decl "bool" polygon_contain nil)
                (int_minus_int_is_int application-judgement "int"
                 integers nil)
@@ -3345,7 +3360,7 @@
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (add_zero_right formula-decl nil vectors_2D vectors)
                (scal_0 formula-decl nil vectors_2D vectors)
                (scal_1 formula-decl nil vectors_2D vectors)
@@ -4616,12 +4631,12 @@
                 "posreal" real_types nil)
                (nice_polygon_2D const-decl "bool" polygon_contain nil)
                (definitely_outside const-decl "bool" polygon_contain
-                                   nil)
+                nil)
                (winding_number const-decl
-                               "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
-                               polygon_contain nil)
+                "{ii: int | ii = winding_number_rec(N, p, s, N - 1) / 4}"
+                polygon_contain nil)
                (definitely_outside_prelim const-decl "bool"
-                 polygon_contain nil)
+                polygon_contain nil)
                (test_point_below const-decl "Vect2" acceptable_polygon
                 nil)
                (counterclockwise_edges const-decl "bool"
@@ -4633,7 +4648,7 @@
                (sqv const-decl "nnreal" vectors_2D vectors)
                (* const-decl "real" vectors_2D vectors)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
                (naturalnumber type-eq-decl nil naturalnumbers nil))
               nil
@@ -5783,7 +5798,7 @@
                (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
                (/= const-decl "boolean" notequal nil)
                (definitely_outside const-decl "bool" polygon_contain
-                                   nil)
+                nil)
                (recovery_point const-decl "Vect2" resolution nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
@@ -5797,11 +5812,9 @@
                 vectors)
                (even_minus_odd_is_odd application-judgement "odd_int"
                 integers nil)
-               (G skolem-const-decl "Vect2" resolution nil)
-               (det_perpR formula-decl nil det_2D vectors)
-               (dot_zero_right formula-decl nil vectors_2D vectors)
-               (neari skolem-const-decl "nat" resolution nil)
-               (nexti skolem-const-decl "nonneg_int" resolution nil)
+               nil (det_perpR formula-decl nil det_2D vectors)
+               (dot_zero_right formula-decl nil vectors_2D vectors) nil
+               nil
                (int_abs_is_nonneg application-judgement
                 "{j: nonneg_int | j >= i}" real_defs nil)
                (posint_plus_nnint_is_posint application-judgement
@@ -5824,8 +5837,7 @@
                (proj_vect const-decl "Nz_vect2" resolution nil)
                (Nz_vect2 type-eq-decl nil vectors_2D vectors)
                (zero const-decl "Vector" vectors_2D vectors)
-               (det const-decl "real" det_2D vectors)
-               (- const-decl "Vector" vectors_2D vectors)
+               (det const-decl "real" det_2D vectors) nil
                (sqv const-decl "nnreal" vectors_2D vectors)
                (nnreal type-eq-decl nil real_types nil)
                (Vector type-eq-decl nil vectors_2D vectors)
@@ -5834,10 +5846,10 @@
                (IF const-decl "[boolean, T, T -> T]" if_def nil)
                (closest_edge def-decl "below(N)" resolution nil)
                (near_any_edge_upto def-decl
-                                   "{bb: bool | bb IFF EXISTS (j: upto(i)): near_poly_edge(N, p, s, BUFF, j)}"
-                                   polygon_contain nil)
+                "{bb: bool | bb IFF EXISTS (j: upto(i)): near_poly_edge(N, p, s, BUFF, j)}"
+                polygon_contain nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (upto nonempty-type-eq-decl nil naturalnumbers nil)
                (<= const-decl "bool" reals nil)
                (NOT const-decl "[bool -> bool]" booleans nil)
@@ -6544,7 +6556,7 @@
                (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
                (/= const-decl "boolean" notequal nil)
                (definitely_inside const-decl "bool" polygon_contain
-                                  nil)
+                nil)
                (recovery_point const-decl "Vect2" resolution nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
@@ -6558,7 +6570,6 @@
                 vectors)
                (even_minus_odd_is_odd application-judgement "odd_int"
                 integers nil)
-               nil
                (minus_real_is_real application-judgement "real" reals
                 nil)
                (real_minus_real_is_real application-judgement "real"
@@ -6574,7 +6585,6 @@
                (subrange type-eq-decl nil integers nil)
                (posreal_times_posreal_is_posreal application-judgement
                 "posreal" real_types nil)
-               nil nil
                (posint_plus_nnint_is_posint application-judgement
                 "posint" integers nil)
                (comp_zero_x formula-decl nil vectors_2D vectors)
@@ -6608,7 +6618,7 @@
                (proj_vect const-decl "Nz_vect2" resolution nil)
                (Nz_vect2 type-eq-decl nil vectors_2D vectors)
                (zero const-decl "Vector" vectors_2D vectors)
-               (det const-decl "real" det_2D vectors) nil
+               (det const-decl "real" det_2D vectors)
                (sqv const-decl "nnreal" vectors_2D vectors)
                (nnreal type-eq-decl nil real_types nil)
                (Vector type-eq-decl nil vectors_2D vectors)
@@ -6617,10 +6627,10 @@
                (IF const-decl "[boolean, T, T -> T]" if_def nil)
                (closest_edge def-decl "below(N)" resolution nil)
                (near_any_edge_upto def-decl
-                                   "{bb: bool | bb IFF EXISTS (j: upto(i)): near_poly_edge(N, p, s, BUFF, j)}"
-                                   polygon_contain nil)
+                "{bb: bool | bb IFF EXISTS (j: upto(i)): near_poly_edge(N, p, s, BUFF, j)}"
+                polygon_contain nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
-                               nil)
+                nil)
                (upto nonempty-type-eq-decl nil naturalnumbers nil)
                (<= const-decl "bool" reals nil)
                (NOT const-decl "[bool -> bool]" booleans nil)

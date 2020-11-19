@@ -1,7 +1,7 @@
 PVS PolyCARP
 ==
 
-[PVS version 6.0](http://pvs.csl.sri.com) and the development version
+[PVS version 7.1](http://pvs.csl.sri.com) and the development version
 of the [NASA PVS Library](https://github.com/nasa/pvslib) are required
 to proof-check the PVS PolyCARP development. Furthermore, the directory
 `PVS` has to be added to the Unix environment variable
@@ -29,10 +29,10 @@ $ provethem all-theories
 The output of that command is
 
 ```
-PolyCARP                 [OK: 292 proofs]
+PolyCARP                 [OK: 294 proofs]
 PolyCARP_analysis        [OK: 131 proofs]
 FM2019                   [OK: 49 proofs]
 
-*** Grand Totals: 472 proofs / 472 formulas. Missed: 0 formulas.
+*** Grand Totals: 474 proofs / 474 formulas. Missed: 0 formulas.
 *** Number of libraries: 3
 ```

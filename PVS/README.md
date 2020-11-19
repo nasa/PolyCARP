@@ -25,8 +25,8 @@ FM2019                   [OK: 49 proofs]
 `PVS` has to be added to the Unix environment variable
 `PVS_LIBRARY_PATH`.  Depending upon your shell, one of the following lines
 has to be added to your startup script.  In C shell (csh or tcsh), put this line in
-`~/.cshrc`, where `<polycarppvsdir>` is the absolute path to the
-directory `PVS`:
+`~/.cshrc`, where `<polycarppvsdir>` is the absolute path to the local
+directory `PVS` in the PolyCARP distribution:
 
 ~~~
 setenv PVS_LIBRARY_PATH "<polycarppvsdir>:$PVS_LIBRARY_PATH"

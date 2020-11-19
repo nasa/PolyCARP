@@ -447,7 +447,7 @@ sin(2 * pi - acos(^(v)`x))")
         nil))
       nil))
     nil)
-   ((norm_normalize formula-decl nil vectors_2D "vectors/")
+   ((norm_normalize formula-decl nil vectors_2D vectors)
     (posreal_times_posreal_is_posreal application-judgement "posreal"
      real_types nil)
     (posint_times_posint_is_posint application-judgement "posint"
@@ -465,62 +465,60 @@ sin(2 * pi - acos(^(v)`x))")
     (bool nonempty-type-eq-decl nil booleans nil)
     (>= const-decl "bool" reals nil)
     (nnreal type-eq-decl nil real_types nil)
-    (norm const-decl "nnreal" vectors_2D "vectors/")
-    (Normalized type-eq-decl nil vectors_2D "vectors/")
-    (^ const-decl "Normalized" vectors_2D "vectors/")
-    (nz_norm_gt_0 application-judgement "posreal" vectors_2D
-     "vectors/")
-    (* const-decl "real" vectors_2D "vectors/")
+    (norm const-decl "nnreal" vectors_2D vectors)
+    (Normalized type-eq-decl nil vectors_2D vectors)
+    (^ const-decl "Normalized" vectors_2D vectors)
+    (nz_norm_gt_0 application-judgement "posreal" vectors_2D vectors)
+    (* const-decl "real" vectors_2D vectors)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (v skolem-const-decl "Nz_vect2" angle_sum nil)
+    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil) nil
     (< const-decl "bool" reals nil)
-    (real_abs_le1 nonempty-type-eq-decl nil trig_types "trig/")
-    (cos const-decl "real" sincos_def "trig/")
+    (real_abs_le1 nonempty-type-eq-decl nil trig_types trig)
+    (cos const-decl "real" sincos_def trig)
     (nznum nonempty-type-eq-decl nil number_fields nil)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
-     pi_def "trig/")
-    (nnreal_le_pi nonempty-type-eq-decl nil trig_types "trig/")
-    (acos const-decl "nnreal_le_pi" acos "trig/")
+     pi_def trig)
+    (nnreal_le_pi nonempty-type-eq-decl nil trig_types trig)
+    (acos const-decl "nnreal_le_pi" acos trig)
     (IF const-decl "[boolean, T, T -> T]" if_def nil)
-    (cos_acos formula-decl nil trig_inverses "trig/")
-    (sin_cos_one formula-decl nil sincos_def "trig/")
-    (sin const-decl "real" sincos_def "trig/")
+    (cos_acos formula-decl nil trig_inverses trig)
+    (sin_cos_one formula-decl nil sincos_def trig)
+    (sin const-decl "real" sincos_def trig)
     (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (odd_minus_odd_is_even application-judgement "even_int" integers
      nil)
     (minus_real_is_real application-judgement "real" reals nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (sin_ge_0 formula-decl nil trig_ineq "trig/")
-    (sq_eq formula-decl nil sq "reals/")
-    (sin_range application-judgement "real_abs_le1" sincos "trig/")
-    (cos_range application-judgement "real_abs_le1" sincos "trig/")
+    (sin_ge_0 formula-decl nil trig_ineq trig)
+    (sq_eq formula-decl nil sq reals)
+    (sin_range application-judgement "real_abs_le1" sincos trig)
+    (cos_range application-judgement "real_abs_le1" sincos trig)
     (integer nonempty-type-from-decl nil integers nil)
     (integer_pred const-decl "[rational -> boolean]" integers nil)
     (rational nonempty-type-from-decl nil rationals nil)
     (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (cos_neg formula-decl nil sincos_def "trig/")
+    (cos_neg formula-decl nil sincos_def trig)
     (even_times_int_is_even application-judgement "even_int" integers
      nil)
     (mult_divides2 application-judgement "(divides(m))" divides nil)
-    (cos_period formula-decl nil sincos "trig/")
-    (sin_le_0 formula-decl nil trig_ineq "trig/")
-    (sq_abs formula-decl nil sq "reals/")
-    (acos_1 formula-decl nil acos "trig/")
+    (cos_period formula-decl nil sincos trig)
+    (sin_le_0 formula-decl nil trig_ineq trig)
+    (sq_abs formula-decl nil sq reals)
+    (acos_1 formula-decl nil acos trig)
     (bijective? const-decl "bool" functions nil)
     (injective? const-decl "bool" functions nil)
-    (sq_eq_0 formula-decl nil sq "reals/")
-    (acos_bij formula-decl nil acos "trig/")
+    (sq_eq_0 formula-decl nil sq reals)
+    (acos_bij formula-decl nil acos trig)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
     (real_times_real_is_real application-judgement "real" reals nil)
     (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def "trig/")
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (real_minus_real_is_real application-judgement "real" reals nil)
@@ -536,15 +534,15 @@ sin(2 * pi - acos(^(v)`x))")
     (AND const-decl "[bool, bool -> bool]" booleans nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
     (minus_odd_is_odd application-judgement "odd_int" integers nil)
-    (sqv const-decl "nnreal" vectors_2D "vectors/")
-    (sq const-decl "nonneg_real" sq "reals/")
-    (sq_norm formula-decl nil vectors_2D "vectors/")
-    (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-    (Nz_vector type-eq-decl nil vectors_2D "vectors/")
-    (zero const-decl "Vector" vectors_2D "vectors/")
+    (sqv const-decl "nnreal" vectors_2D vectors)
+    (sq const-decl "nonneg_real" sq reals)
+    (sq_norm formula-decl nil vectors_2D vectors)
+    (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+    (Nz_vector type-eq-decl nil vectors_2D vectors)
+    (zero const-decl "Vector" vectors_2D vectors)
     (/= const-decl "boolean" notequal nil)
     (boolean nonempty-type-decl nil booleans nil)
-    (Vector type-eq-decl nil vectors_2D "vectors/")
+    (Vector type-eq-decl nil vectors_2D vectors)
     (real nonempty-type-from-decl nil reals nil))
    shostak))
  (norm_angle_eq 0
@@ -563,7 +561,7 @@ sin(2 * pi - acos(^(v)`x))")
         nil))
       nil))
     nil)
-   ((norm_scal formula-decl nil vectors_2D "vectors/")
+   ((norm_scal formula-decl nil vectors_2D vectors)
     (number nonempty-type-decl nil numbers nil)
     (boolean nonempty-type-decl nil booleans nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
@@ -573,12 +571,11 @@ sin(2 * pi - acos(^(v)`x))")
     (real nonempty-type-from-decl nil reals nil)
     (/= const-decl "boolean" notequal nil)
     (nzreal nonempty-type-eq-decl nil reals nil)
-    (Vector type-eq-decl nil vectors_2D "vectors/")
-    (zero const-decl "Vector" vectors_2D "vectors/")
-    (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-    (nz_nzv application-judgement "Nz_vector" vectors_2D "vectors/")
-    (- const-decl "Vector" vectors_2D "vectors/")
-    (* const-decl "Vector" vectors_2D "vectors/")
+    (Vector type-eq-decl nil vectors_2D vectors)
+    (zero const-decl "Vector" vectors_2D vectors)
+    (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+    (nz_nzv application-judgement "Nz_vector" vectors_2D vectors) nil
+    (* const-decl "Vector" vectors_2D vectors)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
     (posreal_div_posreal_is_posreal application-judgement "posreal"
@@ -592,15 +589,14 @@ sin(2 * pi - acos(^(v)`x))")
      real_types nil)
     (nzreal_times_nzreal_is_nzreal application-judgement "nzreal"
      real_types nil)
-    (neg_nzv application-judgement "Nz_vector" vectors_2D "vectors/")
+    (neg_nzv application-judgement "Nz_vector" vectors_2D vectors)
     (minus_real_is_real application-judgement "real" reals nil)
-    (nz_norm_gt_0 application-judgement "posreal" vectors_2D
-     "vectors/")
+    (nz_norm_gt_0 application-judgement "posreal" vectors_2D vectors)
     (nonzero_abs_is_pos application-judgement "{y: posreal | y >= x}"
      real_defs nil)
     (posreal_times_posreal_is_posreal application-judgement "posreal"
      real_types nil)
-    (^ const-decl "Normalized" vectors_2D "vectors/"))
+    (^ const-decl "Normalized" vectors_2D vectors))
    shostak))
  (ac_co_TCC1 0
   (ac_co_TCC1-1 nil 3710858176
@@ -626,7 +622,7 @@ sin(2 * pi - acos(^(v)`x))")
     nil)
    ((abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
-    (cos_neg formula-decl nil sincos_def "trig/")
+    (cos_neg formula-decl nil sincos_def trig)
     (number nonempty-type-decl nil numbers nil)
     (boolean nonempty-type-decl nil booleans nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
@@ -643,27 +639,28 @@ sin(2 * pi - acos(^(v)`x))")
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (> const-decl "bool" reals nil) (< const-decl "bool" reals nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
-    (cos const-decl "real" sincos_def "trig/")
+    (cos const-decl "real" sincos_def trig)
     (/= const-decl "boolean" notequal nil)
     (nznum nonempty-type-eq-decl nil number_fields nil)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
-     pi_def "trig/")
+     pi_def trig)
     (minus_real_is_real application-judgement "real" reals nil)
-    (cos_range application-judgement "real_abs_le1" sincos "trig/")
+    (cos_range application-judgement "real_abs_le1" sincos trig)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    (acos_cos formula-decl nil trig_inverses "trig/")
+    (acos_cos formula-decl nil trig_inverses trig)
     (nnreal type-eq-decl nil real_types nil)
-    (nnreal_le_pi nonempty-type-eq-decl nil trig_types "trig/")
+    (nnreal_le_pi nonempty-type-eq-decl nil trig_types trig)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def
-     "trig/"))
-   nil))
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig))
+   nil
+   (ac_co subtype "real_defs.abs(angle_sum.phi)"
+    "{x: reals.real | x = acos.acos(sincos_def.cos(angle_sum.phi))}")))
  (ac_co_TCC2 0
   (ac_co_TCC2-1 nil 3710858176
    ("" (skeep)
@@ -696,11 +693,11 @@ sin(2 * pi - acos(^(v)`x))")
       nil))
     nil)
    ((pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
-     pi_def "trig/")
+     pi_def trig)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (nznum nonempty-type-eq-decl nil number_fields nil)
     (/= const-decl "boolean" notequal nil)
-    (cos const-decl "real" sincos_def "trig/")
+    (cos const-decl "real" sincos_def trig)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (< const-decl "bool" reals nil) (> const-decl "bool" reals nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
@@ -720,12 +717,12 @@ sin(2 * pi - acos(^(v)`x))")
     (NOT const-decl "[bool -> bool]" booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (boolean nonempty-type-decl nil booleans nil)
-    (cos_range application-judgement "real_abs_le1" sincos "trig/")
+    (cos_range application-judgement "real_abs_le1" sincos trig)
     (minus_real_is_real application-judgement "real" reals nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    (cos_neg formula-decl nil sincos_def "trig/")
-    (cos_period formula-decl nil sincos "trig/")
+    (cos_neg formula-decl nil sincos_def trig)
+    (cos_period formula-decl nil sincos trig)
     (real_minus_real_is_real application-judgement "real" reals nil)
     (posint_times_posint_is_posint application-judgement "posint"
      integers nil)
@@ -734,9 +731,9 @@ sin(2 * pi - acos(^(v)`x))")
     (mult_divides1 application-judgement "(divides(n))" divides nil)
     (mult_divides2 application-judgement "(divides(m))" divides nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
-    (acos_cos formula-decl nil trig_inverses "trig/")
+    (acos_cos formula-decl nil trig_inverses trig)
     (nnreal type-eq-decl nil real_types nil)
-    (nnreal_le_pi nonempty-type-eq-decl nil trig_types "trig/")
+    (nnreal_le_pi nonempty-type-eq-decl nil trig_types trig)
     (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
@@ -752,9 +749,11 @@ sin(2 * pi - acos(^(v)`x))")
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def
-     "trig/"))
-   nil))
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig))
+   nil
+   (ac_co subtype
+    "(number_fields.-)(number_fields.*(2, pi_def.pi), real_defs.abs(angle_sum.phi))"
+    "{x: reals.real | x = acos.acos(sincos_def.cos(angle_sum.phi))}")))
  (signed_acos 0
   (signed_acos-2 nil 3711357707
    ("" (skeep)
@@ -850,7 +849,89 @@ sin(2 * pi - acos(^(v)`x))")
               (("2" (cross-mult -6)
                 (("2" (expand "*")
                   (("2" (lemma "sin_minus" ("a" "aw" "b" "av"))
-                    (("2" (grind) nil nil)) nil))
+                    (("2" (expand "signed_area2")
+                      (("2" (hide 2)
+                        (("2" (replace -1 :hide? t)
+                          (("2" (expand "zero")
+                            (("2" (expand "det")
+                              (("2"
+                                (expand "rows")
+                                (("2"
+                                  (expand "columns")
+                                  (("2"
+                                    (expand "length")
+                                    (("2"
+                                      (expand "length")
+                                      (("2"
+                                        (expand "length")
+                                        (("2"
+                                          (expand "length")
+                                          (("2"
+                                            (expand "columns")
+                                            (("2"
+                                              (expand "columns")
+                                              (("2"
+                                                (expand "columns")
+                                                (("2"
+                                                  (expand "length")
+                                                  (("2"
+                                                    (expand "length")
+                                                    (("2"
+                                                      (expand "length")
+                                                      (("2"
+                                                        (expand
+                                                         "length")
+                                                        (("2"
+                                                          (eval-expr
+                                                           "max(3, max(3, max(3, 0)))")
+                                                          (("2"
+                                                            (replace
+                                                             -1)
+                                                            (("2"
+                                                              (expand
+                                                               "sigma")
+                                                              (("2"
+                                                                (expand
+                                                                 "sigma")
+                                                                (("2"
+                                                                  (expand
+                                                                   "sigma")
+                                                                  (("2"
+                                                                    (expand
+                                                                     "sigma")
+                                                                    (("2"
+                                                                      (expand
+                                                                       "remove")
+                                                                      (("2"
+                                                                        (grind)
+                                                                        nil
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
                   nil))
                 nil))
               nil))
@@ -859,164 +940,160 @@ sin(2 * pi - acos(^(v)`x))")
         nil))
       nil))
     nil)
-   ((^ const-decl "Normalized" vectors_2D "vectors/")
-    (Normalized type-eq-decl nil vectors_2D "vectors/")
-    (Nz_vector type-eq-decl nil vectors_2D "vectors/")
-    (pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
-     pi_def "trig/")
-    (cos const-decl "real" sincos_def "trig/")
-    (> const-decl "bool" reals nil) (< const-decl "bool" reals nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (sin const-decl "real" sincos_def "trig/")
-    (norm const-decl "nnreal" vectors_2D "vectors/")
-    (nnreal type-eq-decl nil real_types nil)
-    (>= const-decl "bool" reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
-    (nznum nonempty-type-eq-decl nil number_fields nil)
-    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-    (/= const-decl "boolean" notequal nil)
-    (zero const-decl "Vector" vectors_2D "vectors/")
-    (Vector type-eq-decl nil vectors_2D "vectors/")
-    (signed_area2 const-decl "real" in_out_def nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-    (real nonempty-type-from-decl nil reals nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number nonempty-type-decl nil numbers nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (real_times_real_is_real application-judgement "real" reals nil)
-    (real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
-     nil)
-    (posreal_times_posreal_is_posreal application-judgement "posreal"
-     real_types nil)
-    (posrat_div_posrat_is_posrat application-judgement "posrat"
-     rationals nil)
-    (nz_norm_gt_0 application-judgement "posreal" vectors_2D
-     "vectors/")
-    (sin_range application-judgement "real_abs_le1" sincos "trig/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (times_div2 formula-decl nil real_props nil)
-    (nonzero_real nonempty-type-eq-decl nil reals nil)
-    (real_div_nzreal_is_real application-judgement "real" reals nil)
-    (div_mult_pos_ge1 formula-decl nil real_props nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (posreal nonempty-type-eq-decl nil real_types nil)
-    (nnint_times_nnint_is_nnint application-judgement "nonneg_int"
-     integers nil)
-    (even_times_int_is_even application-judgement "even_int" integers
-     nil)
-    (mult_divides1 application-judgement "(divides(n))" divides nil)
-    (mult_divides2 application-judgement "(divides(m))" divides nil)
-    (nnreal_div_posreal_is_nnreal application-judgement "nnreal"
-     real_types nil)
-    (times_div_cancel1 formula-decl nil extra_real_props nil)
-    (both_sides_div_pos_ge1 formula-decl nil real_props nil)
-    (sin_ge_0 formula-decl nil trig_ineq "trig/")
-    (real_ge_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (rational nonempty-type-from-decl nil rationals nil)
-    (integer_pred const-decl "[rational -> boolean]" integers nil)
-    (int nonempty-type-eq-decl nil integers nil)
-    (<= const-decl "bool" reals nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (subrange type-eq-decl nil subrange_type nil)
-    (sign const-decl "subrange[-1, 1]" in_out_def nil)
-    (minus_real_is_real application-judgement "real" reals nil)
-    (sin_le_0 formula-decl nil trig_ineq "trig/")
-    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
-    (minus_even_is_even application-judgement "even_int" integers nil)
-    (sin_neg formula-decl nil sincos_def "trig/")
-    (nzreal_times_nzreal_is_nzreal application-judgement "nzreal"
-     real_types nil)
-    (sin_lt_0 formula-decl nil trig_ineq "trig/")
-    (both_sides_div_pos_lt1 formula-decl nil real_props nil)
-    (sqrt_pos application-judgement "posreal" sqrt "reals/")
-    (nz_sqv_gt_0 application-judgement "posreal" vectors_2D "vectors/")
-    (real_plus_real_is_real application-judgement "real" reals nil)
-    (nnreal_times_nnreal_is_nnreal application-judgement "nnreal"
-     real_types nil)
-    (sqv const-decl "nnreal" vectors_2D "vectors/")
-    (* const-decl "real" vectors_2D "vectors/")
-    (sin_gt_0 formula-decl nil trig_ineq "trig/")
-    (TRUE const-decl "bool" booleans nil)
-    (nz_nzv application-judgement "Nz_vector" vectors_2D "vectors/")
-    (scal_div_mult_left formula-decl nil vectors_2D "vectors/")
-    (nzreal nonempty-type-eq-decl nil reals nil)
-    (scal_1 formula-decl nil vectors_2D "vectors/")
-    (cos_range application-judgement "real_abs_le1" sincos "trig/")
-    (* const-decl "Vector" vectors_2D "vectors/")
-    (sigma def-decl "real" sigma "reals/")
+   ((pi_bound name-judgement
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (sin_minus formula-decl nil sincos trig)
+    (rows const-decl "nat" matrices matrices)
+    (length def-decl "nat" list_props nil)
+    (int_exp application-judgement "int" exponentiation nil)
+    (nzreal_exp application-judgement "nzreal" exponentiation nil)
+    (nth def-decl "T" list_props nil)
+    (row const-decl "Vector" matrices matrices)
+    (access const-decl "real" matrices matrices)
+    (entry const-decl "real" matrices matrices)
     (expt def-decl "real" exponentiation nil)
-    (det def-decl "real" matrix_props "matrices/")
-    (remove const-decl "{N |
-         (rows(M) > 1 AND columns(M) > 1 IMPLIES
-           (rows(N) = rows(M) - 1 AND columns(N) = columns(M) - 1))
-          AND
-          (FORALL (m, n):
-             LET newm = IF m >= i OR i >= rows(M) THEN m + 1 ELSE m ENDIF,
-                 newn =
-                   IF n >= j OR j >= columns(M) THEN n + 1 ELSE n ENDIF
-               IN entry(N)(m, n) = entry(M)(newm, newn))}"
-      matrix_props "matrices/")
-    (form_matrix const-decl "{M: MatrixMN(m, n) |
-         FORALL (i: below(m), j: below(n)): nth(row(M)(i), j) = F(i, j)}"
-     matrices "matrices/")
-    (array2list const-decl
-     "{l: listn(n) | FORALL (i: below(n)): a(i) = nth(l, i)}"
-     array2list "structures/")
+    (^ const-decl "real" exponentiation nil)
     (array2list_it def-decl
      "{l: listn(n - i) | FORALL (j: subrange(i, n - 1)): a(j) = nth(l, j - i)}"
-     array2list "structures/")
-    (entry const-decl "real" matrices "matrices/")
-    (access const-decl "real" matrices "matrices/")
-    (row const-decl "Vector" matrices "matrices/")
-    (nth def-decl "T" list_props nil)
-    (^ const-decl "real" exponentiation nil)
-    (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
-    (columns def-decl "{c: nat |
-         (FORALL (i: below(length(M))): length(nth(M, i)) <= c) AND
-          (null?(M) AND c = 0 OR
-            (EXISTS (i: below(length(M))): length(nth(M, i)) = c))}"
-     matrices "matrices/")
-    (rows const-decl "nat" matrices "matrices/")
-    (length def-decl "nat" list_props nil)
-    (comp_zero_y formula-decl nil vectors_2D "vectors/")
-    (comp_zero_x formula-decl nil vectors_2D "vectors/")
+     array2list structures)
+    (array2list const-decl
+     "{l: listn(n) | FORALL (i: below(n)): a(i) = nth(l, i)}"
+     array2list structures)
+    (form_matrix const-decl "{M: MatrixMN(m, n) |
+   FORALL (i: below(m), j: below(n)): nth(row(M)(i), j) = F(i, j)}"
+     matrices matrices)
+    (nzint_times_nzint_is_nzint application-judgement "nzint" integers
+     nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (form_matrix_square application-judgement "FullMatrix" matrices
+     matrices)
+    (nzreal_expt application-judgement "nzreal" exponentiation nil)
+    (int_expt application-judgement "int" exponentiation nil)
     (nnint_plus_posint_is_posint application-judgement "posint"
      integers nil)
+    (int_max application-judgement "{k: int | i <= k AND j <= k}"
+     real_defs nil)
+    (remove const-decl "{N |
+   (rows(M) > 1 AND columns(M) > 1 IMPLIES
+     (rows(N) = rows(M) - 1 AND columns(N) = columns(M) - 1))
+    AND
+    (FORALL (m, n):
+       LET newm = IF m >= i OR i >= rows(M) THEN m + 1 ELSE m ENDIF,
+           newn = IF n >= j OR j >= columns(M) THEN n + 1 ELSE n ENDIF
+         IN entry(N)(m, n) = entry(M)(newm, newn))}"
+      matrix_props matrices)
+    (sigma def-decl "real" sigma reals)
     (nat_max application-judgement "{k: nat | i <= k AND j <= k}"
      real_defs nil)
     (nonneg_rat_max application-judgement
      "{s: nonneg_rat | s >= q AND s >= r}" real_defs nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (posint_plus_nnint_is_posint application-judgement "posint"
+    (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
+    (id const-decl "(bijective?[T, T])" identity nil)
+    (bijective? const-decl "bool" functions nil)
+    (columns def-decl "{c: nat |
+   (FORALL (i: below(length(M))): length(nth(M, i)) <= c) AND
+    (null?(M) AND c = 0 OR
+      EXISTS (i: below(length(M))): length(nth(M, i)) = c)}" matrices
+     matrices)
+    (det def-decl "real" matrix_props matrices)
+    (* const-decl "Vector" vectors_2D vectors)
+    (cos_range application-judgement "real_abs_le1" sincos trig)
+    (scal_1 formula-decl nil vectors_2D vectors)
+    (nzreal nonempty-type-eq-decl nil reals nil)
+    (scal_div_mult_left formula-decl nil vectors_2D vectors)
+    (nz_nzv application-judgement "Nz_vector" vectors_2D vectors)
+    (TRUE const-decl "bool" booleans nil)
+    (sin_gt_0 formula-decl nil trig_ineq trig)
+    (* const-decl "real" vectors_2D vectors)
+    (sqv const-decl "nnreal" vectors_2D vectors)
+    (nnreal_times_nnreal_is_nnreal application-judgement "nnreal"
+     real_types nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (nz_sqv_gt_0 application-judgement "posreal" vectors_2D vectors)
+    (sqrt_pos application-judgement "posreal" sqrt reals)
+    (both_sides_div_pos_lt1 formula-decl nil real_props nil)
+    (sin_lt_0 formula-decl nil trig_ineq trig)
+    (nzreal_times_nzreal_is_nzreal application-judgement "nzreal"
+     real_types nil)
+    (sin_neg formula-decl nil sincos_def trig)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (sin_le_0 formula-decl nil trig_ineq trig)
+    (minus_real_is_real application-judgement "real" reals nil)
+    (sign const-decl "subrange[-1, 1]" in_out_def nil)
+    (subrange type-eq-decl nil subrange_type nil)
+    (- const-decl "[numfield -> numfield]" number_fields nil)
+    (<= const-decl "bool" reals nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (sin_ge_0 formula-decl nil trig_ineq trig)
+    (both_sides_div_pos_ge1 formula-decl nil real_props nil)
+    (times_div_cancel1 formula-decl nil extra_real_props nil)
+    (nnreal_div_posreal_is_nnreal application-judgement "nnreal"
+     real_types nil)
+    (nnint_times_nnint_is_nnint application-judgement "nonneg_int"
      integers nil)
-    (int_expt application-judgement "int" exponentiation nil)
-    (nzreal_expt application-judgement "nzreal" exponentiation nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
-    (nzint_times_nzint_is_nzint application-judgement "nzint" integers
+    (int_times_even_is_even application-judgement "even_int" integers
      nil)
-    (int_exp application-judgement "int" exponentiation nil)
-    (nzreal_exp application-judgement "nzreal" exponentiation nil)
-    (sin_minus formula-decl nil sincos "trig/")
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def
-     "trig/"))
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (div_mult_pos_ge1 formula-decl nil real_props nil)
+    (real_div_nzreal_is_real application-judgement "real" reals nil)
+    (nonzero_real nonempty-type-eq-decl nil reals nil)
+    (times_div2 formula-decl nil real_props nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (sin_range application-judgement "real_abs_le1" sincos trig)
+    (nz_norm_gt_0 application-judgement "posreal" vectors_2D vectors)
+    (posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (posreal_times_posreal_is_posreal application-judgement "posreal"
+     real_types nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (number nonempty-type-decl nil numbers nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (signed_area2 const-decl "real" in_out_def nil)
+    (Vector type-eq-decl nil vectors_2D vectors)
+    (zero const-decl "Vector" vectors_2D vectors)
+    (/= const-decl "boolean" notequal nil)
+    (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (nznum nonempty-type-eq-decl nil number_fields nil)
+    (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (>= const-decl "bool" reals nil)
+    (nnreal type-eq-decl nil real_types nil)
+    (norm const-decl "nnreal" vectors_2D vectors)
+    (sin const-decl "real" sincos_def trig)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (< const-decl "bool" reals nil) (> const-decl "bool" reals nil)
+    (cos const-decl "real" sincos_def trig)
+    (pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
+     pi_def trig)
+    (Nz_vector type-eq-decl nil vectors_2D vectors)
+    (Normalized type-eq-decl nil vectors_2D vectors)
+    (^ const-decl "Normalized" vectors_2D vectors))
    nil)
   (signed_acos-1 nil 3711348930
    ("" (skeep)
@@ -1634,20 +1711,20 @@ sin(2 * pi - acos(^(v)`x))")
         nil))
       nil))
     nil)
-   ((sin const-decl "real" sincos_def "trig/")
-    (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-    (^ const-decl "Normalized" vectors_2D "vectors/")
-    (Normalized type-eq-decl nil vectors_2D "vectors/")
-    (norm const-decl "nnreal" vectors_2D "vectors/")
-    (Nz_vector type-eq-decl nil vectors_2D "vectors/")
-    (zero const-decl "Vector" vectors_2D "vectors/")
-    (Vector type-eq-decl nil vectors_2D "vectors/")
+   ((sin const-decl "real" sincos_def trig)
+    (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+    (^ const-decl "Normalized" vectors_2D vectors)
+    (Normalized type-eq-decl nil vectors_2D vectors)
+    (norm const-decl "nnreal" vectors_2D vectors)
+    (Nz_vector type-eq-decl nil vectors_2D vectors)
+    (zero const-decl "Vector" vectors_2D vectors)
+    (Vector type-eq-decl nil vectors_2D vectors)
     (pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
-     pi_def "trig/")
+     pi_def trig)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (nznum nonempty-type-eq-decl nil number_fields nil)
     (/= const-decl "boolean" notequal nil)
-    (cos const-decl "real" sincos_def "trig/")
+    (cos const-decl "real" sincos_def trig)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (> const-decl "bool" reals nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
@@ -1665,63 +1742,61 @@ sin(2 * pi - acos(^(v)`x))")
     (NOT const-decl "[bool -> bool]" booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (boolean nonempty-type-decl nil booleans nil)
-    (sin_minus formula-decl nil sincos "trig/")
-    (nz_nzv application-judgement "Nz_vector" vectors_2D "vectors/")
-    (scal_div_mult_left formula-decl nil vectors_2D "vectors/")
+    (sin_minus formula-decl nil sincos trig)
+    (nz_nzv application-judgement "Nz_vector" vectors_2D vectors)
+    (scal_div_mult_left formula-decl nil vectors_2D vectors)
     (nzreal nonempty-type-eq-decl nil reals nil)
-    (nz_norm_gt_0 application-judgement "posreal" vectors_2D
-     "vectors/")
-    (scal_1 formula-decl nil vectors_2D "vectors/")
-    (cos_range application-judgement "real_abs_le1" sincos "trig/")
-    (sin_range application-judgement "real_abs_le1" sincos "trig/")
-    (* const-decl "Vector" vectors_2D "vectors/")
+    (nz_norm_gt_0 application-judgement "posreal" vectors_2D vectors)
+    (scal_1 formula-decl nil vectors_2D vectors)
+    (cos_range application-judgement "real_abs_le1" sincos trig)
+    (sin_range application-judgement "real_abs_le1" sincos trig)
+    (* const-decl "Vector" vectors_2D vectors)
     (both_sides_div_pos_ge1 formula-decl nil real_props nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (posreal nonempty-type-eq-decl nil real_types nil)
-    (sin_0 formula-decl nil sincos_def "trig/")
+    (sin_0 formula-decl nil sincos_def trig)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
      nil)
-    (sin_pi formula-decl nil sincos "trig/")
+    (sin_pi formula-decl nil sincos trig)
     (sign const-decl "subrange[-1, 1]" in_out_def nil)
     (signed_area2 const-decl "real" in_out_def nil)
-    (sigma def-decl "real" sigma "reals/")
+    (sigma def-decl "real" sigma reals)
     (expt def-decl "real" exponentiation nil)
-    (det def-decl "real" matrix_props "matrices/")
+    (det def-decl "real" matrix_props matrices)
     (remove const-decl "{N |
-         (rows(M) > 1 AND columns(M) > 1 IMPLIES
-           (rows(N) = rows(M) - 1 AND columns(N) = columns(M) - 1))
-          AND
-          (FORALL (m, n):
-             LET newm = IF m >= i OR i >= rows(M) THEN m + 1 ELSE m ENDIF,
-                 newn =
-                   IF n >= j OR j >= columns(M) THEN n + 1 ELSE n ENDIF
-               IN entry(N)(m, n) = entry(M)(newm, newn))}"
-      matrix_props "matrices/")
+   (rows(M) > 1 AND columns(M) > 1 IMPLIES
+     (rows(N) = rows(M) - 1 AND columns(N) = columns(M) - 1))
+    AND
+    (FORALL (m, n):
+       LET newm = IF m >= i OR i >= rows(M) THEN m + 1 ELSE m ENDIF,
+           newn = IF n >= j OR j >= columns(M) THEN n + 1 ELSE n ENDIF
+         IN entry(N)(m, n) = entry(M)(newm, newn))}"
+      matrix_props matrices)
     (form_matrix const-decl "{M: MatrixMN(m, n) |
-         FORALL (i: below(m), j: below(n)): nth(row(M)(i), j) = F(i, j)}"
-     matrices "matrices/")
+   FORALL (i: below(m), j: below(n)): nth(row(M)(i), j) = F(i, j)}"
+     matrices matrices)
     (array2list const-decl
      "{l: listn(n) | FORALL (i: below(n)): a(i) = nth(l, i)}"
-     array2list "structures/")
+     array2list structures)
     (array2list_it def-decl
      "{l: listn(n - i) | FORALL (j: subrange(i, n - 1)): a(j) = nth(l, j - i)}"
-     array2list "structures/")
-    (entry const-decl "real" matrices "matrices/")
-    (access const-decl "real" matrices "matrices/")
-    (row const-decl "Vector" matrices "matrices/")
+     array2list structures)
+    (entry const-decl "real" matrices matrices)
+    (access const-decl "real" matrices matrices)
+    (row const-decl "Vector" matrices matrices)
     (nth def-decl "T" list_props nil)
     (^ const-decl "real" exponentiation nil)
     (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
     (columns def-decl "{c: nat |
-         (FORALL (i: below(length(M))): length(nth(M, i)) <= c) AND
-          (null?(M) AND c = 0 OR
-            (EXISTS (i: below(length(M))): length(nth(M, i)) = c))}"
-     matrices "matrices/")
-    (rows const-decl "nat" matrices "matrices/")
+   (FORALL (i: below(length(M))): length(nth(M, i)) <= c) AND
+    (null?(M) AND c = 0 OR
+      EXISTS (i: below(length(M))): length(nth(M, i)) = c)}" matrices
+     matrices)
+    (rows const-decl "nat" matrices matrices)
     (length def-decl "nat" list_props nil)
-    (comp_zero_y formula-decl nil vectors_2D "vectors/")
-    (comp_zero_x formula-decl nil vectors_2D "vectors/")
+    (comp_zero_y formula-decl nil vectors_2D vectors)
+    (comp_zero_x formula-decl nil vectors_2D vectors)
     (posrat_div_posrat_is_posrat application-judgement "posrat"
      rationals nil)
     (nnint_plus_posint_is_posint application-judgement "posint"
@@ -1746,10 +1821,10 @@ sin(2 * pi - acos(^(v)`x))")
     (int_exp application-judgement "int" exponentiation nil)
     (nzreal_exp application-judgement "nzreal" exponentiation nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (sqrt_pos application-judgement "posreal" sqrt "reals/")
-    (nz_sqv_gt_0 application-judgement "posreal" vectors_2D "vectors/")
-    (sqv const-decl "nnreal" vectors_2D "vectors/")
-    (* const-decl "real" vectors_2D "vectors/")
+    (sqrt_pos application-judgement "posreal" sqrt reals)
+    (nz_sqv_gt_0 application-judgement "posreal" vectors_2D vectors)
+    (sqv const-decl "nnreal" vectors_2D vectors)
+    (* const-decl "real" vectors_2D vectors)
     (nnreal_div_posreal_is_nnreal application-judgement "nnreal"
      real_types nil)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
@@ -1757,8 +1832,8 @@ sin(2 * pi - acos(^(v)`x))")
     (<= const-decl "bool" reals nil)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (sin_eq_0_2pi formula-decl nil sincos "trig/")
-    (sin_neg formula-decl nil sincos_def "trig/")
+    (sin_eq_0_2pi formula-decl nil sincos trig)
+    (sin_neg formula-decl nil sincos_def trig)
     (minus_nzint_is_nzint application-judgement "nzint" integers nil)
     (minus_even_is_even application-judgement "even_int" integers nil)
     (minus_real_is_real application-judgement "real" reals nil)
@@ -1778,7 +1853,7 @@ sin(2 * pi - acos(^(v)`x))")
      real_props nil)
     (real_times_real_is_real application-judgement "real" reals nil)
     (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def "trig/")
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig)
     (real_minus_real_is_real application-judgement "real" reals nil))
    shostak))
  (signed_acos3 0
@@ -1788,16 +1863,16 @@ sin(2 * pi - acos(^(v)`x))")
       (("" (lemma "signed_acos2") (("" (grind) nil nil)) nil)) nil))
     nil)
    ((signed_acos formula-decl nil angle_sum nil)
-    (sin const-decl "real" sincos_def "trig/")
-    (^ const-decl "Normalized" vectors_2D "vectors/")
-    (Normalized type-eq-decl nil vectors_2D "vectors/")
-    (norm const-decl "nnreal" vectors_2D "vectors/")
-    (Nz_vector type-eq-decl nil vectors_2D "vectors/")
+    (sin const-decl "real" sincos_def trig)
+    (^ const-decl "Normalized" vectors_2D vectors)
+    (Normalized type-eq-decl nil vectors_2D vectors)
+    (norm const-decl "nnreal" vectors_2D vectors)
+    (Nz_vector type-eq-decl nil vectors_2D vectors)
     (pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
-     pi_def "trig/")
+     pi_def trig)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (nznum nonempty-type-eq-decl nil number_fields nil)
-    (cos const-decl "real" sincos_def "trig/")
+    (cos const-decl "real" sincos_def trig)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (> const-decl "bool" reals nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
@@ -1812,53 +1887,52 @@ sin(2 * pi - acos(^(v)`x))")
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number nonempty-type-decl nil numbers nil)
-    (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-    (zero const-decl "Vector" vectors_2D "vectors/")
+    (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+    (zero const-decl "Vector" vectors_2D vectors)
     (/= const-decl "boolean" notequal nil)
     (boolean nonempty-type-decl nil booleans nil)
-    (Vector type-eq-decl nil vectors_2D "vectors/")
+    (Vector type-eq-decl nil vectors_2D vectors)
     (real nonempty-type-from-decl nil reals nil)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
     (sign const-decl "subrange[-1, 1]" in_out_def nil)
     (signed_area2 const-decl "real" in_out_def nil)
-    (sigma def-decl "real" sigma "reals/")
+    (sigma def-decl "real" sigma reals)
     (expt def-decl "real" exponentiation nil)
-    (det def-decl "real" matrix_props "matrices/")
+    (det def-decl "real" matrix_props matrices)
     (remove const-decl "{N |
-         (rows(M) > 1 AND columns(M) > 1 IMPLIES
-           (rows(N) = rows(M) - 1 AND columns(N) = columns(M) - 1))
-          AND
-          (FORALL (m, n):
-             LET newm = IF m >= i OR i >= rows(M) THEN m + 1 ELSE m ENDIF,
-                 newn =
-                   IF n >= j OR j >= columns(M) THEN n + 1 ELSE n ENDIF
-               IN entry(N)(m, n) = entry(M)(newm, newn))}"
-      matrix_props "matrices/")
+   (rows(M) > 1 AND columns(M) > 1 IMPLIES
+     (rows(N) = rows(M) - 1 AND columns(N) = columns(M) - 1))
+    AND
+    (FORALL (m, n):
+       LET newm = IF m >= i OR i >= rows(M) THEN m + 1 ELSE m ENDIF,
+           newn = IF n >= j OR j >= columns(M) THEN n + 1 ELSE n ENDIF
+         IN entry(N)(m, n) = entry(M)(newm, newn))}"
+      matrix_props matrices)
     (form_matrix const-decl "{M: MatrixMN(m, n) |
-         FORALL (i: below(m), j: below(n)): nth(row(M)(i), j) = F(i, j)}"
-     matrices "matrices/")
+   FORALL (i: below(m), j: below(n)): nth(row(M)(i), j) = F(i, j)}"
+     matrices matrices)
     (array2list const-decl
      "{l: listn(n) | FORALL (i: below(n)): a(i) = nth(l, i)}"
-     array2list "structures/")
+     array2list structures)
     (array2list_it def-decl
      "{l: listn(n - i) | FORALL (j: subrange(i, n - 1)): a(j) = nth(l, j - i)}"
-     array2list "structures/")
-    (entry const-decl "real" matrices "matrices/")
-    (access const-decl "real" matrices "matrices/")
-    (row const-decl "Vector" matrices "matrices/")
+     array2list structures)
+    (entry const-decl "real" matrices matrices)
+    (access const-decl "real" matrices matrices)
+    (row const-decl "Vector" matrices matrices)
     (nth def-decl "T" list_props nil)
     (^ const-decl "real" exponentiation nil)
     (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
     (columns def-decl "{c: nat |
-         (FORALL (i: below(length(M))): length(nth(M, i)) <= c) AND
-          (null?(M) AND c = 0 OR
-            (EXISTS (i: below(length(M))): length(nth(M, i)) = c))}"
-     matrices "matrices/")
-    (rows const-decl "nat" matrices "matrices/")
+   (FORALL (i: below(length(M))): length(nth(M, i)) <= c) AND
+    (null?(M) AND c = 0 OR
+      EXISTS (i: below(length(M))): length(nth(M, i)) = c)}" matrices
+     matrices)
+    (rows const-decl "nat" matrices matrices)
     (length def-decl "nat" list_props nil)
-    (comp_zero_y formula-decl nil vectors_2D "vectors/")
-    (comp_zero_x formula-decl nil vectors_2D "vectors/")
+    (comp_zero_y formula-decl nil vectors_2D vectors)
+    (comp_zero_x formula-decl nil vectors_2D vectors)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
     (real_times_real_is_real application-judgement "real" reals nil)
@@ -1893,8 +1967,7 @@ sin(2 * pi - acos(^(v)`x))")
     (minus_real_is_real application-judgement "real" reals nil)
     (signed_acos2 formula-decl nil angle_sum nil)
     (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def
-     "trig/"))
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig))
    shostak))
  (vect_ang_sum4 0
   (vect_ang_sum4-1 nil 3712931449
@@ -2515,25 +2588,25 @@ sin(2 * pi - acos(^(v)`x))")
     (real_div_nzreal_is_real application-judgement "real" reals nil)
     (nonneg_real nonempty-type-eq-decl nil real_types nil)
     (minus_real_is_real application-judgement "real" reals nil)
-    (cos_neg formula-decl nil sincos_def "trig/")
-    (acos_neg formula-decl nil acos "trig/")
-    (cos_minus_pi formula-decl nil trig_extra "trig/")
+    (cos_neg formula-decl nil sincos_def trig)
+    (acos_neg formula-decl nil acos trig)
+    (cos_minus_pi formula-decl nil trig_extra trig)
     (nzreal_times_nzreal_is_nzreal application-judgement "nzreal"
      real_types nil)
-    (sin const-decl "real" sincos_def "trig/")
-    (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-    (^ const-decl "Normalized" vectors_2D "vectors/")
-    (Normalized type-eq-decl nil vectors_2D "vectors/")
-    (norm const-decl "nnreal" vectors_2D "vectors/")
-    (Nz_vector type-eq-decl nil vectors_2D "vectors/")
-    (zero const-decl "Vector" vectors_2D "vectors/")
-    (Vector type-eq-decl nil vectors_2D "vectors/")
+    (sin const-decl "real" sincos_def trig)
+    (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+    (^ const-decl "Normalized" vectors_2D vectors)
+    (Normalized type-eq-decl nil vectors_2D vectors)
+    (norm const-decl "nnreal" vectors_2D vectors)
+    (Nz_vector type-eq-decl nil vectors_2D vectors)
+    (zero const-decl "Vector" vectors_2D vectors)
+    (Vector type-eq-decl nil vectors_2D vectors)
     (pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
-     pi_def "trig/")
+     pi_def trig)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (nznum nonempty-type-eq-decl nil number_fields nil)
     (/= const-decl "boolean" notequal nil)
-    (cos const-decl "real" sincos_def "trig/")
+    (cos const-decl "real" sincos_def trig)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (> const-decl "bool" reals nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
@@ -2555,47 +2628,46 @@ sin(2 * pi - acos(^(v)`x))")
      "(strict_total_order?[real])" real_props nil)
     (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
      nil)
-    (asin const-decl "real_abs_le_pi2" asin "trig/")
-    (sqv const-decl "nnreal" vectors_2D "vectors/")
+    (asin const-decl "real_abs_le_pi2" asin trig)
+    (sqv const-decl "nnreal" vectors_2D vectors)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
          nil)
-    (sigma def-decl "real" sigma "reals/")
+    (sigma def-decl "real" sigma reals)
     (expt def-decl "real" exponentiation nil)
-    (det def-decl "real" matrix_props "matrices/")
+    (det def-decl "real" matrix_props matrices)
     (remove const-decl "{N |
-         (rows(M) > 1 AND columns(M) > 1 IMPLIES
-           (rows(N) = rows(M) - 1 AND columns(N) = columns(M) - 1))
-          AND
-          (FORALL (m, n):
-             LET newm = IF m >= i OR i >= rows(M) THEN m + 1 ELSE m ENDIF,
-                 newn =
-                   IF n >= j OR j >= columns(M) THEN n + 1 ELSE n ENDIF
-               IN entry(N)(m, n) = entry(M)(newm, newn))}"
-      matrix_props "matrices/")
+   (rows(M) > 1 AND columns(M) > 1 IMPLIES
+     (rows(N) = rows(M) - 1 AND columns(N) = columns(M) - 1))
+    AND
+    (FORALL (m, n):
+       LET newm = IF m >= i OR i >= rows(M) THEN m + 1 ELSE m ENDIF,
+           newn = IF n >= j OR j >= columns(M) THEN n + 1 ELSE n ENDIF
+         IN entry(N)(m, n) = entry(M)(newm, newn))}"
+      matrix_props matrices)
     (form_matrix const-decl "{M: MatrixMN(m, n) |
-         FORALL (i: below(m), j: below(n)): nth(row(M)(i), j) = F(i, j)}"
-     matrices "matrices/")
+   FORALL (i: below(m), j: below(n)): nth(row(M)(i), j) = F(i, j)}"
+     matrices matrices)
     (array2list const-decl
      "{l: listn(n) | FORALL (i: below(n)): a(i) = nth(l, i)}"
-     array2list "structures/")
+     array2list structures)
     (array2list_it def-decl
      "{l: listn(n - i) | FORALL (j: subrange(i, n - 1)): a(j) = nth(l, j - i)}"
-     array2list "structures/")
-    (entry const-decl "real" matrices "matrices/")
-    (access const-decl "real" matrices "matrices/")
-    (row const-decl "Vector" matrices "matrices/")
+     array2list structures)
+    (entry const-decl "real" matrices matrices)
+    (access const-decl "real" matrices matrices)
+    (row const-decl "Vector" matrices matrices)
     (nth def-decl "T" list_props nil)
     (^ const-decl "real" exponentiation nil)
     (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
     (columns def-decl "{c: nat |
-         (FORALL (i: below(length(M))): length(nth(M, i)) <= c) AND
-          (null?(M) AND c = 0 OR
-            (EXISTS (i: below(length(M))): length(nth(M, i)) = c))}"
-     matrices "matrices/")
-    (rows const-decl "nat" matrices "matrices/")
+   (FORALL (i: below(length(M))): length(nth(M, i)) <= c) AND
+    (null?(M) AND c = 0 OR
+      EXISTS (i: below(length(M))): length(nth(M, i)) = c)}" matrices
+     matrices)
+    (rows const-decl "nat" matrices matrices)
     (length def-decl "nat" list_props nil)
-    (comp_zero_y formula-decl nil vectors_2D "vectors/")
-    (comp_zero_x formula-decl nil vectors_2D "vectors/")
+    (comp_zero_y formula-decl nil vectors_2D vectors)
+    (comp_zero_x formula-decl nil vectors_2D vectors)
     (posrat_div_posrat_is_posrat application-judgement "posrat"
      rationals nil)
     (nnint_plus_posint_is_posint application-judgement "posint"
@@ -2615,40 +2687,39 @@ sin(2 * pi - acos(^(v)`x))")
     (mult_divides2 application-judgement "(divides(m))" divides nil)
     (int_exp application-judgement "int" exponentiation nil)
     (nzreal_exp application-judgement "nzreal" exponentiation nil)
-    (sqrt_pos application-judgement "posreal" sqrt "reals/")
-    (nz_sqv_gt_0 application-judgement "posreal" vectors_2D "vectors/")
+    (sqrt_pos application-judgement "posreal" sqrt reals)
+    (nz_sqv_gt_0 application-judgement "posreal" vectors_2D vectors)
     (NOT const-decl "[bool -> bool]" booleans nil)
-    (nz_norm_gt_0 application-judgement "posreal" vectors_2D
-     "vectors/")
+    (nz_norm_gt_0 application-judgement "posreal" vectors_2D vectors)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (nzreal_div_nzreal_is_nzreal application-judgement "nzreal"
      real_types nil)
     (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (acos_cos formula-decl nil trig_inverses "trig/")
+    (acos_cos formula-decl nil trig_inverses trig)
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (cos_minus formula-decl nil sincos "trig/")
+    (cos_minus formula-decl nil sincos trig)
     (nnreal_plus_nnreal_is_nnreal application-judgement "nnreal"
      real_types nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
-    (real_abs_le1 nonempty-type-eq-decl nil trig_types "trig/")
-    (nnreal_le_pi nonempty-type-eq-decl nil trig_types "trig/")
-    (acos const-decl "nnreal_le_pi" acos "trig/")
-    (* const-decl "Vector" vectors_2D "vectors/")
-    (* const-decl "real" vectors_2D "vectors/")
+    (real_abs_le1 nonempty-type-eq-decl nil trig_types trig)
+    (nnreal_le_pi nonempty-type-eq-decl nil trig_types trig)
+    (acos const-decl "nnreal_le_pi" acos trig)
+    (* const-decl "Vector" vectors_2D vectors)
+    (* const-decl "real" vectors_2D vectors)
     (posreal_div_posreal_is_posreal application-judgement "posreal"
      real_types nil)
-    (sin_range application-judgement "real_abs_le1" sincos "trig/")
-    (cos_range application-judgement "real_abs_le1" sincos "trig/")
-    (scal_1 formula-decl nil vectors_2D "vectors/")
+    (sin_range application-judgement "real_abs_le1" sincos trig)
+    (cos_range application-judgement "real_abs_le1" sincos trig)
+    (scal_1 formula-decl nil vectors_2D vectors)
     (nzreal nonempty-type-eq-decl nil reals nil)
-    (scal_div_mult_left formula-decl nil vectors_2D "vectors/")
-    (nz_nzv application-judgement "Nz_vector" vectors_2D "vectors/")
+    (scal_div_mult_left formula-decl nil vectors_2D vectors)
+    (nz_nzv application-judgement "Nz_vector" vectors_2D vectors)
     (arg_ac1 const-decl "real" in_out_def nil)
     (TRUE const-decl "bool" booleans nil)
     (signed_area2 const-decl "real" in_out_def nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (sign const-decl "subrange[-1, 1]" in_out_def nil)
     (subrange type-eq-decl nil subrange_type nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
@@ -2667,7 +2738,7 @@ sin(2 * pi - acos(^(v)`x))")
      real_types nil)
     (real_plus_real_is_real application-judgement "real" reals nil)
     (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def "trig/")
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig)
     (real_minus_real_is_real application-judgement "real" reals nil))
    shostak))
  (vect_ang_sum5_TCC1 0
@@ -2679,22 +2750,22 @@ sin(2 * pi - acos(^(v)`x))")
       nil))
     nil)
    ((arg_ac1 const-decl "real" in_out_def nil)
-    (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-    (^ const-decl "Normalized" vectors_2D "vectors/")
-    (Normalized type-eq-decl nil vectors_2D "vectors/")
-    (norm const-decl "nnreal" vectors_2D "vectors/")
+    (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+    (^ const-decl "Normalized" vectors_2D vectors)
+    (Normalized type-eq-decl nil vectors_2D vectors)
+    (norm const-decl "nnreal" vectors_2D vectors)
     (nnreal type-eq-decl nil real_types nil)
     (>= const-decl "bool" reals nil)
     (bool nonempty-type-eq-decl nil booleans nil)
-    (Nz_vector type-eq-decl nil vectors_2D "vectors/")
-    (zero const-decl "Vector" vectors_2D "vectors/")
+    (Nz_vector type-eq-decl nil vectors_2D vectors)
+    (zero const-decl "Vector" vectors_2D vectors)
     (/= const-decl "boolean" notequal nil)
-    (* const-decl "real" vectors_2D "vectors/")
+    (* const-decl "real" vectors_2D vectors)
     (real_pred const-decl "[number_field -> boolean]" reals nil)
     (number_field nonempty-type-from-decl nil number_fields nil)
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
-    (Vector type-eq-decl nil vectors_2D "vectors/")
+    (Vector type-eq-decl nil vectors_2D vectors)
     (real nonempty-type-from-decl nil reals nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (boolean nonempty-type-decl nil booleans nil)
@@ -2705,9 +2776,11 @@ sin(2 * pi - acos(^(v)`x))")
      real_props nil)
     (minus_odd_is_odd application-judgement "odd_int" integers nil)
     (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def
-     "trig/"))
-   nil))
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig))
+   nil
+   (vect_ang_sum5 subtype
+    "vectors_2D.*(vectors_2D.^(angle_sum.p1), vectors_2D.^(angle_sum.p2))"
+    "real_abs_le1")))
  (vect_ang_sum5 0
   (vect_ang_sum5-1 nil 3713113691
    ("" (lemma "vect_ang_sum4")
@@ -2906,7 +2979,7 @@ sin(2 * pi - acos(^(v)`x))")
     nil)
    ((real_minus_real_is_real application-judgement "real" reals nil)
     (pi_bound name-judgement
-     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def "trig/")
+     "{r: posreal | pi_lb_new <= r AND r <= pi_ub_new}" pi_def trig)
     (TRUE const-decl "bool" booleans nil)
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (- const-decl "[numfield -> numfield]" number_fields nil)
@@ -2915,12 +2988,12 @@ sin(2 * pi - acos(^(v)`x))")
     (nil application-judgement "{x: real | -1 <= x AND x <= 1}"
      in_out_def nil)
     (signed_area2 const-decl "real" in_out_def nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (sign const-decl "subrange[-1, 1]" in_out_def nil)
     (subrange type-eq-decl nil subrange_type nil)
-    (acos const-decl "nnreal_le_pi" acos "trig/")
-    (nnreal_le_pi nonempty-type-eq-decl nil trig_types "trig/")
-    (real_abs_le1 nonempty-type-eq-decl nil trig_types "trig/")
+    (acos const-decl "nnreal_le_pi" acos trig)
+    (nnreal_le_pi nonempty-type-eq-decl nil trig_types trig)
+    (real_abs_le1 nonempty-type-eq-decl nil trig_types trig)
     (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
     (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}" real_defs
@@ -2947,20 +3020,19 @@ sin(2 * pi - acos(^(v)`x))")
      "(strict_total_order?[real])" real_props nil)
     (on_line const-decl "bool" angle_sum nil)
     (div_mult_pos_lt1 formula-decl nil real_props nil)
-    (cos_range application-judgement "real_abs_le1" sincos "trig/")
+    (cos_range application-judgement "real_abs_le1" sincos trig)
     (minus_real_is_real application-judgement "real" reals nil)
-    (sin_range application-judgement "real_abs_le1" sincos "trig/")
+    (sin_range application-judgement "real_abs_le1" sincos trig)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
-    (nz_nzv application-judgement "Nz_vector" vectors_2D "vectors/")
-    (neg_cos formula-decl nil sincos "trig/")
-    (neg_sin formula-decl nil sincos "trig/")
-    (neg_nzv application-judgement "Nz_vector" vectors_2D "vectors/")
-    (- const-decl "Vector" vectors_2D "vectors/")
+    (nz_nzv application-judgement "Nz_vector" vectors_2D vectors)
+    (neg_cos formula-decl nil sincos trig)
+    (neg_sin formula-decl nil sincos trig)
+    (neg_nzv application-judgement "Nz_vector" vectors_2D vectors) nil
     (nzreal_div_nzreal_is_nzreal application-judgement "nzreal"
      real_types nil)
-    (* const-decl "Vector" vectors_2D "vectors/")
-    (* const-decl "real" vectors_2D "vectors/")
+    (* const-decl "Vector" vectors_2D vectors)
+    (* const-decl "real" vectors_2D vectors)
     (nzreal_times_nzreal_is_nzreal application-judgement "nzreal"
      real_types nil)
     (div_cancel3 formula-decl nil real_props nil)
@@ -2969,28 +3041,24 @@ sin(2 * pi - acos(^(v)`x))")
     (times_div2 formula-decl nil real_props nil)
     (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
      nil)
-    (T skolem-const-decl "posreal" angle_sum nil)
-    (+ const-decl "Vector" vectors_2D "vectors/")
-    (posreal nonempty-type-eq-decl nil real_types nil)
-    (p1 skolem-const-decl "Nz_vect2" angle_sum nil)
-    (p2 skolem-const-decl "Nz_vect2" angle_sum nil)
+    nil (+ const-decl "Vector" vectors_2D vectors)
+    (posreal nonempty-type-eq-decl nil real_types nil) nil nil
     (posreal_plus_nnreal_is_posreal application-judgement "posreal"
      real_types nil)
     (posreal_div_posreal_is_posreal application-judgement "posreal"
      real_types nil)
-    (nz_norm_gt_0 application-judgement "posreal" vectors_2D
-     "vectors/")
+    (nz_norm_gt_0 application-judgement "posreal" vectors_2D vectors)
     (NOT const-decl "[bool -> bool]" booleans nil)
-    (sin const-decl "real" sincos_def "trig/")
-    (^ const-decl "Normalized" vectors_2D "vectors/")
-    (Normalized type-eq-decl nil vectors_2D "vectors/")
-    (norm const-decl "nnreal" vectors_2D "vectors/")
-    (Nz_vector type-eq-decl nil vectors_2D "vectors/")
+    (sin const-decl "real" sincos_def trig)
+    (^ const-decl "Normalized" vectors_2D vectors)
+    (Normalized type-eq-decl nil vectors_2D vectors)
+    (norm const-decl "nnreal" vectors_2D vectors)
+    (Nz_vector type-eq-decl nil vectors_2D vectors)
     (pi const-decl "{x: real | x > 2 AND x < 4 AND cos(x / 2) = 0}"
-     pi_def "trig/")
+     pi_def trig)
     (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
     (nznum nonempty-type-eq-decl nil number_fields nil)
-    (cos const-decl "real" sincos_def "trig/")
+    (cos const-decl "real" sincos_def trig)
     (= const-decl "[T, T -> boolean]" equalities nil)
     (> const-decl "bool" reals nil)
     (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
@@ -3005,11 +3073,11 @@ sin(2 * pi - acos(^(v)`x))")
     (number_field_pred const-decl "[number -> boolean]" number_fields
      nil)
     (number nonempty-type-decl nil numbers nil)
-    (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-    (zero const-decl "Vector" vectors_2D "vectors/")
+    (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+    (zero const-decl "Vector" vectors_2D vectors)
     (/= const-decl "boolean" notequal nil)
     (boolean nonempty-type-decl nil booleans nil)
-    (Vector type-eq-decl nil vectors_2D "vectors/")
+    (Vector type-eq-decl nil vectors_2D vectors)
     (real nonempty-type-from-decl nil reals nil)
     (vect_ang_sum4 formula-decl nil angle_sum nil))
    shostak))
@@ -3060,20 +3128,22 @@ sin(2 * pi - acos(^(v)`x))")
     nil)
    ((AND const-decl "[bool, bool -> bool]" booleans nil)
     (/= const-decl "boolean" notequal nil)
-    (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+    (Vect2 type-eq-decl nil vectors_2D_def vectors)
     (real nonempty-type-from-decl nil reals nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
     (bool nonempty-type-eq-decl nil booleans nil)
     (boolean nonempty-type-decl nil booleans nil)
-    (Vector type-eq-decl nil vectors_2D "vectors/")
-    (- const-decl "Vector" vectors_2D "vectors/")
+    (Vector type-eq-decl nil vectors_2D vectors) nil
     (IFF const-decl "[bool, bool -> bool]" booleans nil)
     (= const-decl "[T, T -> boolean]" equalities nil)
-    (zero const-decl "Vector" vectors_2D "vectors/")
+    (zero const-decl "Vector" vectors_2D vectors)
     (number nonempty-type-decl nil numbers nil)
     (nnreal_times_nnreal_is_nnreal application-judgement "nnreal"
      real_types nil)
     (real_minus_real_is_real application-judgement "real" reals nil)
-    (norm_eq_0 formula-decl nil vectors_2D "vectors/"))
-   nil)))
+    (norm_eq_0 formula-decl nil vectors_2D vectors))
+   nil
+   (arg_ac subtype
+    "(number_fields.*(vectors_2D.norm((vectors_2D.-)(angle_sum.p1, angle_sum.s)), vectors_2D.norm((vectors_2D.-)(angle_sum.p2, angle_sum.s))))"
+    "nznum"))))
 

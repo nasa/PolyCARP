@@ -63,8 +63,8 @@ BEGIN
     (1<=s`x AND s`x<=2 AND s`y>=s`x-1 AND s`y<=1) OR
     (-1<=s`x AND s`x<=0 AND s`y>=s`x AND s`y<=-s`x+1)
 
-  XNum:posnat = 100
-  YNum:posnat = 100
+  XNum:posnat = 90 %100
+  YNum:posnat = 90 %100
   epsil:posreal = 1/10
 
   MyBuff:posreal = 0.01
@@ -111,7 +111,7 @@ BEGIN
     LET inans = MyPolyTest_inside(i,j),
     	outans = MyPolyTest_outside(i,j),
 	edgeans= MyPolyTest_nearedge(i,j),
-	error = (NOT inans`correct) OR (NOT outans`correct)
+	error: nat = b2n((NOT inans`correct) OR (NOT outans`correct))
     IN  IF inans`inside THEN mk_polyans(1,0,0,0,error)
     	ELSIF outans`outside THEN mk_polyans(0,1,0,0,error)
 	ELSIF edgeans`nearedge THEN mk_polyans(0,0,1,0,error)
@@ -125,13 +125,32 @@ BEGIN
     IN sum(MyPolyAnswer(i,j),rest)
     MEASURE (YNum+1)*i+j
 
-  MyPolyTester_def: LEMMA
-    MyPolyTester(XNum, YNum) =
-       (# inside := 2750,
-          outside := 7326,
-          nearedge := 125,
+  % tail-recursive version
+  MyPolyTester_tr(acc: PolyAns)(i,j:upto(XNum))
+  : RECURSIVE PolyAns
+  = IF (i=0 AND j=0) OR i>XNum OR j>YNum
+    THEN acc
+    ELSIF j>0 THEN MyPolyTester_tr(sum(acc,MyPolyAnswer(i,j)))(i,j-1)
+    ELSE MyPolyTester_tr(sum(acc,MyPolyAnswer(i,j)))(i-1,YNum) ENDIF
+  MEASURE (YNum+1)*i+j
+
+  % MyPolyTester_def: LEMMA
+  %   MyPolyTester(XNum, YNum) =
+  %      (# inside := 2750,
+  %         outside := 7326,
+  %         nearedge := 125,
+  %         neither := 0,
+  % 	  error := 0 #)
+
+  MyPolyTester_tr_def: LEMMA
+    MyPolyTester_tr
+      (mk_polyans(0,0,0,0,0))
+      (XNum, YNum) =
+       (# error := 0,
+          inside := 2256,
+          nearedge := 44,
           neither := 0,
-	  error := 0 #)
+          outside := 5980 #)
 
 
   
@@ -160,7 +179,7 @@ BEGIN
     LET inans = Completeness_inside(i,j),
     	outans = Completeness_outside(i,j),
 	edgeans= Completeness_nearedge(i,j),
-	error = (NOT inans`correct) OR (NOT outans`correct)
+	error: nat = b2n((NOT inans`correct) OR (NOT outans`correct))
     IN  IF inans`inside THEN mk_polyans(1,0,0,0,error)
     	ELSIF outans`outside THEN mk_polyans(0,1,0,0,error)
 	ELSIF edgeans`nearedge THEN mk_polyans(0,0,1,0,error)
@@ -170,18 +189,35 @@ BEGIN
     LET rest = IF (i=0 AND j=0) OR i>XNum OR j>YNum THEN
     	         (# inside:=0,outside:=0,nearedge:=0,neither:=0,error:=0 #)
                ELSIF j>0 THEN CompleteTester(i,j-1)
-	       ELSE CompleteTester(i-1,YNum) ENDIF
+  	       ELSE CompleteTester(i-1,YNum) ENDIF
     IN sum(CompleteAnswer(i,j),rest)
     MEASURE (YNum+1)*i+j
 
-  CompleteTester_def: LEMMA 
-    CompleteTester(XNum, YNum) =
+  CompleteTester_tr(acc: PolyAns)(i,j:upto(XNum))
+  : RECURSIVE PolyAns 
+  = IF (i=0 AND j=0) OR i>XNum OR j>YNum
+    THEN sum(acc, (# inside:=0,outside:=0,nearedge:=0,neither:=0,error:=0 #))
+    ELSIF j>0 THEN CompleteTester_tr(sum(acc,CompleteAnswer(i,j)))(i,j-1)
+    ELSE CompleteTester_tr(sum(acc,CompleteAnswer(i,j)))(i-1,YNum) ENDIF
+  MEASURE (YNum+1)*i+j
+
+  % CompleteTester_def: LEMMA 
+  %   CompleteTester(XNum, YNum) =
+  %      (# error := 0,
+  %         inside := 2875,
+  %         nearedge := 0,
+  %         neither := 0,
+  %         outside := 7326 #)
+
+  CompleteTester_tr_def: LEMMA
+    CompleteTester_tr
+      ((# inside:=0,outside:=0,nearedge:=0,neither:=0,error:=0 #))
+      (XNum, YNum) =
        (# error := 0,
-          inside := 2875,
+          inside := 2300,
           nearedge := 0,
           neither := 0,
-          outside := 7326 #)
-
+          outside := 5980 #)
 
 
 END polygon_containment_test

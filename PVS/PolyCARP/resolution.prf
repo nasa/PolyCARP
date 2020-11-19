@@ -2,20 +2,22 @@
              (proj_vect_TCC1-2 nil 3659195053
               ("" (skeep*)
                (("" (expand "zero") (("" (propax) nil nil)) nil)) nil)
-              ((zero const-decl "Vector" vectors_2D "vectors/")
+              ((zero const-decl "Vector" vectors_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil)
+              nil
+              (proj_vect subtype "(# x := 1, y := 1 #)" "Nz_vect2"))
              (proj_vect_TCC1-1 nil 3659194404
               ("" (skeep*)
                (("" (decompose-equality -2) (("" (grind) nil nil))
                  nil))
                nil)
-              ((Vector type-eq-decl nil vectors_2D "vectors/")
-               (zero const-decl "Vector" vectors_2D "vectors/")
-               (comp_zero_x formula-decl nil vectors_2D "vectors/"))
-              nil))
+              ((Vector type-eq-decl nil vectors_2D vectors)
+               (zero const-decl "Vector" vectors_2D vectors)
+               (comp_zero_x formula-decl nil vectors_2D vectors))
+              nil
+              (proj_vect subtype "(# x := 1, y := 1 #)" "Nz_vect2")))
             (proj_vect_TCC2 0
              (proj_vect_TCC2-1 nil 3659194404
               (""
@@ -43,33 +45,34 @@
                 "(total_order?[real])" real_props nil)
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
-               (norm_zero formula-decl nil vectors_2D "vectors/")
-               (dot_zero_left formula-decl nil vectors_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (+ const-decl "Vector" vectors_2D "vectors/")
-               (comp_zero_x formula-decl nil vectors_2D "vectors/")
-               (comp_zero_y formula-decl nil vectors_2D "vectors/")
+               (norm_zero formula-decl nil vectors_2D vectors)
+               (dot_zero_left formula-decl nil vectors_2D vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
+               (comp_zero_x formula-decl nil vectors_2D vectors)
+               (comp_zero_y formula-decl nil vectors_2D vectors)
                (minus_real_is_real application-judgement "real" reals
                 nil)
                (real_plus_real_is_real application-judgement "real"
                 reals nil)
-               (neg_zero formula-decl nil vectors_2D "vectors/")
+               (neg_zero formula-decl nil vectors_2D vectors)
                (perpR_eq_zero formula-decl nil perpendicular_2D
-                "vectors/")
-               (add_zero_right formula-decl nil vectors_2D "vectors/")
+                vectors)
+               (add_zero_right formula-decl nil vectors_2D vectors)
                (TRUE const-decl "bool" booleans nil)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (NOT const-decl "[bool -> bool]" booleans nil)
                (real nonempty-type-from-decl nil reals nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (IFF const-decl "[bool, bool -> bool]" booleans nil)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (zero const-decl "Vector" vectors_2D "vectors/"))
-              nil))
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (zero const-decl "Vector" vectors_2D vectors))
+              nil
+              (proj_vect subtype
+               "perpendicular_2D.perpR((vectors_2D.-)(resolution.v, resolution.u))"
+               "Nz_vector")))
             (proj_vect_TCC3 0
              (proj_vect_TCC3-2 nil 3659194726
               ("" (skeep*)
@@ -84,14 +87,13 @@
                    nil))
                  nil))
                nil)
-              ((zero const-decl "Vector" vectors_2D "vectors/")
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+              ((zero const-decl "Vector" vectors_2D vectors)
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
                (real nonempty-type-from-decl nil reals nil)
-               (dot_zero_right formula-decl nil vectors_2D "vectors/")
-               (norm_zero formula-decl nil vectors_2D "vectors/")
+               (dot_zero_right formula-decl nil vectors_2D vectors)
+               (norm_zero formula-decl nil vectors_2D vectors)
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (real_ge_is_total_order name-judgement
@@ -101,16 +103,21 @@
                (minus_real_is_real application-judgement "real" reals
                 nil)
                (perpR_eq_zero formula-decl nil perpendicular_2D
-                "vectors/")
-               (neg_zero formula-decl nil vectors_2D "vectors/")
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+                vectors)
+               (neg_zero formula-decl nil vectors_2D vectors)
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil)
+              nil
+              (proj_vect subtype
+               "perpendicular_2D.perpR((vectors_2D.-)(resolution.w, resolution.v))"
+               "Nz_vector"))
              (proj_vect_TCC3-1 nil 3659194404
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (proj_vect subtype
+               "perpendicular_2D.perpR((vectors_2D.-)(resolution.w, resolution.v))"
+               "Nz_vector")))
             (proj_vect_TCC4 0
              (proj_vect_TCC4-2 nil 3659194729
               ("" (skeep*)
@@ -340,18 +347,17 @@
                    nil))
                  nil))
                nil)
-              ((Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+              ((Vect2 type-eq-decl nil vectors_2D_def vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
                (real nonempty-type-from-decl nil reals nil)
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (/= const-decl "boolean" notequal nil)
-               (zero const-decl "Vector" vectors_2D "vectors/")
-               (Nz_vector type-eq-decl nil vectors_2D "vectors/")
+               (zero const-decl "Vector" vectors_2D vectors)
+               (Nz_vector type-eq-decl nil vectors_2D vectors)
                (number nonempty-type-decl nil numbers nil)
                (number_field_pred const-decl "[number -> boolean]"
                 number_fields nil)
@@ -361,40 +367,37 @@
                           nil)
                (>= const-decl "bool" reals nil)
                (nnreal type-eq-decl nil real_types nil)
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (Normalized type-eq-decl nil vectors_2D "vectors/")
-               (^ const-decl "Normalized" vectors_2D "vectors/")
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (Normalized type-eq-decl nil vectors_2D vectors)
+               (^ const-decl "Normalized" vectors_2D vectors)
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
                (nzreal_div_nzreal_is_nzreal application-judgement
                 "nzreal" real_types nil)
                (real_plus_real_is_real application-judgement "real"
                 reals nil)
-               (sqv_eq_0 formula-decl nil vectors_2D "vectors/")
-               (scal_zero formula-decl nil vectors_2D "vectors/")
-               (norm_zero formula-decl nil vectors_2D "vectors/")
-               (sqv_zero formula-decl nil vectors_2D "vectors/")
-               (Z2 skolem-const-decl "nnreal" resolution nil)
+               (sqv_eq_0 formula-decl nil vectors_2D vectors)
+               (scal_zero formula-decl nil vectors_2D vectors)
+               (norm_zero formula-decl nil vectors_2D vectors)
+               (sqv_zero formula-decl nil vectors_2D vectors)
                (nnreal_times_nnreal_is_nnreal application-judgement
                 "nnreal" real_types nil)
-               (dot_scal_left formula-decl nil vectors_2D "vectors/")
-               (WW skolem-const-decl "Vect2" resolution nil)
+               (dot_scal_left formula-decl nil vectors_2D vectors)
                (posreal nonempty-type-eq-decl nil real_types nil)
                (nonneg_real nonempty-type-eq-decl nil real_types nil)
                (both_sides_times_pos_gt1 formula-decl nil real_props
                 nil)
                (div_mult_pos_gt1 formula-decl nil extra_real_props nil)
-               (add_zero_right formula-decl nil vectors_2D "vectors/")
-               (scal_assoc formula-decl nil vectors_2D "vectors/")
-               (scal_1 formula-decl nil vectors_2D "vectors/")
+               (add_zero_right formula-decl nil vectors_2D vectors)
+               (scal_assoc formula-decl nil vectors_2D vectors)
+               (scal_1 formula-decl nil vectors_2D vectors)
                (- const-decl "[numfield -> numfield]" number_fields
                   nil)
                (/ const-decl "[numfield, nznum -> numfield]"
                   number_fields nil)
                (nznum nonempty-type-eq-decl nil number_fields nil)
                (numfield nonempty-type-eq-decl nil number_fields nil)
-               (* const-decl "Vector" vectors_2D "vectors/")
-               (+ const-decl "Vector" vectors_2D "vectors/")
+               (* const-decl "Vector" vectors_2D vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
                (real_div_nzreal_is_real application-judgement "real"
                 reals nil)
                (real_gt_is_strict_total_order name-judgement
@@ -404,20 +407,26 @@
                 nil)
                (real_times_real_is_real application-judgement "real"
                 reals nil)
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (* const-decl "real" vectors_2D "vectors/")
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (* const-decl "real" vectors_2D vectors)
                (NOT const-decl "[bool -> bool]" booleans nil)
                (real_minus_real_is_real application-judgement "real"
                 reals nil)
                (neg_nzv application-judgement "Nz_vector" vectors_2D
-                "vectors/")
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
+                vectors)
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil)
+              nil
+              (proj_vect subtype
+               "(vectors_2D.+)(vectors_2D.^(perpendicular_2D.perpR((vectors_2D.-)(resolution.v, resolution.u))), vectors_2D.^(perpendicular_2D.perpR((vectors_2D.-)(resolution.w, resolution.v))))"
+               "Nz_vect2"))
              (proj_vect_TCC4-1 nil 3659194404
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (proj_vect subtype
+               "(vectors_2D.+)(vectors_2D.^(perpendicular_2D.perpR((vectors_2D.-)(resolution.v, resolution.u))), vectors_2D.^(perpendicular_2D.perpR((vectors_2D.-)(resolution.w, resolution.v))))"
+               "Nz_vect2")))
             (proj_vect_TCC5 0
              (proj_vect_TCC5-2 nil 3659194735
               ("" (skeep*)
@@ -426,13 +435,19 @@
                 "(total_order?[real])" real_props nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
-               (dot_zero_left formula-decl nil vectors_2D "vectors/")
+               (dot_zero_left formula-decl nil vectors_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil)
+              nil
+              (proj_vect subtype
+               "(vectors_2D.-)(resolution.v, resolution.u)"
+               "Nz_vector"))
              (proj_vect_TCC5-1 nil 3659194404
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (proj_vect subtype
+               "(vectors_2D.-)(resolution.v, resolution.u)"
+               "Nz_vector")))
             (proj_vect_TCC6 0
              (proj_vect_TCC6-2 nil 3659194740
               ("" (skeep*)
@@ -444,12 +459,12 @@
                    nil))
                  nil))
                nil)
-              ((Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (Vector type-eq-decl nil vectors_2D "vectors/")
+              ((Vect2 type-eq-decl nil vectors_2D_def vectors)
+               (Vector type-eq-decl nil vectors_2D vectors)
                (real nonempty-type-from-decl nil reals nil)
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
-               (sub_eq_args formula-decl nil vectors_2D "vectors/")
-               (dot_zero_right formula-decl nil vectors_2D "vectors/")
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
+               (sub_eq_args formula-decl nil vectors_2D vectors)
+               (dot_zero_right formula-decl nil vectors_2D vectors)
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (real_ge_is_total_order name-judgement
@@ -457,9 +472,15 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil)
+              nil
+              (proj_vect subtype
+               "(vectors_2D.-)(resolution.v, resolution.w)"
+               "Nz_vector"))
              (proj_vect_TCC6-1 nil 3659194404
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (proj_vect subtype
+               "(vectors_2D.-)(resolution.v, resolution.w)"
+               "Nz_vector")))
             (proj_vect_TCC7 0
              (proj_vect_TCC7-2 nil 3680370201
               ("" (skeep*)
@@ -489,13 +510,10 @@
                                              (("1"
                                                (case "^(V)*^(W)>=0")
                                                (("1"
-                                                 (hide-all-but (-1 1))
+                                                 (expand "^")
                                                  (("1"
-                                                   (expand "^")
-                                                   (("1"
-                                                     (grind)
-                                                     nil
-                                                     nil))
+                                                   (grind-reals)
+                                                   nil
                                                    nil))
                                                  nil)
                                                 ("2"
@@ -558,11 +576,11 @@
                    nil))
                  nil))
                nil)
-              ((- const-decl "Vector" vectors_2D "vectors/")
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+              ((- const-decl "Vector" vectors_2D vectors)
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
+               (- const-decl "Vector" vectors_2D vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
                (real nonempty-type-from-decl nil reals nil)
                (NOT const-decl "[bool -> bool]" booleans nil)
                (minus_real_is_real application-judgement "real" reals
@@ -575,8 +593,8 @@
                 "(total_order?[real])" real_props nil)
                (/= const-decl "boolean" notequal nil)
                (W skolem-const-decl "Vector" resolution nil)
-               (zero const-decl "Vector" vectors_2D "vectors/")
-               (Nz_vector type-eq-decl nil vectors_2D "vectors/")
+               (zero const-decl "Vector" vectors_2D vectors)
+               (Nz_vector type-eq-decl nil vectors_2D vectors)
                (number nonempty-type-decl nil numbers nil)
                (number_field_pred const-decl "[number -> boolean]"
                 number_fields nil)
@@ -586,23 +604,35 @@
                           nil)
                (>= const-decl "bool" reals nil)
                (nnreal type-eq-decl nil real_types nil)
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (Normalized type-eq-decl nil vectors_2D "vectors/")
-               (^ const-decl "Normalized" vectors_2D "vectors/")
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (Normalized type-eq-decl nil vectors_2D vectors)
+               (^ const-decl "Normalized" vectors_2D vectors)
                (real_times_real_is_real application-judgement "real"
                 reals nil)
                (* const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
+               (nzreal_times_nzreal_is_nzreal application-judgement
+                "nzreal" real_types nil)
                (nz_sqv_gt_0 application-judgement "posreal" vectors_2D
-                "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (* const-decl "Vector" vectors_2D "vectors/")
-               (real_plus_real_is_real application-judgement "real"
-                reals nil)
-               (div_mult_pos_gt1 formula-decl nil extra_real_props nil)
-               (div_mult_pos_ge1 formula-decl nil real_props nil)
+                vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
                (nnreal_times_nnreal_is_nnreal application-judgement
                 "nnreal" real_types nil)
+               (real_div_nzreal_is_real application-judgement "real"
+                reals nil)
+               (real_lt_is_strict_total_order name-judgement
+                "(strict_total_order?[real])" real_props nil)
+               (div_mult_pos_ge1 formula-decl nil real_props nil)
+               (zero_times1 formula-decl nil real_props nil)
+               (pos_times_gt formula-decl nil real_props nil)
+               (neg_times_lt formula-decl nil real_props nil)
+               (neg_times_le formula-decl nil real_props nil)
+               (dot_scal_canon formula-decl nil vectors_2D vectors)
+               (times_div2 formula-decl nil real_props nil)
+               (nonzero_times3 formula-decl nil real_props nil)
+               (div_times formula-decl nil real_props nil)
+               (* const-decl "real" vectors_2D vectors)
+               (div_mult_pos_gt1 formula-decl nil extra_real_props nil)
                (real_gt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil)
                (AND const-decl "[bool, bool -> bool]" booleans nil)
@@ -612,22 +642,30 @@
                   number_fields nil)
                (V skolem-const-decl "Vector" resolution nil)
                (> const-decl "bool" reals nil)
-               (* const-decl "real" vectors_2D "vectors/")
                (posreal nonempty-type-eq-decl nil real_types nil)
                (nonneg_real nonempty-type-eq-decl nil real_types nil)
-               (both_sides_times_pos_ge1 formula-decl nil real_props
+               (both_sides_times_pos_le1 formula-decl nil real_props
                 nil)
                (nzreal_div_nzreal_is_nzreal application-judgement
                 "nzreal" real_types nil)
-               (+ const-decl "Vector" vectors_2D "vectors/")
-               (dot_zero_right formula-decl nil vectors_2D "vectors/")
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
+               (* const-decl "Vector" vectors_2D vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
+               (real_plus_real_is_real application-judgement "real"
+                reals nil)
+               (norm_zero formula-decl nil vectors_2D vectors)
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil)
+              nil
+              (proj_vect subtype
+               "(vectors_2D.+)(vectors_2D.^((vectors_2D.-)(resolution.v, resolution.u)), vectors_2D.^((vectors_2D.-)(resolution.v, resolution.w)))"
+               "Nz_vect2"))
              (proj_vect_TCC7-1 nil 3680368111
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (proj_vect subtype
+               "(vectors_2D.+)(vectors_2D.^((vectors_2D.-)(resolution.v, resolution.u)), vectors_2D.^((vectors_2D.-)(resolution.v, resolution.w)))"
+               "Nz_vect2")))
             (proj_vect_TCC8 0
              (proj_vect_TCC8-1 nil 3680368111
               ("" (skeep*)
@@ -638,18 +676,16 @@
                   ("2" (hide-all-but 1) (("2" (grind) nil nil)) nil))
                  nil))
                nil)
-              ((- const-decl "Vector" vectors_2D "vectors/")
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+              ((Vect2 type-eq-decl nil vectors_2D_def vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
                (real nonempty-type-from-decl nil reals nil)
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
-               (dot_zero_left formula-decl nil vectors_2D "vectors/")
-               (neg_zero formula-decl nil vectors_2D "vectors/")
+               (dot_zero_left formula-decl nil vectors_2D vectors)
+               (neg_zero formula-decl nil vectors_2D vectors)
                (minus_real_is_real application-judgement "real" reals
                 nil)
                (real_minus_real_is_real application-judgement "real"
@@ -657,7 +693,10 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (proj_vect subtype
+               "(vectors_2D.-)(resolution.u, resolution.v)"
+               "Nz_vector")))
             (proj_vect_TCC9 0
              (proj_vect_TCC9-1 nil 3680368111
               ("" (skeep*)
@@ -666,11 +705,14 @@
                 "(total_order?[real])" real_props nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
-               (dot_zero_right formula-decl nil vectors_2D "vectors/")
+               (dot_zero_right formula-decl nil vectors_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (proj_vect subtype
+               "(vectors_2D.-)(resolution.w, resolution.v)"
+               "Nz_vector")))
             (proj_vect_TCC10 0
              (proj_vect_TCC10-2 nil 3680370516
               ("" (skeep*)
@@ -753,11 +795,9 @@
                    nil))
                  nil))
                nil)
-              ((- const-decl "Vector" vectors_2D "vectors/")
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+              ((Vect2 type-eq-decl nil vectors_2D_def vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
                (real nonempty-type-from-decl nil reals nil)
                (NOT const-decl "[bool -> bool]" booleans nil)
                (minus_real_is_real application-judgement "real" reals
@@ -769,9 +809,8 @@
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (/= const-decl "boolean" notequal nil)
-               (V skolem-const-decl "Vector" resolution nil)
-               (zero const-decl "Vector" vectors_2D "vectors/")
-               (Nz_vector type-eq-decl nil vectors_2D "vectors/")
+               (zero const-decl "Vector" vectors_2D vectors)
+               (Nz_vector type-eq-decl nil vectors_2D vectors)
                (number nonempty-type-decl nil numbers nil)
                (number_field_pred const-decl "[number -> boolean]"
                 number_fields nil)
@@ -781,21 +820,21 @@
                           nil)
                (>= const-decl "bool" reals nil)
                (nnreal type-eq-decl nil real_types nil)
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (Normalized type-eq-decl nil vectors_2D "vectors/")
-               (^ const-decl "Normalized" vectors_2D "vectors/")
-               (+ const-decl "Vector" vectors_2D "vectors/")
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (Normalized type-eq-decl nil vectors_2D vectors)
+               (^ const-decl "Normalized" vectors_2D vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
                (real_times_real_is_real application-judgement "real"
                 reals nil)
                (* const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
-               (det const-decl "real" det_2D "vectors/")
-               (* const-decl "Vector" vectors_2D "vectors/")
+               (det const-decl "real" det_2D vectors)
+               (* const-decl "Vector" vectors_2D vectors)
                (real_plus_real_is_real application-judgement "real"
                 reals nil)
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
+               (sqv const-decl "nnreal" vectors_2D vectors)
                (nz_sqv_gt_0 application-judgement "posreal" vectors_2D
-                "vectors/")
+                vectors)
                (div_mult_pos_gt1 formula-decl nil extra_real_props nil)
                (div_mult_pos_ge1 formula-decl nil real_props nil)
                (nnreal_times_nnreal_is_nnreal application-judgement
@@ -807,23 +846,28 @@
                (nznum nonempty-type-eq-decl nil number_fields nil)
                (/ const-decl "[numfield, nznum -> numfield]"
                   number_fields nil)
-               (W skolem-const-decl "Vector" resolution nil)
                (> const-decl "bool" reals nil)
-               (* const-decl "real" vectors_2D "vectors/")
+               (* const-decl "real" vectors_2D vectors)
                (posreal nonempty-type-eq-decl nil real_types nil)
                (nonneg_real nonempty-type-eq-decl nil real_types nil)
                (both_sides_times_pos_ge1 formula-decl nil real_props
                 nil)
                (nzreal_div_nzreal_is_nzreal application-judgement
                 "nzreal" real_types nil)
-               (dot_zero_left formula-decl nil vectors_2D "vectors/")
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
+               (dot_zero_left formula-decl nil vectors_2D vectors)
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil)
+              nil
+              (proj_vect subtype
+               "(vectors_2D.+)(vectors_2D.^((vectors_2D.-)(resolution.u, resolution.v)), vectors_2D.^((vectors_2D.-)(resolution.w, resolution.v)))"
+               "Nz_vect2"))
              (proj_vect_TCC10-1 nil 3680368111
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (proj_vect subtype
+               "(vectors_2D.+)(vectors_2D.^((vectors_2D.-)(resolution.u, resolution.v)), vectors_2D.^((vectors_2D.-)(resolution.w, resolution.v)))"
+               "Nz_vect2")))
             (proj_vect_norm 0
              (proj_vect_norm-1 nil 3659195256
               (""
@@ -1008,26 +1052,25 @@
                nil)
               ((proj_vect const-decl "Nz_vect2" resolution nil)
                (posreal nonempty-type-eq-decl nil real_types nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (OR const-decl "[bool, bool -> bool]" booleans nil)
-               (- const-decl "Vector" vectors_2D "vectors/")
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
-               (norm_zero formula-decl nil vectors_2D "vectors/")
-               (sub_eq_args formula-decl nil vectors_2D "vectors/")
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
+               (norm_zero formula-decl nil vectors_2D vectors)
+               (sub_eq_args formula-decl nil vectors_2D vectors)
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
                (real_minus_real_is_real application-judgement "real"
                 reals nil)
                (minus_real_is_real application-judgement "real" reals
                 nil)
-               (sq_gt formula-decl nil sq "reals/")
-               (sq_norm formula-decl nil vectors_2D "vectors/")
-               (sq_1 formula-decl nil sq "reals/")
+               (sq_gt formula-decl nil sq reals)
+               (sq_norm formula-decl nil vectors_2D vectors)
+               (sq_1 formula-decl nil sq reals)
                (id const-decl "(bijective?[T, T])" identity nil)
                (bijective? const-decl "bool" functions nil)
-               (sq_nz_pos application-judgement "posreal" sq "reals/")
-               (sq const-decl "nonneg_real" sq "reals/")
+               (sq_nz_pos application-judgement "posreal" sq reals)
+               (sq const-decl "nonneg_real" sq reals)
                (TRUE const-decl "bool" booleans nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
@@ -1037,7 +1080,7 @@
                 "posint" integers nil)
                (odd_plus_odd_is_even application-judgement "even_int"
                 integers nil)
-               (norm_eq_0 formula-decl nil vectors_2D "vectors/")
+               (norm_eq_0 formula-decl nil vectors_2D vectors)
                (posreal_div_posreal_is_posreal application-judgement
                 "posreal" real_types nil)
                (both_sides_times_pos_ge1_imp formula-decl nil
@@ -1047,33 +1090,33 @@
                (nznum nonempty-type-eq-decl nil number_fields nil)
                (/ const-decl "[numfield, nznum -> numfield]"
                   number_fields nil)
-               (* const-decl "Vector" vectors_2D "vectors/")
+               (* const-decl "Vector" vectors_2D vectors)
                (nnreal_times_nnreal_is_nnreal application-judgement
                 "nnreal" real_types nil)
                (* const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
                (nz_norm_gt_0 application-judgement "posreal" vectors_2D
-                "vectors/")
-               (dot_scal_left formula-decl nil vectors_2D "vectors/")
+                vectors)
+               (dot_scal_left formula-decl nil vectors_2D vectors)
                (real_plus_real_is_real application-judgement "real"
                 reals nil)
                (posreal_plus_nnreal_is_posreal application-judgement
                 "posreal" real_types nil)
                (nz_nzv application-judgement "Nz_vector" vectors_2D
-                "vectors/")
+                vectors)
                (real_times_real_is_real application-judgement "real"
                 reals nil)
-               (sqv_add formula-decl nil vectors_2D "vectors/")
+               (sqv_add formula-decl nil vectors_2D vectors)
                (nz_sqv_gt_0 application-judgement "posreal" vectors_2D
-                "vectors/")
+                vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (NOT const-decl "[bool -> bool]" booleans nil)
                (real nonempty-type-from-decl nil reals nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
                (/= const-decl "boolean" notequal nil)
-               (zero const-decl "Vector" vectors_2D "vectors/")
-               (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
+               (zero const-decl "Vector" vectors_2D vectors)
+               (Nz_vect2 type-eq-decl nil vectors_2D vectors)
                (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
                (number nonempty-type-decl nil numbers nil)
                (number_field_pred const-decl "[number -> boolean]"
@@ -1083,16 +1126,16 @@
                (real_pred const-decl "[number_field -> boolean]" reals
                           nil)
                (>= const-decl "bool" reals nil)
-               (* const-decl "real" vectors_2D "vectors/")
+               (* const-decl "real" vectors_2D vectors)
                (> const-decl "bool" reals nil)
                (nnreal type-eq-decl nil real_types nil)
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (+ const-decl "Vector" vectors_2D "vectors/")
-               (Nz_vector type-eq-decl nil vectors_2D "vectors/")
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
+               (Nz_vector type-eq-decl nil vectors_2D vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (Normalized type-eq-decl nil vectors_2D "vectors/")
-               (^ const-decl "Normalized" vectors_2D "vectors/"))
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (Normalized type-eq-decl nil vectors_2D vectors)
+               (^ const-decl "Normalized" vectors_2D vectors))
               shostak))
             (modifiable_to_size_monotonic 0
              (modifiable_to_size_monotonic-1 nil 3680536555
@@ -1463,7 +1506,7 @@
                 "(strict_total_order?[real])" real_props nil)
                (IF const-decl "[boolean, T, T -> T]" if_def nil)
                (near_edge_def formula-decl nil edge_proximity nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (nat nonempty-type-eq-decl nil naturalnumbers nil)
                (< const-decl "bool" reals nil)
                (below type-eq-decl nil naturalnumbers nil)
@@ -1479,8 +1522,8 @@
                 "(total_order?[real])" real_props nil)
                (segments_2D_close_def formula-decl nil edge_proximity
                 nil)
-               (sq_nz_pos application-judgement "posreal" sq "reals/")
-               (sq_le formula-decl nil sq "reals/")
+               (sq_nz_pos application-judgement "posreal" sq reals)
+               (sq_le formula-decl nil sq reals)
                (number nonempty-type-decl nil numbers nil)
                (number_field_pred const-decl "[number -> boolean]"
                 number_fields nil)
@@ -1538,19 +1581,18 @@
                (nat nonempty-type-eq-decl nil naturalnumbers nil)
                (< const-decl "bool" reals nil)
                (below type-eq-decl nil naturalnumbers nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
                (modifiable_to_size const-decl "bool" resolution nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
                 nil)
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (* const-decl "real" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (norm const-decl "nnreal" vectors_2D "vectors/")
+               (* const-decl "real" vectors_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (norm const-decl "nnreal" vectors_2D vectors)
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
-               (det const-decl "real" det_2D "vectors/")
+               (det const-decl "real" det_2D vectors)
                (counterclockwise_edges const-decl "bool"
                 acceptable_polygon nil)
                (test_point_below const-decl "Vect2" acceptable_polygon
@@ -1606,10 +1648,16 @@
                 "(total_order?[real])" real_props nil)
                (real_gt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil))
-              nil))
+              nil
+              (expand_polygon_2D subtype
+               "(number_fields.-)(resolution.i, 1)"
+               "naturalnumbers.below(resolution.N)")))
             (expand_polygon_2D_TCC2 0
              (expand_polygon_2D_TCC2-1 nil 3659182662
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (expand_polygon_2D subtype
+               "(number_fields.-)(resolution.N, 1)"
+               "naturalnumbers.below(resolution.N)")))
             (expand_polygon_2D_TCC3 0
              (expand_polygon_2D_TCC3-1 nil 3659182662
               ("" (subtype-tcc) nil nil)
@@ -1639,7 +1687,7 @@
                (nat nonempty-type-eq-decl nil naturalnumbers nil)
                (< const-decl "bool" reals nil)
                (below type-eq-decl nil naturalnumbers nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
                (modifiable_to_size const-decl "bool" resolution nil)
                (real_gt_is_strict_total_order name-judgement
@@ -1699,20 +1747,24 @@
                 nil)
                (counterclockwise_edges const-decl "bool"
                 acceptable_polygon nil)
-               (det const-decl "real" det_2D "vectors/")
+               (det const-decl "real" det_2D vectors)
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (* const-decl "real" vectors_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (* const-decl "real" vectors_2D vectors)
                (near_poly_edge const-decl "bool" acceptable_polygon
                 nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil))
-              nil))
+              nil
+              (expand_polygon_2D subtype
+               "(number_fields.+)(resolution.i, 1)"
+               "naturalnumbers.below(resolution.N)")))
             (expand_polygon_2D_TCC4 0
              (expand_polygon_2D_TCC4-1 nil 3659182662
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (expand_polygon_2D subtype "0"
+               "naturalnumbers.below(resolution.N)")))
             (expand_polygon_2D_TCC5 0
              (expand_polygon_2D_TCC5-1 nil 3659182662
               ("" (skeep*)
@@ -1840,18 +1892,17 @@
                 number_fields nil)
                (number nonempty-type-decl nil numbers nil)
                (/= const-decl "boolean" notequal nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (real nonempty-type-from-decl nil reals nil)
-               (perpR_sub formula-decl nil perpendicular_2D "vectors/")
+               (perpR_sub formula-decl nil perpendicular_2D vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (- const-decl "Vector" vectors_2D "vectors/")
                (minus_real_is_real application-judgement "real" reals
                 nil)
                (proj_vect_nonzero application-judgement "Nz_vect2"
                 resolution nil)
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
                (NOT const-decl "[bool -> bool]" booleans nil)
                (nice_polygon_2D const-decl "bool" polygon_contain nil)
                (int_minus_int_is_int application-judgement "int"
@@ -1867,15 +1918,12 @@
                 "posint" integers nil)
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
-               (i skolem-const-decl "below(N)" resolution nil)
-               (N skolem-const-decl "posnat" resolution nil)
                (subrange type-eq-decl nil integers nil)
                (posint_plus_nnint_is_posint application-judgement
                 "posint" integers nil)
                (real_gt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil)
                (<= const-decl "bool" reals nil)
-               (jj skolem-const-decl "int" resolution nil)
                (AND const-decl "[bool, bool -> bool]" booleans nil)
                (real_lt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil)
@@ -1886,7 +1934,10 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (expand_polygon_2D subtype
+               "perpendicular_2D.perpR((vectors_2D.-)(resolution.p(resolution.i), resolution.prev))"
+               "Nz_vector")))
             (expand_polygon_2D_TCC6 0
              (expand_polygon_2D_TCC6-2 nil 3659275127
               ("" (skeep*)
@@ -1904,7 +1955,9 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil)
+              nil
+              (expand_polygon_2D subtype
+               "(vectors_2D.*(resolution.pv, resolution.R))" "nznum"))
              (expand_polygon_2D_TCC6-1 nil 3659182662
               ("" (skeep*)
                ((""
@@ -1915,14 +1968,16 @@
                   ("2" (hide-all-but 1) (("2" (grind) nil nil)) nil))
                  nil))
                nil)
-              ((perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (norm_zero formula-decl nil vectors_2D "vectors/")
-               (* const-decl "real" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/"))
-              nil))
+              ((perpR const-decl "Vect2" perpendicular_2D vectors)
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
+               (norm_zero formula-decl nil vectors_2D vectors)
+               (* const-decl "real" vectors_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors))
+              nil
+              (expand_polygon_2D subtype
+               "(vectors_2D.*(resolution.pv, resolution.R))" "nznum")))
             (contract_polygon_2D_TCC1 0
              (contract_polygon_2D_TCC1-1 nil 3659256522
               ("" (subtype-tcc) nil nil)
@@ -1952,7 +2007,7 @@
                (nat nonempty-type-eq-decl nil naturalnumbers nil)
                (< const-decl "bool" reals nil)
                (below type-eq-decl nil naturalnumbers nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
                (modifiable_to_size const-decl "bool" resolution nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
@@ -1960,7 +2015,7 @@
                 nil)
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
-               (det const-decl "real" det_2D "vectors/")
+               (det const-decl "real" det_2D vectors)
                (counterclockwise_edges const-decl "bool"
                 acceptable_polygon nil)
                (test_point_below const-decl "Vect2" acceptable_polygon
@@ -2016,13 +2071,12 @@
                 "(total_order?[real])" real_props nil)
                (real_gt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil)
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (* const-decl "real" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (* const-decl "Vector" vectors_2D "vectors/")
-               (^ const-decl "Normalized" vectors_2D "vectors/")
+               (* const-decl "real" vectors_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
+               (* const-decl "Vector" vectors_2D vectors)
+               (^ const-decl "Normalized" vectors_2D vectors)
                (real_times_real_is_real application-judgement "real"
                 reals nil)
                (real_plus_real_is_real application-judgement "real"
@@ -2033,7 +2087,9 @@
                 nil)
                (nzreal_div_nzreal_is_nzreal application-judgement
                 "nzreal" real_types nil))
-              nil))
+              nil
+              (contract_polygon_2D subtype
+               "(vectors_2D.*(resolution.pv, resolution.R))" "nznum")))
             (closest_edge_TCC1 0
              (closest_edge_TCC1-1 nil 3659288496
               ("" (subtype-tcc) nil nil)
@@ -2072,7 +2128,9 @@
                 "(strict_total_order?[real])" real_props nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil))
-              nil))
+              nil
+              (closest_edge subtype "resolution.next"
+               "naturalnumbers.below(resolution.N)")))
             (closest_edge_TCC2 0
              (closest_edge_TCC2-1 nil 3659288496
               ("" (subtype-tcc) nil nil)
@@ -2114,17 +2172,18 @@
                (NOT const-decl "[bool -> bool]" booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (boolean nonempty-type-decl nil booleans nil)
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (* const-decl "real" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (norm const-decl "nnreal" vectors_2D "vectors/")
+               (* const-decl "real" vectors_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (norm const-decl "nnreal" vectors_2D vectors)
                (real_times_real_is_real application-judgement "real"
                 reals nil)
                (real_plus_real_is_real application-judgement "real"
                 reals nil)
                (real_minus_real_is_real application-judgement "real"
                 reals nil))
-              nil))
+              nil
+              (closest_edge subtype "resolution.nextce"
+               "naturalnumbers.below(resolution.N)")))
             (closest_edge_TCC3 0
              (closest_edge_TCC3-1 nil 3659288496
               ("" (subtype-tcc) nil nil)
@@ -2160,10 +2219,16 @@
                 "(strict_total_order?[real])" real_props nil)
                (real_gt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil))
-              nil))
+              nil
+              (closest_edge subtype
+               "(number_fields.-)(resolution.i, 1)"
+               "naturalnumbers.below(resolution.N)")))
             (closest_edge_TCC4 0
              (closest_edge_TCC4-1 nil 3659288496
-              ("" (termination-tcc) nil nil) nil nil))
+              ("" (termination-tcc) nil nil) nil nil
+              (closest_edge termination
+               "resolution.closest_edge(resolution.N, resolution.p, resolution.BUFF, resolution.s)((number_fields.-)(resolution.i, 1))"
+               "nil")))
             (closest_edge_def_TCC1 0
              (closest_edge_def_TCC1-1 nil 3659288496
               ("" (skeep*) (("" (lift-if) (("" (ground) nil nil)) nil))
@@ -2177,7 +2242,9 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (closest_edge_def subtype "resolution.nextj"
+               "naturalnumbers.below(resolution.N)")))
             (closest_edge_def_TCC2 0
              (closest_edge_def_TCC2-1 nil 3659288496
               ("" (subtype-tcc) nil nil)
@@ -2221,13 +2288,12 @@
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
                 nil)
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (* const-decl "real" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (norm const-decl "nnreal" vectors_2D "vectors/")
+               (* const-decl "real" vectors_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (norm const-decl "nnreal" vectors_2D vectors)
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
-               (det const-decl "real" det_2D "vectors/")
+               (det const-decl "real" det_2D vectors)
                (counterclockwise_edges const-decl "bool"
                 acceptable_polygon nil)
                (test_point_below const-decl "Vect2" acceptable_polygon
@@ -2266,7 +2332,9 @@
                 integers nil)
                (real_div_nzreal_is_real application-judgement "real"
                 reals nil))
-              nil))
+              nil
+              (closest_edge_def subtype "resolution.nextce"
+               "naturalnumbers.below(resolution.N)")))
             (closest_edge_def 0
              (closest_edge_def-3 nil 3659354185
               ("" (skeep)
@@ -3217,7 +3285,7 @@
                (posreal nonempty-type-eq-decl nil real_types nil)
                (nonneg_real nonempty-type-eq-decl nil real_types nil)
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
                (below type-eq-decl nil naturalnumbers nil)
                (posnat nonempty-type-eq-decl nil integers nil)
@@ -3249,8 +3317,6 @@
                (nat_induction formula-decl nil naturalnumbers nil)
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
-               (ce skolem-const-decl "[below(N) -> below(N)]"
-                resolution nil)
                (nnint_plus_posint_is_posint application-judgement
                 "posint" integers nil)
                (real_lt_is_strict_total_order name-judgement
@@ -3285,27 +3351,23 @@
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (TRUE const-decl "bool" booleans nil)
-               (F skolem-const-decl "[nat -> real]" resolution nil)
-               (N skolem-const-decl "posnat" resolution nil)
                (id const-decl "(bijective?[T, T])" identity nil)
                (bijective? const-decl "bool" functions nil)
                (IFF const-decl "[bool, bool -> bool]" booleans nil)
                (acceptable_polygon_2D_def formula-decl nil
                 acceptable_polygon nil)
-               (nextjj skolem-const-decl "naturalnumber" resolution
-                nil)
                (subrange type-eq-decl nil integers nil)
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
                 nil)
-               (add_zero_right formula-decl nil vectors_2D "vectors/")
-               (scal_0 formula-decl nil vectors_2D "vectors/")
-               (scal_1 formula-decl nil vectors_2D "vectors/")
+               (add_zero_right formula-decl nil vectors_2D vectors)
+               (scal_0 formula-decl nil vectors_2D vectors)
+               (scal_1 formula-decl nil vectors_2D vectors)
                (on_segment_2D? const-decl "bool" edge_proximity nil)
-               (* const-decl "real" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (sq const-decl "nonneg_real" sq "reals/")
+               (* const-decl "real" vectors_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (sq const-decl "nonneg_real" sq reals)
                (posreal_times_posreal_is_posreal application-judgement
                 "posreal" real_types nil)
                (real_times_real_is_real application-judgement "real"
@@ -3314,9 +3376,9 @@
                 reals nil)
                (real_minus_real_is_real application-judgement "real"
                 reals nil)
-               (sq_norm formula-decl nil vectors_2D "vectors/")
-               (sq_nz_pos application-judgement "posreal" sq "reals/")
-               (sq_ge formula-decl nil sq "reals/")
+               (sq_norm formula-decl nil vectors_2D vectors)
+               (sq_nz_pos application-judgement "posreal" sq reals)
+               (sq_ge formula-decl nil sq reals)
                (near_edge_def formula-decl nil edge_proximity nil)
                (rat_minus_rat_is_rat application-judgement "rat"
                 rationals nil)
@@ -3335,9 +3397,8 @@
                (IF const-decl "[boolean, T, T -> T]" if_def nil)
                (naturalnumber type-eq-decl nil naturalnumbers nil)
                (nnreal type-eq-decl nil real_types nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (norm const-decl "nnreal" vectors_2D vectors)
                (closest_point const-decl "Vect2" edge_proximity nil)
                (numfield nonempty-type-eq-decl nil number_fields nil)
                (- const-decl "[numfield, numfield -> numfield]"
@@ -4460,17 +4521,14 @@
                (real_gt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil)
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
                (subrange type-eq-decl nil integers nil)
                (- const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
                (numfield nonempty-type-eq-decl nil number_fields nil)
                (AND const-decl "[bool, bool -> bool]" booleans nil)
-               (N skolem-const-decl "posnat" resolution nil)
-               (i skolem-const-decl "below(N)" resolution nil)
-               (j skolem-const-decl "below(N)" resolution nil)
                (real_le_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (acceptable_polygon_2D const-decl "bool"
@@ -4484,7 +4542,10 @@
               shostak))
             (recovery_test_point_TCC1 0
              (recovery_test_point_TCC1-1 nil 3659373233
-              ("" (subtype-tcc) nil nil) nil nil))
+              ("" (subtype-tcc) nil nil) nil nil
+              (recovery_test_point subtype
+               "(number_fields.-)(resolution.N, 1)"
+               "naturalnumbers.below(resolution.N)")))
             (recovery_test_point_TCC2 0
              (recovery_test_point_TCC2-1 nil 3659373233
               ("" (subtype-tcc) nil nil)
@@ -4514,7 +4575,7 @@
                (nat nonempty-type-eq-decl nil naturalnumbers nil)
                (< const-decl "bool" reals nil)
                (below type-eq-decl nil naturalnumbers nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
                (modifiable_to_size const-decl "bool" resolution nil)
                (/= const-decl "boolean" notequal nil)
@@ -4524,7 +4585,7 @@
                (numfield nonempty-type-eq-decl nil number_fields nil)
                (- const-decl "[numfield -> numfield]" number_fields
                   nil)
-               (Sign type-eq-decl nil sign "reals/")
+               (Sign type-eq-decl nil sign reals)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (real_gt_is_strict_total_order name-judgement
@@ -4580,18 +4641,19 @@
                 nil)
                (counterclockwise_edges const-decl "bool"
                 acceptable_polygon nil)
-               (det const-decl "real" det_2D "vectors/")
+               (det const-decl "real" det_2D vectors)
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (* const-decl "real" vectors_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (* const-decl "real" vectors_2D vectors)
                (near_poly_edge const-decl "bool" acceptable_polygon
                 nil)
                (mod const-decl "{k | abs(k) < abs(j)}" mod nil)
                (naturalnumber type-eq-decl nil naturalnumbers nil))
-              nil))
+              nil
+              (recovery_test_point subtype "resolution.nexti"
+               "naturalnumbers.below(resolution.N)")))
             (recovery_test_point_TCC3 0
              (recovery_test_point_TCC3-1 nil 3659373233
               ("" (skeep*)
@@ -4677,14 +4739,13 @@
                    nil))
                  nil))
                nil)
-              ((zero const-decl "Vector" vectors_2D "vectors/")
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
+              ((zero const-decl "Vector" vectors_2D vectors)
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
                (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (real nonempty-type-from-decl nil reals nil)
-               (- const-decl "Vector" vectors_2D "vectors/")
                (number nonempty-type-decl nil numbers nil)
                (number_field_pred const-decl "[number -> boolean]"
                 number_fields nil)
@@ -4710,17 +4771,13 @@
                (posreal nonempty-type-eq-decl nil real_types nil)
                (modifiable_to_size const-decl "bool" resolution nil)
                (naturalnumber type-eq-decl nil naturalnumbers nil)
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
                (posreal_times_posreal_is_posreal application-judgement
                 "posreal" real_types nil)
                (nil application-judgement "below(m)" mod nil)
                (acceptable_polygon_2D const-decl "bool"
                 acceptable_polygon nil)
                (<= const-decl "bool" reals nil)
-               (N skolem-const-decl "{N: posnat | N >= 2}" resolution
-                nil)
-               (i skolem-const-decl "below(N)" resolution nil)
-               (nexti skolem-const-decl "naturalnumber" resolution nil)
                (real_gt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil)
                (posint_plus_nnint_is_posint application-judgement
@@ -4744,18 +4801,19 @@
                 reals nil)
                (minus_real_is_real application-judgement "real" reals
                 nil)
-               (comp_zero_y formula-decl nil vectors_2D "vectors/")
-               (comp_zero_x formula-decl nil vectors_2D "vectors/")
-               (add_zero_right formula-decl nil vectors_2D "vectors/")
-               (neg_zero formula-decl nil vectors_2D "vectors/")
+               (comp_zero_y formula-decl nil vectors_2D vectors)
+               (comp_zero_x formula-decl nil vectors_2D vectors)
+               (add_zero_right formula-decl nil vectors_2D vectors)
+               (neg_zero formula-decl nil vectors_2D vectors)
                (perpR_eq_zero formula-decl nil perpendicular_2D
-                "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (+ const-decl "Vector" vectors_2D "vectors/")
+                vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (recovery_test_point subtype "resolution.dirvect"
+               "Nz_vector")))
             (recovery_point_TCC1 0
              (recovery_point_TCC1-1 nil 3659373233
               ("" (skeep*)
@@ -4766,7 +4824,7 @@
                nil)
               ((modifiable_to_size const-decl "bool" resolution nil)
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (below type-eq-decl nil naturalnumbers nil)
                (nonneg_int nonempty-type-eq-decl nil integers nil)
                (< const-decl "bool" reals nil)
@@ -4804,7 +4862,9 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (recovery_point subtype "resolution.neari"
+               "naturalnumbers.below(resolution.N)")))
             (recovery_point_TCC2 0
              (recovery_point_TCC2-1 nil 3659373233
               ("" (skeep*) (("" (lift-if) (("" (ground) nil nil)) nil))
@@ -4824,7 +4884,9 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (recovery_point subtype "resolution.nearprevi"
+               "naturalnumbers.below(resolution.N)")))
             (recovery_point_TCC3 0
              (recovery_point_TCC3-1 nil 3659373233
               ("" (skeep*) (("" (lift-if) (("" (ground) nil nil)) nil))
@@ -4844,14 +4906,16 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (recovery_point subtype "resolution.nearnexti"
+               "naturalnumbers.below(resolution.N)")))
             (recovery_point_TCC4 0
              (recovery_point_TCC4-1 nil 3659373233
               ("" (skeep*)
                (("" (lemma "vectors_2D.sqv_eq_0")
                  (("" (inst - "pv") (("" (assert) nil nil)) nil)) nil))
                nil)
-              ((sqv_eq_0 formula-decl nil vectors_2D "vectors/")
+              ((sqv_eq_0 formula-decl nil vectors_2D vectors)
                (proj_vect_nonzero application-judgement "Nz_vect2"
                 resolution nil)
                (real_le_is_total_order name-judgement
@@ -4859,12 +4923,13 @@
                (int_minus_int_is_int application-judgement "int"
                 integers nil)
                (real nonempty-type-from-decl nil reals nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (recovery_point subtype "resolution.pv" "Nz_vector")))
             (recovery_point_TCC5 0
              (recovery_point_TCC5-1 nil 3659373233
               ("" (skeep*)
@@ -5085,25 +5150,23 @@
                 integers nil)
                (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (zero const-decl "Vector" vectors_2D "vectors/")
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (zero const-decl "Vector" vectors_2D vectors)
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
                (real_plus_real_is_real application-judgement "real"
                 reals nil)
                (minus_real_is_real application-judgement "real" reals
                 nil)
-               (comp_zero_y formula-decl nil vectors_2D "vectors/")
-               (comp_zero_x formula-decl nil vectors_2D "vectors/")
-               (add_zero_right formula-decl nil vectors_2D "vectors/")
-               (neg_zero formula-decl nil vectors_2D "vectors/")
+               (comp_zero_y formula-decl nil vectors_2D vectors)
+               (comp_zero_x formula-decl nil vectors_2D vectors)
+               (add_zero_right formula-decl nil vectors_2D vectors)
+               (neg_zero formula-decl nil vectors_2D vectors)
                (perpR_eq_zero formula-decl nil perpendicular_2D
-                "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (+ const-decl "Vector" vectors_2D "vectors/")
+                vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
                (integer nonempty-type-from-decl nil integers nil)
                (floor_int formula-decl nil floor_ceil nil)
                (nonneg_floor_is_nat application-judgement "nat"
@@ -5131,13 +5194,9 @@
                 "posint" integers nil)
                (subrange type-eq-decl nil integers nil)
                (naturalnumber type-eq-decl nil naturalnumbers nil)
-               (neari skolem-const-decl "naturalnumber" resolution nil)
-               (N skolem-const-decl "{N: posnat | N >= 2}" resolution
-                nil)
                (- const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
                (numfield nonempty-type-eq-decl nil number_fields nil)
-               (nearprevi skolem-const-decl "int" resolution nil)
                (<= const-decl "bool" reals nil)
                (AND const-decl "[bool, bool -> bool]" booleans nil)
                (nice_polygon_2D const-decl "bool" polygon_contain nil)
@@ -5165,13 +5224,16 @@
                (< const-decl "bool" reals nil)
                (nonneg_int nonempty-type-eq-decl nil integers nil)
                (below type-eq-decl nil naturalnumbers nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (polygon_2D type-eq-decl nil acceptable_polygon nil)
                (modifiable_to_size const-decl "bool" resolution nil)
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (recovery_point subtype
+               "perpendicular_2D.perpR((vectors_2D.-)(resolution.p(resolution.neari), resolution.p(resolution.nearprevi)))"
+               "Nz_vector")))
             (recovery_point_TCC6 0
              (recovery_point_TCC6-1 nil 3659373233
               ("" (skeep*)
@@ -5206,7 +5268,9 @@
                (boolean nonempty-type-decl nil booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
                (TRUE const-decl "bool" booleans nil))
-              nil))
+              nil
+              (recovery_point subtype
+               "(vectors_2D.*(resolution.pv, resolution.R))" "nznum")))
             (outside_recovery_point_def 0
              (outside_recovery_point_def-1 nil 3687787575
               ("" (skeep*)
@@ -5215,516 +5279,7 @@
                    (("" (expand "recovery_point" :assert? none)
                      (("" (eval-expr "1=-1")
                        (("" (replaces -1)
-                         (("" (skoletin -)
-                           (("" (lift-if)
-                             (("" (split -)
-                               (("1" (flatten) nil)
-                                ("2"
-                                 (flatten)
-                                 (("2"
-                                   (split -)
-                                   (("1"
-                                     (flatten)
-                                     (("1" (assert) nil)))
-                                    ("2"
-                                     (flatten)
-                                     (("2"
-                                       (hide (1 2))
-                                       (("2"
-                                         (skoletin -)
-                                         (("2"
-                                           (name
-                                            "nexti"
-                                            "IF i < N - 1 THEN i + 1 ELSE 0 ENDIF")
-                                           (("2"
-                                             (replaces -1)
-                                             (("2"
-                                               (name
-                                                "neari"
-                                                "IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN i ELSE nexti ENDIF")
-                                               (("1"
-                                                 (name
-                                                  "nearnexti"
-                                                  "IF neari < N - 1 THEN neari + 1 ELSE 0 ENDIF")
-                                                 (("1"
-                                                   (assert)
-                                                   (("1"
-                                                     (replace -2)
-                                                     (("1"
-                                                       (name
-                                                        "pv"
-                                                        "proj_vect(IF neari > 0 THEN p(neari - 1)
-                                             ELSE p(N - 1)
-                                             ENDIF,
-                                             IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                               THEN p(i)
-                                             ELSE p(nexti)
-                                             ENDIF,
-                                             IF neari < N - 1 THEN p(neari + 1)
-                                             ELSE p(0)
-                                             ENDIF,
-                                             BUFF)")
-                                                       (("1"
-                                                         (replaces -1)
-                                                         (("1"
-                                                           (name
-                                                            "G"
-                                                            "perpR(IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                                     THEN p(i)
-                                                     ELSE p(nexti)
-                                                     ENDIF
-                                                     -
-                                                     IF neari > 0
-                                                     THEN p(neari - 1)
-                                                     ELSE p(N - 1)
-                                                     ENDIF)")
-                                                           (("1"
-                                                             (replaces
-                                                              -1)
-                                                             (("1"
-                                                               (name
-                                                                "H"
-                                                                "(IF det(IF neari < N - 1 THEN p(neari + 1) ELSE p(0) ENDIF -
-                                      IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN p(i)
-                                      ELSE p(nexti)
-                                      ENDIF,
-                                     IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN p(i)
-                                     ELSE p(nexti)
-                                     ENDIF
-                                      -
-                                      IF neari > 0 THEN p(neari - 1) ELSE p(N - 1) ENDIF)
-                                  <= 0
-                                THEN IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN p(i)
-                                     ELSE p(nexti)
-                                     ENDIF
-                                      + (1 * ResolBUFF) * ^(pv)
-                              ELSE IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN p(i)
-                                   ELSE p(nexti)
-                                   ENDIF
-                                    +
-                                    (IF abs(pv * ^(G)) <= (BUFF / 100) THEN 0
-                                     ELSE ((IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                              THEN p(i)
-                                            ELSE p(nexti)
-                                            ENDIF
-                                             + (1 * ResolBUFF) * ^(G)
-                                             - p(i))
-                                            * ^(G))
-                                           / (pv * ^(G))
-                                     ENDIF)
-                                     * pv
-                              ENDIF)")
-                                                               (("1"
-                                                                 (replaces
-                                                                  -1)
-                                                                 (("1"
-                                                                   (lift-if)
-                                                                   (("1"
-                                                                     (ground)
-                                                                     nil)))))
-                                                                ("2"
-                                                                 (flatten)
-                                                                 (("2"
-                                                                   (assert)
-                                                                   (("2"
-                                                                     (hide
-                                                                      -4)
-                                                                     (("2"
-                                                                       (hide
-                                                                        1)
-                                                                       (("2"
-                                                                         (replaces
-                                                                          -1)
-                                                                         (("2"
-                                                                           (assert)
-                                                                           (("2"
-                                                                             (grind)
-                                                                             nil)))))))))))))
-                                                                ("3"
-                                                                 (flatten)
-                                                                 (("3"
-                                                                   (hide
-                                                                    -4)
-                                                                   (("3"
-                                                                     (hide
-                                                                      1)
-                                                                     (("3"
-                                                                       (replaces
-                                                                        -1)
-                                                                       (("3"
-                                                                         (assert)
-                                                                         (("3"
-                                                                           (expand
-                                                                            "^"
-                                                                            1)
-                                                                           (("3"
-                                                                             (grind)
-                                                                             nil)))))))))))))
-                                                                ("4"
-                                                                 (flatten)
-                                                                 (("4"
-                                                                   (hide
-                                                                    -3)
-                                                                   (("4"
-                                                                     (hide
-                                                                      1)
-                                                                     (("4"
-                                                                       (lift-if)
-                                                                       (("4"
-                                                                         (ground)
-                                                                         (("4"
-                                                                           (expand
-                                                                            "nexti")
-                                                                           (("4"
-                                                                             (lift-if)
-                                                                             (("4"
-                                                                               (ground)
-                                                                               nil)))))))))))))))
-                                                                ("5"
-                                                                 (hide
-                                                                  -3)
-                                                                 (("5"
-                                                                   (flatten)
-                                                                   (("5"
-                                                                     (hide
-                                                                      1)
-                                                                     (("5"
-                                                                       (expand
-                                                                        "nexti")
-                                                                       (("5"
-                                                                         (lift-if)
-                                                                         (("5"
-                                                                           (ground)
-                                                                           nil)))))))))))
-                                                                ("6"
-                                                                 (hide
-                                                                  -3)
-                                                                 (("6"
-                                                                   (flatten)
-                                                                   (("6"
-                                                                     (replaces
-                                                                      -1)
-                                                                     (("6"
-                                                                       (assert)
-                                                                       (("6"
-                                                                         (expand
-                                                                          "G"
-                                                                          -1)
-                                                                         (("6"
-                                                                           (lift-if)
-                                                                           (("6"
-                                                                             (ground)
-                                                                             (("1"
-                                                                               (lift-if)
-                                                                               (("1"
-                                                                                 (ground)
-                                                                                 (("1"
-                                                                                   (expand
-                                                                                    "neari")
-                                                                                   (("1"
-                                                                                     (rewrite
-                                                                                      "det_perpR")
-                                                                                     (("1"
-                                                                                       (replaces
-                                                                                        -3)
-                                                                                       (("1"
-                                                                                         (assert)
-                                                                                         nil)))))))
-                                                                                  ("2"
-                                                                                   (rewrite
-                                                                                    "det_perpR")
-                                                                                   (("2"
-                                                                                     (replaces
-                                                                                      -1)
-                                                                                     (("2"
-                                                                                       (assert)
-                                                                                       nil)))))))))
-                                                                              ("2"
-                                                                               (rewrite
-                                                                                "det_perpR")
-                                                                               (("2"
-                                                                                 (replaces
-                                                                                  -4)
-                                                                                 (("2"
-                                                                                   (assert)
-                                                                                   nil)))))
-                                                                              ("3"
-                                                                               (rewrite
-                                                                                "det_perpR")
-                                                                               (("3"
-                                                                                 (replaces
-                                                                                  -5)
-                                                                                 (("3"
-                                                                                   (assert)
-                                                                                   nil)))))
-                                                                              ("4"
-                                                                               (rewrite
-                                                                                "det_perpR")
-                                                                               (("4"
-                                                                                 (replaces
-                                                                                  -3)
-                                                                                 (("4"
-                                                                                   (assert)
-                                                                                   nil)))))))))))))))))))
-                                                                ("7"
-                                                                 (flatten)
-                                                                 (("7"
-                                                                   (hide
-                                                                    -3)
-                                                                   (("7"
-                                                                     (hide
-                                                                      1)
-                                                                     (("7"
-                                                                       (expand
-                                                                        "nexti")
-                                                                       (("7"
-                                                                         (lift-if)
-                                                                         (("7"
-                                                                           (ground)
-                                                                           nil)))))))))))
-                                                                ("8"
-                                                                 (flatten)
-                                                                 (("8"
-                                                                   (hide
-                                                                    -3)
-                                                                   (("8"
-                                                                     (hide
-                                                                      1)
-                                                                     (("8"
-                                                                       (expand
-                                                                        "nexti")
-                                                                       (("8"
-                                                                         (lift-if)
-                                                                         (("8"
-                                                                           (ground)
-                                                                           nil)))))))))))
-                                                                ("9"
-                                                                 (hide
-                                                                  -3)
-                                                                 (("9"
-                                                                   (flatten)
-                                                                   (("9"
-                                                                     (hide
-                                                                      -1)
-                                                                     (("9"
-                                                                       (expand
-                                                                        "nexti")
-                                                                       (("9"
-                                                                         (lift-if)
-                                                                         (("9"
-                                                                           (ground)
-                                                                           nil)))))))))))
-                                                                ("10"
-                                                                 (hide
-                                                                  -3)
-                                                                 (("10"
-                                                                   (flatten)
-                                                                   (("10"
-                                                                     (expand
-                                                                      "nexti")
-                                                                     (("10"
-                                                                       (lift-if)
-                                                                       (("10"
-                                                                         (ground)
-                                                                         nil)))))))))
-                                                                ("11"
-                                                                 (hide
-                                                                  3)
-                                                                 (("11"
-                                                                   (hide
-                                                                    -3)
-                                                                   (("11"
-                                                                     (ground)
-                                                                     nil)))))))))))))
-                                                        ("2"
-                                                         (hide -3)
-                                                         (("2"
-                                                           (ground)
-                                                           nil)))
-                                                        ("3"
-                                                         (hide -3)
-                                                         (("3"
-                                                           (ground)
-                                                           (("3"
-                                                             (expand
-                                                              "nexti")
-                                                             (("3"
-                                                               (lift-if)
-                                                               (("3"
-                                                                 (ground)
-                                                                 nil)))))))))
-                                                        ("4"
-                                                         (hide -3)
-                                                         (("4"
-                                                           (ground)
-                                                           (("4"
-                                                             (expand
-                                                              "neari")
-                                                             (("4"
-                                                               (lift-if)
-                                                               (("4"
-                                                                 (ground)
-                                                                 (("4"
-                                                                   (expand
-                                                                    "nexti")
-                                                                   (("4"
-                                                                     (lift-if)
-                                                                     (("4"
-                                                                       (ground)
-                                                                       nil)))))))))))))))))))))))
-                                                ("2"
-                                                 (hide -1)
-                                                 (("2"
-                                                   (expand "nexti")
-                                                   (("2"
-                                                     (lift-if)
-                                                     (("2"
-                                                       (ground)
-                                                       nil))))))))))))))))))))))))))))))))))))))))
-               nil)
-              ((IFF const-decl "[bool, bool -> bool]" booleans nil)
-               (real nonempty-type-from-decl nil reals nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
-               (= const-decl "[T, T -> boolean]" equalities nil)
-               (posnat nonempty-type-eq-decl nil integers nil)
-               (number nonempty-type-decl nil numbers nil)
-               (number_field_pred const-decl "[number -> boolean]"
-                number_fields nil)
-               (number_field nonempty-type-from-decl nil number_fields
-                nil)
-               (real_pred const-decl "[number_field -> boolean]" reals
-                          nil)
-               (rational_pred const-decl "[real -> boolean]" rationals
-                              nil)
-               (rational nonempty-type-from-decl nil rationals nil)
-               (integer_pred const-decl "[rational -> boolean]"
-                             integers nil)
-               (int nonempty-type-eq-decl nil integers nil)
-               (>= const-decl "bool" reals nil)
-               (nonneg_int nonempty-type-eq-decl nil integers nil)
-               (> const-decl "bool" reals nil)
-               (posreal nonempty-type-eq-decl nil real_types nil)
-               (nat nonempty-type-eq-decl nil naturalnumbers nil)
-               (< const-decl "bool" reals nil)
-               (below type-eq-decl nil naturalnumbers nil)
-               (polygon_2D type-eq-decl nil acceptable_polygon nil)
-               (nonneg_real nonempty-type-eq-decl nil real_types nil)
-               (modifiable_to_size const-decl "bool" resolution nil)
-               (outside_recovery_point const-decl "Vect2" resolution
-                nil)
-               (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-               (/= const-decl "boolean" notequal nil)
-               (definitely_outside const-decl "bool" polygon_contain
-                nil)
-               (recovery_point const-decl "Vect2" resolution nil)
-               (real_ge_is_total_order name-judgement
-                "(total_order?[real])" real_props nil)
-               (nz_nzv application-judgement "Nz_vector" vectors_2D
-                "vectors/")
-               (real_gt_is_strict_total_order name-judgement
-                "(strict_total_order?[real])" real_props nil)
-               (posint_plus_nnint_is_posint application-judgement
-                "posint" integers nil)
-               (real_le_is_total_order name-judgement
-                "(total_order?[real])" real_props nil)
-               (real_lt_is_strict_total_order name-judgement
-                "(strict_total_order?[real])" real_props nil)
-               (even_minus_odd_is_odd application-judgement "odd_int"
-                integers nil)
-               (G skolem-const-decl "Vect2" resolution nil)
-               (det_perpR formula-decl nil det_2D "vectors/")
-               (dot_zero_right formula-decl nil vectors_2D "vectors/")
-               (neari skolem-const-decl "naturalnumber" resolution nil)
-               (nexti skolem-const-decl "naturalnumber" resolution nil)
-               (comp_zero_x formula-decl nil vectors_2D "vectors/")
-               (comp_zero_y formula-decl nil vectors_2D "vectors/")
-               (sqrt_0 formula-decl nil sqrt "reals/")
-               (nzrat_div_nzrat_is_nzrat application-judgement "nzrat"
-                rationals nil)
-               (real_times_real_is_real application-judgement "real"
-                reals nil)
-               (real_plus_real_is_real application-judgement "real"
-                reals nil)
-               (nzreal_div_nzreal_is_nzreal application-judgement
-                "nzreal" real_types nil)
-               (int_abs_is_nonneg application-judgement
-                "{j: nonneg_int | j >= i}" real_defs nil)
-               (* const-decl "[numfield, numfield -> numfield]"
-                  number_fields nil)
-               (* const-decl "Vector" vectors_2D "vectors/")
-               (+ const-decl "Vector" vectors_2D "vectors/")
-               (/ const-decl "[numfield, nznum -> numfield]"
-                  number_fields nil)
-               (nznum nonempty-type-eq-decl nil number_fields nil)
-               (* const-decl "real" vectors_2D "vectors/")
-               (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}"
-                    real_defs nil)
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (^ const-decl "Normalized" vectors_2D "vectors/")
-               (Normalized type-eq-decl nil vectors_2D "vectors/")
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (Nz_vector type-eq-decl nil vectors_2D "vectors/")
-               (proj_vect const-decl "Nz_vect2" resolution nil)
-               (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-               (zero const-decl "Vector" vectors_2D "vectors/")
-               (det const-decl "real" det_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
-               (nnreal type-eq-decl nil real_types nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
-               (+ const-decl "[numfield, numfield -> numfield]"
-                  number_fields nil)
-               (IF const-decl "[boolean, T, T -> T]" if_def nil)
-               (naturalnumber type-eq-decl nil naturalnumbers nil)
-               (closest_edge def-decl "below(N)" resolution nil)
-               (near_any_edge_upto def-decl
-                "{bb: bool | bb IFF (EXISTS (j: upto(i)): near_poly_edge(N, p, s, BUFF, j))}"
-                polygon_contain nil)
-               (near_poly_edge const-decl "bool" acceptable_polygon
-                nil)
-               (upto nonempty-type-eq-decl nil naturalnumbers nil)
-               (<= const-decl "bool" reals nil)
-               (NOT const-decl "[bool -> bool]" booleans nil)
-               (- const-decl "[numfield, numfield -> numfield]"
-                  number_fields nil)
-               (recovery_test_point const-decl "Vect2" resolution nil)
-               (Sign type-eq-decl nil sign "reals/")
-               (OR const-decl "[bool, bool -> bool]" booleans nil)
-               (nzint nonempty-type-eq-decl nil integers nil)
-               (AND const-decl "[bool, bool -> bool]" booleans nil)
-               (nnint_plus_posint_is_posint application-judgement
-                "posint" integers nil)
-               (int_minus_int_is_int application-judgement "int"
-                integers nil)
-               (real_div_nzreal_is_real application-judgement "real"
-                reals nil)
-               (proj_vect_nonzero application-judgement "Nz_vect2"
-                resolution nil)
-               (posreal_times_posreal_is_posreal application-judgement
-                "posreal" real_types nil)
-               (posreal_div_posreal_is_posreal application-judgement
-                "posreal" real_types nil)
-               (FALSE const-decl "bool" booleans nil)
-               (- const-decl "[numfield -> numfield]" number_fields
-                  nil)
-               (numfield nonempty-type-eq-decl nil number_fields nil)
-               (bijective? const-decl "bool" functions nil)
-               (id const-decl "(bijective?[T, T])" identity nil)
-               (minus_odd_is_odd application-judgement "odd_int"
-                integers nil)
-               (boolean nonempty-type-decl nil booleans nil)
-               (bool nonempty-type-eq-decl nil booleans nil)
-               (TRUE const-decl "bool" booleans nil))
-              nil))
-            (inside_recovery_point_def 0
-             (inside_recovery_point_def-3 nil 3687787660
-              ("" (skeep*)
-               (("" (skoletin)
-                 (("" (expand "inside_recovery_point")
-                   (("" (expand "recovery_point" :assert? none)
-                     (("" (eval-expr "-1=1")
-                       (("" (replaces -1)
-                         (("" (skoletin -)
+                         (("" (skoletin - :tcc-step (assert))
                            (("" (lift-if)
                              (("" (split -)
                                (("1" (flatten) nil nil)
@@ -5741,7 +5296,621 @@
                                      (("2"
                                        (hide (1 2))
                                        (("2"
-                                         (skoletin -)
+                                         (skoletin
+                                          -
+                                          :tcc-step
+                                          (assert))
+                                         (("2"
+                                           (name
+                                            "nexti"
+                                            "IF i < N - 1 THEN i + 1 ELSE 0 ENDIF")
+                                           (("2"
+                                             (replaces -1)
+                                             (("2"
+                                               (name
+                                                "neari"
+                                                "IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN i ELSE nexti ENDIF")
+                                               (("1"
+                                                 (name
+                                                  "nearnexti"
+                                                  "IF neari < N - 1 THEN neari + 1 ELSE 0 ENDIF")
+                                                 (("1"
+                                                   (assert)
+                                                   (("1"
+                                                     (replace -2)
+                                                     (("1"
+                                                       (with-tccs
+                                                        (name
+                                                         "pv"
+                                                         "proj_vect(IF neari > 0 THEN p(neari - 1)
+                                                          ELSE p(N - 1)
+                                                          ENDIF,
+                                                          IF sqv(s - p(i)) <= sqv(s - p(nexti))
+                                                            THEN p(i)
+                                                          ELSE p(nexti)
+                                                          ENDIF,
+                                                          IF neari < N - 1 THEN p(neari + 1)
+                                                          ELSE p(0)
+                                                          ENDIF,
+                                                          BUFF)")
+                                                        :tcc-step
+                                                        (assert))
+                                                       (("1"
+                                                         (replaces -1)
+                                                         (("1"
+                                                           (with-tccs
+                                                            (name
+                                                             "G"
+                                                             "perpR(IF sqv(s - p(i)) <= sqv(s - p(nexti))
+                                                                    THEN p(i)
+                                                                    ELSE p(nexti)
+                                                                    ENDIF
+                                                                    -
+                                                                    IF neari > 0
+                                                                    THEN p(neari - 1)
+                                                                    ELSE p(N - 1)
+                                                                    ENDIF)")
+                                                            :tcc-step
+                                                            (assert))
+                                                           (("1"
+                                                             (replaces
+                                                              -1)
+                                                             (("1"
+                                                               (with-tccs
+                                                                (name
+                                                                 "H"
+                                                                 "(IF det(IF neari < N - 1 THEN p(neari + 1) ELSE p(0) ENDIF -
+                                                     IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN p(i)
+                                                     ELSE p(nexti)
+                                                     ENDIF,
+                                                    IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN p(i)
+                                                    ELSE p(nexti)
+                                                    ENDIF
+                                                     -
+                                                     IF neari > 0 THEN p(neari - 1) ELSE p(N - 1) ENDIF)
+                                                 <= 0
+                                               THEN IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN p(i)
+                                                    ELSE p(nexti)
+                                                    ENDIF
+                                                     + (1 * ResolBUFF) * ^(pv)
+                                             ELSE IF sqv(s - p(i)) <= sqv(s - p(nexti)) THEN p(i)
+                                                  ELSE p(nexti)
+                                                  ENDIF
+                                                   +
+                                                   (IF abs(pv * ^(G)) <= (BUFF / 100) THEN 0
+                                                    ELSE ((IF sqv(s - p(i)) <= sqv(s - p(nexti))
+                                                             THEN p(i)
+                                                           ELSE p(nexti)
+                                                           ENDIF
+                                                            + (1 * ResolBUFF) * ^(G)
+                                                            - p(i))
+                                                           * ^(G))
+                                                          / (pv * ^(G))
+                                                    ENDIF)
+                                                    * pv
+                                             ENDIF)")
+                                                                :tcc-step
+                                                                (assert))
+                                                               (("1"
+                                                                 (replaces
+                                                                  -1)
+                                                                 (("1"
+                                                                   (lift-if)
+                                                                   (("1"
+                                                                     (ground)
+                                                                     nil
+                                                                     nil))
+                                                                   nil))
+                                                                 nil)
+                                                                ("2"
+                                                                 (hide
+                                                                  -3)
+                                                                 (("2"
+                                                                   (flatten)
+                                                                   (("2"
+                                                                     (replaces
+                                                                      -1)
+                                                                     (("2"
+                                                                       (eval-expr
+                                                                        "abs(0)")
+                                                                       (("2"
+                                                                         (assert)
+                                                                         nil
+                                                                         nil))
+                                                                       nil))
+                                                                     nil))
+                                                                   nil))
+                                                                 nil)
+                                                                ("3"
+                                                                 (hide
+                                                                  -3)
+                                                                 (("3"
+                                                                   (flatten)
+                                                                   (("3"
+                                                                     (expand
+                                                                      "G"
+                                                                      -1)
+                                                                     (("3"
+                                                                       (lift-if)
+                                                                       (("3"
+                                                                         (ground)
+                                                                         (("1"
+                                                                           (lift-if)
+                                                                           (("1"
+                                                                             (ground)
+                                                                             (("1"
+                                                                               (expand
+                                                                                "neari")
+                                                                               (("1"
+                                                                                 (rewrite
+                                                                                  "det_perpR")
+                                                                                 (("1"
+                                                                                   (replaces
+                                                                                    -3)
+                                                                                   (("1"
+                                                                                     (assert)
+                                                                                     nil
+                                                                                     nil))
+                                                                                   nil))
+                                                                                 nil))
+                                                                               nil)
+                                                                              ("2"
+                                                                               (rewrite
+                                                                                "det_perpR")
+                                                                               (("2"
+                                                                                 (replaces
+                                                                                  -1)
+                                                                                 (("2"
+                                                                                   (assert)
+                                                                                   nil
+                                                                                   nil))
+                                                                                 nil))
+                                                                               nil))
+                                                                             nil))
+                                                                           nil)
+                                                                          ("2"
+                                                                           (rewrite
+                                                                            "det_perpR")
+                                                                           (("1"
+                                                                             (replaces
+                                                                              -4)
+                                                                             (("1"
+                                                                               (assert)
+                                                                               nil
+                                                                               nil))
+                                                                             nil)
+                                                                            ("2"
+                                                                             (expand
+                                                                              "nexti")
+                                                                             (("2"
+                                                                               (lift-if)
+                                                                               (("2"
+                                                                                 (ground)
+                                                                                 nil
+                                                                                 nil))
+                                                                               nil))
+                                                                             nil))
+                                                                           nil)
+                                                                          ("3"
+                                                                           (rewrite
+                                                                            "det_perpR")
+                                                                           (("3"
+                                                                             (replaces
+                                                                              -5)
+                                                                             (("3"
+                                                                               (assert)
+                                                                               nil
+                                                                               nil))
+                                                                             nil))
+                                                                           nil)
+                                                                          ("4"
+                                                                           (rewrite
+                                                                            "det_perpR")
+                                                                           (("4"
+                                                                             (replaces
+                                                                              -3)
+                                                                             (("4"
+                                                                               (assert)
+                                                                               nil
+                                                                               nil))
+                                                                             nil))
+                                                                           nil))
+                                                                         nil))
+                                                                       nil))
+                                                                     nil))
+                                                                   nil))
+                                                                 nil)
+                                                                ("4"
+                                                                 (hide
+                                                                  -3)
+                                                                 (("4"
+                                                                   (flatten)
+                                                                   (("4"
+                                                                     (assert)
+                                                                     (("4"
+                                                                       (expand
+                                                                        "G"
+                                                                        -1)
+                                                                       (("4"
+                                                                         (lift-if)
+                                                                         (("4"
+                                                                           (ground)
+                                                                           (("1"
+                                                                             (lift-if)
+                                                                             (("1"
+                                                                               (ground)
+                                                                               (("1"
+                                                                                 (expand
+                                                                                  "neari")
+                                                                                 (("1"
+                                                                                   (rewrite
+                                                                                    "det_perpR")
+                                                                                   (("1"
+                                                                                     (replaces
+                                                                                      -3)
+                                                                                     (("1"
+                                                                                       (assert)
+                                                                                       nil
+                                                                                       nil))
+                                                                                     nil))
+                                                                                   nil))
+                                                                                 nil)
+                                                                                ("2"
+                                                                                 (rewrite
+                                                                                  "det_perpR")
+                                                                                 (("2"
+                                                                                   (replaces
+                                                                                    -1)
+                                                                                   (("2"
+                                                                                     (assert)
+                                                                                     nil
+                                                                                     nil))
+                                                                                   nil))
+                                                                                 nil))
+                                                                               nil))
+                                                                             nil)
+                                                                            ("2"
+                                                                             (rewrite
+                                                                              "det_perpR")
+                                                                             (("1"
+                                                                               (replaces
+                                                                                -4)
+                                                                               (("1"
+                                                                                 (assert)
+                                                                                 nil
+                                                                                 nil))
+                                                                               nil)
+                                                                              ("2"
+                                                                               (expand
+                                                                                "nexti")
+                                                                               (("2"
+                                                                                 (lift-if)
+                                                                                 (("2"
+                                                                                   (ground)
+                                                                                   nil
+                                                                                   nil))
+                                                                                 nil))
+                                                                               nil))
+                                                                             nil)
+                                                                            ("3"
+                                                                             (rewrite
+                                                                              "det_perpR")
+                                                                             (("3"
+                                                                               (replaces
+                                                                                -5)
+                                                                               (("3"
+                                                                                 (assert)
+                                                                                 nil
+                                                                                 nil))
+                                                                               nil))
+                                                                             nil)
+                                                                            ("4"
+                                                                             (rewrite
+                                                                              "det_perpR")
+                                                                             (("4"
+                                                                               (replaces
+                                                                                -3)
+                                                                               (("4"
+                                                                                 (assert)
+                                                                                 nil
+                                                                                 nil))
+                                                                               nil))
+                                                                             nil))
+                                                                           nil))
+                                                                         nil))
+                                                                       nil))
+                                                                     nil))
+                                                                   nil))
+                                                                 nil)
+                                                                ("5"
+                                                                 (hide
+                                                                  -3)
+                                                                 (("5"
+                                                                   (flatten)
+                                                                   (("5"
+                                                                     (ground)
+                                                                     (("5"
+                                                                       (expand
+                                                                        "neari")
+                                                                       (("5"
+                                                                         (lift-if)
+                                                                         (("5"
+                                                                           (ground)
+                                                                           (("5"
+                                                                             (expand
+                                                                              "nexti")
+                                                                             (("5"
+                                                                               (lift-if)
+                                                                               (("5"
+                                                                                 (ground)
+                                                                                 nil
+                                                                                 nil))
+                                                                               nil))
+                                                                             nil))
+                                                                           nil))
+                                                                         nil))
+                                                                       nil))
+                                                                     nil))
+                                                                   nil))
+                                                                 nil)
+                                                                ("6"
+                                                                 (hide
+                                                                  -3)
+                                                                 (("6"
+                                                                   (ground)
+                                                                   nil
+                                                                   nil))
+                                                                 nil))
+                                                               nil))
+                                                             nil)
+                                                            ("2"
+                                                             (hide -3)
+                                                             (("2"
+                                                               (flatten)
+                                                               (("2"
+                                                                 (ground)
+                                                                 (("2"
+                                                                   (expand
+                                                                    "neari")
+                                                                   (("2"
+                                                                     (lift-if)
+                                                                     (("2"
+                                                                       (ground)
+                                                                       (("2"
+                                                                         (expand
+                                                                          "nexti")
+                                                                         (("2"
+                                                                           (lift-if)
+                                                                           (("2"
+                                                                             (ground)
+                                                                             nil
+                                                                             nil))
+                                                                           nil))
+                                                                         nil))
+                                                                       nil))
+                                                                     nil))
+                                                                   nil))
+                                                                 nil))
+                                                               nil))
+                                                             nil))
+                                                           nil))
+                                                         nil)
+                                                        ("2"
+                                                         (hide -3)
+                                                         (("2"
+                                                           (ground)
+                                                           nil
+                                                           nil))
+                                                         nil)
+                                                        ("3"
+                                                         (hide -3)
+                                                         (("3"
+                                                           (ground)
+                                                           (("3"
+                                                             (expand
+                                                              "neari")
+                                                             (("3"
+                                                               (lift-if)
+                                                               (("3"
+                                                                 (ground)
+                                                                 (("3"
+                                                                   (expand
+                                                                    "nexti")
+                                                                   (("3"
+                                                                     (lift-if)
+                                                                     (("3"
+                                                                       (ground)
+                                                                       nil
+                                                                       nil))
+                                                                     nil))
+                                                                   nil))
+                                                                 nil))
+                                                               nil))
+                                                             nil))
+                                                           nil))
+                                                         nil))
+                                                       nil))
+                                                     nil))
+                                                   nil))
+                                                 nil)
+                                                ("2"
+                                                 (hide -1)
+                                                 (("2"
+                                                   (expand "nexti")
+                                                   (("2"
+                                                     (lift-if)
+                                                     (("2"
+                                                       (ground)
+                                                       nil
+                                                       nil))
+                                                     nil))
+                                                   nil))
+                                                 nil))
+                                               nil))
+                                             nil))
+                                           nil))
+                                         nil))
+                                       nil))
+                                     nil))
+                                   nil))
+                                 nil))
+                               nil))
+                             nil))
+                           nil))
+                         nil))
+                       nil))
+                     nil))
+                   nil))
+                 nil))
+               nil)
+              ((id const-decl "(bijective?[T, T])" identity nil)
+               (bijective? const-decl "bool" functions nil)
+               (IFF const-decl "[bool, bool -> bool]" booleans nil)
+               (real nonempty-type-from-decl nil reals nil)
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
+               (= const-decl "[T, T -> boolean]" equalities nil)
+               (number nonempty-type-decl nil numbers nil)
+               (number_field_pred const-decl "[number -> boolean]"
+                number_fields nil)
+               (number_field nonempty-type-from-decl nil number_fields
+                nil)
+               (real_pred const-decl "[number_field -> boolean]" reals
+                          nil)
+               (rational_pred const-decl "[real -> boolean]" rationals
+                              nil)
+               (rational nonempty-type-from-decl nil rationals nil)
+               (integer_pred const-decl "[rational -> boolean]"
+                             integers nil)
+               (int nonempty-type-eq-decl nil integers nil)
+               (>= const-decl "bool" reals nil)
+               (nonneg_int nonempty-type-eq-decl nil integers nil)
+               (> const-decl "bool" reals nil)
+               (posnat nonempty-type-eq-decl nil integers nil)
+               (posreal nonempty-type-eq-decl nil real_types nil)
+               (nat nonempty-type-eq-decl nil naturalnumbers nil)
+               (< const-decl "bool" reals nil)
+               (below type-eq-decl nil naturalnumbers nil)
+               (polygon_2D type-eq-decl nil acceptable_polygon nil)
+               (nonneg_real nonempty-type-eq-decl nil real_types nil)
+               (modifiable_to_size const-decl "bool" resolution nil)
+               (outside_recovery_point const-decl "Vect2" resolution
+                nil)
+               (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
+               (/= const-decl "boolean" notequal nil)
+               (definitely_outside const-decl "bool" polygon_contain
+                nil)
+               (recovery_point const-decl "Vect2" resolution nil)
+               (real_ge_is_total_order name-judgement
+                "(total_order?[real])" real_props nil)
+               (real_lt_is_strict_total_order name-judgement
+                "(strict_total_order?[real])" real_props nil)
+               (real_le_is_total_order name-judgement
+                "(total_order?[real])" real_props nil)
+               (real_gt_is_strict_total_order name-judgement
+                "(strict_total_order?[real])" real_props nil)
+               (nz_nzv application-judgement "Nz_vector" vectors_2D
+                vectors)
+               (even_minus_odd_is_odd application-judgement "odd_int"
+                integers nil)
+               nil (det_perpR formula-decl nil det_2D vectors)
+               (dot_zero_right formula-decl nil vectors_2D vectors) nil
+               nil
+               (int_abs_is_nonneg application-judgement
+                "{j: nonneg_int | j >= i}" real_defs nil)
+               (posint_plus_nnint_is_posint application-judgement
+                "posint" integers nil)
+               (* const-decl "[numfield, numfield -> numfield]"
+                  number_fields nil)
+               (* const-decl "Vector" vectors_2D vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
+               (/ const-decl "[numfield, nznum -> numfield]"
+                  number_fields nil)
+               (nznum nonempty-type-eq-decl nil number_fields nil)
+               (* const-decl "real" vectors_2D vectors)
+               (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}"
+                    real_defs nil)
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
+               (^ const-decl "Normalized" vectors_2D vectors)
+               (Normalized type-eq-decl nil vectors_2D vectors)
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (Nz_vector type-eq-decl nil vectors_2D vectors)
+               (proj_vect const-decl "Nz_vect2" resolution nil)
+               (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+               (zero const-decl "Vector" vectors_2D vectors)
+               (det const-decl "real" det_2D vectors) nil
+               (sqv const-decl "nnreal" vectors_2D vectors)
+               (nnreal type-eq-decl nil real_types nil)
+               (Vector type-eq-decl nil vectors_2D vectors)
+               (+ const-decl "[numfield, numfield -> numfield]"
+                  number_fields nil)
+               (IF const-decl "[boolean, T, T -> T]" if_def nil)
+               (closest_edge def-decl "below(N)" resolution nil)
+               (near_any_edge_upto def-decl
+                "{bb: bool | bb IFF EXISTS (j: upto(i)): near_poly_edge(N, p, s, BUFF, j)}"
+                polygon_contain nil)
+               (near_poly_edge const-decl "bool" acceptable_polygon
+                nil)
+               (upto nonempty-type-eq-decl nil naturalnumbers nil)
+               (<= const-decl "bool" reals nil)
+               (NOT const-decl "[bool -> bool]" booleans nil)
+               (- const-decl "[numfield, numfield -> numfield]"
+                  number_fields nil)
+               (recovery_test_point const-decl "Vect2" resolution nil)
+               (Sign type-eq-decl nil sign reals)
+               (OR const-decl "[bool, bool -> bool]" booleans nil)
+               (nzint nonempty-type-eq-decl nil integers nil)
+               (AND const-decl "[bool, bool -> bool]" booleans nil)
+               (proj_vect_nonzero application-judgement "Nz_vect2"
+                resolution nil)
+               (nnint_plus_posint_is_posint application-judgement
+                "posint" integers nil)
+               (int_minus_int_is_int application-judgement "int"
+                integers nil)
+               (real_div_nzreal_is_real application-judgement "real"
+                reals nil)
+               (posreal_times_posreal_is_posreal application-judgement
+                "posreal" real_types nil)
+               (posreal_div_posreal_is_posreal application-judgement
+                "posreal" real_types nil)
+               (FALSE const-decl "bool" booleans nil)
+               (- const-decl "[numfield -> numfield]" number_fields
+                  nil)
+               (numfield nonempty-type-eq-decl nil number_fields nil)
+               (minus_odd_is_odd application-judgement "odd_int"
+                integers nil)
+               (boolean nonempty-type-decl nil booleans nil)
+               (bool nonempty-type-eq-decl nil booleans nil)
+               (TRUE const-decl "bool" booleans nil))
+              nil))
+            (inside_recovery_point_def 0
+             (inside_recovery_point_def-3 nil 3687787660
+              ("" (skeep*)
+               (("" (skoletin)
+                 (("" (expand "inside_recovery_point")
+                   (("" (expand "recovery_point" :assert? none)
+                     (("" (eval-expr "-1=1")
+                       (("" (replaces -1)
+                         (("" (skoletin - :tcc-step (assert))
+                           (("" (lift-if)
+                             (("" (split -)
+                               (("1" (flatten) nil nil)
+                                ("2"
+                                 (flatten)
+                                 (("2"
+                                   (split -)
+                                   (("1"
+                                     (flatten)
+                                     (("1" (assert) nil nil))
+                                     nil)
+                                    ("2"
+                                     (flatten)
+                                     (("2"
+                                       (hide (1 2))
+                                       (("2"
+                                         (skoletin
+                                          -
+                                          :tcc-step
+                                          (assert))
                                          (("2"
                                            (name
                                             "nexti"
@@ -5764,30 +5933,30 @@
                                                        (name
                                                         "pv"
                                                         "proj_vect(IF neari > 0 THEN p(neari - 1)
-                                                                                                 ELSE p(N - 1)
-                                                                                                 ENDIF,
-                                                                                                 IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                                                                                   THEN p(i)
-                                                                                                 ELSE p(nexti)
-                                                                                                 ENDIF,
-                                                                                                 IF neari < N - 1 THEN p(neari + 1)
-                                                                                                 ELSE p(0)
-                                                                                                 ENDIF,
-                                                                                                 BUFF)")
+                                                                                                              ELSE p(N - 1)
+                                                                                                              ENDIF,
+                                                                                                              IF sqv(s - p(i)) <= sqv(s - p(nexti))
+                                                                                                                THEN p(i)
+                                                                                                              ELSE p(nexti)
+                                                                                                              ENDIF,
+                                                                                                              IF neari < N - 1 THEN p(neari + 1)
+                                                                                                              ELSE p(0)
+                                                                                                              ENDIF,
+                                                                                                              BUFF)")
                                                        (("1"
                                                          (replaces -1)
                                                          (("1"
                                                            (name
                                                             "G"
                                                             "perpR(IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                                                                                                 THEN p(i)
-                                                                                                                 ELSE p(nexti)
-                                                                                                                 ENDIF
-                                                                                                                 -
-                                                                                                                 IF neari > 0
-                                                                                                                 THEN p(neari - 1)
-                                                                                                                 ELSE p(N - 1)
-                                                                                                                 ENDIF)")
+                                                                                                                                THEN p(i)
+                                                                                                                                ELSE p(nexti)
+                                                                                                                                ENDIF
+                                                                                                                                -
+                                                                                                                                IF neari > 0
+                                                                                                                                THEN p(neari - 1)
+                                                                                                                                ELSE p(N - 1)
+                                                                                                                                ENDIF)")
                                                            (("1"
                                                              (replaces
                                                               -1)
@@ -5795,56 +5964,56 @@
                                                                (name
                                                                 "H"
                                                                 "(IF NOT det
-                                    (IF neari < N - 1
-                                     THEN p(neari + 1)
-                                     ELSE p(0)
-                                     ENDIF
-                                     -
-                                     IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                     THEN p(i)
-                                     ELSE p(nexti)
-                                     ENDIF,
-                                     IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                     THEN p(i)
-                                     ELSE p(nexti)
-                                     ENDIF
-                                     -
-                                     IF neari > 0
-                                     THEN p(neari - 1)
-                                     ELSE p(N - 1)
-                                     ENDIF)
-                                    <=
-                                    0
-                               THEN IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                    THEN p(i)
-                                    ELSE p(nexti)
-                                    ENDIF
-                                    +
-                                    (-1 * ResolBUFF) * ^(pv)
-                             ELSE IF sqv(s - p(i)) <= sqv(s - p(nexti))
-                                    THEN p(i)
-                                  ELSE p(nexti)
-                                  ENDIF
-                                   +
-                                   (IF abs(pv * ^(G)) <= (BUFF / 100)
-                                    THEN 0
-                                    ELSE ((IF sqv(s - p(i))
-                                              <=
-                                              sqv(s - p(nexti))
-                                           THEN p(i)
-                                           ELSE p(nexti)
-                                           ENDIF
-                                           +
-                                           (-1 * ResolBUFF) * ^(G)
-                                           -
-                                           p(i))
-                                          *
-                                          ^(G))
-                                         /
-                                         (pv * ^(G))
-                                    ENDIF)
-                                    * pv
-                             ENDIF)")
+                                                   (IF neari < N - 1
+                                                    THEN p(neari + 1)
+                                                    ELSE p(0)
+                                                    ENDIF
+                                                    -
+                                                    IF sqv(s - p(i)) <= sqv(s - p(nexti))
+                                                    THEN p(i)
+                                                    ELSE p(nexti)
+                                                    ENDIF,
+                                                    IF sqv(s - p(i)) <= sqv(s - p(nexti))
+                                                    THEN p(i)
+                                                    ELSE p(nexti)
+                                                    ENDIF
+                                                    -
+                                                    IF neari > 0
+                                                    THEN p(neari - 1)
+                                                    ELSE p(N - 1)
+                                                    ENDIF)
+                                                   <=
+                                                   0
+                                              THEN IF sqv(s - p(i)) <= sqv(s - p(nexti))
+                                                   THEN p(i)
+                                                   ELSE p(nexti)
+                                                   ENDIF
+                                                   +
+                                                   (-1 * ResolBUFF) * ^(pv)
+                                            ELSE IF sqv(s - p(i)) <= sqv(s - p(nexti))
+                                                   THEN p(i)
+                                                 ELSE p(nexti)
+                                                 ENDIF
+                                                  +
+                                                  (IF abs(pv * ^(G)) <= (BUFF / 100)
+                                                   THEN 0
+                                                   ELSE ((IF sqv(s - p(i))
+                                                             <=
+                                                             sqv(s - p(nexti))
+                                                          THEN p(i)
+                                                          ELSE p(nexti)
+                                                          ENDIF
+                                                          +
+                                                          (-1 * ResolBUFF) * ^(G)
+                                                          -
+                                                          p(i))
+                                                         *
+                                                         ^(G))
+                                                        /
+                                                        (pv * ^(G))
+                                                   ENDIF)
+                                                   * pv
+                                            ENDIF)")
                                                                (("1"
                                                                  (replaces
                                                                   -1)
@@ -6352,11 +6521,12 @@
                    nil))
                  nil))
                nil)
-              ((IFF const-decl "[bool, bool -> bool]" booleans nil)
+              ((id const-decl "(bijective?[T, T])" identity nil)
+               (bijective? const-decl "bool" functions nil)
+               (IFF const-decl "[bool, bool -> bool]" booleans nil)
                (real nonempty-type-from-decl nil reals nil)
-               (Vect2 type-eq-decl nil vectors_2D_def "vectors/")
+               (Vect2 type-eq-decl nil vectors_2D_def vectors)
                (= const-decl "[T, T -> boolean]" equalities nil)
-               (posnat nonempty-type-eq-decl nil integers nil)
                (number nonempty-type-decl nil numbers nil)
                (number_field_pred const-decl "[number -> boolean]"
                 number_fields nil)
@@ -6373,6 +6543,7 @@
                (>= const-decl "bool" reals nil)
                (nonneg_int nonempty-type-eq-decl nil integers nil)
                (> const-decl "bool" reals nil)
+               (posnat nonempty-type-eq-decl nil integers nil)
                (posreal nonempty-type-eq-decl nil real_types nil)
                (nat nonempty-type-eq-decl nil naturalnumbers nil)
                (< const-decl "bool" reals nil)
@@ -6389,39 +6560,36 @@
                (recovery_point const-decl "Vect2" resolution nil)
                (real_ge_is_total_order name-judgement
                 "(total_order?[real])" real_props nil)
-               (nz_nzv application-judgement "Nz_vector" vectors_2D
-                "vectors/")
-               (real_gt_is_strict_total_order name-judgement
-                "(strict_total_order?[real])" real_props nil)
-               (posint_plus_nnint_is_posint application-judgement
-                "posint" integers nil)
-               (real_le_is_total_order name-judgement
-                "(total_order?[real])" real_props nil)
                (real_lt_is_strict_total_order name-judgement
                 "(strict_total_order?[real])" real_props nil)
+               (real_le_is_total_order name-judgement
+                "(total_order?[real])" real_props nil)
+               (real_gt_is_strict_total_order name-judgement
+                "(strict_total_order?[real])" real_props nil)
+               (nz_nzv application-judgement "Nz_vector" vectors_2D
+                vectors)
                (even_minus_odd_is_odd application-judgement "odd_int"
                 integers nil)
-               (neari skolem-const-decl "naturalnumber" resolution nil)
                (minus_real_is_real application-judgement "real" reals
                 nil)
                (real_minus_real_is_real application-judgement "real"
                 reals nil)
                (perpR_eq_zero formula-decl nil perpendicular_2D
-                "vectors/")
-               (sub_eq_zero formula-decl nil vectors_2D "vectors/")
+                vectors)
+               (sub_eq_zero formula-decl nil vectors_2D vectors)
                (nice_polygon_2D const-decl "bool" polygon_contain nil)
                (acceptable_polygon_2D_def formula-decl nil
                 acceptable_polygon nil)
-               (posreal_plus_nnreal_is_posreal application-judgement
+               (nnreal_plus_posreal_is_posreal application-judgement
                 "posreal" real_types nil)
                (subrange type-eq-decl nil integers nil)
                (posreal_times_posreal_is_posreal application-judgement
                 "posreal" real_types nil)
-               (G skolem-const-decl "Vect2" resolution nil)
-               (nexti skolem-const-decl "naturalnumber" resolution nil)
-               (comp_zero_x formula-decl nil vectors_2D "vectors/")
-               (comp_zero_y formula-decl nil vectors_2D "vectors/")
-               (sqrt_0 formula-decl nil sqrt "reals/")
+               (posint_plus_nnint_is_posint application-judgement
+                "posint" integers nil)
+               (comp_zero_x formula-decl nil vectors_2D vectors)
+               (comp_zero_y formula-decl nil vectors_2D vectors)
+               (sqrt_0 formula-decl nil sqrt reals)
                (nzrat_div_nzrat_is_nzrat application-judgement "nzrat"
                 rationals nil)
                (real_times_real_is_real application-judgement "real"
@@ -6434,34 +6602,32 @@
                 "{j: nonneg_int | j >= i}" real_defs nil)
                (* const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
-               (* const-decl "Vector" vectors_2D "vectors/")
-               (+ const-decl "Vector" vectors_2D "vectors/")
+               (* const-decl "Vector" vectors_2D vectors)
+               (+ const-decl "Vector" vectors_2D vectors)
                (/ const-decl "[numfield, nznum -> numfield]"
                   number_fields nil)
                (nznum nonempty-type-eq-decl nil number_fields nil)
-               (* const-decl "real" vectors_2D "vectors/")
+               (* const-decl "real" vectors_2D vectors)
                (abs const-decl "{n: nonneg_real | n >= m AND n >= -m}"
                     real_defs nil)
-               (perpR const-decl "Vect2" perpendicular_2D "vectors/")
-               (^ const-decl "Normalized" vectors_2D "vectors/")
-               (Normalized type-eq-decl nil vectors_2D "vectors/")
-               (norm const-decl "nnreal" vectors_2D "vectors/")
-               (Nz_vector type-eq-decl nil vectors_2D "vectors/")
+               (perpR const-decl "Vect2" perpendicular_2D vectors)
+               (^ const-decl "Normalized" vectors_2D vectors)
+               (Normalized type-eq-decl nil vectors_2D vectors)
+               (norm const-decl "nnreal" vectors_2D vectors)
+               (Nz_vector type-eq-decl nil vectors_2D vectors)
                (proj_vect const-decl "Nz_vect2" resolution nil)
-               (Nz_vect2 type-eq-decl nil vectors_2D "vectors/")
-               (zero const-decl "Vector" vectors_2D "vectors/")
-               (det const-decl "real" det_2D "vectors/")
-               (- const-decl "Vector" vectors_2D "vectors/")
-               (sqv const-decl "nnreal" vectors_2D "vectors/")
+               (Nz_vect2 type-eq-decl nil vectors_2D vectors)
+               (zero const-decl "Vector" vectors_2D vectors)
+               (det const-decl "real" det_2D vectors)
+               (sqv const-decl "nnreal" vectors_2D vectors)
                (nnreal type-eq-decl nil real_types nil)
-               (Vector type-eq-decl nil vectors_2D "vectors/")
+               (Vector type-eq-decl nil vectors_2D vectors)
                (+ const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
                (IF const-decl "[boolean, T, T -> T]" if_def nil)
-               (naturalnumber type-eq-decl nil naturalnumbers nil)
                (closest_edge def-decl "below(N)" resolution nil)
                (near_any_edge_upto def-decl
-                "{bb: bool | bb IFF (EXISTS (j: upto(i)): near_poly_edge(N, p, s, BUFF, j))}"
+                "{bb: bool | bb IFF EXISTS (j: upto(i)): near_poly_edge(N, p, s, BUFF, j)}"
                 polygon_contain nil)
                (near_poly_edge const-decl "bool" acceptable_polygon
                 nil)
@@ -6471,18 +6637,18 @@
                (- const-decl "[numfield, numfield -> numfield]"
                   number_fields nil)
                (recovery_test_point const-decl "Vect2" resolution nil)
-               (Sign type-eq-decl nil sign "reals/")
+               (Sign type-eq-decl nil sign reals)
                (OR const-decl "[bool, bool -> bool]" booleans nil)
                (nzint nonempty-type-eq-decl nil integers nil)
                (AND const-decl "[bool, bool -> bool]" booleans nil)
+               (proj_vect_nonzero application-judgement "Nz_vect2"
+                resolution nil)
                (nnint_plus_posint_is_posint application-judgement
                 "posint" integers nil)
                (int_minus_int_is_int application-judgement "int"
                 integers nil)
                (real_div_nzreal_is_real application-judgement "real"
                 reals nil)
-               (proj_vect_nonzero application-judgement "Nz_vect2"
-                resolution nil)
                (nzreal_times_nzreal_is_nzreal application-judgement
                 "nzreal" real_types nil)
                (posreal_div_posreal_is_posreal application-judgement
@@ -6491,13 +6657,11 @@
                (- const-decl "[numfield -> numfield]" number_fields
                   nil)
                (numfield nonempty-type-eq-decl nil number_fields nil)
-               (bijective? const-decl "bool" functions nil)
-               (id const-decl "(bijective?[T, T])" identity nil)
                (minus_odd_is_odd application-judgement "odd_int"
                 integers nil)
-               (boolean nonempty-type-decl nil booleans nil)
+               (TRUE const-decl "bool" booleans nil)
                (bool nonempty-type-eq-decl nil booleans nil)
-               (TRUE const-decl "bool" booleans nil))
+               (boolean nonempty-type-decl nil booleans nil))
               nil)
              (inside_recovery_point_def-2 nil 3687787632
               ("" (skeep*)

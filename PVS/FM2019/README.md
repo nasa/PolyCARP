@@ -32,10 +32,9 @@ From the proofs in `interface`,  `winding_number__real_for_basic_props`, and `wi
 
 # Contributors
 * Mariano M. Moscato, NIA, USA
-* [César Muñoz](http://shemesh.larc.nasa.gov/people/cam), NASA, USA
 
 ## Maintainer
-* Mariano M. Moscato, NIA, USA
+* [César Muñoz](http://shemesh.larc.nasa.gov/people/cam), NASA, USA 
 
 # Dependencies
 

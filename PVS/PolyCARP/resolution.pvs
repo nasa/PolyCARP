@@ -28,7 +28,7 @@ eps: VAR Sign
 
   Vect_str(s:Vect2) : string =
      format("(# x := ~a, y := ~a #)",
-          (to_str(s`x),to_str(s`y)))
+          (s`x,s`y))
 
 proj_vect(u,v,w:Vect2,BUFF:posreal): Nz_vect2 =
   IF norm(v-u)<=BUFF OR norm(w-v)<=BUFF THEN (# x:=1,y:=1 #)

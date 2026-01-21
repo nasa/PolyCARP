@@ -5,7 +5,7 @@ BEGIN
 % -------------------------------------------------- 
 
 % --- Importings requested by the user --- 
-IMPORTING float@roundoff_error_props
+IMPORTING float_unbounded@roundoff_error_props
 
 % --- Qed-related importings and axioms --- 
 IMPORTING framac_wp@creal

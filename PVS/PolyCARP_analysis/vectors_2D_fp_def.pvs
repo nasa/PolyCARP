@@ -1,6 +1,6 @@
 vectors_2D_fp_def: THEORY BEGIN
 
-  IMPORTING float@aerr754dp
+  IMPORTING float_unbounded@aerr754dp
 
   Vect2_fp: TYPE = [#  x, y: unb_double #]
 

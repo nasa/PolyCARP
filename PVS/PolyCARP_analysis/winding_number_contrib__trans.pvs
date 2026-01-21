@@ -1,8 +1,8 @@
 winding_number_contrib__trans : THEORY BEGIN
 
   IMPORTING quadrant__trans,
-  	    float@ieee754dp_sub,
-	    float@ieee754dp_mul
+  	    float_unbounded@ieee754dp_sub,
+	    float_unbounded@ieee754dp_mul
 
   P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y, DET: VAR unb_double
   e_THIS_x,e_THIS_y,e_NEXT_x,e_NEXT_y,e_DET: VAR nonneg_real

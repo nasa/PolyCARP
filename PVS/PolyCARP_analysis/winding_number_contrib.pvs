@@ -1,8 +1,8 @@
 winding_number_contrib: THEORY BEGIN
 
-  IMPORTING float@aerr754dp_sub,
-   	    float@aerr754dp_mul,
-  	    quadrant
+  importing float_unbounded@aerr754dp_sub
+  importing float_unbounded@aerr754dp_mul
+  importing quadrant
 
   P_V1_x, P_V1_y, P_V2_x, P_V2_y, S_x, S_y, DET: VAR unb_double
   K,P: VAR int

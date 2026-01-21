@@ -1,6 +1,6 @@
 quadrant: THEORY BEGIN
 
-  IMPORTING float@ieee754dp
+  IMPORTING float_unbounded@ieee754dp
 
   X,Y: VAR unb_double
 

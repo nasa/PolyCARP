@@ -1,6 +1,6 @@
 quadrant__trans_props: THEORY BEGIN
 
-  IMPORTING float@roundoff_error_props
+  IMPORTING float_unbounded@roundoff_error_props
 
   IMPORTING quadrant,
   	    quadrant__real,

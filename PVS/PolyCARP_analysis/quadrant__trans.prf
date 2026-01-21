@@ -1,805 +1,475 @@
-(quadrant__trans
- (nonPosUpperBoundErr_TCC1 0
-  (nonPosUpperBoundErr_TCC1-1 nil 3746956425
-   ("" (then (skeep) (use "greatest_fp_le_nonneg_j")) nil nil)
-   ((greatest_fp_le_nonneg_j judgement-tcc nil roundoff_error_props
-     "float/")
-    (minus_real_is_real application-judgement "real" reals nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (<= const-decl "bool" reals nil)
-    (nonpos_real nonempty-type-eq-decl nil real_types nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil))
-   nil))
- (maybe_int_id_int_l 0
-  (maybe_int_id_int_l-1 nil 3747993184 ("" (grind) nil nil)
-   ((= const-decl "bool" quadrant__trans nil)) shostak))
- (maybe_int_id_int_r 0
-  (maybe_int_id_int_r-1 nil 3747993188 ("" (grind) nil nil)
-   ((= const-decl "bool" quadrant__trans nil)) shostak))
- (quadrant_control_flow_path_warning 0
-  (quadrant_control_flow_path_warning-1 nil 3746969807
-   ("" (skeep)
-    (("" (expand "quadrant_trans")
-      (("" (lift-if 5)
-        (("" (split 5)
-          (("1" (flatten) nil nil)
-           ("2" (flatten)
-            (("2" (split 2)
-              (("1" (flatten) nil nil)
-               ("2" (flatten)
-                (("2" (split 2)
-                  (("1" (flatten) nil nil)
-                   ("2" (flatten)
-                    (("2" (split 2)
-                      (("1" (flatten) nil nil)
-                       ("2" (flatten) (("2" (assert) nil nil)) nil))
-                      nil))
-                    nil))
-                  nil))
-                nil))
-              nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((quadrant_trans const-decl "Maybe[int]" quadrant__trans nil)
-    (trans_fp_guard4 const-decl "bool" quadrant__trans nil)
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
-    (minus_real_is_real application-judgement "real" reals nil))
-   shostak))
- (trans_fp_guard2_simplification 0
-  (trans_fp_guard2_simplification-1 nil 3746963283
-   ("" (skeep)
-    (("" (expand "trans_fp_guard2")
-      (("" (name-this (! 1) (AND = NOT OR <= <))
-        ((""
-          (invoke (case "NOT(%1 AND %2)") (!! 1 1 2 1) (!! 1 1 2 2 2))
-          (("1" (grind) nil nil)
-           ("2" (hide 1)
-            (("2" (unname-this (! -1))
-              (("2" (use "lt_greatest_ge_smallest_contradiction")
-                (("2" (ground) nil nil)) nil))
-              nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((trans_fp_guard2 const-decl "bool" quadrant__trans nil)
-    (< const-decl "bool" float "float/")
-    (<= const-decl "bool" float "float/")
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (real_ge_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (posrat_div_posrat_is_posrat application-judgement "posrat"
-     rationals nil)
-    (posnat_expt application-judgement "posnat" exponentiation nil)
-    (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (int_min application-judgement "{k: int | k <= i AND k <= j}"
-     real_defs nil)
-    (rat_times_rat_is_rat application-judgement "rat" rationals nil)
-    (rat_minus_rat_is_rat application-judgement "rat" rationals nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (min const-decl "{p: real | p <= m AND p <= n}" real_defs nil)
-    (^ const-decl "real" exponentiation nil)
-    (Fminus const-decl "float" float "float/")
-    (Fle? const-decl "bool" float "float/")
-    (Flt? const-decl "bool" float "float/")
-    (expt def-decl "real" exponentiation nil)
-    (posint_exp application-judgement "posint" exponentiation nil)
-    (nnrat_exp application-judgement "nnrat" exponentiation nil)
-    (posrat_exp application-judgement "posrat" exponentiation nil)
-    (posint_plus_nnint_is_posint application-judgement "posint"
-     integers nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (even_times_int_is_even application-judgement "even_int" integers
-     nil)
-    (mult_divides1 application-judgement "(divides(n))" divides nil)
-    (mult_divides2 application-judgement "(divides(m))" divides nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (fresh_3 skolem-const-decl "{X: unb_double |
-         e_Y <= DtoR(X) AND
-          (FORALL Y: e_Y <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (fresh_5 skolem-const-decl "{X: unb_double |
-         DtoR(X) <= fresh_4 AND
-          (FORALL Y: DtoR(Y) <= fresh_4 IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (fresh_4 skolem-const-decl "real" quadrant__trans nil)
-    (lt_greatest_ge_smallest_contradiction formula-decl nil
-     roundoff_error_props "float/")
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     roundoff_error_props "float/")
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (<= const-decl "bool" reals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     roundoff_error_props "float/")
-    (minus_real_is_real application-judgement "real" reals nil)
-    (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil))
-   nil))
- (trans_fp_guard3_simplification 0
-  (trans_fp_guard3_simplification-1 nil 3746963329
-   ("" (skeep)
-    (("" (expand "trans_fp_guard3")
-      (("" (name-this (! 1) (AND = NOT OR <= <))
-        ((""
-          (invoke (case "NOT(%1 AND %2)") (!! 1 1 2 1 1)
-           (!! 1 1 2 2 1))
-          (("1" (grind) nil nil)
-           ("2" (hide 1)
-            (("2" (unname-this (! -1))
-              (("2" (use "lt_greatest_gt_smallest_contradiction") nil
-                nil))
-              nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((trans_fp_guard3 const-decl "bool" quadrant__trans nil)
-    (< const-decl "bool" float "float/")
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (posint_exp application-judgement "posint" exponentiation nil)
-    (nnrat_exp application-judgement "nnrat" exponentiation nil)
-    (posrat_exp application-judgement "posrat" exponentiation nil)
-    (posint_plus_nnint_is_posint application-judgement "posint"
-     integers nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (even_times_int_is_even application-judgement "even_int" integers
-     nil)
-    (mult_divides1 application-judgement "(divides(n))" divides nil)
-    (mult_divides2 application-judgement "(divides(m))" divides nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (fresh_7 skolem-const-decl "{X: unb_double |
-         DtoR(X) <= fresh_6 AND
-          (FORALL Y: DtoR(Y) <= fresh_6 IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (fresh_6 skolem-const-decl "real" quadrant__trans nil)
-    (fresh_10 skolem-const-decl "{X: unb_double |
-         e_X <= DtoR(X) AND
-          (FORALL Y: e_X <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (lt_greatest_gt_smallest_contradiction formula-decl nil
-     roundoff_error_props "float/")
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     roundoff_error_props "float/")
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (<= const-decl "bool" reals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     roundoff_error_props "float/")
-    (minus_real_is_real application-judgement "real" reals nil)
-    (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil))
-   nil))
- (trans_fp_guard4_simplification 0
-  (trans_fp_guard4_simplification-1 nil 3746963382
-   ("" (skeep)
-    (("" (expand "trans_fp_guard4")
-      (("" (name-this (! 1) (AND = NOT OR <= <))
-        ((""
-          (invoke (case "NOT(%1 AND %2)") (!! 1 1 1 1) (!! 1 1 2 1 1))
-          (("1" (grind) nil nil)
-           ("2" (hide 1)
-            (("2" (unname-this (! -1))
-              (("2" (use "lt_greatest_gt_smallest_contradiction") nil
-                nil))
-              nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((trans_fp_guard4 const-decl "bool" quadrant__trans nil)
-    (< const-decl "bool" float "float/")
-    (NOT const-decl "[bool -> bool]" booleans nil)
-    (posint_exp application-judgement "posint" exponentiation nil)
-    (nnrat_exp application-judgement "nnrat" exponentiation nil)
-    (posrat_exp application-judgement "posrat" exponentiation nil)
-    (posint_plus_nnint_is_posint application-judgement "posint"
-     integers nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (even_times_int_is_even application-judgement "even_int" integers
-     nil)
-    (mult_divides1 application-judgement "(divides(n))" divides nil)
-    (mult_divides2 application-judgement "(divides(m))" divides nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (fresh_12 skolem-const-decl "{X: unb_double |
-         DtoR(X) <= fresh_11 AND
-          (FORALL Y: DtoR(Y) <= fresh_11 IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (fresh_11 skolem-const-decl "real" quadrant__trans nil)
-    (fresh_15 skolem-const-decl "{X: unb_double |
-         e_X <= DtoR(X) AND
-          (FORALL Y: e_X <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (lt_greatest_gt_smallest_contradiction formula-decl nil
-     roundoff_error_props "float/")
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     roundoff_error_props "float/")
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (<= const-decl "bool" reals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     roundoff_error_props "float/")
-    (minus_real_is_real application-judgement "real" reals nil)
-    (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil))
-   nil))
- (trans_fp_case2_simplification 0
-  (trans_fp_case2_simplification-1 nil 3746963434
-   ("" (skeep)
-    (("" (rewrite "trans_fp_guard2_simplification")
-      (("" (expand "trans_fp_guard1")
-        (("" (name-this (! 1) (AND = NOT OR <= <))
+(|quadrant__trans|
+ (|nonPosUpperBoundErr_TCC1| 0
+  (|nonPosUpperBoundErr_TCC1-1| NIL 3746956425
+   ("" (THEN (SKEEP) (USE "greatest_fp_le_nonneg_j")) NIL NIL)
+   ((|greatest_fp_le_nonneg_j| JUDGEMENT-TCC NIL |roundoff_error_props|
+     |float_unbounded|))
+   NIL
+   (|nonPosUpperBoundErr| SUBTYPE
+    "roundoff_error_props.greatest_fp_le((number_fields.-)(quadrant__trans.e))"
+    "nonpos_unbdp" (14 47 14 65))))
+ (|maybe_int_id_int_l| 0
+  (|maybe_int_id_int_l-1| |nil| 3747993184 ("" (GRIND) NIL NIL) NIL SHOSTAK))
+ (|maybe_int_id_int_r| 0
+  (|maybe_int_id_int_r-1| |nil| 3747993188 ("" (GRIND) NIL NIL) NIL SHOSTAK))
+ (|quadrant_control_flow_path_warning| 0
+  (|quadrant_control_flow_path_warning-1| |nil| 3746969807
+   ("" (SKEEP)
+    (("" (EXPAND "quadrant_trans")
+      (("" (LIFT-IF 5)
+        (("" (SPLIT 5)
+          (("1" (FLATTEN) NIL NIL)
+           ("2" (FLATTEN)
+            (("2" (SPLIT 2)
+              (("1" (FLATTEN) NIL NIL)
+               ("2" (FLATTEN)
+                (("2" (SPLIT 2)
+                  (("1" (FLATTEN) NIL NIL)
+                   ("2" (FLATTEN)
+                    (("2" (SPLIT 2)
+                      (("1" (FLATTEN) NIL NIL)
+                       ("2" (FLATTEN) (("2" (ASSERT) NIL NIL)) NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|smallest_fp_ge_nonneg_j| APPLICATION-JUDGEMENT "nonneg_unbdp"
+     |roundoff_error_props| |float_unbounded|))
+   SHOSTAK))
+ (|trans_fp_guard2_simplification| 0
+  (|trans_fp_guard2_simplification-1| |nil| 3746963283
+   ("" (SKEEP)
+    (("" (EXPAND "trans_fp_guard2")
+      (("" (NAME-THIS (! 1) (AND = NOT OR <= <))
+        (("" (INVOKE (CASE "NOT(%1 AND %2)") (!! 1 1 2 1) (!! 1 1 2 2 2))
+          (("1" (GRIND) NIL NIL)
+           ("2" (HIDE 1)
+            (("2" (UNNAME-THIS (! -1))
+              (("2" (USE "lt_greatest_ge_smallest_contradiction")
+                (("2" (GROUND) NIL NIL)) NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|Fminus| CONST-DECL "float" |float| |float_unbounded|)
+    (|Fle?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|Flt?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|lt_greatest_ge_smallest_contradiction| FORMULA-DECL NIL
+     |roundoff_error_props| |float_unbounded|)
+    (|smallest_fp_ge| CONST-DECL "{X: unb_double |
+   x <= DtoR(X) AND FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y)}"
+     |roundoff_error_props| |float_unbounded|)
+    (|smallest_fp_ge_nonneg_j| APPLICATION-JUDGEMENT "nonneg_unbdp"
+     |roundoff_error_props| |float_unbounded|)
+    (|float| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Format| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Fcanonic?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|double_precision_format| CONST-DECL "Format" |ieee754dp|
+     |float_unbounded|)
+    (|DtoR| CONST-DECL "real" |ieee754dp| |float_unbounded|)
+    (|greatest_fp_le| CONST-DECL "{X: unb_double |
+   DtoR(X) <= x AND FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X)}"
+     |roundoff_error_props| |float_unbounded|))
+   NIL))
+ (|trans_fp_guard3_simplification| 0
+  (|trans_fp_guard3_simplification-1| |nil| 3746963329
+   ("" (SKEEP)
+    (("" (EXPAND "trans_fp_guard3")
+      (("" (NAME-THIS (! 1) (AND = NOT OR <= <))
+        (("" (INVOKE (CASE "NOT(%1 AND %2)") (!! 1 1 2 1 1) (!! 1 1 2 2 1))
+          (("1" (GRIND) NIL NIL)
+           ("2" (HIDE 1)
+            (("2" (UNNAME-THIS (! -1))
+              (("2" (USE "lt_greatest_gt_smallest_contradiction") NIL NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|lt_greatest_gt_smallest_contradiction| FORMULA-DECL NIL
+     |roundoff_error_props| |float_unbounded|)
+    (|smallest_fp_ge| CONST-DECL "{X: unb_double |
+   x <= DtoR(X) AND FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y)}"
+     |roundoff_error_props| |float_unbounded|)
+    (|smallest_fp_ge_nonneg_j| APPLICATION-JUDGEMENT "nonneg_unbdp"
+     |roundoff_error_props| |float_unbounded|)
+    (|float| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Format| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Fcanonic?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|double_precision_format| CONST-DECL "Format" |ieee754dp|
+     |float_unbounded|)
+    (|DtoR| CONST-DECL "real" |ieee754dp| |float_unbounded|)
+    (|greatest_fp_le| CONST-DECL "{X: unb_double |
+   DtoR(X) <= x AND FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X)}"
+     |roundoff_error_props| |float_unbounded|))
+   NIL))
+ (|trans_fp_guard4_simplification| 0
+  (|trans_fp_guard4_simplification-1| |nil| 3746963382
+   ("" (SKEEP)
+    (("" (EXPAND "trans_fp_guard4")
+      (("" (NAME-THIS (! 1) (AND = NOT OR <= <))
+        (("" (INVOKE (CASE "NOT(%1 AND %2)") (!! 1 1 1 1) (!! 1 1 2 1 1))
+          (("1" (GRIND) NIL NIL)
+           ("2" (HIDE 1)
+            (("2" (UNNAME-THIS (! -1))
+              (("2" (USE "lt_greatest_gt_smallest_contradiction") NIL NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|lt_greatest_gt_smallest_contradiction| FORMULA-DECL NIL
+     |roundoff_error_props| |float_unbounded|)
+    (|smallest_fp_ge| CONST-DECL "{X: unb_double |
+   x <= DtoR(X) AND FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y)}"
+     |roundoff_error_props| |float_unbounded|)
+    (|smallest_fp_ge_nonneg_j| APPLICATION-JUDGEMENT "nonneg_unbdp"
+     |roundoff_error_props| |float_unbounded|)
+    (|float| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Format| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Fcanonic?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|double_precision_format| CONST-DECL "Format" |ieee754dp|
+     |float_unbounded|)
+    (|DtoR| CONST-DECL "real" |ieee754dp| |float_unbounded|)
+    (|greatest_fp_le| CONST-DECL "{X: unb_double |
+   DtoR(X) <= x AND FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X)}"
+     |roundoff_error_props| |float_unbounded|))
+   NIL))
+ (|trans_fp_case2_simplification| 0
+  (|trans_fp_case2_simplification-1| |nil| 3746963434
+   ("" (SKEEP)
+    (("" (REWRITE "trans_fp_guard2_simplification")
+      (("" (EXPAND "trans_fp_guard1")
+        (("" (NAME-THIS (! 1) (AND = NOT OR <= <))
           ((""
-            (invoke (case "(%1 AND %2 > %3) = %1") (! 1 1 1 2)
-             (! 1 1 2 1 1 1) (! 1 1 2 1 1 2))
-            (("1" (grind) nil nil)
-             ("2" (hide 2)
-              (("2" (invoke (case "%1 <= %2") (! 1 1 1 2) (! 1 1 2 1))
-                (("1" (grind-reals)
-                  (("1" (lemma "Flt_Fle_Flt")
-                    (("1" (expand ">")
-                      (("1" (rewrite "<" :dir rl)
-                        (("1" (inst? -1 :where 1)
-                          (("1" (inst? -1 :where -2)
-                            (("1" (assert) nil nil)) nil))
-                          nil))
-                        nil))
-                      nil))
-                    nil))
-                  nil)
-                 ("2" (hide 2)
-                  (("2" (unname-this (! 1))
-                    (("2" (use "DtoR_inc")
-                      (("2" (replace -1 :hide? t)
-                        (("2" (use "greatest_fp_le_is_le")
-                          (("2" (use "smallest_fp_ge_is_ge")
-                            (("2" (assert) nil nil)) nil))
-                          nil))
-                        nil))
-                      nil))
-                    nil))
-                  nil))
-                nil))
-              nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((trans_fp_guard2_simplification formula-decl nil quadrant__trans
-     nil)
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (number nonempty-type-decl nil numbers nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (minus_real_is_real application-judgement "real" reals nil)
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     roundoff_error_props "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (<= const-decl "bool" reals nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     roundoff_error_props "float/")
-    (DtoR_inc formula-decl nil ieee754dp "float/")
-    (greatest_fp_le_is_le formula-decl nil roundoff_error_props
-     "float/")
-    (smallest_fp_ge_is_ge formula-decl nil roundoff_error_props
-     "float/")
-    (fresh_19 skolem-const-decl "{X: unb_double |
-         e_X <= DtoR(X) AND
-          (FORALL Y: e_X <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (fresh_17 skolem-const-decl "real" quadrant__trans nil)
-    (fresh_18 skolem-const-decl "{X: unb_double |
-         DtoR(X) <= fresh_17 AND
-          (FORALL Y: DtoR(Y) <= fresh_17 IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (TRUE const-decl "bool" booleans nil)
-    (Flt_Fle_Flt formula-decl nil float "float/")
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (mult_divides2 application-judgement "(divides(m))" divides nil)
-    (mult_divides1 application-judgement "(divides(n))" divides nil)
-    (even_times_int_is_even application-judgement "even_int" integers
-     nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (posint_plus_nnint_is_posint application-judgement "posint"
-     integers nil)
-    (posrat_exp application-judgement "posrat" exponentiation nil)
-    (nnrat_exp application-judgement "nnrat" exponentiation nil)
-    (posint_exp application-judgement "posint" exponentiation nil)
-    (posint_times_posint_is_posint application-judgement "posint"
-     integers nil)
-    (expt def-decl "real" exponentiation nil)
-    (<= const-decl "bool" float "float/")
-    (Fle? const-decl "bool" float "float/")
-    (Flt? const-decl "bool" float "float/")
-    (Fminus const-decl "float" float "float/")
-    (^ const-decl "real" exponentiation nil)
-    (min const-decl "{p: real | p <= m AND p <= n}" real_defs nil)
-    (real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (rat_minus_rat_is_rat application-judgement "rat" rationals nil)
-    (rat_times_rat_is_rat application-judgement "rat" rationals nil)
-    (int_min application-judgement "{k: int | k <= i AND k <= j}"
-     real_defs nil)
-    (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (posnat_expt application-judgement "posnat" exponentiation nil)
-    (posrat_div_posrat_is_posrat application-judgement "posrat"
-     rationals nil)
-    (real_ge_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (< const-decl "bool" float "float/")
-    (> const-decl "bool" float "float/")
-    (trans_fp_guard1 const-decl "bool" quadrant__trans nil))
-   nil))
- (trans_fp_case3_simplification 0
-  (trans_fp_case3_simplification-1 nil 3746963475
-   ("" (skeep)
-    (("" (rewrite "trans_fp_guard3_simplification")
-      (("" (rewrite "trans_fp_guard2_simplification")
-        (("" (expand "trans_fp_guard1")
-          (("" (name-this (! 1) (AND = NOT OR <= <))
+            (INVOKE (CASE "(%1 AND %2 > %3) = %1") (! 1 1 1 2) (! 1 1 2 1 1 1)
+             (! 1 1 2 1 1 2))
+            (("1" (GRIND) NIL NIL)
+             ("2" (HIDE 2)
+              (("2" (INVOKE (CASE "%1 <= %2") (! 1 1 1 2) (! 1 1 2 1))
+                (("1" (GRIND-REALS)
+                  (("1" (LEMMA "Flt_Fle_Flt")
+                    (("1" (EXPAND ">")
+                      (("1" (REWRITE "<" :DIR RL)
+                        (("1" (INST? -1 :WHERE 1)
+                          (("1" (INST? -1 :WHERE -2)
+                            (("1" (ASSERT)
+                              (("1" (EXPAND "<") (("1" (PROPAX) NIL NIL)) NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL)
+                 ("2" (HIDE 2)
+                  (("2" (UNNAME-THIS (! 1))
+                    (("2" (USE "DtoR_inc")
+                      (("2" (REPLACE -1 :HIDE? T)
+                        (("2" (USE "greatest_fp_le_is_le")
+                          (("2" (USE "smallest_fp_ge_is_ge")
+                            (("2" (ASSERT) NIL NIL)) NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|float| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Format| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Fcanonic?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|double_precision_format| CONST-DECL "Format" |ieee754dp|
+     |float_unbounded|)
+    (|unb_double| NONEMPTY-TYPE-EQ-DECL NIL |ieee754dp| |float_unbounded|)
+    (|smallest_fp_ge_nonneg_j| APPLICATION-JUDGEMENT "nonneg_unbdp"
+     |roundoff_error_props| |float_unbounded|)
+    (|smallest_fp_ge| CONST-DECL "{X: unb_double |
+   x <= DtoR(X) AND FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y)}"
+     |roundoff_error_props| |float_unbounded|)
+    (|DtoR| CONST-DECL "real" |ieee754dp| |float_unbounded|)
+    (|greatest_fp_le| CONST-DECL "{X: unb_double |
+   DtoR(X) <= x AND FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X)}"
+     |roundoff_error_props| |float_unbounded|)
+    (|DtoR_inc| FORMULA-DECL NIL |ieee754dp| |float_unbounded|)
+    (|greatest_fp_le_is_le| FORMULA-DECL NIL |roundoff_error_props|
+     |float_unbounded|)
+    (|smallest_fp_ge_is_ge| FORMULA-DECL NIL |roundoff_error_props|
+     |float_unbounded|)
+    (< MACRO-DECL "bool" |ieee754dp| |float_unbounded|)
+    (|Flt_Fle_Flt| FORMULA-DECL NIL |float| |float_unbounded|)
+    (|Fminus| CONST-DECL "float" |float| |float_unbounded|)
+    (|Flt?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|Fle?| CONST-DECL "bool" |float| |float_unbounded|)
+    (<= CONST-DECL "bool" |float| |float_unbounded|)
+    (> CONST-DECL "bool" |float| |float_unbounded|)
+    (< CONST-DECL "bool" |float| |float_unbounded|))
+   NIL))
+ (|trans_fp_case3_simplification| 0
+  (|trans_fp_case3_simplification-1| |nil| 3746963475
+   ("" (SKEEP)
+    (("" (REWRITE "trans_fp_guard3_simplification")
+      (("" (REWRITE "trans_fp_guard2_simplification")
+        (("" (EXPAND "trans_fp_guard1")
+          (("" (NAME-THIS (! 1) (AND = NOT OR <= <))
             ((""
-              (invoke (case "(%1 AND %2 > %3) = %1") (! 1 1 1 2)
+              (INVOKE (CASE "(%1 AND %2 > %3) = %1") (! 1 1 1 2)
                (! 1 1 2 1 1 1 1) (! 1 1 2 1 1 1 2))
-              (("1" (grind) nil nil)
-               ("2" (hide 2)
-                (("2"
-                  (invoke (case "%1 <= %2") (! 1 1 1 2) (! 1 1 2 1))
-                  (("1" (grind-reals)
-                    (("1" (lemma "Flt_Fle_Flt")
-                      (("1" (expand ">")
-                        (("1" (rewrite "<" :dir rl)
-                          (("1" (inst? -1 :where 1)
-                            (("1" (inst? -1 :where -2)
-                              (("1" (assert) nil nil)) nil))
-                            nil))
-                          nil))
-                        nil))
-                      nil))
-                    nil)
-                   ("2" (hide 2)
-                    (("2" (unname-this (! 1))
-                      (("2" (use "DtoR_inc")
-                        (("2" (replace -1 :hide? t)
-                          (("2" (use "greatest_fp_le_is_le")
-                            (("2" (use "smallest_fp_ge_is_ge")
-                              (("2" (assert) nil nil)) nil))
-                            nil))
-                          nil))
-                        nil))
-                      nil))
-                    nil))
-                  nil))
-                nil))
-              nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((trans_fp_guard3_simplification formula-decl nil quadrant__trans
-     nil)
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (number nonempty-type-decl nil numbers nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (minus_real_is_real application-judgement "real" reals nil)
-    (trans_fp_guard1 const-decl "bool" quadrant__trans nil)
-    (> const-decl "bool" float "float/")
-    (< const-decl "bool" float "float/")
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (real_ge_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (posrat_div_posrat_is_posrat application-judgement "posrat"
-     rationals nil)
-    (posnat_expt application-judgement "posnat" exponentiation nil)
-    (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (int_min application-judgement "{k: int | k <= i AND k <= j}"
-     real_defs nil)
-    (rat_times_rat_is_rat application-judgement "rat" rationals nil)
-    (rat_minus_rat_is_rat application-judgement "rat" rationals nil)
-    (real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (min const-decl "{p: real | p <= m AND p <= n}" real_defs nil)
-    (^ const-decl "real" exponentiation nil)
-    (Fminus const-decl "float" float "float/")
-    (Flt? const-decl "bool" float "float/")
-    (Fle? const-decl "bool" float "float/")
-    (<= const-decl "bool" float "float/")
-    (expt def-decl "real" exponentiation nil)
-    (posint_times_posint_is_posint application-judgement "posint"
-     integers nil)
-    (posint_exp application-judgement "posint" exponentiation nil)
-    (nnrat_exp application-judgement "nnrat" exponentiation nil)
-    (posrat_exp application-judgement "posrat" exponentiation nil)
-    (posint_plus_nnint_is_posint application-judgement "posint"
-     integers nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (even_times_int_is_even application-judgement "even_int" integers
-     nil)
-    (mult_divides1 application-judgement "(divides(n))" divides nil)
-    (mult_divides2 application-judgement "(divides(m))" divides nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (Flt_Fle_Flt formula-decl nil float "float/")
-    (TRUE const-decl "bool" booleans nil)
-    (fresh_23 skolem-const-decl "{X: unb_double |
-         DtoR(X) <= fresh_22 AND
-          (FORALL Y: DtoR(Y) <= fresh_22 IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (fresh_22 skolem-const-decl "real" quadrant__trans nil)
-    (fresh_24 skolem-const-decl "{X: unb_double |
-         e_Y <= DtoR(X) AND
-          (FORALL Y: e_Y <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (smallest_fp_ge_is_ge formula-decl nil roundoff_error_props
-     "float/")
-    (greatest_fp_le_is_le formula-decl nil roundoff_error_props
-     "float/")
-    (DtoR_inc formula-decl nil ieee754dp "float/")
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     roundoff_error_props "float/")
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     roundoff_error_props "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (<= const-decl "bool" reals nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
-    (trans_fp_guard2_simplification formula-decl nil quadrant__trans
-     nil))
-   nil))
- (trans_fp_case4_simplification 0
-  (trans_fp_case4_simplification-1 nil 3746963516
-   ("" (skeep)
-    (("" (rewrite "trans_fp_guard4_simplification")
-      (("" (rewrite "trans_fp_guard3_simplification")
-        (("" (rewrite "trans_fp_guard2_simplification")
-          (("" (expand "trans_fp_guard1")
-            (("" (name-this (! 1) (AND = NOT OR <= <))
+              (("1" (GRIND) NIL NIL)
+               ("2" (HIDE 2)
+                (("2" (INVOKE (CASE "%1 <= %2") (! 1 1 1 2) (! 1 1 2 1))
+                  (("1" (GRIND-REALS)
+                    (("1" (LEMMA "Flt_Fle_Flt")
+                      (("1" (EXPAND ">")
+                        (("1" (REWRITE "<" :DIR RL)
+                          (("1" (INST? -1 :WHERE 1)
+                            (("1" (INST? -1 :WHERE -2)
+                              (("1" (EXPAND "<")
+                                (("1" (ASSERT)
+                                  (("1" (EXPAND "<") (("1" (PROPAX) NIL NIL))
+                                    NIL))
+                                  NIL))
+                                NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL)
+                   ("2" (HIDE 2)
+                    (("2" (UNNAME-THIS (! 1))
+                      (("2" (USE "DtoR_inc")
+                        (("2" (REPLACE -1 :HIDE? T)
+                          (("2" (USE "greatest_fp_le_is_le")
+                            (("2" (USE "smallest_fp_ge_is_ge")
+                              (("2" (ASSERT) NIL NIL)) NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|trans_fp_guard3_simplification| FORMULA-DECL NIL |quadrant__trans| NIL)
+    (|int| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|float| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|nat| NONEMPTY-TYPE-EQ-DECL NIL |naturalnumbers| NIL)
+    (|above| NONEMPTY-TYPE-EQ-DECL NIL |integers| NIL)
+    (|Format| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|Fcanonic?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|double_precision_format| CONST-DECL "Format" |ieee754dp|
+     |float_unbounded|)
+    (|unb_double| NONEMPTY-TYPE-EQ-DECL NIL |ieee754dp| |float_unbounded|)
+    (|number| NONEMPTY-TYPE-DECL NIL |numbers| NIL)
+    (|number_field_pred| CONST-DECL "[number -> boolean]" |number_fields| NIL)
+    (|number_field| NONEMPTY-TYPE-FROM-DECL NIL |number_fields| NIL)
+    (|real_pred| CONST-DECL "[number_field -> boolean]" |reals| NIL)
+    (|real| NONEMPTY-TYPE-FROM-DECL NIL |reals| NIL)
+    (>= CONST-DECL "bool" |reals| NIL)
+    (|nonneg_real| NONEMPTY-TYPE-EQ-DECL NIL |real_types| NIL)
+    (|minus_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|trans_fp_guard1| CONST-DECL "bool" |quadrant__trans| NIL)
+    (< CONST-DECL "bool" |float| |float_unbounded|)
+    (> CONST-DECL "bool" |float| |float_unbounded|)
+    (|minus_nzint_is_nzint| APPLICATION-JUDGEMENT "nzint" |integers| NIL)
+    (|real_le_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|posnat_expt| APPLICATION-JUDGEMENT "posnat" |exponentiation| NIL)
+    (|real_ge_is_total_order| NAME-JUDGEMENT "(total_order?[real])"
+     |real_props| NIL)
+    (|real_gt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (|int_min| APPLICATION-JUDGEMENT "{k: int | k <= i AND k <= j}" |real_defs|
+     NIL)
+    (|rat_times_rat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|rat_minus_rat_is_rat| APPLICATION-JUDGEMENT "rat" |rationals| NIL)
+    (|real_lt_is_strict_total_order| NAME-JUDGEMENT
+     "(strict_total_order?[real])" |real_props| NIL)
+    (<= CONST-DECL "bool" |float| |float_unbounded|)
+    (|Fle?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|Flt?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|Fminus| CONST-DECL "float" |float| |float_unbounded|)
+    (^ CONST-DECL "real" |exponentiation| NIL)
+    (|min| CONST-DECL "{p: real | p <= m AND p <= n}" |real_defs| NIL)
+    (|int_times_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|expt| DEF-DECL "real" |exponentiation| NIL)
+    (|posint_times_posint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|posrat_exp| APPLICATION-JUDGEMENT "posrat" |exponentiation| NIL)
+    (|posint_exp| APPLICATION-JUDGEMENT "posint" |exponentiation| NIL)
+    (|posint_plus_nnint_is_posint| APPLICATION-JUDGEMENT "posint" |integers|
+     NIL)
+    (|int_minus_int_is_int| APPLICATION-JUDGEMENT "int" |integers| NIL)
+    (|even_times_int_is_even| APPLICATION-JUDGEMENT "even_int" |integers| NIL)
+    (|real_minus_real_is_real| APPLICATION-JUDGEMENT "real" |reals| NIL)
+    (|Flt_Fle_Flt| FORMULA-DECL NIL |float| |float_unbounded|)
+    (< MACRO-DECL "bool" |ieee754dp| |float_unbounded|)
+    (TRUE CONST-DECL "bool" |booleans| NIL)
+    (|fresh_8| SKOLEM-CONST-DECL "{X: unb_double |
+   DtoR(X) <= fresh_7 AND
+    FORALL (Y: unb_double): DtoR(Y) <= fresh_7 IMPLIES DtoR(Y) <= DtoR(X)}"
+     |quadrant__trans| NIL)
+    (|fresh_7| SKOLEM-CONST-DECL "real" |quadrant__trans| NIL)
+    (|fresh_9| SKOLEM-CONST-DECL "{x:
+   {X: unb_double |
+      e_Y <= DtoR(X) AND
+       FORALL (Y: unb_double): e_Y <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y)} |
+   integer_pred(x`Fexp) AND
+    rational_pred(x`Fexp) AND
+     real_pred(x`Fexp) AND number_field_pred(x`Fexp)}"
+     |quadrant__trans| NIL)
+    (|smallest_fp_ge_is_ge| FORMULA-DECL NIL |roundoff_error_props|
+     |float_unbounded|)
+    (|greatest_fp_le_is_le| FORMULA-DECL NIL |roundoff_error_props|
+     |float_unbounded|)
+    (|DtoR_inc| FORMULA-DECL NIL |ieee754dp| |float_unbounded|)
+    (|smallest_fp_ge| CONST-DECL "{X: unb_double |
+   x <= DtoR(X) AND FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y)}"
+     |roundoff_error_props| |float_unbounded|)
+    (|rational_pred| CONST-DECL "[real -> boolean]" |rationals| NIL)
+    (|rational| NONEMPTY-TYPE-FROM-DECL NIL |rationals| NIL)
+    (|integer_pred| CONST-DECL "[rational -> boolean]" |integers| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (<= CONST-DECL "bool" |reals| NIL)
+    (|DtoR| CONST-DECL "real" |ieee754dp| |float_unbounded|)
+    (IMPLIES CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (|greatest_fp_le| CONST-DECL "{X: unb_double |
+   DtoR(X) <= x AND FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X)}"
+     |roundoff_error_props| |float_unbounded|)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|numfield| NONEMPTY-TYPE-EQ-DECL NIL |number_fields| NIL)
+    (- CONST-DECL "[numfield -> numfield]" |number_fields| NIL)
+    (|trans_fp_guard2_simplification| FORMULA-DECL NIL |quadrant__trans| NIL)
+    (|smallest_fp_ge_nonneg_j| APPLICATION-JUDGEMENT "nonneg_unbdp"
+     |roundoff_error_props| |float_unbounded|))
+   NIL))
+ (|trans_fp_case4_simplification| 0
+  (|trans_fp_case4_simplification-1| |nil| 3746963516
+   ("" (SKEEP)
+    (("" (REWRITE "trans_fp_guard4_simplification")
+      (("" (REWRITE "trans_fp_guard3_simplification")
+        (("" (REWRITE "trans_fp_guard2_simplification")
+          (("" (EXPAND "trans_fp_guard1")
+            (("" (NAME-THIS (! 1) (AND = NOT OR <= <))
               ((""
-                (invoke (case "(%1 AND %3 < %2) = %1") (!! 1 1 1 2)
+                (INVOKE (CASE "(%1 AND %3 < %2) = %1") (!! 1 1 1 2)
                  (!! 1 1 2 2 1 1 2 1) (!! 1 1 2 2 1 1 2 2))
                 (("1"
-                  (invoke (case "(%1 AND %3 < %2) = %1") (!! 1 1 1 1)
+                  (INVOKE (CASE "(%1 AND %3 < %2) = %1") (!! 1 1 1 1)
                    (!! 1 1 2 2 2 1 2 1) (!! 1 1 1 1 1))
-                  (("1" (grind) nil nil)
-                   ("2" (hide-all-but 1)
-                    (("2"
-                      (invoke (case "%1 <= %2") (! 1 1 1 2)
-                       (! 1 1 2 2))
-                      (("1" (grind-reals)
-                        (("1" (lemma "Flt_Fle_Flt")
-                          (("1" (inst? -1 :where 1)
-                            (("1" (inst? -1 :where -2)
-                              (("1" (assert) nil nil)) nil))
-                            nil))
-                          nil))
-                        nil)
-                       ("2" (hide 2)
-                        (("2" (unname-this (! 1))
-                          (("2" (use "DtoR_inc")
-                            (("2" (replace -1 :hide? t)
-                              (("2"
-                                (use "greatest_fp_le_is_le")
-                                (("2"
-                                  (use "smallest_fp_ge_is_ge")
-                                  (("2" (assert) nil nil))
-                                  nil))
-                                nil))
-                              nil))
-                            nil))
-                          nil))
-                        nil))
-                      nil))
-                    nil))
-                  nil)
-                 ("2" (hide-all-but 1)
-                  (("2"
-                    (invoke (case "%2 <= %1") (! 1 1 1 1) (! 1 1 2 1))
-                    (("1" (grind-reals)
-                      (("1" (unname-this (! 1))
-                        (("1" (use "Fle_definition")
-                          (("1" (inst -1 "double_precision_format")
-                            (("1" (split -1)
-                              (("1"
-                                (replace -1 :hide? t)
-                                (("1"
-                                  (assert)
-                                  (("1"
-                                    (apply-transitivity 1 -1 -2 "Flt")
-                                    nil
-                                    nil))
-                                  nil))
-                                nil)
-                               ("2" (assert) nil nil)
-                               ("3" (assert) nil nil))
-                              nil))
-                            nil))
-                          nil))
-                        nil))
-                      nil)
-                     ("2" (hide 2)
-                      (("2" (unname-this (! 1))
-                        (("2" (use "DtoR_inc")
-                          (("2" (replace -1 :hide? t)
-                            (("2" (use "greatest_fp_le_is_le")
-                              (("2"
-                                (use "smallest_fp_ge_is_ge")
-                                (("2" (assert) nil nil))
-                                nil))
-                              nil))
-                            nil))
-                          nil))
-                        nil))
-                      nil))
-                    nil))
-                  nil))
-                nil))
-              nil))
-            nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((trans_fp_guard4_simplification formula-decl nil quadrant__trans
-     nil)
-    (int nonempty-type-eq-decl nil integers nil)
-    (float type-eq-decl nil float "float/")
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (above nonempty-type-eq-decl nil integers nil)
-    (Format type-eq-decl nil float "float/")
-    (boolean nonempty-type-decl nil booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (Fcanonic? const-decl "bool" float "float/")
-    (double_precision_format const-decl "Format" ieee754dp "float/")
-    (unb_double type-eq-decl nil ieee754dp "float/")
-    (number nonempty-type-decl nil numbers nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (>= const-decl "bool" reals nil)
-    (nonneg_real nonempty-type-eq-decl nil real_types nil)
-    (smallest_fp_ge_nonneg_j application-judgement "nonneg_unbdp"
-     roundoff_error_props "float/")
-    (minus_real_is_real application-judgement "real" reals nil)
-    (trans_fp_guard2_simplification formula-decl nil quadrant__trans
-     nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (- const-decl "[numfield -> numfield]" number_fields nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (<= const-decl "bool" reals nil)
-    (DtoR const-decl "real" ieee754dp "float/")
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (greatest_fp_le const-decl "{X: unb_double |
-         DtoR(X) <= x AND
-          (FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X))}"
-     roundoff_error_props "float/")
-    (smallest_fp_ge const-decl "{X: unb_double |
-         x <= DtoR(X) AND
-          (FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     roundoff_error_props "float/")
-    (fresh_28 skolem-const-decl "{X: unb_double |
-         e_X <= DtoR(X) AND
-          (FORALL Y: e_X <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (Fle_definition formula-decl nil float "float/")
-    (Flt_transitive formula-decl nil float "float/")
-    (transitive? const-decl "bool" relations nil)
-    (fresh_29 skolem-const-decl "real" quadrant__trans nil)
-    (fresh_30 skolem-const-decl "{X: unb_double |
-         DtoR(X) <= fresh_29 AND
-          (FORALL Y: DtoR(Y) <= fresh_29 IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (real_ge_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (posrat_div_posrat_is_posrat application-judgement "posrat"
-     rationals nil)
-    (posnat_expt application-judgement "posnat" exponentiation nil)
-    (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (int_min application-judgement "{k: int | k <= i AND k <= j}"
-     real_defs nil)
-    (rat_times_rat_is_rat application-judgement "rat" rationals nil)
-    (rat_minus_rat_is_rat application-judgement "rat" rationals nil)
-    (real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (min const-decl "{p: real | p <= m AND p <= n}" real_defs nil)
-    (^ const-decl "real" exponentiation nil)
-    (Fminus const-decl "float" float "float/")
-    (Flt? const-decl "bool" float "float/")
-    (Fle? const-decl "bool" float "float/")
-    (<= const-decl "bool" float "float/")
-    (expt def-decl "real" exponentiation nil)
-    (posint_times_posint_is_posint application-judgement "posint"
-     integers nil)
-    (posint_exp application-judgement "posint" exponentiation nil)
-    (nnrat_exp application-judgement "nnrat" exponentiation nil)
-    (posrat_exp application-judgement "posrat" exponentiation nil)
-    (posint_plus_nnint_is_posint application-judgement "posint"
-     integers nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (even_times_int_is_even application-judgement "even_int" integers
-     nil)
-    (mult_divides1 application-judgement "(divides(n))" divides nil)
-    (mult_divides2 application-judgement "(divides(m))" divides nil)
-    (real_minus_real_is_real application-judgement "real" reals nil)
-    (Flt_Fle_Flt formula-decl nil float "float/")
-    (TRUE const-decl "bool" booleans nil)
-    (fresh_27 skolem-const-decl "{X: unb_double |
-         DtoR(X) <= fresh_26 AND
-          (FORALL Y: DtoR(Y) <= fresh_26 IMPLIES DtoR(Y) <= DtoR(X))}"
-     quadrant__trans nil)
-    (fresh_26 skolem-const-decl "real" quadrant__trans nil)
-    (fresh_31 skolem-const-decl "{X: unb_double |
-         e_Y <= DtoR(X) AND
-          (FORALL Y: e_Y <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y))}"
-     quadrant__trans nil)
-    (smallest_fp_ge_is_ge formula-decl nil roundoff_error_props
-     "float/")
-    (greatest_fp_le_is_le formula-decl nil roundoff_error_props
-     "float/")
-    (DtoR_inc formula-decl nil ieee754dp "float/")
-    (< const-decl "bool" float "float/")
-    (trans_fp_guard1 const-decl "bool" quadrant__trans nil)
-    (trans_fp_guard3_simplification formula-decl nil quadrant__trans
-     nil))
-   nil)))
+                  (("1" (GRIND) NIL NIL)
+                   ("2" (HIDE-ALL-BUT 1)
+                    (("2" (INVOKE (CASE "%1 <= %2") (! 1 1 1 2) (! 1 1 2 2))
+                      (("1" (GRIND-REALS)
+                        (("1" (LEMMA "Flt_Fle_Flt")
+                          (("1" (INST? -1 :WHERE 1)
+                            (("1" (INST? -1 :WHERE -2) (("1" (ASSERT) NIL NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL)
+                       ("2" (HIDE 2)
+                        (("2" (UNNAME-THIS (! 1))
+                          (("2" (USE "DtoR_inc")
+                            (("2" (REPLACE -1 :HIDE? T)
+                              (("2" (USE "greatest_fp_le_is_le")
+                                (("2" (USE "smallest_fp_ge_is_ge")
+                                  (("2" (ASSERT) NIL NIL)) NIL))
+                                NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL)
+                 ("2" (HIDE-ALL-BUT 1)
+                  (("2" (INVOKE (CASE "%2 <= %1") (! 1 1 1 1) (! 1 1 2 1))
+                    (("1" (GRIND-REALS)
+                      (("1" (UNNAME-THIS (! 1))
+                        (("1" (USE "Fle_definition")
+                          (("1" (INST -1 "double_precision_format")
+                            (("1" (SPLIT -1)
+                              (("1" (REPLACE -1 :HIDE? T)
+                                (("1" (ASSERT)
+                                  (("1" (APPLY-TRANSITIVITY 1 -1 -2 "Flt") NIL
+                                    NIL))
+                                  NIL))
+                                NIL)
+                               ("2" (ASSERT) NIL NIL) ("3" (ASSERT) NIL NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL)
+                     ("2" (HIDE 2)
+                      (("2" (UNNAME-THIS (! 1))
+                        (("2" (USE "DtoR_inc")
+                          (("2" (REPLACE -1 :HIDE? T)
+                            (("2" (USE "greatest_fp_le_is_le")
+                              (("2" (USE "smallest_fp_ge_is_ge")
+                                (("2" (ASSERT) NIL NIL)) NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|float| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Format| TYPE-EQ-DECL NIL |float| |float_unbounded|)
+    (|Fcanonic?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|double_precision_format| CONST-DECL "Format" |ieee754dp|
+     |float_unbounded|)
+    (|smallest_fp_ge_nonneg_j| APPLICATION-JUDGEMENT "nonneg_unbdp"
+     |roundoff_error_props| |float_unbounded|)
+    (|DtoR| CONST-DECL "real" |ieee754dp| |float_unbounded|)
+    (|greatest_fp_le| CONST-DECL "{X: unb_double |
+   DtoR(X) <= x AND FORALL Y: DtoR(Y) <= x IMPLIES DtoR(Y) <= DtoR(X)}"
+     |roundoff_error_props| |float_unbounded|)
+    (|smallest_fp_ge| CONST-DECL "{X: unb_double |
+   x <= DtoR(X) AND FORALL Y: x <= DtoR(Y) IMPLIES DtoR(X) <= DtoR(Y)}"
+     |roundoff_error_props| |float_unbounded|)
+    (|Fle_definition| FORMULA-DECL NIL |float| |float_unbounded|)
+    (|Flt_transitive| FORMULA-DECL NIL |float| |float_unbounded|)
+    (|Fminus| CONST-DECL "float" |float| |float_unbounded|)
+    (|Flt?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|Fle?| CONST-DECL "bool" |float| |float_unbounded|)
+    (|Flt_Fle_Flt| FORMULA-DECL NIL |float| |float_unbounded|)
+    (|smallest_fp_ge_is_ge| FORMULA-DECL NIL |roundoff_error_props|
+     |float_unbounded|)
+    (|greatest_fp_le_is_le| FORMULA-DECL NIL |roundoff_error_props|
+     |float_unbounded|)
+    (|DtoR_inc| FORMULA-DECL NIL |ieee754dp| |float_unbounded|))
+   NIL)))
 

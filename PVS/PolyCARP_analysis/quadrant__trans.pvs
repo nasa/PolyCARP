@@ -1,7 +1,7 @@
 quadrant__trans: THEORY
 BEGIN
 
-  IMPORTING float@roundoff_error_props
+  IMPORTING float_unbounded@roundoff_error_props
 
   e,e_X, e_Y: VAR nonneg_real
   r_X, r_Y: VAR real

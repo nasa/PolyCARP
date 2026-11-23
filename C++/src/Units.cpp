@@ -485,6 +485,8 @@ bool Units::isCompatible(const std::string& unit1p, const std::string& unit2p) {
 		return unit2 == "m/s^2" || unit2 == "G" || unit2 == "ft/s^2";
 	} else if (unit1 == "N" || unit1 == "lbf") {
 		return unit2 == "N" || unit2 == "lbf";
+	} else if (unit1 == "J" || unit1 == "ft-lbf") {
+		return unit2 == "J" || unit2 == "ft-lbf";
 	} else if (unit1 == "atm" || unit1 == "Pa") {
 		return unit2 == "atm" || unit2 == "Pa";
 	} else if (unit1 == "unitless" || unit1 == "none") {

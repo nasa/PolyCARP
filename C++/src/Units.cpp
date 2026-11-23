@@ -477,9 +477,9 @@ bool Units::isCompatible(const std::string& unit1p, const std::string& unit2p) {
 		return unit2 == "rad/s" || unit2 == "deg/s";
 	} else if (unit1 == "kg" || unit1 == "slug" || unit1 == "lbm") {
 		return unit2 == "kg" || unit2 == "slug" || unit2 == "lbm";
-	} else if (unit1 == "kph" || unit1 == "kn" || unit1 == "fpm"
+	} else if (unit1 == "km/h" || unit1 == "kn" || unit1 == "fpm"
 			|| unit1 == "m/s" || unit1 == "mph" || unit1 == "ft/s") {
-		return unit2 == "kph" || unit2 == "kn" || unit2 == "fpm"
+		return unit2 == "km/h" || unit2 == "kn" || unit2 == "fpm"
 				|| unit2 == "m/s" || unit2 == "mph" || unit2 == "ft/s";
 	} else if (unit1 == "m/s^2" || unit1 == "G" || unit1 == "ft/s^2") {
 		return unit2 == "m/s^2" || unit2 == "G" || unit2 == "ft/s^2";

@@ -491,6 +491,8 @@ bool Units::isCompatible(const std::string& unit1p, const std::string& unit2p) {
 		return unit2 == "atm" || unit2 == "Pa";
 	} else if (unit1 == "unitless" || unit1 == "none") {
 		return unit2 == "unitless";
+	} else if (unit1 == "internal") {
+		return unit2 == "internal";
 	}
 	return false;
 

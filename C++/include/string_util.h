@@ -32,7 +32,9 @@ namespace larcfm {
   /** return a vector of strings, split from str based on the pattern. Allows empty strings */
   std::vector<std::string> split_empty(const std::string& str,const std::string& delimiters);
 
-  /** return a vector of strings, split from str based on the pattern given as a regular expression. */
+  /** return a vector of strings, split from str based on the pattern given as a regular expression.  This
+   * function gives the same result as Java's str.split(pattern) for the expressions that the ECMAScript grammar
+   * of std::regex and Java's grammar read the same way.  A malformed expression throws std::regex_error. */
   std::vector<std::string> split_regex(const std::string& str,const std::string& delimiters);
 
   /** a C++ substring method that behaves more like Java's String.subString method.

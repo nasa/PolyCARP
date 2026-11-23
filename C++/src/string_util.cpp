@@ -27,14 +27,31 @@ namespace larcfm {
   using std::string;
   using std::vector;
 
+    // Same result as Java's str.split("[" + delimiters + "]+"), that is, a split at each run
+    // of delimiter characters:
+    // - a run of delimiters at the start gives an empty first field;
+    // - if str has no delimiter, the result is str alone (also when str is empty);
+    // - empty fields at the end are removed.
     vector<string> split(const string& str,const string& delimiters) {
       vector<string> tokens;
-      string::size_type lastPos = str.find_first_not_of(delimiters, 0);
-      string::size_type pos     = str.find_first_of(delimiters, lastPos);
-      while (string::npos != pos || string::npos != lastPos) {
-    	tokens.push_back(str.substr(lastPos, pos - lastPos));
-        lastPos = str.find_first_not_of(delimiters, pos);
-        pos = str.find_first_of(delimiters, lastPos);
+      string::size_type start = 0;
+      string::size_type pos = str.find_first_of(delimiters, start);
+      if (pos == string::npos) {
+        tokens.push_back(str);
+        return tokens;
+      }
+      while (pos != string::npos) {
+        tokens.push_back(str.substr(start, pos - start));
+        start = str.find_first_not_of(delimiters, pos);
+        if (start == string::npos) {
+          start = str.size();
+          break;
+        }
+        pos = str.find_first_of(delimiters, start);
+      }
+      tokens.push_back(str.substr(start));
+      while (!tokens.empty() && tokens.back().empty()) {
+        tokens.pop_back();
       }
       return tokens;
     }

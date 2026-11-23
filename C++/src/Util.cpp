@@ -460,11 +460,13 @@ bool Util::is_boolean(const std::string& s) {
       @return   numbers of degrees decimal
  */
 double Util::decimalDegrees(const std::string& degMinSec) {
-	vector<std::string> dms = split(degMinSec,":");
-	double degrees = parse_double(dms[0]);
+	// The fields are those of Java's degMinSec.split(":"). A missing field counts as 0,
+	// as in Java's GreatCircle.parse_degrees.
+	vector<std::string> dms = split_regex(degMinSec,":");
+	double degrees = dms.size() >= 1 ? parse_double(dms[0]) : 0.0;
 	int sgn = Util::sign(degrees);
-	double minutes = parse_double(dms[1]);
-	double seconds = parse_double(dms[2]);
+	double minutes = dms.size() >= 2 ? parse_double(dms[1]) : 0.0;
+	double seconds = dms.size() >= 3 ? parse_double(dms[2]) : 0.0;
 	return sgn*(std::abs(degrees) + minutes/60+ seconds/3600);
 }
 
@@ -476,7 +478,7 @@ double Util::parse_time(const string& s) {
 	double tm = -1;
 	try {
 		string patternStr = "[:]";
-		vector<std::string> fields2 = split(s, patternStr);
+		vector<std::string> fields2 = split_regex(s, patternStr);
 		if (fields2.size() >= 3) {
 			tm = parse_double(fields2[2]) + 60 * parse_double(fields2[1]) + 3600 * parse_double(fields2[0]); // hrs:min:sec
 		} else if (fields2.size() == 2) {

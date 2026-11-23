@@ -25,11 +25,14 @@
 namespace larcfm {
 
   /** return a vector of strings, split from str based on the pattern.  The pattern is not a regular expression, instead
-   * it is a list of single character delimiters.  If the delimiters are "abc", this function will behave as if
-   * the string was being split by the regular expression "[abc]+"  */
+   * it is a list of single character delimiters.  If the delimiters are "abc", this function gives the same result as
+   * Java's str.split("[abc]+"): a run of delimiters at the start gives an empty first field, a string with no
+   * delimiter gives the string alone, and empty fields at the end are removed. */
   std::vector<std::string> split(const std::string& str,const std::string& delimiters);
   
-  /** return a vector of strings, split from str based on the pattern. Allows empty strings */
+  /** return a vector of strings, split from str based on the pattern. Allows empty strings.  If the delimiters are
+   * "abc", this function gives the same result as Java's str.split("[abc]", -1): each delimiter ends a field, and
+   * empty fields are kept, also at the end. */
   std::vector<std::string> split_empty(const std::string& str,const std::string& delimiters);
 
   /** return a vector of strings, split from str based on the pattern given as a regular expression.  This

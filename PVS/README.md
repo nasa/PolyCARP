@@ -1,30 +1,28 @@
 PVS PolyCARP
 ==
 
-[PVS version 8.0](http://pvs.csl.sri.com) and [NASALib](https://github.com/nasa/pvslib) are required
-to type-check and prove the PolyCARP development in PVS.
+[PVS version 8.1.3](https://github.com/SRI-CSL/PVS/releases/tag/pvs8.1.3) and [NASALib](https://github.com/nasa/pvslib) are required
+to type-check and prove the PolyCARP development in PVS. Install NASALib as its README says.
 
-To make NASALib available to PVS, include its absolute path to the Unix environment variable `PVS_LIBRARY_PATH`.
-Depending upon your shell, one of the following commands must be run before trying to check the formalization.
+## Checked versions
 
-In C shell (csh or tcsh), run the command below replacing `<nasalibdir>` with the absolute path to the local
-directory where NASALib was cloned:
+All 477 formulas are proved with these versions:
 
-~~~
-setenv PVS_LIBRARY_PATH "<nasalibdir>:$PVS_LIBRARY_PATH"
-~~~
+| Tool | Version |
+|---|---|
+| PVS | 8.1.3, the release of 2026-10-28 (tag [`pvs8.1.3`](https://github.com/SRI-CSL/PVS/releases/tag/pvs8.1.3), commit `50a70e713`) |
+| NASALib | `master` at commit [`d70ebfc8`](https://github.com/nasa/pvslib/commit/d70ebfc8fcd562699aea4bcccbaf3d2c4d66796f) (2026-10-28) |
 
-In Borne shell (bash or sh) or zsh, you can use:
+## Check the formalization
 
-~~~
-export PVS_LIBRARY_PATH="<nasalibdir>:$PVS_LIBRARY_PATH"
-~~~
-
-Then, you can run the following command within the local directory `PVS` to check the formalization.
+Run this command in the local directory `PVS`:
 
 ```
-$ provethem 
+$ provethem --proveit-option 'add-path .' all-libraries
 ```
+
+The option `add-path .` adds the directory `PVS` to the library path for this run. Thus the libraries
+`PolyCARP_analysis` and `FM2019` find the library `PolyCARP`, and no other setting is necessary.
 
 The output of that command should be
 
@@ -37,19 +35,49 @@ FM2019                   [OK: 49 proofs]
 *** Number of libraries: 3
 ```
 
-To include PolyCARP in other PVS developments, the local directory
-`PVS` has to be added to the Unix environment variable `PVS_LIBRARY_PATH` as well.
+To type-check without proving, add the option `-T`:
 
-In C shell (csh or tcsh), run the command below replacing `<polycarppvsdir>` with the absolute path to the local
-directory where this repository was cloned:
+```
+$ provethem -T --proveit-option 'add-path .' all-libraries
+```
 
-~~~
-setenv PVS_LIBRARY_PATH "<polycarppvsdir>/PVS:$PVS_LIBRARY_PATH"
-~~~
+## Use PolyCARP as a library in another development
 
-In Borne shell (bash or sh) os zsh, you can use:
+To import PolyCARP in another PVS development, PVS must find the directory `PVS` of this repository
+in the Unix environment variable `PVS_LIBRARY_PATH`, together with NASALib.
 
-~~~
-export PVS_LIBRARY_PATH="<polycarpdir>/PVS:$PVS_LIBRARY_PATH"
-~~~
+1. Clone this repository. In the commands below, replace `<polycarpdir>` with the absolute path of the
+   local clone, and `<nasalibdir>` with the absolute path of the local directory where NASALib was
+   cloned.
 
+2. Add both directories to `PVS_LIBRARY_PATH`.
+
+   In Bourne shell (bash or sh) or zsh:
+
+   ~~~
+   export PVS_LIBRARY_PATH="<nasalibdir>:<polycarpdir>/PVS:$PVS_LIBRARY_PATH"
+   ~~~
+
+   In C shell (csh or tcsh):
+
+   ~~~
+   setenv PVS_LIBRARY_PATH "<nasalibdir>:<polycarpdir>/PVS:$PVS_LIBRARY_PATH"
+   ~~~
+
+   If `PVS_LIBRARY_PATH` already contains NASALib, add only `<polycarpdir>/PVS`. To keep the setting,
+   add the line to your shell startup file (for example `~/.bashrc`, `~/.zshrc` or `~/.cshrc`). Start
+   PVS after you set the variable.
+
+3. Import the theories with the library name as a prefix. To import all of PolyCARP, import its `top`
+   theory:
+
+   ~~~
+   IMPORTING PolyCARP@top
+   ~~~
+
+   You can also import one theory, for example `IMPORTING PolyCARP@polygon_contain`. The libraries
+   `PolyCARP_analysis` and `FM2019` are imported in the same way, for example
+   `IMPORTING PolyCARP_analysis@top`.
+
+4. Type-check your development once with the command `M-x typecheck` in PVS, or with
+   `proveit -T <your theory file>`, to make sure that PVS finds PolyCARP.

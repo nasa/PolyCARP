@@ -845,7 +845,7 @@ public final class Units {
 			addUnit("in", in, "m");
 			addUnit("yard", 3.0, "ft");
 			addUnit("NM", NM, "m");
-			addSimilarUnit("nm", "NM");  // Do not add nm, nm means nanometers, not nautical miles
+			addSimilarUnit("nm", "NM");  // "nm" is accepted as nautical miles (in SI, nm means nanometers)
 			addSimilarUnit("nmi", "NM");
 			addUnit("mi", mi, "m");
 			addSimilarUnit("metre", "m");

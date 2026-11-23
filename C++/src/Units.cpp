@@ -371,7 +371,7 @@ const std::string Units::canonical(const std::string& unit) {
 		return "ft";
 	if (unit == "km" || unit == "kilometer")
 		return "km";
-	if (unit == "NM" || unit == "nmi" || unit == "nm"  // Do not add nm, nm means nanometers, not nautical miles
+	if (unit == "NM" || unit == "nmi" || unit == "nm"  // "nm" is accepted as nautical miles (in SI, nm means nanometers)
 			|| unit == "nautical_mile")
 		return "NM";
 	if (unit == "mile" || unit == "mi")

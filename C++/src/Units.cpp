@@ -113,7 +113,7 @@ static double FormalATM_hour() {
 	return ans;
 }
 static double FormalATM_day() {
-	static double ans = 8640000.0 * FormalATM_s();
+	static double ans = 86400.0 * FormalATM_s();
 	return ans;
 }
 static double FormalATM_ms() {

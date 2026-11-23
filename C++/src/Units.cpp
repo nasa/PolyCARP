@@ -362,7 +362,7 @@ const std::string Units::canonical(const std::string& unit) {
 	if (unit == "unspecified")
 		return unit;
 	if (unit == "unitless" || unit == "none")
-		return unit;
+		return "unitless";
 	if (unit == "internal")
 		return unit;
 	if (unit == "m" || unit == "meter" || unit == "metre")

@@ -48,14 +48,15 @@ proved: no formula is `unfinished`, `untried` or `unchecked`. PVS lists each pro
 of two ways:
 
 - `proved - complete`: the proof succeeds, and every formula that the proof uses is also proved in
-  the run. These are the lemmas, TCCs and judgements that the proof uses, and the formulas that
+  this installation. These are the lemmas, TCCs and judgements that the proof uses, and the formulas that
   their proofs use, through the whole chain.
-- `proved - incomplete`: the proof succeeds, but its chain contains a formula that the run did not
-  prove, for example a NASALib lemma, TCC or judgement. The check proves the formulas of this
-  repository. It uses NASALib as it is installed and does not prove it again.
+- `proved - incomplete`: the proof succeeds, but its chain contains a formula that is not proved in
+  this installation, for example a NASALib lemma, TCC or judgement.
 
-Thus `proved - incomplete` does not mean that a proof failed or is missing. It means that the proof
-uses formulas that this check does not prove, such as the formulas of NASALib.
+NASALib is fully proved, but its proofs take several hours, so the check above does not run them.
+Thus `proved - incomplete` does not mean that a proof failed or is missing. After NASALib is proved
+in the same installation, for example with its script `prove-all`, the check lists these formulas
+as `proved - complete`.
 
 ## Use PolyCARP as a library in another development
 

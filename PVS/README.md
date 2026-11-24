@@ -21,19 +21,23 @@ Run this command in the local directory `PVS`:
 $ provethem --proveit-option 'add-path .' all-libraries
 ```
 
-The option `add-path .` adds the directory `PVS` to the library path for this run. Thus the libraries
-`PolyCARP_analysis` and `FM2019` find the library `PolyCARP`, and no other setting is necessary.
+The option `add-path .` adds the directory `PVS` to the library path for this run. Thus the
+libraries `PolyCARP_analysis` and `FM2019` find the library `PolyCARP`, and no other setting is
+necessary. The file `all-libraries` lists the libraries in the order in which they are checked.
 
 The output of that command should be
 
 ```
-PolyCARP                 [OK: 297 proofs]
-PolyCARP_analysis        [OK: 131 proofs]
-FM2019                   [OK: 49 proofs]
+PolyCARP            Proving... [OK: 297 proofs]
+PolyCARP_analysis   Proving... [OK: 131 proofs]
+FM2019              Proving... [OK: 49 proofs]
 
-*** Grand Totals: 477 proofs / 477 formulas. Missed: 0 formulas.
+*** Grand Totals: 477 proofs / 477 formulas. Missed: 0 formulas
 *** Number of libraries: 3
 ```
+
+On a MacBook with Apple silicon, the command took 12 minutes. The library `PolyCARP` takes the
+longest, about 7 minutes.
 
 To type-check without proving, add the option `-T`:
 
@@ -48,8 +52,8 @@ proved: no formula is `unfinished`, `untried` or `unchecked`. PVS lists each pro
 of two ways:
 
 - `proved - complete`: the proof succeeds, and every formula that the proof uses is also proved in
-  this installation. These are the lemmas, TCCs and judgements that the proof uses, and the formulas that
-  their proofs use, through the whole chain.
+  this installation. These are the lemmas, TCCs and judgements that the proof uses, and the
+  formulas that their proofs use, through the whole chain.
 - `proved - incomplete`: the proof succeeds, but its chain contains a formula that is not proved in
   this installation, for example a NASALib lemma, TCC or judgement.
 

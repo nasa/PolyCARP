@@ -41,6 +41,22 @@ To type-check without proving, add the option `-T`:
 $ provethem -T --proveit-option 'add-path .' all-libraries
 ```
 
+## Complete and incomplete proofs
+
+The directory `summaries` holds the summary of each library from the run above. Every formula is
+proved: no formula is `unfinished`, `untried` or `unchecked`. PVS lists each proved formula in one
+of two ways:
+
+- `proved - complete`: the proof succeeds, and every formula that the proof uses is also proved in
+  the run. These are the lemmas, TCCs and judgements that the proof uses, and the formulas that
+  their proofs use, through the whole chain.
+- `proved - incomplete`: the proof succeeds, but its chain contains a formula that the run did not
+  prove, for example a NASALib lemma, TCC or judgement. The check proves the formulas of this
+  repository. It uses NASALib as it is installed and does not prove it again.
+
+Thus `proved - incomplete` does not mean that a proof failed or is missing. It means that the proof
+uses formulas that this check does not prove, such as the formulas of NASALib.
+
 ## Use PolyCARP as a library in another development
 
 To import PolyCARP in another PVS development, PVS must find the directory `PVS` of this repository

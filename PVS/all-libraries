@@ -1,6 +1,4 @@
-: --log --dir summaries 
-: --summary-mode md
-: --summary-mode csv
+: --log --dir summaries
 PolyCARP
 PolyCARP_analysis
 FM2019

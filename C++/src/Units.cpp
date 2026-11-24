@@ -113,7 +113,7 @@ static double FormalATM_hour() {
 	return ans;
 }
 static double FormalATM_day() {
-	static double ans = 8640000.0 * FormalATM_s();
+	static double ans = 86400.0 * FormalATM_s();
 	return ans;
 }
 static double FormalATM_ms() {
@@ -362,7 +362,7 @@ const std::string Units::canonical(const std::string& unit) {
 	if (unit == "unspecified")
 		return unit;
 	if (unit == "unitless" || unit == "none")
-		return unit;
+		return "unitless";
 	if (unit == "internal")
 		return unit;
 	if (unit == "m" || unit == "meter" || unit == "metre")
@@ -371,7 +371,7 @@ const std::string Units::canonical(const std::string& unit) {
 		return "ft";
 	if (unit == "km" || unit == "kilometer")
 		return "km";
-	if (unit == "NM" || unit == "nmi" || unit == "nm"  // Do not add nm, nm means nanometers, not nautical miles
+	if (unit == "NM" || unit == "nmi" || unit == "nm"  // "nm" is accepted as nautical miles (in SI, nm means nanometers)
 			|| unit == "nautical_mile")
 		return "NM";
 	if (unit == "mile" || unit == "mi")
@@ -477,18 +477,22 @@ bool Units::isCompatible(const std::string& unit1p, const std::string& unit2p) {
 		return unit2 == "rad/s" || unit2 == "deg/s";
 	} else if (unit1 == "kg" || unit1 == "slug" || unit1 == "lbm") {
 		return unit2 == "kg" || unit2 == "slug" || unit2 == "lbm";
-	} else if (unit1 == "kph" || unit1 == "kn" || unit1 == "fpm"
+	} else if (unit1 == "km/h" || unit1 == "kn" || unit1 == "fpm"
 			|| unit1 == "m/s" || unit1 == "mph" || unit1 == "ft/s") {
-		return unit2 == "kph" || unit2 == "kn" || unit2 == "fpm"
+		return unit2 == "km/h" || unit2 == "kn" || unit2 == "fpm"
 				|| unit2 == "m/s" || unit2 == "mph" || unit2 == "ft/s";
 	} else if (unit1 == "m/s^2" || unit1 == "G" || unit1 == "ft/s^2") {
 		return unit2 == "m/s^2" || unit2 == "G" || unit2 == "ft/s^2";
 	} else if (unit1 == "N" || unit1 == "lbf") {
 		return unit2 == "N" || unit2 == "lbf";
+	} else if (unit1 == "J" || unit1 == "ft-lbf") {
+		return unit2 == "J" || unit2 == "ft-lbf";
 	} else if (unit1 == "atm" || unit1 == "Pa") {
 		return unit2 == "atm" || unit2 == "Pa";
 	} else if (unit1 == "unitless" || unit1 == "none") {
 		return unit2 == "unitless";
+	} else if (unit1 == "internal") {
+		return unit2 == "internal";
 	}
 	return false;
 

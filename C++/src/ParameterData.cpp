@@ -477,14 +477,46 @@ std::string ParameterData::toParameterList(const std::string& separator) const {
 	return ret;
 }
 
+// Same result as Java's line.split(Pattern.quote(separator)) for a non-empty separator:
+// the separator is one literal string, not a list of characters. A separator at the
+// start gives an empty first field, and empty fields at the end are removed.
+static std::vector<std::string> split_literal(const std::string& line, const std::string& separator) {
+	std::vector<std::string> fields;
+	std::string::size_type start = 0;
+	std::string::size_type pos = line.find(separator);
+	if (pos == std::string::npos) {
+		fields.push_back(line);
+		return fields;
+	}
+	while (pos != std::string::npos) {
+		fields.push_back(line.substr(start, pos - start));
+		start = pos + separator.size();
+		pos = line.find(separator, start);
+	}
+	fields.push_back(line.substr(start));
+	while (!fields.empty() && fields.back().empty()) {
+		fields.pop_back();
+	}
+	return fields;
+}
+
+// The characters that Java's String.trim removes: every character from '\0' to ' '.
+static std::string java_trim_chars() {
+	std::string chars;
+	for (int c = 0; c <= ' '; c++) {
+		chars += static_cast<char>(c);
+	}
+	return chars;
+}
+
 bool ParameterData::parseParameterList(const std::string& separator,  std::string line) {
 	std::string sep = separator;
 	if (separator.length() < 1) {
 		sep = defaultEntrySeparator;
 	}
 	bool status = true;
-	trim(line);
-	std::vector<std::string> s = split(line, sep);
+	trim(line, java_trim_chars());
+	std::vector<std::string> s = split_literal(line, sep);
 	for (int i = 0; i < (int) s.size(); i++) {
 		std::string def = s[i];
 		if (def.length() > 3) { // minimum possible length for a parameter definition

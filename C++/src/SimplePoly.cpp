@@ -169,7 +169,8 @@ double SimplePoly::signedArea(double dx, double dy) const {
 	int sz = points.size()-1;
 	double xorig = points[0].x();
 	for (int i = 0; i <= sz; i++) {
-		double x0 = points[i].x();
+		double x0 = points[i].x() - dx;
+		double y0 = points[i].y() - dy;
 		double x1 = (i==sz ? points[0].x() : points[i+1].x()) - dx;
 		double y1 = (i==sz ? points[0].y() : points[i+1].y()) - dy;
 		// correct for date line wrap around
@@ -185,7 +186,7 @@ double SimplePoly::signedArea(double dx, double dy) const {
 				x1 = x1 + 2*Pi;
 			}
 		}
-		a = a + (x0*y1 - x1*points[i].y());
+		a = a + (x0*y1 - x1*y0);
 	}
 //	a = a + (points[sz].x()*points[0].y() - points[0].x()*points[sz].y()); // now do the 1st point again
 	return 0.5*a;

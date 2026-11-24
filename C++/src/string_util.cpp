@@ -19,11 +19,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string.h>
-#if defined(_MSC_VER)
 #include <regex>
-#else
-#include <regex.h>
-#endif
 
 
 namespace larcfm {
@@ -31,14 +27,31 @@ namespace larcfm {
   using std::string;
   using std::vector;
 
+    // Same result as Java's str.split("[" + delimiters + "]+"), that is, a split at each run
+    // of delimiter characters:
+    // - a run of delimiters at the start gives an empty first field;
+    // - if str has no delimiter, the result is str alone (also when str is empty);
+    // - empty fields at the end are removed.
     vector<string> split(const string& str,const string& delimiters) {
       vector<string> tokens;
-      string::size_type lastPos = str.find_first_not_of(delimiters, 0);
-      string::size_type pos     = str.find_first_of(delimiters, lastPos);
-      while (string::npos != pos || string::npos != lastPos) {
-    	tokens.push_back(str.substr(lastPos, pos - lastPos));
-        lastPos = str.find_first_not_of(delimiters, pos);
-        pos = str.find_first_of(delimiters, lastPos);
+      string::size_type start = 0;
+      string::size_type pos = str.find_first_of(delimiters, start);
+      if (pos == string::npos) {
+        tokens.push_back(str);
+        return tokens;
+      }
+      while (pos != string::npos) {
+        tokens.push_back(str.substr(start, pos - start));
+        start = str.find_first_not_of(delimiters, pos);
+        if (start == string::npos) {
+          start = str.size();
+          break;
+        }
+        pos = str.find_first_of(delimiters, start);
+      }
+      tokens.push_back(str.substr(start));
+      while (!tokens.empty() && tokens.back().empty()) {
+        tokens.pop_back();
       }
       return tokens;
     }
@@ -67,81 +80,95 @@ namespace larcfm {
     }
 
 
-#if defined(_MSC_VER)
-    vector<string> split_regex(const string& s, const string& rgx_str) {
-        std::vector<std::string> elems;
-
-        std::regex rgx(rgx_str);
-        std::sregex_token_iterator iter(s.begin(), s.end(), rgx, -1);
-        std::sregex_token_iterator end;
-
-        while (iter != end)  {
-            elems.push_back(*iter);
-            ++iter;
-        }
-
-        return elems;
-
-    }
-#else
-    vector<string> split_regex(const string& s, const string& rgx_str) {
-    	std::vector<std::string> elems;
-
-    	int reti;
-    	regex_t rgx;
-    	reti = regcomp(&rgx, rgx_str.c_str(), REG_EXTENDED);
-    	if (reti != 0) {
-    		fdln("Could not compile regex\n");
-    	}
-
-    	/* Execute regular expression */
-		char between[100];
-		int numchars;
-    	regmatch_t matchptr[1];
-    	int count = 0;
-    	const int length = s.size();
-		const char* cstr = s.c_str();
-		//fpln("regex str="+rgx_str);
-		//fpln("split_regex s.size()="+Fm2(length));
-    	while (count < length) {
-    		string m2(cstr+count);
-    		//fpln("str = "+m2);
-    		//fpln("count = "+Fm2(count));
-        	reti = regexec(&rgx, cstr+count, 1, matchptr, 0);
-    		if (!reti) {
-    			numchars = matchptr[0].rm_so;
-            	//fpln("l2 numchars="+Fm2(numchars));
-    			strncpy(between,cstr+count,numchars);
-    			between[numchars] = '\0';
-    			string m1(between);
-    			elems.push_back(m1);
-    			//fpln("match1="+m1);
-
-    			count = count + matchptr[0].rm_eo;
-    		} else if (reti == REG_NOMATCH) {
-    			numchars = length - count;
-    			strncpy(between,cstr+count,numchars);
-    			between[numchars] = '\0';
-    			string m1(between);
-    			elems.push_back(m1);
-    			//fpln("match2="+m1);
-
-    			count = s.size();
+    // Rewrite the anchors of an ECMAScript expression so that they mean what they mean in
+    // a Java expression (without MULTILINE):
+    // - '$' matches at the end, and also before a line terminator (\n, \r or \r\n) at the end.
+    //   Java does not match '$' between the \r and the \n of a final \r\n: endsWithCrLf tells
+    //   that the string ends with \r\n, so that the rewrite can leave out that position.
+    // - '^' matches only at the start of the whole string. When atStart is false, the search
+    //   begins after the start, so '^' must not match: it becomes an expression that never matches.
+    // A '^' or '$' after a backslash or in a character class is not an anchor and does not change.
+    static string java_anchors(const string& rgx, bool atStart, bool endsWithCrLf) {
+    	string out;
+    	bool inClass = false;
+    	for (string::size_type i = 0; i < rgx.size(); i++) {
+    		const char c = rgx[i];
+    		if (c == '\\' && i + 1 < rgx.size()) {
+    			out += c;
+    			out += rgx[++i];
+    		} else if (inClass) {
+    			out += c;
+    			if (c == ']') {
+    				inClass = false;
+    			}
+    		} else if (c == '[') {
+    			out += c;
+    			inClass = true;
+    		} else if (c == '$') {
+    			out += endsWithCrLf ? "(?=(?:\\r\\n)?$)" : "(?=[\\n\\r]?$)";
+    		} else if (c == '^' && !atStart) {
+    			out += "(?!)";
     		} else {
-    		    regerror(reti, &rgx, between, sizeof(between));
-    		    string m1(between);
-    		    //fdln("Regex match failed: "+m1);
+    			out += c;
     		}
-
     	}
-
-		//fpln("split_regex done!");
-    	regfree(&rgx);
-    	return elems;
-
+    	return out;
     }
 
-#endif
+    // Same result as Java's s.split(rgx_str), that is, Pattern.split(s, 0):
+    // - each match of the regular expression ends a field;
+    // - a zero-width match at the start of s does not give an empty first field;
+    // - after a zero-width match, the next search starts one character later;
+    // - if nothing matches, the result is s alone (also when s is empty);
+    // - empty fields at the end are removed.
+    // The regular expression uses the ECMAScript grammar of std::regex. For the
+    // expressions that both grammars accept with the same meaning, the fields are
+    // the same as in Java. A malformed expression throws std::regex_error, as Java
+    // throws PatternSyntaxException.
+    vector<string> split_regex(const string& s, const string& rgx_str) {
+    	const bool endsWithCrLf = s.size() >= 2 && s.compare(s.size() - 2, 2, "\r\n") == 0;
+    	const std::regex rgxAtStart(java_anchors(rgx_str, true, endsWithCrLf)); // for the search from index 0
+    	const std::regex rgxLater(java_anchors(rgx_str, false, endsWithCrLf));  // for the searches after index 0
+    	vector<string> elems;
+    	const string::size_type length = s.size();
+    	string::size_type index = 0;          // start of the next field
+    	string::size_type prevStart = string::npos; // previous match (none yet)
+    	string::size_type prevEnd = 0;
+    	for (;;) {
+    		string::size_type from = prevEnd;
+    		if (from == prevStart) {
+    			from++; // the previous match was empty
+    		}
+    		if (from > length) {
+    			break;
+    		}
+    		std::smatch m;
+    		// After index 0, '\b' must see the character before 'from' (match_prev_avail), as in Java.
+    		const bool atStart = (from == 0);
+    		const std::regex_constants::match_flag_type flags =
+    				atStart ? std::regex_constants::match_default : std::regex_constants::match_prev_avail;
+    		if (!std::regex_search(s.begin() + from, s.end(), m, atStart ? rgxAtStart : rgxLater, flags)) {
+    			break;
+    		}
+    		const string::size_type mStart = from + m.position(0);
+    		const string::size_type mEnd = mStart + m.length(0);
+    		prevStart = mStart;
+    		prevEnd = mEnd;
+    		if (index == 0 && mStart == 0 && mEnd == 0) {
+    			continue; // no empty first field for a zero-width match at the start
+    		}
+    		elems.push_back(s.substr(index, mStart - index));
+    		index = mEnd;
+    	}
+    	if (index == 0) {
+    		return vector<string>(1, s);
+    	}
+    	elems.push_back(s.substr(index));
+    	while (!elems.empty() && elems.back().empty()) {
+    		elems.pop_back();
+    	}
+    	return elems;
+    }
 
     string substring(const string& s, int begin, int end){
     	end = (end < (int) s.length()) ? end : s.length();

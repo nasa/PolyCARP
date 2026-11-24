@@ -25,4 +25,5 @@ all-libraries-*.*
 *.tmp
 *.html
 *.grandtotals
+*.grandtotals-tc
 tmp/

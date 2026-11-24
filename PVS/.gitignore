@@ -19,7 +19,7 @@ orphaned-proofs.prf
 *_adt.p??
 *_codt.p??
 *.summary-tc
-alltheories-*.*
+all-libraries-*.*
 *.old
 *.tptp
 *.tmp
